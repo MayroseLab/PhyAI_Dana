@@ -1,38 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="04f6d22b-03c8-46f3-ac77-b58c4e95d95d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/RF_learning_algorithm.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SPR_and_lls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/collect_features.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/defs_PhyAI.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/execute_Phyml.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/execute_programs/SPR_move_one_parallel.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/summary/run_times.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/code.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/code.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="04f6d22b-03c8-46f3-ac77-b58c4e95d95d" name="Default Changelist" comment="1st commit after submission (moving from svn to git)">
       <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ML_workshop_RandomForest_pipline.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ML_workshop_generate_SPRs.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ML_workshop_utils.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/course.py" beforeDir="false" afterPath="$PROJECT_DIR$/course.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_processing/create_starting_trees.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_processing/create_starting_trees.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_processing/temp_for_ML_workshop.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_processing/temp_for_ML_workshop.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_processing/whore.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_processing/whore.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/defs.py" beforeDir="false" afterPath="$PROJECT_DIR$/defs.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/execute_programs/NN_Gil.py" beforeDir="false" afterPath="$PROJECT_DIR$/execute_programs/NN_Gil.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/execute_programs/RF_learning.py" beforeDir="false" afterPath="$PROJECT_DIR$/execute_programs/RF_learning.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/execute_programs/SPR_move.py" beforeDir="false" afterPath="$PROJECT_DIR$/execute_programs/SPR_move.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/execute_programs/SVM_learning.py" beforeDir="false" afterPath="$PROJECT_DIR$/execute_programs/SVM_learning.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/figures/data_attributes.py" beforeDir="false" afterPath="$PROJECT_DIR$/figures/data_attributes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/figures/feauture_selection.py" beforeDir="false" afterPath="$PROJECT_DIR$/figures/feauture_selection.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/figures/saturation.py" beforeDir="false" afterPath="$PROJECT_DIR$/figures/saturation.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/summary/collect_SPR_features.py" beforeDir="false" afterPath="$PROJECT_DIR$/summary/collect_SPR_features.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/trying.py" beforeDir="false" afterPath="$PROJECT_DIR$/trying.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/trying_psidt.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/general_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/general_utils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/msa_functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/msa_functions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/tree_functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/tree_functions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,6 +17,9 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1fa0BNFFj7wVf4iLrRaPR2E5kO8" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -54,7 +28,7 @@
   <component name="PropertiesComponent">
     <property name="SearchEverywhereHistoryKey" value="100_ds&#9;null&#9;null&#10;TODO&#9;FILE&#9;file://C:/Program Files/Anaconda3/pkgs/sphinx-1.4.6-py35_0/Lib/site-packages/Sphinx-1.4.6-py3.5.egg/sphinx/ext/todo.py&#10;&quot;Sp&#9;null&#9;null&#10;lear&#9;FILE&#9;file://D:/Users/Administrator/Dropbox/PhyloAI/code/execute_programs/learning_by_prune.py&#10;ntaxa&#9;null&#9;null" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+    <property name="settings.editor.selected.configurable" value="vcs.Subversion" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -366,24 +340,6 @@
   <component name="SvnConfiguration" cleanupOnStartRun="true">
     <configuration>C:\Users\ItayMNB3\AppData\Roaming\Subversion</configuration>
     <supportedVersion>125</supportedVersion>
-  </component>
-  <component name="SvnFileUrlMappingImpl">
-    <option name="myMappingRoots">
-      <list>
-        <SvnCopyRootSimple>
-          <option name="myVcsRoot" value="C:\Users\ItayMNB3\Dropbox\PhyloAI\code" />
-          <option name="myCopyRoot" value="C:\Users\ItayMNB3\Dropbox\PhyloAI\code" />
-        </SvnCopyRootSimple>
-      </list>
-    </option>
-    <option name="myMoreRealMappingRoots">
-      <list>
-        <SvnCopyRootSimple>
-          <option name="myVcsRoot" value="C:\Users\ItayMNB3\Dropbox\PhyloAI\code" />
-          <option name="myCopyRoot" value="C:\Users\ItayMNB3\Dropbox\PhyloAI\code" />
-        </SvnCopyRootSimple>
-      </list>
-    </option>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -780,38 +736,49 @@
     <option name="LAST_COMMIT_MESSAGE" value="1st commit after submission (moving from svn to git)" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="2351" y="2" width="688" height="661" key="CommitChangelistDialog2" timestamp="1596616667226">
-      <screen x="1920" y="0" width="1920" height="1040" />
+    <state x="2570" y="233" key="#Menus_and_Toolbars" timestamp="1596705437758">
+      <screen x="1920" y="0" width="1680" height="1010" />
     </state>
+    <state x="2570" y="233" key="#Menus_and_Toolbars/0.0.1280.680/1920.0.1680.1010@1920.0.1680.1010" timestamp="1596705437758" />
+    <state x="2297" y="2" width="688" height="661" key="CommitChangelistDialog2" timestamp="1596711385765">
+      <screen x="1920" y="0" width="1680" height="1010" />
+    </state>
+    <state x="2297" y="2" key="CommitChangelistDialog2/0.0.1280.680/1920.0.1680.1010@1920.0.1680.1010" timestamp="1596711385765" />
     <state x="2351" y="2" key="CommitChangelistDialog2/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1596616667226" />
     <state x="287" y="1" width="688" height="661" key="CommitChangelistDialog2/0.0.1280.680@0.0.1280.680" timestamp="1596609832645" />
-    <state x="2659" y="328" key="FileChooserDialogImpl" timestamp="1596440993685">
-      <screen x="1920" y="0" width="1920" height="1040" />
+    <state x="2383" y="265" key="FileChooserDialogImpl" timestamp="1596705485476">
+      <screen x="1920" y="0" width="1680" height="1010" />
     </state>
+    <state x="2383" y="265" key="FileChooserDialogImpl/0.0.1280.680/1920.0.1680.1010@1920.0.1680.1010" timestamp="1596705485476" />
     <state x="2659" y="328" key="FileChooserDialogImpl/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1596440993685" />
-    <state width="1109" height="158" key="GridCell.Tab.0.bottom" timestamp="1596642310299">
-      <screen x="0" y="0" width="1280" height="680" />
+    <state width="1462" height="355" key="GridCell.Tab.0.bottom" timestamp="1596705084336">
+      <screen x="1920" y="0" width="1680" height="1010" />
     </state>
+    <state width="1462" height="355" key="GridCell.Tab.0.bottom/0.0.1280.680/1920.0.1680.1010@1920.0.1680.1010" timestamp="1596705084336" />
     <state width="1750" height="123" key="GridCell.Tab.0.bottom/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1596458408738" />
     <state width="1109" height="158" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1596642310299" />
-    <state width="1109" height="158" key="GridCell.Tab.0.center" timestamp="1596642310299">
-      <screen x="0" y="0" width="1280" height="680" />
+    <state width="1462" height="355" key="GridCell.Tab.0.center" timestamp="1596705084336">
+      <screen x="1920" y="0" width="1680" height="1010" />
     </state>
+    <state width="1462" height="355" key="GridCell.Tab.0.center/0.0.1280.680/1920.0.1680.1010@1920.0.1680.1010" timestamp="1596705084336" />
     <state width="1750" height="123" key="GridCell.Tab.0.center/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1596458408737" />
     <state width="1109" height="158" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1596642310299" />
-    <state width="1109" height="158" key="GridCell.Tab.0.left" timestamp="1596642310299">
-      <screen x="0" y="0" width="1280" height="680" />
+    <state width="1462" height="355" key="GridCell.Tab.0.left" timestamp="1596705084335">
+      <screen x="1920" y="0" width="1680" height="1010" />
     </state>
+    <state width="1462" height="355" key="GridCell.Tab.0.left/0.0.1280.680/1920.0.1680.1010@1920.0.1680.1010" timestamp="1596705084335" />
     <state width="1750" height="123" key="GridCell.Tab.0.left/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1596458408737" />
     <state width="1109" height="158" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1596642310299" />
-    <state width="1109" height="158" key="GridCell.Tab.0.right" timestamp="1596642310299">
-      <screen x="0" y="0" width="1280" height="680" />
+    <state width="1462" height="355" key="GridCell.Tab.0.right" timestamp="1596705084336">
+      <screen x="1920" y="0" width="1680" height="1010" />
     </state>
+    <state width="1462" height="355" key="GridCell.Tab.0.right/0.0.1280.680/1920.0.1680.1010@1920.0.1680.1010" timestamp="1596705084336" />
     <state width="1750" height="123" key="GridCell.Tab.0.right/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1596458408737" />
     <state width="1109" height="158" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1596642310299" />
-    <state x="2381" y="164" key="SettingsEditor" timestamp="1596616610627">
-      <screen x="1920" y="0" width="1920" height="1040" />
+    <state x="2323" y="159" key="SettingsEditor" timestamp="1596711194268">
+      <screen x="1920" y="0" width="1680" height="1010" />
     </state>
+    <state x="2323" y="159" key="SettingsEditor/0.0.1280.680/1920.0.1680.1010@1920.0.1680.1010" timestamp="1596711194268" />
     <state x="2381" y="164" key="SettingsEditor/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1596616610627" />
     <state x="2012" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1596442525460">
       <screen x="1920" y="0" width="1920" height="1040" />
@@ -826,9 +793,10 @@
     </state>
     <state x="2624" y="364" key="svn.passwordDialog/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1596616680533" />
     <state x="469" y="238" key="svn.passwordDialog/0.0.1280.680@0.0.1280.680" timestamp="1596609901088" />
-    <state x="2710" y="310" key="svn.repositoryBrowser" timestamp="1596616702999">
-      <screen x="1920" y="0" width="1920" height="1040" />
+    <state x="2611" y="301" key="svn.repositoryBrowser" timestamp="1596705613024">
+      <screen x="1920" y="0" width="1680" height="1010" />
     </state>
+    <state x="2611" y="301" key="svn.repositoryBrowser/0.0.1280.680/1920.0.1680.1010@1920.0.1680.1010" timestamp="1596705613024" />
     <state x="2710" y="310" key="svn.repositoryBrowser/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1596616702999" />
   </component>
   <component name="XDebuggerManager">
