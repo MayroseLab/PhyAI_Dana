@@ -1,0 +1,41 @@
+import numpy as np
+from ete3 import *
+import pandas as pd
+#import regex as re
+from collections import Counter
+import numpy as np
+from Bio import Phylo
+from Bio import AlignIO
+from Bio.Phylo.TreeConstruction import *
+from Bio.SeqRecord import SeqRecord
+from io import StringIO
+from collections import OrderedDict
+import matplotlib.pyplot as plt
+
+PHYLIP_FORMAT = "phylip-relaxed"
+SUBTREE1 = "subtree1"
+SUBTREE2 = "subtree2"
+TREES_PER_DS = "newicks_step1.csv"
+LABEL = "d_ll_{}"
+##################################################
+
+
+
+
+
+##################################################
+
+if __name__ == '__main__':
+	#datapath = r"D:\Users\Administrator\Dropbox\PhyloAI\data\training_datasets\\"
+	datapath = r"C:\Users\ItayMNB3\Dropbox\PhyloAI\data\training_datasets\\"
+	PHYML_TREE_FILENAME = "masked_species_real_msa.phy_phyml_tree_bionj.txt"
+	MSA_PHYLIP_FILENAME = "masked_species_real_msa.phy"
+
+	#felsenstein_log_likelihood(datapath + PHYML_TREE_FILENAME, datapath + MSA_PHYLIP_FILENAME, M, pai)
+
+	#tree = "(Sp005:0.0574434,(((Sp004:0.0811944,(Sp003:0.0397472,Sp002:0.016391)N7:0.101944)N4:0.0637455,(Sp001:0.135135,Sp000:0.0286457)N5:0.176226)N1:0.00777758,Sp006:0.0369512)ROOT_LIKE:0.0369512);"
+	#try_calc_leaves_features(tree, datapath + MSA_PHYLIP_FILENAME)
+	
+	#########################################
+
+	#import keras

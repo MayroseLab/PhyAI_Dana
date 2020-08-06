@@ -1,0 +1,83 @@
+import sys
+sys.path.append("/groups/itay_mayrose/danaazouri/PhyAI/code/")
+import warnings
+warnings.filterwarnings("ignore")			# TEMP
+import itertools
+import seaborn as sns
+
+from defs import *
+from utils.tree_functions import *
+
+sns.set_style("white")
+fig, axarr = plt.subplots(2, 2)
+palette = itertools.cycle(sns.color_palette('colorblind'))
+
+
+def calc_empirical_features():
+	df = pd.read_csv(dirpath + CHOSEN_DATASETS_FILENAME).reset_index(drop=True)
+	df2 = pd.read_csv(dirpath + SCORES_PER_DS.format("28_1_ytransformed_exp")).reset_index(drop=True)
+	for index, row in df2.iterrows():
+		path = row["path"]
+		sum_ds_df = SUMMARY_PER_DS.format(path, "prune", "br", "1")
+		if os.path.exists(sum_ds_df):
+			df2.ix[index, "ntaxa"] = df.loc[df["path"] == path, "ntaxa"].values[0]
+			df2.ix[index, "nchars"] = df.loc[df["path"] == path, "nchars"].values[0]
+			df2.ix[index, "tbl"] = get_total_branch_lengths(path + PHYML_TREE_FILENAME.format('bionj'))
+			df2.ix[index, "ll"] = pd.read_csv(sum_ds_df).loc[0, "orig_ds_ll"]
+		
+	df2.to_csv(SUMMARY_FILES_DIR + SCORES_PER_DS.format("28_1_ytransformed_exp_with_atts"))
+
+
+def plot_distributions(df):
+	axarrs_locs = [(0, 0), (0, 1), (1, 0), (1, 1)]
+	xlims = [(-5, 75), (-1000, 6000), (-5, 20), (-50000, 10000)]
+	#xlims = [(0, 75), (0, 6000), (0, 50), (-50000, 0)]
+	cols_lst = ["ntaxa", "nchars", "tbl", "ll"]
+	for i, loc in enumerate(axarrs_locs):
+		color = next(palette)
+		ax = axarr[axarrs_locs[i]]
+		#ax = axarr[i]
+		ax.set_xlim(xlims[i])
+		'''
+		for df_id in ["2_", "val_"]:
+			df = pd.read_csv(DATA_PATH + df_id + CHOSEN_DATASETS_FILENAME, usecols=cols_lst)
+			df_name = "TreeBASE set" if df_id == "2_" else "validation set"
+			linestyle = "solid" if df_id == "2_" else 'dashed'
+			df[cols_lst[i]].plot.kde(color=color, linestyle=linestyle, title=cols_lst[i], label=df_name, ax=ax)
+			ax.legend(loc='best', frameon=True)
+		'''
+		q=4
+		df[cols_lst[i]] = pd.qcut(df[cols_lst[i]], q=q) #, labels=np.arange(1,q+1))  #+'_attribute_category'
+		df = df.round(2)
+		#df2 = pd.read_csv(DATA_PATH + "2_" + CHOSEN_DATASETS_FILENAME)
+		#df = pd.concat([df,df2])
+		sns.boxplot(x=cols_lst[i], y=SCORES_LST[0], data=df,ax=ax, hue='Database')  # ,color=color
+		ax.legend(loc='best', frameon=True)
+		
+	fig.tight_layout()
+	#plt.savefig(DIRPATH + 'dbs_attributes.png')
+	plt.show()
+	
+	'''
+	for df_id in ["2_", "val_"]:
+		df = pd.read_csv(DATA_PATH + df_id + CHOSEN_DATASETS_FILENAME, usecols=["ntaxa","nchars","tbl","ll"])
+		df_name = "TreeBASE set" if df_id=="2_" else "validation set"
+		linestyle = "solid" if df_id=="2_" else 'dashed'
+		ax = df.plot.kde(subplots=True,linestyle=linestyle,title=["ntaxa","nchars","tbl","ll"], label=False, layout = (2,2), ax=ax)   #label=df_name,
+
+		# df.hist(color=color,linestyle=linestyle) #, ax=ax)
+		'''
+
+
+
+
+if __name__ == '__main__':
+	dirpath = SUMMARY_FILES_DIR if platform.system() == 'Linux' else DATA_PATH
+	calc_empirical_features()
+	
+	
+	#df = pd.read_csv(DIRPATH + "val_all_" + CHOSEN_DATASETS_FILENAME)
+	#df = pd.read_csv(dirpath + SCORES_PER_DS.format("28_1_ytransformed_exp_with_atts"))
+	#plot_distributions(df)
+	#binned_att_to_scores(df)
+	

@@ -1,0 +1,370 @@
+import sys
+sys.path.append("/groups/itay_mayrose/danaazouri/PhyAI/code/")
+
+from defs import *
+from utils.general_utils import change_path_permissions_to_777
+from collections import Counter
+from utils.msa_functions import *
+from itertools import combinations
+from execute_programs.SPR_move import prune_branch
+from Bio import Phylo
+from Bio import AlignIO
+from Bio.Phylo.TreeConstruction import *
+from io import StringIO
+
+
+
+def get_newick_tree(tree):
+	"""
+	:param tree: newick tree string or txt file containing one tree
+	:return:	tree: a string of the tree in ete3.Tree format
+	"""
+	if os.path.exists(tree):
+		with open(tree, 'r') as tree_fpr:
+			tree = tree_fpr.read().strip()
+	return tree
+
+
+def rescale_tree_branch_lengths(tree, factor):
+	"""
+	:param tree: newick tree string or txt file containing one tree
+	:param factor: the factor by which to multiply all branch lengths in tree
+	:return:	reformatted_tree: a string of the scaled tree in Newick format
+	"""
+	if type(tree) == str:
+		tree = Tree(get_newick_tree(tree), format=1)
+	tree_root = tree.get_tree_root()
+	for node in tree_root.iter_descendants(): # the root dist is 1.0, we don't want it
+		node.dist = node.dist * factor
+	return tree.write(format=1, dist_formatter="%.10f")
+
+
+def reroot_tree(tree, outgroup_name):
+	if type(tree) == str:
+		tree = Tree(get_newick_tree(tree), format=1)
+	tree.set_outgroup(tree & outgroup_name)
+	return tree
+
+
+def scale_tree_to_length(tree, target_dist, outgroup_name=None, scaling_method="tbl"):
+	"""
+	:param tree:  newick tree string or txt file containing one tree OR ete3.Tree object
+	:param target_dist: numeric, the desired total tree distance
+	:param outgroup_name: the name of a tree node if tree needs to be rooted,
+						  otherwise would calculate the distance from the inferred root (acoorsding to the newick order)
+	:param scaling_method: "height" for longest distance from root to leaf, "tbl" for total branch lengths
+	:return: a newick string of the rescaled tree
+	"""
+	if type(tree) == str:
+		t = Tree(get_newick_tree(tree), format=1)
+	else:
+		t = Tree(tree, format=1)
+
+	if outgroup_name: # re-root tree
+		t = reroot_tree(t, outgroup_name)
+	root = t.get_tree_root()
+
+	if scaling_method.lower() == "tbl":
+		dist = get_total_branch_lengths(root)
+		dist2 = calc_branch_length(tree)[0]
+	elif scaling_method.lower() == "height":
+		dist = get_tree_height(root)
+
+	scaling_factor = target_dist / dist
+	rescaled_tree = rescale_tree_branch_lengths(tree, scaling_factor)
+
+	return rescaled_tree
+
+
+def get_tree_height(tree_root):
+	"""
+	:param tree_root: ete3 node; because we traverse only its descendants
+	(its dist is 1.0, we don't want it)
+	:return: longest distance from root to leaf
+	"""
+	# the two configurations are the same - I compared! (Shiran)
+	# current_length = 0
+	# for leaf in tree_root:
+	# 	current_length = max(current_length, tree_root.get_distance(leaf))
+	return tree_root.get_farthest_leaf()[1]
+
+
+def get_branch_lengths(tree):
+	"""
+	:param tree: Tree node or tree file or newick tree string;
+	:return: list of branch lengths
+	"""
+	try:
+		if type(tree) == str:
+			tree = Tree(get_newick_tree(tree), format=1)
+		tree_root = tree.get_tree_root()
+	except:
+		print(tree)
+	if len(tree) == 1 and not "(" in tree:  # in one-branch trees, sometimes the newick string is without "(" and ")" so the .iter_decendants returns None
+		return [tree.dist]
+	branches = []
+	for node in tree_root.iter_descendants(): # the root dist is 1.0, we don't want it
+		branches.append(node.dist)
+
+	return branches
+
+
+def get_total_branch_lengths(tree):
+	"""
+	:param tree: Tree node or tree file or newick tree string;
+	:return: total branch lengths
+	"""
+	branches = get_branch_lengths(tree)
+	return sum(branches)
+
+
+def rename_ids(tree_str, conversion_dict):
+	"""
+	:param tree_str:  Newick format tree string
+	:param conversion_dict: {current_id: new_id}
+	:return: an updated tree string
+	"""
+	for sp in conversion_dict:
+		tree_str = re.sub(sp + ":", conversion_dict[sp] + ":", tree_str)
+	return tree_str
+
+
+def calc_branch_length(tree):
+	branch_lengths = get_branch_lengths(tree)
+	N = len(branch_lengths)
+	total_BL = sum(branch_lengths)
+	mean_BL = total_BL/N
+
+	return total_BL, mean_BL
+
+
+def calc_edge_centrality(node, nleaves):
+	n = len(node)
+	return min(n, nleaves-n)
+
+def calc_mean_bl(node, tree_tbl):
+	return node.dist/tree_tbl
+
+
+def cp_internal_names(treepath_no_internal, treepath_with_internal):
+	with open(treepath_with_internal) as fp:
+		with_names = fp.read()
+	with open(treepath_no_internal) as fp:
+		nonames = fp.read()
+
+	with_names_bls = re.findall(":(\d*\.?\d+)", with_names)
+	nonames_bls = re.findall(":(\d*\.?\d+)", nonames)
+	while len(set(with_names_bls)) != len(with_names_bls):
+		u = [k for (k, v) in Counter(with_names_bls).items() if v > 1][0]
+		ix = with_names_bls.index(u)
+		with_names_bls[ix] = u + "1"
+		with_names = with_names.replace(u, u + "1", 1)
+
+
+	dict = {with_names_bls[i]: nonames_bls[i] for i in range(len(with_names_bls))}
+
+	regex = re.compile("(%s)" % "|".join(map(re.escape, dict.keys())))
+	try:
+		new_str = regex.sub(lambda mo: dict[mo.string[mo.start():mo.end()]], with_names)
+	except:
+		print("in func cp_internal_names:")
+		print(treepath_no_internal)
+		print(dict)
+
+	with open(treepath_no_internal, 'r') as fp:
+		tree_str = fp.read()
+		if re.search("\)N", tree_str):
+			return
+	with open(treepath_no_internal, 'w') as fp:
+		fp.write(new_str)
+
+
+
+def pdist_mat_leaves(t, nchars):
+	'''
+	:param tree_file:
+	:param msa_file:
+	:return: p-distances dataframe with taxa names as labels
+	'''
+	df = pd.DataFrame(index=np.arange(0))
+	mem = {}
+	for leaf1 in t.iter_leaves():
+		name1 = leaf1.name
+		seq1 = leaf1.sequence
+		for leaf2 in t.iter_leaves():
+			name2 = leaf2.name
+			if not (name1,name2) in mem:    #or (name2,name1) in mem):
+				mem[name1, name2] = 1
+				seq2 = leaf2.sequence
+				pdist = hamming_distance(seq1, seq2) / nchars
+				df.loc[name1, name2] = pdist
+
+	#print(df)
+	return df
+
+
+
+
+def calc_avg_pdist(node, pdist_df, pdist, level):
+	for i, pair in enumerate(combinations(node.get_leaves(), r=2)):
+		pdist += pdist_df.loc[pair[0].name, pair[1].name]
+	level += (i + 1)
+	pdist /= level
+
+	return pdist, level
+
+
+
+def get_avg_pdist(node, pdist_df, name_to_pdist_dict):
+	if node.is_leaf():
+		return (0, 0)
+	if len(node.children) == 1:
+		node = node.children[0]
+		if node.is_leaf():
+			return (0, 0)
+	child1 = node.children[0]
+	child2 = node.children[1]
+
+	if child1.is_leaf() and child2.is_leaf():
+		pdist, level = pdist_df.loc[child1.name, child2.name], 1
+		return pdist, level
+	return calc_avg_pdist(node, pdist_df, 0, 0)
+
+
+def dist_between_nodes(t, node1):
+	nleaves_between, tbl_between = {},{}
+	for node2 in t.get_descendants("levelorder")[::-1]:
+		if not node2.name:
+			node2.name = "Nnew"
+		nname2 = node2.name
+		if node1.name == nname2:
+			continue
+
+		nleaves_between[nname2] = node1.get_distance(node2, topology_only=True)+1   # +1 to convert between nodes count to edges
+		tbl_between[nname2] = node1.get_distance(node2, topology_only=False)
+
+	return nleaves_between, tbl_between
+
+
+def calc_leaves_features(tree_str, msa_file, move_type, rgft_node_name=None):
+	if not move_type == "res":
+		seqs_dict = get_seqs_dict(msa_file)
+		trunc_msapath = SEP.join(msa_file.split(SEP)[:-1]) + "/temp.phy"
+		trunc_msa(tree_str, seqs_dict, trunc_msa_path=trunc_msapath)
+	
+		t = PhyloTree(newick=tree_str, alignment=trunc_msapath, alg_format="iphylip", format=1)
+		#t.get_tree_root().name = ROOTLIKE_NAME
+		nleaves = len(t.get_tree_root())   # delete this line
+		ntaxa, nchars = get_msa_properties(trunc_msapath)
+		assert nleaves==ntaxa
+		os.remove(trunc_msapath)
+		pdist_df = pdist_mat_leaves(t, nchars)
+	
+		name2cent, name2bl, name2pdist_pruned, name2pdist_remaining, name2tbl_pruned, name2tbl_remaining, name2longest_pruned, name2longest_remaining, name2ntaxa,name2ntaxa_pruned, name2ntaxa_remaining, name2pars_pruned, name2parse_remaining,names2topology_dist, names2bl_dist = {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}
+		for node in t.get_descendants("levelorder")[::-1]:
+			if not node.name:
+				node.name = "Nnew"
+			nname = node.name
+			namex, subtree1, subtree2 = prune_branch(t, nname)
+	
+			pdist1, level1 = get_avg_pdist(subtree1, pdist_df, name2pdist_pruned)
+			pdist2, level2 = get_avg_pdist(subtree2, pdist_df, name2pdist_remaining)
+	
+			name2cent[nname] = calc_edge_centrality(node, ntaxa)
+			name2bl[nname] = node.dist
+	
+			name2pdist_pruned[nname] = pdist1, level1
+			name2pdist_remaining[nname] = pdist2, level2
+			name2tbl_pruned[nname] = get_total_branch_lengths(subtree1)
+			name2tbl_remaining[nname] = get_total_branch_lengths(subtree2)
+			name2longest_pruned[nname] = max(get_branch_lengths(subtree1))
+			name2longest_remaining[nname] = max(get_branch_lengths(subtree2))
+			name2ntaxa_pruned[nname] = len(subtree1.get_tree_root())
+			name2ntaxa_remaining[nname] = len(subtree2.get_tree_root())
+	
+			res_pars_p = 0 if len(subtree1.get_tree_root()) == 1 else get_parsimony_score(subtree1, trunc_msa(subtree1, seqs_dict))
+			res_pars_r = 0 if len(subtree2.get_tree_root()) == 1 else get_parsimony_score(subtree2,trunc_msa(subtree2, seqs_dict))
+			name2pars_pruned[nname] = res_pars_p
+			name2parse_remaining[nname] = res_pars_r
+	
+			res_dists = ["unrelevant", "unrelevant"] if move_type == "rgft" else dist_between_nodes(t, node)
+			names2topology_dist[nname] = res_dists[0]	# res_dists is a dict
+			names2bl_dist[nname] = res_dists[1]			# res_dists is a dict
+			
+	
+		d = OrderedDict([("bl", name2bl), ("longest", max(get_branch_lengths(t))),
+							("pdist_p", name2pdist_pruned), ("pdist_r", name2pdist_remaining),
+						    ("ntaxa_p",name2ntaxa_pruned),("ntaxa_r",name2ntaxa_remaining),
+							("tbl_p",name2tbl_pruned),("tbl_r",name2tbl_remaining),
+							("pars_p",name2pars_pruned),("pars_r",name2parse_remaining),
+						    ("longest_p",name2longest_pruned),("longest_r",name2longest_remaining),
+						    ("top_dist", names2topology_dist), ("bl_dist", names2bl_dist)])
+
+	else:
+		t = PhyloTree(newick=tree_str, alignment=msa_file, alg_format="iphylip", format=1)
+		res_tbl = get_total_branch_lengths(t)
+		rgft_node = t&rgft_node_name
+		res_bl = rgft_node.dist
+		d = OrderedDict([("res_tbl", res_tbl), ("res_bl", res_bl)])
+		
+	return d
+
+
+
+def get_parsimony_score(tree, msa):
+	"""
+	:param tree: PhyloNode only
+	:param msa: bio.AlignIO format or path to phylip file
+	:return: score
+	"""
+	nleaves = len(tree.get_tree_root())
+	ntaxa, nchars = get_msa_properties(msa)
+	assert nleaves==ntaxa
+	if isinstance(msa, str):
+		msa = get_msa_from_file(msa)
+
+	if ntaxa == 1:
+		return 0
+	if len(tree.children) < 2:
+		tree = tree.children[0]
+
+	tree = tree.write(format=1)
+	tree = Phylo.read(StringIO(tree), 'newick')
+
+	scorer = ParsimonyScorer()
+	try:
+		score = scorer.get_score(tree, msa)
+	except:
+		score = "xxx"
+
+	return score
+
+
+
+'''
+def felsenstein_log_likelihood(tree, msa, M, pai):
+	t = PhyloTree(newick=tree, alignment=msa, alg_format="iphylip", format=3)
+	ntaxa = get_msa_properties(msa)[0]
+	nstates = len(pai)
+
+	# Initialize the map from vertices to subtree likelihoods.
+	likelihoods = np.ones((2*ntaxa-3, nstates), dtype=float)
+
+	# Compute the subtree likelihoods using dynamic programming.
+	for n in t.iter_descendants('postorder'):
+		for node_nuc in range(nstates):
+			if not n.is_leaf():
+				for child in n.children:   #map from a vertex to a sequence of child vertices
+					seq = child.sequence
+					P = M[n, seq]
+					likelihoods[n, node_nuc] *= np.dot(P[node_nuc], likelihoods[seq])
+			
+			else:
+				likelihoods[n, node_nuc] = 0
+
+	# Get the log likelihood by summing over equilibrium states at the root.
+	return np.log(np.dot(pai, likelihoods[root]))
+'''
+
+if __name__ == '__main__':
+	calc_leaves_features(DIRPATH + PHYML_TREE_FILENAME.format('bionj'), DIRPATH + MSA_PHYLIP_FILENAME)

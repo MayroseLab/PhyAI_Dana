@@ -1,0 +1,91 @@
+import sys
+sys.path.append("/groups/itay_mayrose/danaazouri/PhyAI/code/")
+import warnings
+warnings.filterwarnings("ignore")			# TEMP
+import itertools
+import seaborn as sns
+
+from defs import *
+import scipy.stats as stats
+N_DATASETS_COL = "n_datasets"
+
+sns.set_style("white")
+fig, axarr = plt.subplots(2, 2)
+palette = itertools.cycle(sns.color_palette('colorblind'))
+
+
+
+
+def plot_scores(df):
+	#df = df.set_index('ndata')
+	plt.figure()
+	ax = plt.gca()
+	palette = itertools.cycle(sns.color_palette('colorblind'))
+	leg = ax.legend()
+
+	df_grouped = df.groupby('move_type', sort=True)
+	for j, (name, group) in enumerate(df_grouped):
+		for rank_mode in [False,True]:
+			rank_label = "" if not rank_mode else "_ranked"
+			subdf = group[group['if_ranked'] == rank_mode]
+			color = next(palette)
+			subdf.plot(x='ndata', y='2scores_mean', color=color, label=name+rank_label, ax=ax)
+			subdf.plot.scatter(x='ndata', y='2scores_mean', color=color, ax=ax)
+			subdf.plot(x='ndata', y='percentages', color=color, label=name + rank_label + "_precentages", linestyle='--', ax=ax)
+			subdf.plot.scatter(x='ndata', y='percentages', color=color, ax=ax)
+
+	ax.legend(loc='right', frameon=True)
+	plt.xticks([500, 1000, 1500, 2000])
+	plt.ylabel('score\n(mean of both scores)')
+	#plt.title('Here data were sampled randomly, ntaxa 15 and 30')
+	#plt.savefig(DATA_PATH + 'saturation_no_60_per.png')
+	
+	plt.show()
+
+
+
+def plot_scores2(df):
+	palette = itertools.cycle(sns.color_palette('colorblind'))
+	axarrs_locs = [(0, 0), (0, 1), (1, 0), (1, 1)]
+	ylims = [(0.5, 1), (1, 40), (1, 40), (0, 30)]
+
+	for i, loc in enumerate(axarrs_locs):
+		color = next(palette)
+		ax = axarr[axarrs_locs[i]]
+		ax.set_ylim(ylims[i])
+		sns.boxplot(x=N_DATASETS_COL, y=SCORES_LST[i], data=df, ax=ax, color=color)
+	
+	fig.tight_layout()
+	plt.show()
+	#plt.savefig(dirpath + "saturation_plot.png")
+
+
+def concat_n_features(dirpath, ndots, xticks):
+	'''
+	pre-merge iterations results to one csv with "n_datasets" col
+	'''
+	df = pd.read_csv(dirpath + SCORES_PER_DS.format("26_" + str(ndots[0])))
+	df[N_DATASETS_COL] = xticks[0]
+	for i,n in enumerate(ndots[1:]):
+		suf = "_" + str(n)
+		csv = dirpath + SCORES_PER_DS.format("26" + suf)
+		df2 = pd.read_csv(csv)
+		df2[N_DATASETS_COL] = xticks[i+1]
+		df = pd.concat([df, df2])
+	
+	return df
+
+
+
+
+
+if __name__ == '__main__':
+	dirpath = SUMMARY_FILES_DIR if platform.system() == 'Linux' else DATA_PATH
+	#df = pd.read_csv(dirpath + "results_summary.csv")
+	#df = pd.read_csv(dirpath + "results_summary.csv")   # _by_ntaxa   , _sr
+	#plot_scores
+	
+	ndots = [600, 840, 1310, 1790, 2260, 2670, 3210, 3870, 3860, 4670, 6060]
+	xticks = [600, 900, 1300, 1800, 2300,2700, 3200, 3700, 4000, 4700, 6000]
+	df = concat_n_features(dirpath, ndots, xticks)
+	plot_scores2(df)

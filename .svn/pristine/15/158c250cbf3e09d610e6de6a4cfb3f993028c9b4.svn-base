@@ -1,0 +1,44 @@
+import sys
+sys.path.append("/groups/itay_mayrose/danaazouri/PhyAI/code/")
+import warnings
+warnings.filterwarnings("ignore")			# TEMP
+
+from defs import *
+from data_processing.create_starting_trees import phyml_for_ll
+WORKSHOP_DIR = DIRPATH + "ML_workshop/"
+
+
+
+
+def copy_datasets(df):
+	for index, row in df.iterrows():
+		dataset_path = row["path"]
+		msa_filename = MSA_PHYLIP_FILENAME_NOT_MASKED if not row["Database"] == "TreeBASE" else MSA_PHYLIP_FILENAME
+
+		dataset_name = re.search("(\/.*data2?\/.*\/)(.*\/.*)", row["path"]).group(2)
+		name_split = dataset_name.split("/")
+		dest_dirname = name_split[0] + "_" + name_split[1] if not row["Database"] == "TreeBASE" else dataset_path.split("/")[-2]
+		
+		orig_msa = dataset_path + SEP + msa_filename
+		df.loc[index, "path"] = SEP.join(["data", dest_dirname, ""])
+		dest_path_dir = SEP.join([WORKSHOP_DIR + "data", dest_dirname, ""])
+		if not os.path.exists(dest_path_dir):
+			os.mkdir(dest_path_dir)
+		
+		shutil.copy(orig_msa, dest_path_dir + MSA_PHYLIP_FILENAME_NOT_MASKED)
+		phyml_for_ll(dest_path_dir)
+
+	df.to_csv(WORKSHOP_DIR + "sampled_datasets_updated.csv")
+
+
+if __name__ == '__main__':
+	df = pd.read_csv(WORKSHOP_DIR + CHOSEN_DATASETS_FILENAME)
+	copy_datasets(df)
+	
+	
+
+
+
+
+
+

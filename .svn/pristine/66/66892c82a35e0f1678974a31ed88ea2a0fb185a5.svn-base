@@ -1,0 +1,145 @@
+import numpy as np
+from ete3 import *
+import pandas as pd
+import regex as re
+from collections import Counter
+import numpy as np
+from Bio import Phylo
+from Bio import AlignIO
+from Bio.Phylo.TreeConstruction import *
+
+datapath = r"D:\Users\Administrator\Dropbox\PhyloAI\data\\"
+
+##################################################
+
+import os
+from Bio import AlignIO
+from itertools import combinations
+PHYLIP_FORMAT = "phylip-relaxed"
+
+
+
+def get_msa_from_file(msa_file_path):
+	#open file if exists
+	if not os.path.exists(msa_file_path):
+		return None
+	try:
+		msa = AlignIO.read(msa_file_path, PHYLIP_FORMAT)
+	except:
+		return None
+	return msa
+
+
+def get_msa_properties(msa):
+	"""
+	:param msa: bio.AlignIO format or path to msa file
+	:return:
+	"""
+	if isinstance(msa, str):
+		msa = get_msa_from_file(msa)
+	ntaxa = len(msa)
+	nchars = msa.get_alignment_length()
+
+	return ntaxa, nchars
+
+def hamming_distance(seq1, seq2):
+	cnt = 0
+	for i in range(len(seq1)):
+		cnt += int(seq1[i]!=seq2[i])
+	return cnt
+
+
+def pdist_mat_leaves(t, nchars):
+	'''
+	:param tree_file:
+	:param msa_file:
+	:return: p-distances dataframe with taxa names as labels
+	'''
+	df = pd.DataFrame(index=np.arange(0))
+	mem = {}
+	for leaf1 in t.iter_leaves():
+		name1 = leaf1.name
+		seq1 = leaf1.sequence
+		for leaf2 in t.iter_leaves():
+			name2 = leaf2.name
+			if not (name1,name2) in mem:    #or (name2,name1) in mem):
+				mem[name1, name2] = 1
+				seq2 = leaf2.sequence
+				pdist = hamming_distance(seq1, seq2) / nchars
+				df.loc[name1, name2] = pdist
+
+	#print(df)
+	return df
+
+
+
+
+def prune_branch(t_orig, prune_name):
+	'''
+	get (a copy of) both subtrees after pruning
+	'''
+	#print("\n************ prune node:", prune_name, "************\n")
+	t_cp_p = t_orig.copy()  				# the original tree is needed for each iteration
+	prune_node_cp = t_cp_p & prune_name     # locate the node in the copied subtree
+	nname = prune_node_cp.up.name
+	prune_loc = prune_node_cp
+	prune_loc.detach()  # pruning: prune_node_cp is now the subtree we detached. t_cp_p is the one that was left behind
+	t_cp_p.search_nodes(name=nname)[0].delete(preserve_branch_length=True)  # delete the specific node (without its childs) since after pruning this branch should not be divided
+
+	return nname, prune_node_cp, t_cp_p
+
+
+def calc_leaves_features(tree_path, msa_file):
+	t = PhyloTree(newick=tree_path, alignment=msa_file, alg_format="iphylip", format=3)
+	nleaves = len(t.get_tree_root())   # delete this line
+	ntaxa, nchars = get_msa_properties(msa_file)
+	assert nleaves==ntaxa
+	pdist_df = pdist_mat_leaves(t, nchars)   # same as Bio DistanceCalculator('identity').get_distance(aln)
+
+	name2pdist_dict_pruned, name2pdist_dict_remaining = {}, {}
+	for node in t.get_descendants("levelorder")[::-1]:
+		nname = node.name
+
+		namex, subtree1, subtree2 = prune_branch(t, nname)
+		pdist1, level1 = get_avg_pdist(subtree1, pdist_df)
+		pdist2, level2 = get_avg_pdist(subtree2, pdist_df)
+
+		name2pdist_dict_pruned[nname] = pdist1, level1
+		name2pdist_dict_remaining[nname] = pdist2, level2
+
+	return name2pdist_dict_pruned, name2pdist_dict_remaining
+
+
+
+###################################################################################
+
+def calc_avg_pdist(node, pdist_df, pdist, level):
+	for i, pair in enumerate(combinations(node.get_leaves(), r=2)):
+		pdist += pdist_df.loc[pair[0].name, pair[1].name]
+	level += (i + 1)
+	size = len(node)
+	pdist /= level
+
+	return pdist, level
+
+
+
+def get_avg_pdist(node, pdist_df):
+	if node.is_leaf():
+		return (0, 0)
+	child1 = node.children[0]
+	child2 = node.children[1]
+
+	if child1.is_leaf() and child2.is_leaf():
+		pdist, level = pdist_df.loc[child1.name, child2.name], 1
+		return pdist, level
+	return calc_avg_pdist(node, pdist_df, 0, 0)
+
+#######################################################################
+
+
+if __name__ == '__main__':
+	PHYML_TREE_FILENAME = "masked_species_real_msa.phy_phyml_tree_bionj.txt"
+	MSA_PHYLIP_FILENAME = "masked_species_real_msa.phy"
+
+	name2pdist_dict_pruned, name2pdist_dict_remaining = calc_leaves_features(datapath + PHYML_TREE_FILENAME, datapath + MSA_PHYLIP_FILENAME)

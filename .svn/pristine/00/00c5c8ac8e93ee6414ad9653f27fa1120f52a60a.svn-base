@@ -1,0 +1,80 @@
+import sys, os
+sys.path.append("/groups/itay_mayrose/danaazouri/PhyAI/code/")
+
+from defs import *
+from utils.tree_functions import *
+from data_processing.traverse_data_dirs import traverse_data_dirs
+from execute_programs.SPR_move import *
+
+import warnings
+warnings.filterwarnings("ignore", category=DeprecationWarning)
+
+SUMMARIES_PER_DS_LST = ["ds_summary_prune_br_step1.csv", "ds_summary_prune_br_step2.csv", "ds_summary_rgft_br_step1.csv", "ds_summary_rgft_br_step2.csv", "newicks_step1.csv", "newicks_step2.csv"]
+SUMMARIES_PER_DS_LST_TEMP = ["ds_summary_prune_br_step2.csv"] #, "ds_summary_rgft_br_step1.csv", "newicks_step1.csv"]
+
+
+def rearrange_dirs_for_rerun(datapath):
+	new_dir = datapath + "run1/"
+	if not os.path.exists(new_dir):
+		os.mkdir(new_dir)
+
+	for filename in SUMMARIES_PER_DS_LST:
+		shutil.move(datapath + filename, new_dir)
+	return
+
+
+def delete_err_dirpath(datapath):
+	err_dirpath = datapath + "error_files/"
+	shutil.rmtree(err_dirpath, ignore_errors=True)
+	shutil.rmtree(datapath + RANDOM_TREE_DIRNAME, ignore_errors=True)
+
+
+def make_sure_all_exist(datapath, missing_paths_per_ds):
+	for filename in SUMMARIES_PER_DS_LST_TEMP:
+		if not os.path.exists(datapath + filename):
+			missing_paths_per_ds.append(datapath + filename)
+	return missing_paths_per_ds
+
+
+def missing_results():
+	missing_paths_lst = []
+	df = pd.read_csv(SUMMARY_FILES_DIR + CHOSEN_DATASETS_FILENAME)
+	for index, row in df.iterrows():
+		missing_paths_lst.extend(make_sure_all_exist(row["path"], []))
+
+	with open(SUMMARY_FILES_DIR + "ds_to_rerun.txt", 'w') as fp:
+		fp.write("\n".join(missing_paths_lst))
+	return
+
+
+def do_something(datapath):
+	delete_err_dirpath(datapath)
+	#rearrange_dirs_for_rerun(datapath)
+	#missing_results()
+	
+
+
+
+
+def create_job(dataset_path):
+	job_name = "whore_job"
+	cmd = "python " + CODE_PATH + "data_processing/whore.py -ds " + dataset_path
+	res = create_job_file.main(command=cmd, dirpath=dataset_path, sh_file=job_name + ".sh", multiply_jobs=False,
+						 priority=-1, job_name=job_name)
+
+
+if __name__ == '__main__':
+	parser = argparse.ArgumentParser(description='perform all SPR moves')
+	parser.add_argument('--dataset_path', '-ds', default=None)
+	parser.add_argument('--index_to_start_run', '-istart', default=False)
+	parser.add_argument('--nline_to_run', '-nlines', default=False)
+	args = parser.parse_args()
+
+	datapath = args.dataset_path
+	if datapath:
+		do_something(datapath)
+	else:
+		csv_path = SUMMARY_FILES_DIR + CHOSEN_DATASETS_FILENAME
+		#csv_path =  DIRPATH + "ML_workshop/sampled_datasets_updated.csv"
+		traverse_data_dirs(create_job, csv_path, (args.index_to_start_run, args.nline_to_run))
+

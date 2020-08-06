@@ -1,0 +1,40 @@
+
+def translate_gene_me(gene):
+    codon_dict = get_codons_dict()
+    peptide = ""
+    for i in range(0, len(gene)-2, 3):
+        codon = gene[i:i+3]
+        peptide += codon_dict[codon]
+    return peptide
+
+###############
+
+def get_codons_dict():
+    bases = ['t', 'c', 'a', 'g']
+    codons = [a+b+c for a in bases for b in bases for c in bases]
+    amino_acids = 'FFLLSSSSYY**CC*WLLLLPPPPHHQQRRRRIIIMTTTTNNKKSSRRVVVVAAAADDEEGGGG'
+    codon_table = dict(zip(codons, amino_acids))
+    return codon_table
+
+
+def translate_gene(gene):
+    '''Translates a string of DNA nucleotides to their AA sequence'''
+    nuc_seq = ''
+    aa_seq = ''
+    tran = ()
+    tran = get_codons_dict()
+    i = 0
+    seq_len = len(gene) - 3
+    while i < seq_len:
+        nuc_seq = gene[i] + gene[i+1] + gene[i+2]
+        aa = tran.get(nuc_seq)
+        aa_seq = aa_seq + aa
+        i += 3
+    return aa_seq
+
+
+
+#print(most_popular_aa("DQHTWMYAEGYLNHVYRCDKQRAEDKECNGLYAWALAZLESHGKGSYYCQGFKTFPNPWPMHMMTFVMADLYQYMEI"))
+#print(sort_by_rank([0,1,4,3]))
+print(translate_gene("atgattccaacgcgaaggtcaagtacgtacagctctcagtgtgtgctactcaccgactccgtcatagcaaccggcgtcgtggtcgttaccattgca"))
+print(translate_gene_me("atgattccaacgcgaaggtcaagtacgtacagctctcagtgtgtgctactcaccgactccgtcatagcaaccggcgtcgtggtcgttaccattgca"))

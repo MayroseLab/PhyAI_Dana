@@ -1,0 +1,1179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/execute_programs/RF_learning.py" line="307" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="04f6d22b-03c8-46f3-ac77-b58c4e95d95d" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/execute_programs/RF_learning.py" beforeDir="false" afterPath="$PROJECT_DIR$/execute_programs/RF_learning.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trying.py" beforeDir="false" afterPath="$PROJECT_DIR$/trying.py" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="code" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/defs.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="924">
+              <caret line="51" column="13" selection-start-line="51" selection-end-line="51" selection-end-column="13" />
+              <folding>
+                <element signature="e#11#29#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/trying.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1210">
+              <caret line="69" selection-start-line="69" selection-end-line="69" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/execute_programs/RF_learning.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="539">
+              <caret line="269" selection-start-line="269" selection-end-line="269" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/execute_programs/compose_learners.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1628">
+              <caret line="74" selection-start-line="74" selection-end-line="74" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>FEATURES_PRUNE</find>
+      <find>features</find>
+      <find>LEARNING_DATA</find>
+      <find>.drop</find>
+      <find>best_true</find>
+      <find>CONTENT_TYPE</find>
+      <find>head</find>
+      <find>fit_transform</find>
+      <find>groupby</find>
+      <find>summ</find>
+      <find>results</find>
+      <find>diff</find>
+      <find>index</find>
+      <find>print(</find>
+      <find>truncate</find>
+      <find>cross_validation_RF</find>
+      <find>exit(</find>
+      <find>exi</find>
+      <find>dropna</find>
+      <find>parse_relevant_summaries_for_learning</find>
+      <find>print</find>
+      <find>FEATURES_MERGED</find>
+      <find>rank</find>
+      <find>print_results</find>
+      <find>performance_evaluation</find>
+      <find>with</find>
+      <find>to_csv</find>
+      <find>spearman</find>
+      <find>with op</find>
+      <find>score_rank</find>
+    </findStrings>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/summary/collect_SPR_fwatures.py" />
+        <option value="$PROJECT_DIR$/data_processing/hore.py" />
+        <option value="$PROJECT_DIR$/execute_programs/learn_prune.py" />
+        <option value="$PROJECT_DIR$/execute_programs/learning_for_prune.py" />
+        <option value="$PROJECT_DIR$/gd.py" />
+        <option value="$PROJECT_DIR$/../../python project.py" />
+        <option value="$PROJECT_DIR$/../../courses/python_bio/L/python project.py" />
+        <option value="$PROJECT_DIR$/TEMP_flowering_time_IL_lines.py" />
+        <option value="$PROJECT_DIR$/course.py" />
+        <option value="$PROJECT_DIR$/../../courses/python_bio/2019/exam/personal/Dana/cheking_projects.py" />
+        <option value="$PROJECT_DIR$/execute_programs/learning_by_prune.py" />
+        <option value="$PROJECT_DIR$/../../courses/python_bio/2019/exam/general/Dana_q1/exam_testers.py" />
+        <option value="$PROJECT_DIR$/utils/utils.py" />
+        <option value="$PROJECT_DIR$/trying2.py" />
+        <option value="$PROJECT_DIR$/execute_programs/SPR_env.py" />
+        <option value="$PROJECT_DIR$/execute_programs/RFR_learning.py" />
+        <option value="$PROJECT_DIR$/execute_programs/RForest_learning.py" />
+        <option value="$PROJECT_DIR$/execute_programs/learning_by_move_type.py" />
+        <option value="$PROJECT_DIR$/execute_programs/SVM_learning.py" />
+        <option value="$PROJECT_DIR$/figures/violin.py" />
+        <option value="$PROJECT_DIR$/figures/violin_for grant.py" />
+        <option value="$PROJECT_DIR$/figures/confidence_interval_dts.py" />
+        <option value="$PROJECT_DIR$/data_processing/create_BioNJ_trees.py" />
+        <option value="$PROJECT_DIR$/parsing/parse_phyml.py" />
+        <option value="$PROJECT_DIR$/figures/accXsize_boxplot.py" />
+        <option value="$PROJECT_DIR$/figures/ranked_tree_for_grant.py" />
+        <option value="$PROJECT_DIR$/figures/violin_for_grant.py" />
+        <option value="$PROJECT_DIR$/trying_SPR.py" />
+        <option value="$PROJECT_DIR$/execute_programs/trying_SPR.py" />
+        <option value="$PROJECT_DIR$/execute_programs/RandomForest_learning.py" />
+        <option value="$PROJECT_DIR$/execute_programs/Phyml.py" />
+        <option value="$PROJECT_DIR$/data_processing/traverse_data_dirs.py" />
+        <option value="$PROJECT_DIR$/utils/create_job_file.py" />
+        <option value="$PROJECT_DIR$/data_processing/get_ds.py" />
+        <option value="$PROJECT_DIR$/defs.py" />
+        <option value="$PROJECT_DIR$/execute_programs/SPR_move.py" />
+        <option value="$PROJECT_DIR$/utils/msa_functions.py" />
+        <option value="$PROJECT_DIR$/utils/tree_functions.py" />
+        <option value="$PROJECT_DIR$/summary/collect_SPR_features.py" />
+        <option value="$PROJECT_DIR$/data_processing/whore.py" />
+        <option value="$PROJECT_DIR$/figures/saturation.py" />
+        <option value="$PROJECT_DIR$/execute_programs/compose_learners.py" />
+        <option value="$PROJECT_DIR$/execute_programs/RF_learning.py" />
+        <option value="$PROJECT_DIR$/trying.py" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-12" />
+    <option name="y" value="-12" />
+    <option name="width" value="1944" />
+    <option name="height" value="1104" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="code" type="b2602c69:ProjectViewProjectNode" />
+              <item name="code" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="code" type="b2602c69:ProjectViewProjectNode" />
+              <item name="code" type="462c0819:PsiDirectoryNode" />
+              <item name="data_processing" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="code" type="b2602c69:ProjectViewProjectNode" />
+              <item name="code" type="462c0819:PsiDirectoryNode" />
+              <item name="execute_programs" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="code" type="b2602c69:ProjectViewProjectNode" />
+              <item name="code" type="462c0819:PsiDirectoryNode" />
+              <item name="figures" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="code" type="b2602c69:ProjectViewProjectNode" />
+              <item name="code" type="462c0819:PsiDirectoryNode" />
+              <item name="parsing" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="code" type="b2602c69:ProjectViewProjectNode" />
+              <item name="code" type="462c0819:PsiDirectoryNode" />
+              <item name="summary" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="code" type="b2602c69:ProjectViewProjectNode" />
+              <item name="code" type="462c0819:PsiDirectoryNode" />
+              <item name="utils" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="SearchEverywhereHistoryKey" value="100_ds&#9;null&#9;null&#10;TODO&#9;FILE&#9;file://C:/Program Files/Anaconda3/pkgs/sphinx-1.4.6-py35_0/Lib/site-packages/Sphinx-1.4.6-py3.5.egg/sphinx/ext/todo.py&#10;&quot;Sp&#9;null&#9;null&#10;lear&#9;FILE&#9;file://D:/Users/Administrator/Dropbox/PhyloAI/code/execute_programs/learning_by_prune.py&#10;ntaxa&#9;null&#9;null" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Users\Administrator\Dropbox\PhyloAI\code\execute_programs" />
+      <recent name="D:\Users\Administrator\Dropbox\PhyloAI\code" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Users\Administrator\Dropbox\PhyloAI\code\utils" />
+      <recent name="D:\Users\Administrator\Dropbox\PhyloAI\code\parsing" />
+      <recent name="D:\Users\Administrator\Dropbox\PhyloAI\code\execute_programs" />
+      <recent name="D:\Users\Administrator\Dropbox\PhyloAI\code" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Python.RF_learning">
+    <configuration name="RF_learning" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="code" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/execute_programs" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/execute_programs/RF_learning.py" />
+      <option name="PARAMETERS" value="-mt prune -st 1 -rank" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="RandomForest_learning" type="PythonConfigurationType" factoryName="Python">
+      <module name="code" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/execute_programs" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="D:\Users\Administrator\Dropbox\PhyloAI\code\execute_programs\RF_learning.py" />
+      <option name="PARAMETERS" value="-mt &quot;prune&quot; -st &quot;2&quot;" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="SPR_move" type="PythonConfigurationType" factoryName="Python">
+      <module name="code" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/execute_programs" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/execute_programs/SPR_move.py" />
+      <option name="PARAMETERS" value="-ds D:\Users\Administrator\Dropbox\PhyloAI\data\\ -st 2 -istart 0 -nlines 2" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="collect_SPR_features" type="PythonConfigurationType" factoryName="Python">
+      <module name="code" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/summary" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/summary/collect_SPR_features.py" />
+      <option name="PARAMETERS" value="-mt rgft -ds D:\\Users\\Administrator\\Dropbox\\PhyloAI\data\\ -st 1" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="compose_learners" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="code" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/execute_programs" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/execute_programs/compose_learners.py" />
+      <option name="PARAMETERS" value="-st 1 -op mult" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="get_ds" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="code" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/data_processing" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/data_processing/get_ds.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="learning_by_move_type" type="PythonConfigurationType" factoryName="Python">
+      <module name="code" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/execute_programs" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="D:\Users\Administrator\Dropbox\PhyloAI\code\execute_programs\SVM_learning.py" />
+      <option name="PARAMETERS" value="-mt &quot;prune&quot;" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="saturation" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="code" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/figures" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/figures/saturation.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="tree_functions" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="code" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/utils" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/utils/tree_functions.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="trying" type="PythonConfigurationType" factoryName="Python">
+      <module name="code" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/trying.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Unittests">
+      <module name="code" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;.&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Python.trying" />
+      <item itemvalue="Python.collect_SPR_features" />
+      <item itemvalue="Python.SPR_move" />
+      <item itemvalue="Python.RandomForest_learning" />
+      <item itemvalue="Python.learning_by_move_type" />
+      <item itemvalue="Python.tree_functions" />
+      <item itemvalue="Python.RF_learning" />
+      <item itemvalue="Python.compose_learners" />
+      <item itemvalue="Python.get_ds" />
+      <item itemvalue="Python.saturation" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.RF_learning" />
+        <item itemvalue="Python.compose_learners" />
+        <item itemvalue="Python.saturation" />
+        <item itemvalue="Python.get_ds" />
+        <item itemvalue="Python.tree_functions" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration" cleanupOnStartRun="true">
+    <configuration>C:\Users\ItayMNB3\AppData\Roaming\Subversion</configuration>
+    <supportedVersion>125</supportedVersion>
+  </component>
+  <component name="SvnFileUrlMappingImpl">
+    <option name="myMappingRoots">
+      <list>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="C:\Users\ItayMNB3\Dropbox\PhyloAI\code" />
+          <option name="myCopyRoot" value="C:\Users\ItayMNB3\Dropbox\PhyloAI\code" />
+        </SvnCopyRootSimple>
+      </list>
+    </option>
+    <option name="myMoreRealMappingRoots">
+      <list>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="C:\Users\ItayMNB3\Dropbox\PhyloAI\code" />
+          <option name="myCopyRoot" value="C:\Users\ItayMNB3\Dropbox\PhyloAI\code" />
+        </SvnCopyRootSimple>
+      </list>
+    </option>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="04f6d22b-03c8-46f3-ac77-b58c4e95d95d" name="Default Changelist" comment="" />
+      <created>1557671246307</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1557671246307</updated>
+    </task>
+    <task id="LOCAL-00710" summary="debug">
+      <created>1581510710901</created>
+      <option name="number" value="00710" />
+      <option name="presentableId" value="LOCAL-00710" />
+      <option name="project" value="LOCAL" />
+      <updated>1581510710901</updated>
+    </task>
+    <task id="LOCAL-00711" summary="debug">
+      <created>1581510910522</created>
+      <option name="number" value="00711" />
+      <option name="presentableId" value="LOCAL-00711" />
+      <option name="project" value="LOCAL" />
+      <updated>1581510910522</updated>
+    </task>
+    <task id="LOCAL-00712" summary="debug">
+      <created>1581511552186</created>
+      <option name="number" value="00712" />
+      <option name="presentableId" value="LOCAL-00712" />
+      <option name="project" value="LOCAL" />
+      <updated>1581511552186</updated>
+    </task>
+    <task id="LOCAL-00713" summary="debug">
+      <created>1581511654545</created>
+      <option name="number" value="00713" />
+      <option name="presentableId" value="LOCAL-00713" />
+      <option name="project" value="LOCAL" />
+      <updated>1581511654545</updated>
+    </task>
+    <task id="LOCAL-00714" summary="debug">
+      <created>1581511721815</created>
+      <option name="number" value="00714" />
+      <option name="presentableId" value="LOCAL-00714" />
+      <option name="project" value="LOCAL" />
+      <updated>1581511721815</updated>
+    </task>
+    <task id="LOCAL-00715" summary="debug">
+      <created>1581511813097</created>
+      <option name="number" value="00715" />
+      <option name="presentableId" value="LOCAL-00715" />
+      <option name="project" value="LOCAL" />
+      <updated>1581511813097</updated>
+    </task>
+    <task id="LOCAL-00716" summary="debug">
+      <created>1581513780009</created>
+      <option name="number" value="00716" />
+      <option name="presentableId" value="LOCAL-00716" />
+      <option name="project" value="LOCAL" />
+      <updated>1581513780009</updated>
+    </task>
+    <task id="LOCAL-00717" summary="debug">
+      <created>1581513854355</created>
+      <option name="number" value="00717" />
+      <option name="presentableId" value="LOCAL-00717" />
+      <option name="project" value="LOCAL" />
+      <updated>1581513854355</updated>
+    </task>
+    <task id="LOCAL-00718" summary="debug">
+      <created>1581518257897</created>
+      <option name="number" value="00718" />
+      <option name="presentableId" value="LOCAL-00718" />
+      <option name="project" value="LOCAL" />
+      <updated>1581518257897</updated>
+    </task>
+    <task id="LOCAL-00719" summary="debug">
+      <created>1581844757298</created>
+      <option name="number" value="00719" />
+      <option name="presentableId" value="LOCAL-00719" />
+      <option name="project" value="LOCAL" />
+      <updated>1581844757298</updated>
+    </task>
+    <task id="LOCAL-00720" summary="debug">
+      <created>1581844864134</created>
+      <option name="number" value="00720" />
+      <option name="presentableId" value="LOCAL-00720" />
+      <option name="project" value="LOCAL" />
+      <updated>1581844864134</updated>
+    </task>
+    <task id="LOCAL-00721" summary="debug">
+      <created>1581845358685</created>
+      <option name="number" value="00721" />
+      <option name="presentableId" value="LOCAL-00721" />
+      <option name="project" value="LOCAL" />
+      <updated>1581845358685</updated>
+    </task>
+    <task id="LOCAL-00722" summary="debug">
+      <created>1581845789934</created>
+      <option name="number" value="00722" />
+      <option name="presentableId" value="LOCAL-00722" />
+      <option name="project" value="LOCAL" />
+      <updated>1581845789934</updated>
+    </task>
+    <task id="LOCAL-00723" summary="debug">
+      <created>1581846204459</created>
+      <option name="number" value="00723" />
+      <option name="presentableId" value="LOCAL-00723" />
+      <option name="project" value="LOCAL" />
+      <updated>1581846204459</updated>
+    </task>
+    <task id="LOCAL-00724" summary="del err">
+      <created>1581846492582</created>
+      <option name="number" value="00724" />
+      <option name="presentableId" value="LOCAL-00724" />
+      <option name="project" value="LOCAL" />
+      <updated>1581846492582</updated>
+    </task>
+    <task id="LOCAL-00725" summary="debug collect all">
+      <created>1581851061230</created>
+      <option name="number" value="00725" />
+      <option name="presentableId" value="LOCAL-00725" />
+      <option name="project" value="LOCAL" />
+      <updated>1581851061230</updated>
+    </task>
+    <task id="LOCAL-00726" summary="debug collect all">
+      <created>1581851615260</created>
+      <option name="number" value="00726" />
+      <option name="presentableId" value="LOCAL-00726" />
+      <option name="project" value="LOCAL" />
+      <updated>1581851615260</updated>
+    </task>
+    <task id="LOCAL-00727" summary="debug collect all">
+      <created>1581852887199</created>
+      <option name="number" value="00727" />
+      <option name="presentableId" value="LOCAL-00727" />
+      <option name="project" value="LOCAL" />
+      <updated>1581852887200</updated>
+    </task>
+    <task id="LOCAL-00728" summary="debug collect all">
+      <created>1581853009209</created>
+      <option name="number" value="00728" />
+      <option name="presentableId" value="LOCAL-00728" />
+      <option name="project" value="LOCAL" />
+      <updated>1581853009209</updated>
+    </task>
+    <task id="LOCAL-00729" summary="debug collect all">
+      <created>1581853135732</created>
+      <option name="number" value="00729" />
+      <option name="presentableId" value="LOCAL-00729" />
+      <option name="project" value="LOCAL" />
+      <updated>1581853135733</updated>
+    </task>
+    <task id="LOCAL-00730" summary="debug collect all">
+      <created>1581853505449</created>
+      <option name="number" value="00730" />
+      <option name="presentableId" value="LOCAL-00730" />
+      <option name="project" value="LOCAL" />
+      <updated>1581853505449</updated>
+    </task>
+    <task id="LOCAL-00731" summary="debug collect all">
+      <created>1581853592399</created>
+      <option name="number" value="00731" />
+      <option name="presentableId" value="LOCAL-00731" />
+      <option name="project" value="LOCAL" />
+      <updated>1581853592399</updated>
+    </task>
+    <task id="LOCAL-00732" summary="debug collect all">
+      <created>1581853673942</created>
+      <option name="number" value="00732" />
+      <option name="presentableId" value="LOCAL-00732" />
+      <option name="project" value="LOCAL" />
+      <updated>1581853673942</updated>
+    </task>
+    <task id="LOCAL-00733" summary="debug collect all">
+      <created>1581859604137</created>
+      <option name="number" value="00733" />
+      <option name="presentableId" value="LOCAL-00733" />
+      <option name="project" value="LOCAL" />
+      <updated>1581859604137</updated>
+    </task>
+    <task id="LOCAL-00734" summary="debug collect all">
+      <created>1581859837991</created>
+      <option name="number" value="00734" />
+      <option name="presentableId" value="LOCAL-00734" />
+      <option name="project" value="LOCAL" />
+      <updated>1581859837992</updated>
+    </task>
+    <task id="LOCAL-00735" summary="debug collect all">
+      <created>1581860116597</created>
+      <option name="number" value="00735" />
+      <option name="presentableId" value="LOCAL-00735" />
+      <option name="project" value="LOCAL" />
+      <updated>1581860116597</updated>
+    </task>
+    <task id="LOCAL-00736" summary="debug collect all">
+      <created>1581860177714</created>
+      <option name="number" value="00736" />
+      <option name="presentableId" value="LOCAL-00736" />
+      <option name="project" value="LOCAL" />
+      <updated>1581860177714</updated>
+    </task>
+    <task id="LOCAL-00737" summary="debug collect all">
+      <created>1581860194703</created>
+      <option name="number" value="00737" />
+      <option name="presentableId" value="LOCAL-00737" />
+      <option name="project" value="LOCAL" />
+      <updated>1581860194703</updated>
+    </task>
+    <task id="LOCAL-00738" summary="debug collect all">
+      <created>1581860221111</created>
+      <option name="number" value="00738" />
+      <option name="presentableId" value="LOCAL-00738" />
+      <option name="project" value="LOCAL" />
+      <updated>1581860221111</updated>
+    </task>
+    <task id="LOCAL-00739" summary="run to collect all">
+      <created>1581860467161</created>
+      <option name="number" value="00739" />
+      <option name="presentableId" value="LOCAL-00739" />
+      <option name="project" value="LOCAL" />
+      <updated>1581860467161</updated>
+    </task>
+    <task id="LOCAL-00740" summary="fit flags to all learning alternatives">
+      <created>1581861364716</created>
+      <option name="number" value="00740" />
+      <option name="presentableId" value="LOCAL-00740" />
+      <option name="project" value="LOCAL" />
+      <updated>1581861364716</updated>
+    </task>
+    <task id="LOCAL-00741" summary="run collect all on subset (500)">
+      <created>1581864709251</created>
+      <option name="number" value="00741" />
+      <option name="presentableId" value="LOCAL-00741" />
+      <option name="project" value="LOCAL" />
+      <updated>1581864709251</updated>
+    </task>
+    <task id="LOCAL-00742" summary="run collect all on subset (500)">
+      <created>1581869978381</created>
+      <option name="number" value="00742" />
+      <option name="presentableId" value="LOCAL-00742" />
+      <option name="project" value="LOCAL" />
+      <updated>1581869978381</updated>
+    </task>
+    <task id="LOCAL-00743" summary="run collect all on subset (500)">
+      <created>1581955285052</created>
+      <option name="number" value="00743" />
+      <option name="presentableId" value="LOCAL-00743" />
+      <option name="project" value="LOCAL" />
+      <updated>1581955285052</updated>
+    </task>
+    <task id="LOCAL-00744" summary="try learn complete move">
+      <created>1581955317561</created>
+      <option name="number" value="00744" />
+      <option name="presentableId" value="LOCAL-00744" />
+      <option name="project" value="LOCAL" />
+      <updated>1581955317561</updated>
+    </task>
+    <task id="LOCAL-00745" summary="try learn complete move&#10;debug">
+      <created>1581956695195</created>
+      <option name="number" value="00745" />
+      <option name="presentableId" value="LOCAL-00745" />
+      <option name="project" value="LOCAL" />
+      <updated>1581956695195</updated>
+    </task>
+    <task id="LOCAL-00746" summary="try learn complete move&#10;debug">
+      <created>1582026178271</created>
+      <option name="number" value="00746" />
+      <option name="presentableId" value="LOCAL-00746" />
+      <option name="project" value="LOCAL" />
+      <updated>1582026178271</updated>
+    </task>
+    <task id="LOCAL-00747" summary="try learn complete move&#10;debug">
+      <created>1582026270324</created>
+      <option name="number" value="00747" />
+      <option name="presentableId" value="LOCAL-00747" />
+      <option name="project" value="LOCAL" />
+      <updated>1582026270324</updated>
+    </task>
+    <task id="LOCAL-00748" summary="try learn complete move&#10;debug">
+      <created>1582032028646</created>
+      <option name="number" value="00748" />
+      <option name="presentableId" value="LOCAL-00748" />
+      <option name="project" value="LOCAL" />
+      <updated>1582032028646</updated>
+    </task>
+    <task id="LOCAL-00749" summary="try learn complete move&#10;debug">
+      <created>1582032794938</created>
+      <option name="number" value="00749" />
+      <option name="presentableId" value="LOCAL-00749" />
+      <option name="project" value="LOCAL" />
+      <updated>1582032794938</updated>
+    </task>
+    <task id="LOCAL-00750" summary="try learn complete move&#10;debug&#10;temp">
+      <created>1582033489445</created>
+      <option name="number" value="00750" />
+      <option name="presentableId" value="LOCAL-00750" />
+      <option name="project" value="LOCAL" />
+      <updated>1582033489445</updated>
+    </task>
+    <task id="LOCAL-00751" summary="try learn complete move&#10;debug&#10;temp">
+      <created>1582035186577</created>
+      <option name="number" value="00751" />
+      <option name="presentableId" value="LOCAL-00751" />
+      <option name="project" value="LOCAL" />
+      <updated>1582035186577</updated>
+    </task>
+    <task id="LOCAL-00752" summary="try learn complete move&#10;debug">
+      <created>1582035989748</created>
+      <option name="number" value="00752" />
+      <option name="presentableId" value="LOCAL-00752" />
+      <option name="project" value="LOCAL" />
+      <updated>1582035989749</updated>
+    </task>
+    <task id="LOCAL-00753" summary="try learn complete move&#10;debug&#10;temp - subset">
+      <created>1582040281551</created>
+      <option name="number" value="00753" />
+      <option name="presentableId" value="LOCAL-00753" />
+      <option name="project" value="LOCAL" />
+      <updated>1582040281551</updated>
+    </task>
+    <task id="LOCAL-00754" summary="try learn complete move&#10;debug&#10;temp - subset">
+      <created>1582041448388</created>
+      <option name="number" value="00754" />
+      <option name="presentableId" value="LOCAL-00754" />
+      <option name="project" value="LOCAL" />
+      <updated>1582041448388</updated>
+    </task>
+    <task id="LOCAL-00755" summary="try learn complete move&#10;debug&#10;temp - subset">
+      <created>1582041463690</created>
+      <option name="number" value="00755" />
+      <option name="presentableId" value="LOCAL-00755" />
+      <option name="project" value="LOCAL" />
+      <updated>1582041463690</updated>
+    </task>
+    <task id="LOCAL-00756" summary="try learn complete move&#10;debug&#10;temp - subset">
+      <created>1582101665109</created>
+      <option name="number" value="00756" />
+      <option name="presentableId" value="LOCAL-00756" />
+      <option name="project" value="LOCAL" />
+      <updated>1582101665109</updated>
+    </task>
+    <task id="LOCAL-00757" summary="learn complete move">
+      <created>1582110353004</created>
+      <option name="number" value="00757" />
+      <option name="presentableId" value="LOCAL-00757" />
+      <option name="project" value="LOCAL" />
+      <updated>1582110353004</updated>
+    </task>
+    <task id="LOCAL-00758" summary="learn complete move">
+      <created>1582111654610</created>
+      <option name="number" value="00758" />
+      <option name="presentableId" value="LOCAL-00758" />
+      <option name="project" value="LOCAL" />
+      <updated>1582111654610</updated>
+    </task>
+    <option name="localTasksCounter" value="759" />
+    <servers />
+  </component>
+  <component name="TodoView" selected-index="4">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
+    <layout>
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.8535211" visible="true" weight="0.15023847" />
+      <window_info id="Structure" order="1" weight="0.25" />
+      <window_info id="Favorites" order="2" sideWeight="0.14647888" side_tool="true" weight="0.14752372" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.69072706" weight="0.20199779" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.8840885" visible="true" weight="0.30521643" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39955604" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49736565" weight="0.16315205" />
+      <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.49841937" weight="0.112097666" />
+      <window_info anchor="bottom" id="Terminal" order="8" />
+      <window_info anchor="bottom" id="Python Console" order="9" sideWeight="0.49947312" weight="0.25860155" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.115911484" side_tool="true" visible="true" weight="0.30373" />
+      <window_info anchor="bottom" id="Messages" order="11" weight="0.32963374" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Data View" order="3" />
+    </layout>
+    <layout-to-restore>
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.8535211" visible="true" weight="0.15173867" />
+      <window_info id="Structure" order="1" weight="0.25" />
+      <window_info id="Favorites" order="2" sideWeight="0.14647888" side_tool="true" weight="0.14752372" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.6917808" weight="0.36514983" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.88830346" visible="true" weight="0.29855716" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39955604" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49789253" weight="0.16315205" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="Terminal" order="8" />
+      <window_info anchor="bottom" id="Python Console" order="9" sideWeight="0.49947312" weight="0.25860155" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.11169652" side_tool="true" visible="true" weight="0.29855716" />
+      <window_info anchor="bottom" id="Messages" order="11" weight="0.32963374" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Data View" order="3" />
+    </layout-to-restore>
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.csv" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="test" />
+    <MESSAGE value="t" />
+    <MESSAGE value="try - complete move learning" />
+    <MESSAGE value="add &quot;longest_branch&quot; to shared features (orig tree f)" />
+    <MESSAGE value="fix stupid bug (index when parsing all moves)" />
+    <MESSAGE value="test fixed" />
+    <MESSAGE value="try reparse all" />
+    <MESSAGE value="q" />
+    <MESSAGE value="test again before reruning all pipeline" />
+    <MESSAGE value="make sure all exist" />
+    <MESSAGE value="fix" />
+    <MESSAGE value="fix bug (!?????)&#10;taking MAX d_ll and not min!!!!&#10;...." />
+    <MESSAGE value="collect more datasets from Shiran's collection (TreeBase) &#10;(+1030)" />
+    <MESSAGE value="fix bug:&#10;MAX ll and not min (for the next step)" />
+    <MESSAGE value="debug" />
+    <MESSAGE value="del err" />
+    <MESSAGE value="debug collect all" />
+    <MESSAGE value="run to collect all" />
+    <MESSAGE value="fit flags to all learning alternatives" />
+    <MESSAGE value="run collect all on subset (500)" />
+    <MESSAGE value="try learn complete move" />
+    <MESSAGE value="try learn complete move&#10;debug&#10;temp" />
+    <MESSAGE value="try learn complete move&#10;debug" />
+    <MESSAGE value="try learn complete move&#10;debug&#10;temp - subset" />
+    <MESSAGE value="learn complete move" />
+    <option name="LAST_COMMIT_MESSAGE" value="learn complete move" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/../../courses/python_bio/L/python project.py" />
+    <entry file="file://$PROJECT_DIR$/TEMP_flowering_time_IL_lines.py" />
+    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/dateutil/parser.py" />
+    <entry file="file://$PROJECT_DIR$/course.py" />
+    <entry file="file://$USER_HOME$/Anaconda3/Lib/site-packages/matplotlib/artist.py" />
+    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/_pydev_imps/_pydev_execfile.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="10" column="23" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/statsmodels/base/data.py" />
+    <entry file="file://$PROJECT_DIR$/../../courses/python_bio/2019/exam/personal/Dana/cheking_projects.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="110">
+          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../courses/python_bio/2019/exam/general/Dana_q1/exam_testers.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="902">
+          <caret line="126" column="28" lean-forward="true" selection-start-line="126" selection-start-column="28" selection-end-line="126" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test.fasta" />
+    <entry file="file://C:/Program Files/Anaconda3/Lib/subprocess.py" />
+    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/Bio/AlignIO/__init__.py" />
+    <entry file="file://$PROJECT_DIR$/execute_programs/SVM.py" />
+    <entry file="file://$PROJECT_DIR$/execute_programs/test.csv" />
+    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/matplotlib/axes/_base.py" />
+    <entry file="file://C:/Program Files/Anaconda3/pkgs/sphinx-1.4.6-py35_0/Lib/site-packages/Sphinx-1.4.6-py3.5.egg/sphinx/ext/todo.py" />
+    <entry file="file://$PROJECT_DIR$/trying2.py" />
+    <entry file="file://$PROJECT_DIR$/data_processing/create_BioNJ_trees.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="181">
+          <caret line="13" selection-start-line="13" selection-end-line="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Anaconda3/Lib/statistics.py" />
+    <entry file="file://C:/Program Files/Anaconda3/Lib/argparse.py" />
+    <entry file="file://$PROJECT_DIR$/figures/confidence_interval_dts.py" />
+    <entry file="file://$PROJECT_DIR$/figures/ranked_tree_for_grant.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="631">
+          <caret line="85" selection-start-line="85" selection-end-line="85" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/trying_psidt.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="22">
+          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/general_utils.py" />
+    <entry file="file://$USER_HOME$/.PyCharmCE2018.2/system/python_stubs/-1282051629/_io.py" />
+    <entry file="file://$PROJECT_DIR$/execute_programs/SPR_env.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/Bio/Phylo/TreeConstruction.py" />
+    <entry file="file://$PROJECT_DIR$/trying_SPR.py" />
+    <entry file="file://$PROJECT_DIR$/execute_programs/Phyml.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="166">
+          <caret line="80" column="32" selection-start-line="80" selection-start-column="27" selection-end-line="80" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/parsing/parse_phyml.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-293">
+          <caret line="17" column="20" lean-forward="true" selection-start-line="17" selection-start-column="20" selection-end-line="17" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/execute_programs/SVM_learning.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-937">
+          <caret line="27" column="17" selection-start-line="27" selection-start-column="14" selection-end-line="27" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/execute_programs/RandomForest_learning_del.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="78">
+          <caret line="301" column="49" selection-start-line="301" selection-start-column="12" selection-end-line="301" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/create_job_file.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="968">
+          <caret line="45" column="26" selection-start-line="45" selection-start-column="26" selection-end-line="45" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://C:/Program Files/Anaconda3/Lib/site-packages/ete3/coretype/tree.py" />
+    <entry file="file://$PROJECT_DIR$/summary/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data_processing/traverse_data_dirs.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="9" column="17" lean-forward="true" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/msa_functions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1550">
+          <caret line="93" column="42" selection-start-line="93" selection-start-column="42" selection-end-line="93" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/execute_programs/trying_SPR.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="173">
+          <caret line="162" column="34" selection-start-line="162" selection-start-column="34" selection-end-line="162" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/summary/collect_SPR_features.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="372">
+          <caret line="81" column="40" lean-forward="true" selection-start-line="81" selection-start-column="40" selection-end-line="81" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/execute_programs/SPR_move.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="167" column="30" selection-start-line="167" selection-start-column="30" selection-end-line="167" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/tree_functions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-668">
+          <caret line="296" column="50" selection-start-line="296" selection-start-column="40" selection-end-line="296" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/figures/samplesize.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/figures/violin_for_grant.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="421">
+          <caret line="71" column="41" lean-forward="true" selection-end-line="71" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/figures/accXsize_boxplot.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-858">
+          <caret line="13" column="12" selection-start-line="13" selection-end-line="13" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data_processing/get_ds.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-418">
+          <caret line="16" column="11" selection-start-line="16" selection-start-column="11" selection-end-line="16" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data_processing/whore.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="436">
+          <caret line="42" column="21" selection-start-line="42" selection-start-column="4" selection-end-line="42" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/figures/saturation.py" />
+    <entry file="file://$PROJECT_DIR$/defs.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="924">
+          <caret line="51" column="13" selection-start-line="51" selection-end-line="51" selection-end-column="13" />
+          <folding>
+            <element signature="e#11#29#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/trying.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1210">
+          <caret line="69" selection-start-line="69" selection-end-line="69" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/execute_programs/compose_learners.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1628">
+          <caret line="74" selection-start-line="74" selection-end-line="74" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/execute_programs/RF_learning.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="539">
+          <caret line="269" selection-start-line="269" selection-end-line="269" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

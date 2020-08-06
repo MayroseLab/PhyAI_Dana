@@ -1,0 +1,315 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Sun May 24 11:21:39 2020
+
+@author: gillo
+"""
+
+import sys
+import logging
+
+# logging.warning('start')
+
+# import model_selection_functions as msf
+import numpy as np
+import pandas as pd
+from sklearn.metrics import confusion_matrix
+import os
+# import time
+# from multiprocessing.dummy import Pool as ThreadPool
+# from multiprocessing import Pool
+from scipy.stats import pearsonr
+# from scipy.special import zeta
+from sklearn import linear_model
+from sklearn import model_selection
+# from sklearn import metrics
+import matplotlib.pyplot as plt
+
+from sklearn.utils.multiclass import unique_labels
+from keras.layers import Input, Dense
+from keras.models import Model
+# from sklearn.model_selection import train_test_split
+# from sklearn.metrics import mean_squared_error
+import random
+
+
+# %%
+def data_preperation(df, df_meta=None, verbose=1, test_fraction=0.25,
+                     val_fraction=0.05, y_col_name='model_id',
+                     model_name_col='model_name',
+                     y_col_reg_list=['RL', 'AIR', 'ADR', 'IR', 'DR'],
+                     num_first_col_to_exclude=7,
+                     models_list=['ideq', 'iddif'], seed_num=3,
+                     large_meta_flag=False):
+	#    y_col_name = 'model_id'
+	exclude_col_list = list(df.columns[:num_first_col_to_exclude])
+	exclude_col_list.append(y_col_name)
+	x_col_list = [x for x in df.columns if x not in exclude_col_list and model_name_col not in x]
+	# X_train_orig,X_test_orig,Y_train_orig,Y_test_orig = train_test_split(df[x_col_list],
+	#                                            df[y_col_name],
+	#                                            test_size=0.3,random_state=3)
+	
+	df_len = len(df)
+	#    test_fraction = 0.25
+	#    val_fraction = 0.05
+	train_fraction = 1 - test_fraction - val_fraction
+	indices = list(range(df_len))
+	random.Random(seed_num).shuffle(indices)
+	indices_test = indices[:int(test_fraction * df_len)]
+	indices_val = indices[int(test_fraction * df_len):int((test_fraction + val_fraction) * df_len)]
+	indices_train = indices[int((test_fraction + val_fraction) * df_len):]
+	X_train_orig = df.iloc[indices_train][x_col_list]
+	X_val_orig = df.iloc[indices_val][x_col_list]
+	X_test_orig = df.iloc[indices_test][x_col_list]
+	if df_meta is not None:
+		if large_meta_flag:
+			X_data_orig = df_meta[x_col_list]
+		else:
+			X_data_orig = df_meta.iloc[0][x_col_list]
+	Y_train_orig = df.iloc[indices_train][y_col_name]
+	Y_val_orig = df.iloc[indices_val][y_col_name]
+	Y_test_orig = df.iloc[indices_test][y_col_name]
+	Y_train_orig_reg = df.iloc[indices_train][y_col_reg_list]
+	Y_val_orig_reg = df.iloc[indices_val][y_col_reg_list]
+	Y_test_orig_reg = df.iloc[indices_test][y_col_reg_list]
+	
+	if verbose:
+		print(len(Y_train_orig), len(Y_test_orig))
+	X_train_orig = X_train_orig.values
+	X_test_orig = X_test_orig.values
+	X_val_orig = X_val_orig.values
+	if df_meta is not None:
+		if large_meta_flag:
+			X_data_orig = X_data_orig.values
+		else:
+			X_data_orig = np.array(X_data_orig.values).astype(float).reshape(1, -1)
+	Y_train_orig = Y_train_orig.values
+	Y_test_orig = Y_test_orig.values
+	Y_val_orig = Y_val_orig.values
+	Y_train_orig_reg = Y_train_orig_reg.values
+	Y_test_orig_reg = Y_test_orig_reg.values
+	Y_val_orig_reg = Y_val_orig_reg.values
+	
+	#
+	X_train_mean = np.average(X_train_orig, axis=0)
+	X_train_std = np.std(X_train_orig, axis=0)
+	X_train = (X_train_orig - X_train_mean) / X_train_std
+	X_test = (X_test_orig - X_train_mean) / X_train_std
+	X_val = (X_val_orig - X_train_mean) / X_train_std
+	if df_meta is not None:
+		X_data = (X_data_orig - X_train_mean) / X_train_std
+	else:
+		X_data = None
+	
+	# Reshape
+	Y_train_mean = 0  # np.average(Y_train_orig,axis=0) #classification
+	Y_train_std = 1  # np.std(Y_train_orig,axis=0) #classification
+	Y_train_reg_mean = np.average(Y_train_orig_reg, axis=0).reshape(1, -1)
+	Y_train_reg_std = np.std(Y_train_orig_reg, axis=0).reshape(1, -1)
+	Y_train = (Y_train_orig - Y_train_mean) / Y_train_std
+	Y_train = Y_train.reshape(-1, 1)
+	Y_test = (Y_test_orig - Y_train_mean) / Y_train_std
+	Y_test = Y_test.reshape(-1, 1)
+	Y_val = (Y_val_orig - Y_train_mean) / Y_train_std
+	Y_val = Y_val.reshape(-1, 1)
+	Y_train_reg = (Y_train_orig_reg - Y_train_reg_mean) / Y_train_reg_std
+	Y_test_reg = (Y_test_orig_reg - Y_train_reg_mean) / Y_train_reg_std
+	Y_val_reg = (Y_val_orig_reg - Y_train_reg_mean) / Y_train_reg_std
+	
+	# Converting to one hot encoding
+	b = np.zeros((len(Y_test), len(models_list)))
+	b[np.arange(len(Y_test)), Y_test.flatten().astype(int)] = 1
+	Y_test = b
+	b = np.zeros((len(Y_train), len(models_list)))
+	b[np.arange(len(Y_train)), Y_train.flatten().astype(int)] = 1
+	Y_train = b
+	b = np.zeros((len(Y_val), len(models_list)))
+	b[np.arange(len(Y_val)), Y_val.flatten().astype(int)] = 1
+	Y_val = b
+	# Y_train = Y_train_orig.T
+	# Y_test = Y_test_orig.T
+	if verbose:
+		print("number of training examples = " + str(X_train.shape[0]))
+		print("number of test examples = " + str(X_test.shape[0]))
+		print("X_train shape: " + str(X_train.shape))
+		print("Y_train shape: " + str(Y_train.shape))
+		print("X_test shape: " + str(X_test.shape))
+		print("Y_test shape: " + str(Y_test.shape))
+	
+	return X_train, Y_train, X_val, Y_val, X_test, Y_test, X_data, Y_train_reg, Y_test_reg, Y_val_reg, Y_train_reg_mean, Y_train_reg_std
+
+
+def NNModel_class(input_shape, num_classes=2):
+	X_input = Input(
+		input_shape)  # Define the input placeholder as a tensor with shape input_shape. Think of this as your input image!
+	X = Dense(input_shape[0], activation='relu', name='fc1')(X_input)
+	X = Dense(10, activation='relu', name='fc2')(X)
+	X = Dense(5, activation='relu', name='fc3')(X)
+	#    X = Dense(1, activation='sigmoid', name='fc_out')(X)
+	X = Dense(num_classes, activation='sigmoid', name='fc_out')(X)
+	model = Model(inputs=X_input, outputs=X,
+	              name='ClassModelSelection')  # Create model. This creates your Keras model instance, you'll use this instance to train/test the model.
+	return model
+
+
+def NNModel_reg(input_shape, num_param=5):
+	X_input = Input(
+		input_shape)  # Define the input placeholder as a tensor with shape input_shape. Think of this as your input image!
+	X = Dense(input_shape[0], activation='relu', name='fc1')(X_input)
+	X = Dense(12, activation='relu', name='fc2')(X)
+	X = Dense(8, activation='relu', name='fc3')(X)
+	#    X = Dense(1, activation='sigmoid', name='fc_out')(X)
+	X = Dense(num_param, activation='linear', name='fc_out')(X)
+	model = Model(inputs=X_input, outputs=X,
+	              name='RegModel')  # Create model. This creates your Keras model instance, you'll use this instance to train/test the model.
+	return model
+
+
+def nn_class_and_reg(df, df_meta, models_list=['ideq', 'iddif'],
+                     num_epochs=50, batch_size=4096, verbose=0):
+	# X_train, Y_train, X_val, Y_val, X_test, Y_test, X_data, Y_train_reg, Y_test_reg, Y_val_reg, Y_train_reg_mean, Y_train_reg_std = msf.data_preperation(df=df,
+	#                                                                           df_meta=df_meta,
+	#                                                                          verbose=verbose)
+	X_train, Y_train, X_val, Y_val, X_test, Y_test, X_data, Y_train_reg, Y_test_reg, Y_val_reg, Y_train_reg_mean, Y_train_reg_std = data_preperation(
+		df=df,
+		df_meta=df_meta,
+		verbose=verbose)
+	# ms_model = msf.NNModel_class(X_train.shape[1:],num_classes=len(models_list))
+	ms_model = NNModel_class(X_train.shape[1:], num_classes=len(models_list))
+	# ms_model.compile('adam', 'categorical_crossentropy', metrics=['accuracy'])
+	ms_model.compile('SGD', 'categorical_crossentropy', metrics=['accuracy'])
+	ms_model.fit(X_train, Y_train, epochs=num_epochs, batch_size=batch_size,
+	             validation_data=(X_val, Y_val), verbose=verbose)
+	Y_pred_train = ms_model.predict(X_train)  # predict on train set
+	Y_pred_test = ms_model.predict(X_test)  # Predict test set
+	Y_pred_data = ms_model.predict(X_data)
+	nn_c_class = 'eq' if Y_pred_data[0][0] > Y_pred_data[0][1] else 'dif'
+	nn_c_test_max_out_mean = Y_pred_test.max(axis=1).mean()
+	nn_c_test_max_out_std = Y_pred_test.max(axis=1).std()
+	# Y_pred_class_train, Y_pred_arg_train, Y_pred_fac_train = msf.res_vec_to_metrics(Y_pred=Y_pred_train)
+	# Y_pred_class_test, Y_pred_arg_test, Y_pred_fac_test = msf.res_vec_to_metrics(Y_pred=Y_pred_test)
+	# Y_pred_class_data, Y_pred_arg_data, Y_pred_fac_data = msf.res_vec_to_metrics(Y_pred=Y_pred_data)
+	# Y_real_class_test, _, _ = msf.res_vec_to_metrics(Y_pred=Y_test)
+	Y_pred_class_train, Y_pred_arg_train, Y_pred_fac_train = res_vec_to_metrics(Y_pred=Y_pred_train)
+	Y_pred_class_test, Y_pred_arg_test, Y_pred_fac_test = res_vec_to_metrics(Y_pred=Y_pred_test)
+	Y_pred_class_data, Y_pred_arg_data, Y_pred_fac_data = res_vec_to_metrics(Y_pred=Y_pred_data)
+	Y_real_class_test, _, _ = res_vec_to_metrics(Y_pred=Y_test)
+	cm = confusion_matrix(y_true=Y_real_class_test,
+	                      y_pred=Y_pred_class_test) / (len(Y_real_class_test) / 2)
+	if verbose:
+		# msf.plot_confusion_matrix(y_true=Y_real_class_test,y_pred=Y_pred_class_test,
+		#                   classes=np.array(models_list), normalize=True)
+		plot_confusion_matrix(y_true=Y_real_class_test, y_pred=Y_pred_class_test,
+		                      classes=np.array(models_list), normalize=True)
+	
+	# reg_model = msf.NNModel_reg(X_train.shape[1:],num_param=Y_train_reg.shape[1])
+	reg_model = NNModel_reg(X_train.shape[1:], num_param=Y_train_reg.shape[1])
+	# reg_model.compile('adam', 'mean_squared_error', metrics=['accuracy'])
+	reg_model.compile('SGD', 'mean_squared_error', metrics=['accuracy'])
+	reg_model.fit(X_train, Y_train_reg, epochs=num_epochs, batch_size=batch_size,
+	              validation_data=(X_val, Y_val_reg), verbose=verbose)
+	#    Y_pred_train_reg = reg_model.predict(X_train)*Y_train_reg_std + Y_train_reg_mean #predict on train set
+	Y_pred_test_reg = reg_model.predict(X_test) * Y_train_reg_std + Y_train_reg_mean  # Predict test set
+	Y_pred_data_reg = reg_model.predict(X_data) * Y_train_reg_std + Y_train_reg_mean
+	nn_std_err = np.std(Y_pred_test_reg - (Y_test_reg * Y_train_reg_std + Y_train_reg_mean), axis=0)
+	# Gathering results
+	res_dict = {'nn_c_out_eq': [Y_pred_data[0][0]],
+	            'nn_c_out_dif': [Y_pred_data[0][1]],
+	            'nn_c_class': [nn_c_class],
+	            'nn_c_test_max_out_mean': [nn_c_test_max_out_mean],
+	            'nn_c_test_max_out_std': [nn_c_test_max_out_std],
+	            'nn_c_cm00': [cm[0][0]],
+	            'nn_c_cm01': [cm[0][1]], 'nn_c_cm10': [cm[1][0]], 'nn_c_cm11': [cm[1][1]],
+	            'nn_r_corr_RL': [pearsonr(Y_test_reg[:, 0], Y_pred_test_reg[:, 0])[0]],
+	            'nn_r_corr_AIR': [pearsonr(Y_test_reg[:, 1], Y_pred_test_reg[:, 1])[0]],
+	            'nn_r_corr_ADR': [pearsonr(Y_test_reg[:, 2], Y_pred_test_reg[:, 2])[0]],
+	            'nn_r_corr_IR': [pearsonr(Y_test_reg[:, 3], Y_pred_test_reg[:, 3])[0]],
+	            'nn_r_corr_DR': [pearsonr(Y_test_reg[:, 4], Y_pred_test_reg[:, 4])[0]],
+	            'nn_r_RL': [Y_pred_data_reg[0, 0]], 'nn_r_AIR': [Y_pred_data_reg[0, 1]],
+	            'nn_r_ADR': [Y_pred_data_reg[0, 2]], 'nn_r_IR': [Y_pred_data_reg[0, 3]],
+	            'nn_r_DR': [Y_pred_data_reg[0, 4]],
+	            'nn_r_RL_test_stderr': [nn_std_err[0]], 'nn_r_AIR_test_stderr': [nn_std_err[1]],
+	            'nn_r_ADR_test_stderr': [nn_std_err[2]], 'nn_r_IR_test_stderr': [nn_std_err[3]],
+	            'nn_r_DR_test_stderr': [nn_std_err[4]], }
+	return res_dict
+
+
+# nn
+tmp_res_dict = nn_class_and_reg(df=df, df_meta=df_meta,
+                                models_list=models_list,
+                                num_epochs=num_epochs,
+                                batch_size=batch_size, verbose=verbose)
+res_dict.update(tmp_res_dict)
+logging.info('done nn class. and reg. ' + lib)
+
+# %%
+
+df = pd.read_csv("D:/university/temp/learning_subset_1000ds.csv", nrows=100000)
+df[data_df.columns[-1]] = df[df.columns[-1]].apply(lambda x: np.log10(x + 1E-9))
+df = df.dropna()
+# x_df = data_df[data_df.columns[6:-1]]
+# y_df = data_df[data_df.columns[-1]]
+# y_df.apply(np.log10)
+
+test_fraction = 0.25
+val_fraction = 0.05
+x_col_list = df.columns[6:-1]
+y_col_name = df.columns[-1]
+
+train_fraction = 1 - test_fraction - val_fraction
+indices = list(range(len(df)))
+# random.Random(seed_num).shuffle(indices)
+indices_test = indices[:int(test_fraction * len(df))]
+indices_val = indices[int(test_fraction * len(df)):int((test_fraction + val_fraction) * len(df))]
+indices_train = indices[int((test_fraction + val_fraction) * len(df)):]
+X_train_orig = df.iloc[indices_train][x_col_list].values
+X_val_orig = df.iloc[indices_val][x_col_list].values
+X_test_orig = df.iloc[indices_test][x_col_list].values
+
+Y_train_orig = df.iloc[indices_train][y_col_name].values
+Y_val_orig = df.iloc[indices_val][y_col_name].values
+Y_test_orig = df.iloc[indices_test][y_col_name].values
+
+Y_train = (Y_train_orig - Y_train_orig.mean()) / Y_train_orig.std()
+Y_val = (Y_val_orig - Y_train_orig.mean()) / Y_train_orig.std()
+Y_test = (Y_test_orig - Y_train_orig.mean()) / Y_train_orig.std()
+
+Y_train = Y_train.reshape(-1, 1)
+Y_val = Y_val.reshape(-1, 1)
+Y_test = Y_test.reshape(-1, 1)
+
+X_train = X_train.reshape([X_train.shape[0], X_train.shape[1], 1])
+X_val = X_val.reshape([X_val.shape[0], X_val.shape[1], 1])
+X_test = X_test.reshape([X_test.shape[0], X_test.shape[1], 1])
+
+X_train = (X_train_orig - X_train_orig.mean(axis=0)) / X_train_orig.std(axis=0)
+X_val = (X_val_orig - X_train_orig.mean(axis=0)) / X_train_orig.std(axis=0)
+X_test = (X_test_orig - X_train_orig.mean(axis=0)) / X_train_orig.std(axis=0)
+# %%
+# reg_model = msf.NNModel_reg(X_train.shape[1:],num_param=Y_train_reg.shape[1])
+# reg_model = NNModel_reg(X_train.shape[1:])
+# #reg_model.compile('adam', 'mean_squared_error', metrics=['accuracy'])
+# reg_model.compile('SGD', 'mean_squared_error', metrics=['accuracy'])
+# reg_model.fit(X_train, Y_train, epochs=3, batch_size=4096,
+#               validation_data=(X_val, Y_val))
+
+
+from keras.models import Sequential
+from keras.layers import Dense
+from tensorflow.keras import regularizers
+
+model = Sequential()
+model.add(Dense(30, input_dim=29, activation='relu'))
+model.add(Dense(30, activation='relu'))
+model.add(Dense(8, activation='relu'))
+model.add(Dense(1, activation='linear'))
+model.compile(loss='mean_squared_error', optimizer='adam', metrics=['accuracy'])
+model.fit(X_train, Y_train, epochs=100, batch_size=4096, validation_data=(X_val, Y_val))
+
+Y_test_hat = model.predict(X_test)
+
+plt.plot(Y_test, Y_test_hat, 'x')
+
+Y_train_hat = model.predict(X_train)
+
+plt.plot(Y_train, Y_train_hat, 'x')
