@@ -1,10 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="04f6d22b-03c8-46f3-ac77-b58c4e95d95d" name="Default Changelist" comment="1st commit after submission (moving from svn to git)">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="04f6d22b-03c8-46f3-ac77-b58c4e95d95d" name="Default Changelist" comment="1st commit after submission (moving from svn to git)" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -349,13 +364,6 @@
       <option name="presentableId" value="Default" />
       <updated>1557671246307</updated>
     </task>
-    <task id="LOCAL-00901" summary="test - filtering bad datasets">
-      <created>1585849977524</created>
-      <option name="number" value="00901" />
-      <option name="presentableId" value="LOCAL-00901" />
-      <option name="project" value="LOCAL" />
-      <updated>1585849977524</updated>
-    </task>
     <task id="LOCAL-00902" summary="covid-19">
       <created>1589726909346</created>
       <option name="number" value="00902" />
@@ -692,7 +700,13 @@
       <option name="project" value="LOCAL" />
       <updated>1590323931737</updated>
     </task>
-    <option name="localTasksCounter" value="950" />
+    <task id="LOCAL‎00950" summary="1st commit after submission (moving from svn to git)">
+      <created>1596711516372</created>
+      <option name="number" value="LOCAL‎00950" />
+      <option name="presentableId" value="LOCAL‎00950" />
+      <updated>1596711516373</updated>
+    </task>
+    <option name="localTasksCounter" value="951" />
     <servers />
   </component>
   <component name="TodoView">
@@ -706,6 +720,17 @@
   </component>
   <component name="UnknownFeatures">
     <option featureType="com.intellij.fileTypeFactory" implementationName="*.csv" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="test" />
@@ -780,6 +805,10 @@
     </state>
     <state x="2323" y="159" key="SettingsEditor/0.0.1280.680/1920.0.1680.1010@1920.0.1680.1010" timestamp="1596711194268" />
     <state x="2381" y="164" key="SettingsEditor/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1596616610627" />
+    <state x="2352" y="245" key="Vcs.Push.Dialog.v2" timestamp="1596711880204">
+      <screen x="1920" y="0" width="1680" height="1010" />
+    </state>
+    <state x="2352" y="245" key="Vcs.Push.Dialog.v2/0.0.1280.680/1920.0.1680.1010@1920.0.1680.1010" timestamp="1596711880204" />
     <state x="2012" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1596442525460">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>

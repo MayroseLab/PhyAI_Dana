@@ -213,6 +213,7 @@ def calc_leaves_features_Shirab(tree_str, move_type, rgft_node_name=None):
 		print(first_node.name)
 		t.set_outgroup(first_node)
 
+
 		# We want to traverse the tree by pooling the parent of the remaining tree and moving it to the outgroup -
 		# so we do it in a preorder manner, such that
 		for node in t.traverse("preorder"):
