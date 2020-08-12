@@ -20,7 +20,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="04f6d22b-03c8-46f3-ac77-b58c4e95d95d" name="Default Changelist" comment="organizing dirs before reruning all pipeline (with different optimizations)">
-      <change beforePath="$PROJECT_DIR$/data_processing/whore.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_processing/whore.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/summary/run_times.py" beforeDir="false" afterPath="$PROJECT_DIR$/summary/run_times.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils/tree_functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/tree_functions.py" afterDir="false" />
     </list>
@@ -368,20 +367,6 @@
       <option name="presentableId" value="Default" />
       <updated>1557671246307</updated>
     </task>
-    <task id="LOCAL-00905" summary="covid-19">
-      <created>1589727738274</created>
-      <option name="number" value="00905" />
-      <option name="presentableId" value="LOCAL-00905" />
-      <option name="project" value="LOCAL" />
-      <updated>1589727738274</updated>
-    </task>
-    <task id="LOCAL-00906" summary="covid-19">
-      <created>1589727764835</created>
-      <option name="number" value="00906" />
-      <option name="presentableId" value="LOCAL-00906" />
-      <option name="project" value="LOCAL" />
-      <updated>1589727764835</updated>
-    </task>
     <task id="LOCAL-00907">
       <created>1589727822939</created>
       <option name="number" value="00907" />
@@ -707,7 +692,19 @@
       <option name="presentableId" value="LOCAL‎00953" />
       <updated>1597214933725</updated>
     </task>
-    <option name="localTasksCounter" value="954" />
+    <task id="LOCAL‎00954" summary="organizing dirs before reruning all pipeline (with different optimizations)">
+      <created>1597215299573</created>
+      <option name="number" value="LOCAL‎00954" />
+      <option name="presentableId" value="LOCAL‎00954" />
+      <updated>1597215299573</updated>
+    </task>
+    <task id="LOCAL‎00955" summary="organizing dirs before reruning all pipeline (with different optimizations)">
+      <created>1597215354756</created>
+      <option name="number" value="LOCAL‎00955" />
+      <option name="presentableId" value="LOCAL‎00955" />
+      <updated>1597215354756</updated>
+    </task>
+    <option name="localTasksCounter" value="956" />
     <servers />
   </component>
   <component name="TodoView">
@@ -807,19 +804,19 @@
     </state>
     <state x="2323" y="159" key="SettingsEditor/0.0.1280.680/1920.0.1680.1010@1920.0.1680.1010" timestamp="1596712860145" />
     <state x="2381" y="164" key="SettingsEditor/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1596616610627" />
-    <state x="2414" y="252" key="Vcs.Push.Dialog.v2" timestamp="1597214945521">
+    <state x="2414" y="252" key="Vcs.Push.Dialog.v2" timestamp="1597215355742">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2352" y="245" key="Vcs.Push.Dialog.v2/0.0.1280.680/1920.0.1680.1010@1920.0.1680.1010" timestamp="1596712053238" />
-    <state x="2414" y="252" key="Vcs.Push.Dialog.v2/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1597214945521" />
+    <state x="2414" y="252" key="Vcs.Push.Dialog.v2/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1597215355742" />
     <state x="2012" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1596442525460">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2012" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1596442525460" />
-    <state x="2697" y="360" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1596617437124">
+    <state x="2697" y="360" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1597215281030">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2697" y="360" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1596617437124" />
+    <state x="2697" y="360" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1597215281030" />
     <state x="2423" y="221" width="672" height="678" key="search.everywhere.popup" timestamp="1596714418370">
       <screen x="1920" y="0" width="1680" height="1010" />
     </state>

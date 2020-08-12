@@ -12,7 +12,7 @@ PHYML_PINV_TAGS = {True: "-v e",
 PHYML_GAMMA_TAGS = {True: "-a e -c 4",
 					False: "-c 1"}
 PHYML_TOPOLOGY_TAGS = {"ml": "-o tlr -s NNI",
-					   "bionj": "-o l",
+					   "bionj": "-o lr",
                        "br": "-o l",
                        "no_opt": "-o n"}
 
