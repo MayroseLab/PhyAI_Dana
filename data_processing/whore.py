@@ -29,7 +29,7 @@ def rearrange_dirs_for_rerun(datapath):
 def delete_err_dirpath(datapath):
 	err_dirpath = datapath + "error_files/"
 	shutil.rmtree(err_dirpath, ignore_errors=True)
-	shutil.rmtree(datapath + RANDOM_TREE_DIRNAME, ignore_errors=True)
+	#shutil.rmtree(datapath + RANDOM_TREE_DIRNAME, ignore_errors=True)
 
 
 def make_sure_all_exist(datapath, missing_paths_per_ds):
