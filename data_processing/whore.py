@@ -22,7 +22,7 @@ def rearrange_dirs_for_rerun(datapath):
 	#	shutil.move(datapath + filename, new_dir)
 	os.system("mv " + datapath + "*.csv " + new_dir)
 	os.system("mv " + datapath + "*.txt " + new_dir)
-	os.system("mv -r " + datapath + RANDOM_TREE_DIRNAME + " " + new_dir)
+	os.system("mv " + datapath + RANDOM_TREE_DIRNAME + " " + new_dir)
 
 	return
 
