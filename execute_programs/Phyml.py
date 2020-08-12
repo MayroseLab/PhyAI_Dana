@@ -41,6 +41,7 @@ def create_phyml_exec_line(msa_file_full_path, base_model, pinv, gamma, topology
 	if topology_tag == "br":
 		stats_filpath_for_params = msa_file_full_path + "_phyml_stats_bionj.txt"
 		params_dict = parse_phyml_stats_output(msa_file_full_path, stats_filpath_for_params)
+		print(params_dict["pInv"], params_dict["gamma"],params_dict["fA"],params_dict["fC"],params_dict["fG"],params_dict["fT"])
 		pinv_tags = "-v {}".format(params_dict["pInv"])
 		gamma_tags = "-a {} -c 4".format(params_dict["gamma"])
 		freq_tags = "-f {},{},{},{}".format(params_dict["fA"],params_dict["fC"],params_dict["fG"],params_dict["fT"])   # "fA", "fC", "fG", "fT"

@@ -19,8 +19,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="04f6d22b-03c8-46f3-ac77-b58c4e95d95d" name="Default Changelist" comment="enable fixed model parameters">
-      <change beforePath="$PROJECT_DIR$/execute_programs/SPR_move.py" beforeDir="false" afterPath="$PROJECT_DIR$/execute_programs/SPR_move.py" afterDir="false" />
+    <list default="true" id="04f6d22b-03c8-46f3-ac77-b58c4e95d95d" name="Default Changelist" comment="debug with new neihbors optimization">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/execute_programs/Phyml.py" beforeDir="false" afterPath="$PROJECT_DIR$/execute_programs/Phyml.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/summary/run_times.py" beforeDir="false" afterPath="$PROJECT_DIR$/summary/run_times.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils/tree_functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/tree_functions.py" afterDir="false" />
     </list>
@@ -368,13 +369,6 @@
       <option name="presentableId" value="Default" />
       <updated>1557671246307</updated>
     </task>
-    <task id="LOCAL-00910">
-      <created>1589728035730</created>
-      <option name="number" value="00910" />
-      <option name="presentableId" value="LOCAL-00910" />
-      <option name="project" value="LOCAL" />
-      <updated>1589728035731</updated>
-    </task>
     <task id="LOCAL-00911">
       <created>1589728212997</created>
       <option name="number" value="00911" />
@@ -702,7 +696,13 @@
       <option name="presentableId" value="LOCAL‎00958" />
       <updated>1597222763459</updated>
     </task>
-    <option name="localTasksCounter" value="959" />
+    <task id="LOCAL‎00959" summary="debug with new neihbors optimization">
+      <created>1597223126154</created>
+      <option name="number" value="LOCAL‎00959" />
+      <option name="presentableId" value="LOCAL‎00959" />
+      <updated>1597223126155</updated>
+    </task>
+    <option name="localTasksCounter" value="960" />
     <servers />
   </component>
   <component name="TodoView">
@@ -730,7 +730,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Analysis newDB 0to1" />
     <MESSAGE value="fixed small bug" />
     <MESSAGE value="trying analyze subset of 2000&#10;due to&#10;MemoryError" />
     <MESSAGE value="run new DB on [:2000]&#10;and save csv with preds" />
@@ -755,7 +754,8 @@
     <MESSAGE value="organizing dirs before reruning all pipeline (with different optimizations)" />
     <MESSAGE value="change bionj optimization default to optimize both the bl AND the subs rate params" />
     <MESSAGE value="enable fixed model parameters" />
-    <option name="LAST_COMMIT_MESSAGE" value="enable fixed model parameters" />
+    <MESSAGE value="debug with new neihbors optimization" />
+    <option name="LAST_COMMIT_MESSAGE" value="debug with new neihbors optimization" />
   </component>
   <component name="WindowStateProjectService">
     <state x="2570" y="233" key="#Menus_and_Toolbars" timestamp="1596705437758">
@@ -802,11 +802,11 @@
     </state>
     <state x="2323" y="159" key="SettingsEditor/0.0.1280.680/1920.0.1680.1010@1920.0.1680.1010" timestamp="1596712860145" />
     <state x="2381" y="164" key="SettingsEditor/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1596616610627" />
-    <state x="2414" y="252" key="Vcs.Push.Dialog.v2" timestamp="1597222764733">
+    <state x="2414" y="252" key="Vcs.Push.Dialog.v2" timestamp="1597223128110">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2352" y="245" key="Vcs.Push.Dialog.v2/0.0.1280.680/1920.0.1680.1010@1920.0.1680.1010" timestamp="1596712053238" />
-    <state x="2414" y="252" key="Vcs.Push.Dialog.v2/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1597222764733" />
+    <state x="2414" y="252" key="Vcs.Push.Dialog.v2/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1597223128110" />
     <state x="2012" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1596442525460">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
