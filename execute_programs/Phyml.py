@@ -39,7 +39,7 @@ def create_phyml_exec_line(msa_file_full_path, base_model, pinv, gamma, topology
 
 	# enable fixed model parameters
 	if topology_tag == "br":
-		stats_filpath_for_params = msa_file_full_path + "_phyml_stats_bionj.txt"
+		stats_filpath_for_params =	PHYML_STATS_FILENAME.format('bionj')
 		params_dict = parse_phyml_stats_output(msa_file_full_path, stats_filpath_for_params)
 		print(params_dict["pInv"], params_dict["gamma"],params_dict["fA"],params_dict["fC"],params_dict["fG"],params_dict["fT"])
 		pinv_tags = "-v {}".format(params_dict["pInv"])
