@@ -19,7 +19,13 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="04f6d22b-03c8-46f3-ac77-b58c4e95d95d" name="Default Changelist" comment="1st commit after submission (moving from svn to git)" />
+    <list default="true" id="04f6d22b-03c8-46f3-ac77-b58c4e95d95d" name="Default Changelist" comment="    1st commit after submission (moving from svn to git)">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_processing/whore.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_processing/whore.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/defs.py" beforeDir="false" afterPath="$PROJECT_DIR$/defs.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/summary/run_times.py" beforeDir="false" afterPath="$PROJECT_DIR$/summary/run_times.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/tree_functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/tree_functions.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -43,7 +49,7 @@
   <component name="PropertiesComponent">
     <property name="SearchEverywhereHistoryKey" value="100_ds&#9;null&#9;null&#10;TODO&#9;FILE&#9;file://C:/Program Files/Anaconda3/pkgs/sphinx-1.4.6-py35_0/Lib/site-packages/Sphinx-1.4.6-py3.5.egg/sphinx/ext/todo.py&#10;&quot;Sp&#9;null&#9;null&#10;lear&#9;FILE&#9;file://D:/Users/Administrator/Dropbox/PhyloAI/code/execute_programs/learning_by_prune.py&#10;ntaxa&#9;null&#9;null" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="vcs.Subversion" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -363,13 +369,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1557671246307</updated>
-    </task>
-    <task id="LOCAL-00902" summary="covid-19">
-      <created>1589726909346</created>
-      <option name="number" value="00902" />
-      <option name="presentableId" value="LOCAL-00902" />
-      <option name="project" value="LOCAL" />
-      <updated>1589726909347</updated>
     </task>
     <task id="LOCAL-00903" summary="covid-19">
       <created>1589727003385</created>
@@ -706,7 +705,13 @@
       <option name="presentableId" value="LOCAL‎00950" />
       <updated>1596711516373</updated>
     </task>
-    <option name="localTasksCounter" value="951" />
+    <task id="LOCAL‎00951" summary="1st commit after submission (moving from svn to git)">
+      <created>1596712051415</created>
+      <option name="number" value="LOCAL‎00951" />
+      <option name="presentableId" value="LOCAL‎00951" />
+      <updated>1596712051415</updated>
+    </task>
+    <option name="localTasksCounter" value="952" />
     <servers />
   </component>
   <component name="TodoView">
@@ -731,6 +736,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="test" />
@@ -776,39 +782,39 @@
     </state>
     <state x="2383" y="265" key="FileChooserDialogImpl/0.0.1280.680/1920.0.1680.1010@1920.0.1680.1010" timestamp="1596705485476" />
     <state x="2659" y="328" key="FileChooserDialogImpl/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1596440993685" />
-    <state width="1462" height="355" key="GridCell.Tab.0.bottom" timestamp="1596705084336">
+    <state width="1659" height="316" key="GridCell.Tab.0.bottom" timestamp="1596724232119">
       <screen x="1920" y="0" width="1680" height="1010" />
     </state>
-    <state width="1462" height="355" key="GridCell.Tab.0.bottom/0.0.1280.680/1920.0.1680.1010@1920.0.1680.1010" timestamp="1596705084336" />
+    <state width="1659" height="316" key="GridCell.Tab.0.bottom/0.0.1280.680/1920.0.1680.1010@1920.0.1680.1010" timestamp="1596724232119" />
     <state width="1750" height="123" key="GridCell.Tab.0.bottom/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1596458408738" />
     <state width="1109" height="158" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1596642310299" />
-    <state width="1462" height="355" key="GridCell.Tab.0.center" timestamp="1596705084336">
+    <state width="1659" height="316" key="GridCell.Tab.0.center" timestamp="1596724232119">
       <screen x="1920" y="0" width="1680" height="1010" />
     </state>
-    <state width="1462" height="355" key="GridCell.Tab.0.center/0.0.1280.680/1920.0.1680.1010@1920.0.1680.1010" timestamp="1596705084336" />
+    <state width="1659" height="316" key="GridCell.Tab.0.center/0.0.1280.680/1920.0.1680.1010@1920.0.1680.1010" timestamp="1596724232119" />
     <state width="1750" height="123" key="GridCell.Tab.0.center/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1596458408737" />
     <state width="1109" height="158" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1596642310299" />
-    <state width="1462" height="355" key="GridCell.Tab.0.left" timestamp="1596705084335">
+    <state width="1659" height="316" key="GridCell.Tab.0.left" timestamp="1596724232119">
       <screen x="1920" y="0" width="1680" height="1010" />
     </state>
-    <state width="1462" height="355" key="GridCell.Tab.0.left/0.0.1280.680/1920.0.1680.1010@1920.0.1680.1010" timestamp="1596705084335" />
+    <state width="1659" height="316" key="GridCell.Tab.0.left/0.0.1280.680/1920.0.1680.1010@1920.0.1680.1010" timestamp="1596724232119" />
     <state width="1750" height="123" key="GridCell.Tab.0.left/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1596458408737" />
     <state width="1109" height="158" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1596642310299" />
-    <state width="1462" height="355" key="GridCell.Tab.0.right" timestamp="1596705084336">
+    <state width="1659" height="316" key="GridCell.Tab.0.right" timestamp="1596724232119">
       <screen x="1920" y="0" width="1680" height="1010" />
     </state>
-    <state width="1462" height="355" key="GridCell.Tab.0.right/0.0.1280.680/1920.0.1680.1010@1920.0.1680.1010" timestamp="1596705084336" />
+    <state width="1659" height="316" key="GridCell.Tab.0.right/0.0.1280.680/1920.0.1680.1010@1920.0.1680.1010" timestamp="1596724232119" />
     <state width="1750" height="123" key="GridCell.Tab.0.right/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1596458408737" />
     <state width="1109" height="158" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1596642310299" />
-    <state x="2323" y="159" key="SettingsEditor" timestamp="1596711194268">
+    <state x="2323" y="159" key="SettingsEditor" timestamp="1596712860145">
       <screen x="1920" y="0" width="1680" height="1010" />
     </state>
-    <state x="2323" y="159" key="SettingsEditor/0.0.1280.680/1920.0.1680.1010@1920.0.1680.1010" timestamp="1596711194268" />
+    <state x="2323" y="159" key="SettingsEditor/0.0.1280.680/1920.0.1680.1010@1920.0.1680.1010" timestamp="1596712860145" />
     <state x="2381" y="164" key="SettingsEditor/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1596616610627" />
-    <state x="2352" y="245" key="Vcs.Push.Dialog.v2" timestamp="1596711880204">
+    <state x="2352" y="245" key="Vcs.Push.Dialog.v2" timestamp="1596712053238">
       <screen x="1920" y="0" width="1680" height="1010" />
     </state>
-    <state x="2352" y="245" key="Vcs.Push.Dialog.v2/0.0.1280.680/1920.0.1680.1010@1920.0.1680.1010" timestamp="1596711880204" />
+    <state x="2352" y="245" key="Vcs.Push.Dialog.v2/0.0.1280.680/1920.0.1680.1010@1920.0.1680.1010" timestamp="1596712053238" />
     <state x="2012" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1596442525460">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
@@ -817,6 +823,10 @@
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2697" y="360" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1596617437124" />
+    <state x="2423" y="221" width="672" height="678" key="search.everywhere.popup" timestamp="1596714418370">
+      <screen x="1920" y="0" width="1680" height="1010" />
+    </state>
+    <state x="2423" y="221" width="672" height="678" key="search.everywhere.popup/0.0.1280.680/1920.0.1680.1010@1920.0.1680.1010" timestamp="1596714418370" />
     <state x="2624" y="364" key="svn.passwordDialog" timestamp="1596616680533">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>

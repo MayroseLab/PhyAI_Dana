@@ -14,12 +14,15 @@ SUMMARIES_PER_DS_LST_TEMP = ["ds_summary_prune_br_step2.csv"] #, "ds_summary_rgf
 
 
 def rearrange_dirs_for_rerun(datapath):
-	new_dir = datapath + "run1/"
+	new_dir = datapath + "v1" #+ "run1/"
 	if not os.path.exists(new_dir):
 		os.mkdir(new_dir)
 
-	for filename in SUMMARIES_PER_DS_LST:
-		shutil.move(datapath + filename, new_dir)
+	#for filename in SUMMARIES_PER_DS_LST:
+	#	shutil.move(datapath + filename, new_dir)
+	os.system("mv " + datapath + "*.csv " + new_dir)
+	os.system("mv " + datapath + "*.txt " + new_dir)
+
 	return
 
 
@@ -61,28 +64,12 @@ def add_atts():
 
 
 def do_something(datapath):
-	add_atts()
-	#delete_err_dirpath(datapath)
-	#rearrange_dirs_for_rerun(datapath)
+	#add_atts()
+	delete_err_dirpath(datapath)
+	rearrange_dirs_for_rerun(datapath)
 	#missing_results()
 	
-	
-	'''
-	from execute_programs.RF_learning import score_rank
-	df = datapath + "with_preds_merged_28_1_ytransformed_exp_notminus.csv"
 
-	rank_pred_by_ds, rank_test_by_ds = {}, {}
-	grouped_df_by_ds = df.groupby(FEATURES["group_id"], sort=False)
-	for group_id, df_by_ds in grouped_df_by_ds:
-		rank_pred_by_ds[group_id] = score_rank(df_by_ds, "pred", "d_ll_merged", random=False, scale_score=True)
-		rank_test_by_ds[group_id] = score_rank(df_by_ds, "d_ll_merged", "pred", random=False, scale_score=True)
-
-	print(np.asarray(list(rank_pred_by_ds.values())))
-	print(np.median(np.asarray(list(rank_pred_by_ds.values()))))
-
-	print(np.asarray(list(rank_test_by_ds.values())))
-	print(np.median(np.asarray(list(rank_test_by_ds.values()))))
-	'''
 
 
 
@@ -105,6 +92,5 @@ if __name__ == '__main__':
 		do_something(datapath)
 	else:
 		csv_path = SUMMARY_FILES_DIR + CHOSEN_DATASETS_FILENAME
-		#csv_path =  DIRPATH + "ML_workshop/sampled_datasets_updated.csv"
 		traverse_data_dirs(create_job, csv_path, (args.index_to_start_run, args.nline_to_run))
 
