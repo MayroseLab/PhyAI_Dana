@@ -138,7 +138,7 @@ def call_phyml_ll(subtrees_dirpath, subtree1, subtree2, seqs_dict, runover=False
 			call_phyml(subtree_dirpath, subtree_name, trunc_msa_path, runover, job_priority, "no_opt")
 		else: # manual ll calculation for <= 2 alignments
 			# if needed in the future, incorporate function for manual ll calculation. then write to a file (and correct reading in downstream scripts)
-			print("### running phyml for ntaxa <=2 is problematic, thus didn't run forL\n{}".format(subtree_dirpath + subtree_name))
+			print("### running phyml for ntaxa <=2 is problematic, thus didn't run for:\n{}".format(subtree_dirpath + subtree_name))
 	
 
 
