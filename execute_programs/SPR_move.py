@@ -167,7 +167,7 @@ def all_SPR(ds_path, tree=None, rewrite_phylip=False, runover=False, job_priorit
 		prune_name = prune_node.name
 		nname, subtree1, subtree2 = prune_branch(t_orig, prune_name) # subtree1 is the pruned subtree. subtree2 is the remaining subtree
 		subtrees_dirpath = SEP.join([ds_path, REARRANGEMENTS_NAME+"s", prune_name, "{}", ""])
-		#call_phyml_ll(subtrees_dirpath, subtree1, subtree2, seqs_dict, runover=runover) # cal phyml foreach subtree + truncated msa
+		call_phyml_ll(subtrees_dirpath, subtree1, subtree2, seqs_dict, runover=runover) # cal phyml foreach subtree + truncated msa
 
 		for j, rgft_node in enumerate(subtree2.iter_descendants("levelorder")):
 			rgft_name = rgft_node.name
@@ -179,9 +179,9 @@ def all_SPR(ds_path, tree=None, rewrite_phylip=False, runover=False, job_priorit
 				full_tree = regraft_branch(subtree2, rgft_node, subtree1, rgft_name, nname)
 				#remove_redundant_nodes(full_tree, ntaxa, rgft_name)
 				save_rearr_file(full_tree_dirpath, full_tree, filename=REARRANGEMENTS_NAME, runover=runover)
-			#for br_mode in ["br"]: #, "no_opt"]:
-				#call_phyml(full_tree_dirpath, REARRANGEMENTS_NAME, orig_msa_file, runover, job_priority, br_mode, cpmsa=True)
-		#exit()
+			for br_mode in ["br"]: #, "no_opt"]:
+				call_phyml(full_tree_dirpath, REARRANGEMENTS_NAME, orig_msa_file, runover, job_priority, br_mode, cpmsa=True)
+		exit()
 
 	return
 
