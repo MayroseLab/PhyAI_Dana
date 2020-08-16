@@ -99,14 +99,14 @@ def run_phyml(msa_filepath, full_model, topology_tag, tree_file=None, force_run=
 		shutil.copy(msa_filepath, msa_copy_path)
 		msa_filepath = msa_copy_path
 
-	output_filename = "{}_phyml_{}_" + topology_tag + ".txt"
+	output_filename = msa_filepath + "_phyml_{}_" + topology_tag + ".txt"
 	if not force_run and os.path.exists(output_filename.format(msa_filepath, "stats")):
 		return output_filename.format(msa_filepath, "stats")
 
 	phyml_exec_line = create_phyml_exec_line_full_model(msa_filepath, full_model, topology_tag, tree_file=tree_file)
 	res = os.system(phyml_exec_line)
-	os.rename("{}_phyml_tree.txt", output_filename.format("tree"))
-	os.rename("{}_phyml_stats.txt", output_filename.format("stats"))
+	os.rename(msa_filepath + "{}_phyml_tree.txt", output_filename.format("tree"))
+	os.rename(msa_filepath + "{}_phyml_stats.txt", output_filename.format("stats"))
 
 
 	return output_filename.format(msa_filepath, "{}")
