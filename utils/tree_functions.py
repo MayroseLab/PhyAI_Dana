@@ -12,12 +12,45 @@ from itertools import combinations
 
 
 
+def cp_internal_names(treepath_no_internal, treepath_with_internal):
+	with open(treepath_with_internal) as fp:
+		with_names = fp.read()
+	with open(treepath_no_internal) as fp:
+		nonames = fp.read()
+
+	with_names_bls = re.findall(":(\d*\.?\d+)", with_names)
+	nonames_bls = re.findall(":(\d*\.?\d+)", nonames)
+	while len(set(with_names_bls)) != len(with_names_bls):
+		u = [k for (k, v) in Counter(with_names_bls).items() if v > 1][0]
+		ix = with_names_bls.index(u)
+		with_names_bls[ix] = u + "1"
+		with_names = with_names.replace(u, u + "1", 1)
+
+
+	dict = {with_names_bls[i]: nonames_bls[i] for i in range(len(with_names_bls))}
+
+	regex = re.compile("(%s)" % "|".join(map(re.escape, dict.keys())))
+	try:
+		new_str = regex.sub(lambda mo: dict[mo.string[mo.start():mo.end()]], with_names)
+	except:
+		print("in func cp_internal_names:")
+		print(treepath_no_internal)
+		print(dict)
+
+	with open(treepath_no_internal, 'r') as fp:
+		tree_str = fp.read()
+		if re.search("\)N", tree_str):
+			return
+	with open(treepath_no_internal, 'w') as fp:
+		fp.write(new_str)
+
+
 def get_newick_tree(tree):
 	"""
 	:param tree: newick tree string or txt file containing one tree
 	:return:	tree: a string of the tree in ete3.Tree format
 	"""
-	if exists(tree):
+	if os.path.exists(tree):
 		with open(tree, 'r') as tree_fpr:
 			tree = tree_fpr.read().strip()
 	return tree
@@ -166,9 +199,7 @@ def calc_leaves_features(tree_str, move_type, rgft_node_name=None):
 		for node in t.get_descendants("levelorder")[::-1]:
 			nname = node.name
 			namex, subtree1, subtree2 = prune_branch(t, nname)
-			
 	
-			#name2cent[nname] = calc_edge_centrality(node, ntaxa)
 			name2bl[nname] = node.dist
 	
 			name2tbl_pruned[nname] = get_total_branch_lengths(subtree1)
@@ -195,13 +226,16 @@ def calc_leaves_features(tree_str, move_type, rgft_node_name=None):
 		res_tbl, res_bl = estimate_lengths(t, rgft_node)
 		d = OrderedDict([("res_tbl", res_tbl), ("res_bl", res_bl)])
 	
-	# print (time_pdist, time_bl, time_tbl, time_longest, time_ntaxa, time_pars, time_dists, time_res_bls)
-	print(pd.DataFrame.from_dict(d))#.to_csv(DATA_PATH + "blah.csv"))
-	#print(d)
+	##print (time_pdist, time_bl, time_tbl, time_longest, time_ntaxa, time_pars, time_dists, time_res_bls)
+	#data_res = pd.DataFrame.from_dict(d)
+	#pd.set_option('display.max_columns', 50)
+	#print(data_res)
+	##data_res.to_csv(DATA_PATH + "blah.csv")
+	##print(d)
 	return d
 
 
-def calc_leaves_features_Shirab(tree_str, move_type, rgft_node_name=None):
+def calc_leaves_features_Shiran(tree_str, move_type, rgft_node_name=None):
 	if not move_type == "res":
 		t = Tree(newick=tree_str, format=1)
 		name2bl, name2pdist_pruned, name2pdist_remaining, name2tbl_pruned, name2tbl_remaining, name2longest_pruned, name2longest_remaining, name2ntaxa, name2ntaxa_pruned, name2ntaxa_remaining, name2pars_pruned, name2parse_remaining, names2topology_dist, names2bl_dist = {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}
@@ -210,7 +244,7 @@ def calc_leaves_features_Shirab(tree_str, move_type, rgft_node_name=None):
 		# set one leaf for a primary rooting
 		nodes_order = []
 		first_node = t.get_leaves()[0]
-		print(first_node.name)
+		#print(first_node.name)
 		t.set_outgroup(first_node)
 
 
@@ -223,31 +257,38 @@ def calc_leaves_features_Shirab(tree_str, move_type, rgft_node_name=None):
 		nodes_order.pop(0)  # this is t, first_node's nonsense parent
 		init_recursive_features(t)  # compute features for primary tree
 		for node in nodes_order:
-			if node is first_node:
-				continue
-			else:
-				# root the tree with current node's parent
-				# when rotating a tree in a preorder manner - the parent's parent (grandparent) becomes the parent's son.
-				# so we need to update both of them (if exist)
-				# print(t.get_ascii(show_internal=True))
-				nodes_to_update = [node.up]
-				while nodes_to_update[-1]:
-					# print(nodes_to_update[-1].name)
-					nodes_to_update.append(nodes_to_update[-1].up)
-				nodes_to_update.pop(-1)  # None
-				nodes_to_update.pop(-1)  # the nonesense root
+			#if node is first_node:    # EDITED DANA
+			#	continue              # EDITED DANA
+			#else:
+			# root the tree with current node's parent
+			# when rotating a tree in a preorder manner - the parent's parent (grandparent) becomes the parent's son.
+			# so we need to update both of them (if exist)
+			# print(t.get_ascii(show_internal=True))
+			nodes_to_update = [node.up]
+			while nodes_to_update[-1]:
+				# print(nodes_to_update[-1].name)
+				nodes_to_update.append(nodes_to_update[-1].up)
+			nodes_to_update.pop(-1)  # None
+			nodes_to_update.pop(-1)  # the nonesense root
 
-				t.set_outgroup(node)
-				for up_node in nodes_to_update[::-1]:
-					update_node_features(up_node)
+			t.set_outgroup(node)
+			for up_node in nodes_to_update[::-1]:
+				update_node_features(up_node)
 
-			# continue
-			subtree2, subtree1 = t.children
 			nname = node.name
-			name2bl[nname] = subtree2.dist * 2
-			name2tbl_pruned[nname] = subtree1.cumBL
+			print(nname)
+			if not "Sp" in nname:                      # EDITED DANA
+				subtree1, subtree2 = node.children     # EDITED DANA
+			else:
+				subtree1, subtree2= node, node
+			print(node.get_ascii(show_internal=True))
+			print(subtree1.get_ascii(show_internal=True))
+			print(subtree2.get_ascii(show_internal=True))
+			print("######3")
+			name2bl[nname] = subtree2.dist * 2 if "Sp" in nname else subtree2.dist*2  # EDITED DANA
+			name2tbl_pruned[nname] = subtree1.cumBL  + subtree1.dist * 2 # EDITED DANA
 			name2tbl_remaining[nname] = subtree2.cumBL
-			name2longest_pruned[nname] = subtree1.maxBL
+			name2longest_pruned[nname] = max(subtree1.maxBL, subtree1.dist * 2)
 			name2longest_remaining[nname] = subtree2.maxBL
 			name2ntaxa_pruned[nname] = subtree1.ntaxa
 			name2ntaxa_remaining[nname] = subtree2.ntaxa
@@ -270,7 +311,9 @@ def calc_leaves_features_Shirab(tree_str, move_type, rgft_node_name=None):
 		res_tbl, res_bl = estimate_lengths(t, rgft_node)
 		d = OrderedDict([("res_tbl", res_tbl), ("res_bl", res_bl)])
 
-	print(d)
+	data_res = pd.DataFrame.from_dict(d)
+	pd.set_option('display.max_columns', 50)
+	print(data_res)
 	return d
 
 

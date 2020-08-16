@@ -111,12 +111,13 @@ def parse_neighbors_dirs(ds_path, outpath_prune, outpath_rgft, step_number, cp_i
 	suf = "bionj" if tree_type == 'bionj' else 'br'  # if tree_type="random"
 
 
-	#res_dict_orig_tree = parse_phyml_stats_output(msa_file, ds_path + PHYML_STATS_FILENAME.format(suf))
-	#ll_orig_tree = float(res_dict_orig_tree["ll"])
+	res_dict_orig_tree = parse_phyml_stats_output(msa_file, ds_path + PHYML_STATS_FILENAME.format(suf))
+	ll_orig_tree = float(res_dict_orig_tree["ll"])
+	'''
 	with open(ds_path + PHYML_STATS_FILENAME.format(suf)) as fpr:
 		content = fpr.read()
 		ll_orig_tree = float(re.search("Log-likelihood:\s+(.*)", content).group(1).strip())
-
+	'''
 
 	df = pd.DataFrame(index=np.arange(0))
 	df2 = pd.DataFrame(index=np.arange(0))
@@ -139,7 +140,8 @@ def parse_neighbors_dirs(ds_path, outpath_prune, outpath_rgft, step_number, cp_i
 					cp_internal_names(rearr_tree_path, treepath_with_internal)
 
 
-				#ll_rearr = return_ll(tree_dirpath, msa_file, MSA_PHYLIP_FILENAME, OPT_TYPE)
+				ll_rearr = return_ll(tree_dirpath, msa_file, MSA_PHYLIP_FILENAME, OPT_TYPE)
+				'''
 				f = SEP.join([tree_dirpath, "{}_phyml_{}_{}.txt".format(MSA_PHYLIP_FILENAME, "stats", OPT_TYPE)])
 				try:
 					with open(f) as fpr:
@@ -148,7 +150,7 @@ def parse_neighbors_dirs(ds_path, outpath_prune, outpath_rgft, step_number, cp_i
 				except:
 					print(f)
 					ll_rearr = None
-
+				'''
 
 				df.ix[ind, "prune_name"], df.ix[ind, "rgft_name"] = prune_name, rgft_name
 				df.ix[ind, "orig_ds_ll"], df.ix[ind, "ll"] = ll_orig_tree, ll_rearr
@@ -158,7 +160,7 @@ def parse_neighbors_dirs(ds_path, outpath_prune, outpath_rgft, step_number, cp_i
 	df2.to_csv(outpath_trees)
 
 	# to reduce inodes numbe r- delete subdirs after copying important content to 2 csvs:
-	shutil.rmtree(all_trees, ignore_errors=True)
+	#shutil.rmtree(all_trees, ignore_errors=True)  # todo: uncomment after debuging
 
 	return
 
@@ -191,7 +193,7 @@ if __name__ == '__main__':
 		outpath_prune = SUMMARY_PER_DS.format(dataset_path, "prune", OPT_TYPE, args.step_number)
 		outpath_rgft = SUMMARY_PER_DS.format(dataset_path, "rgft", "br", args.step_number)
 	
-		#res = parse_neighbors_dirs(dataset_path, outpath_prune, outpath_rgft, args.step_number, args.cp_internal)
+		res = parse_neighbors_dirs(dataset_path, outpath_prune, outpath_rgft, args.step_number, args.cp_internal)
 		collect_features(dataset_path, args.step_number, outpath_prune, outpath_rgft, args.tree_type)
 	else:
 		csv_path = SUMMARY_FILES_DIR + CHOSEN_DATASETS_FILENAME
