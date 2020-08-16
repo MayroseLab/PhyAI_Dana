@@ -26,10 +26,11 @@ def index_additional_rgft_features(df_rgft, ind, prune_name, rgft_name, features
 
 
 
-def return_ll(tree_dirpath, msa_file, filename, br_mode):
-	stats_filepath = SEP.join([tree_dirpath, "{}_phyml_{}_{}.txt".format(filename, "stats", br_mode)])
+def return_ll(tree_dirpath, br_mode):
+	msa_filepath = tree_dirpath + MSA_PHYLIP_FILENAME
+	stats_filepath = "{}_phyml_{}_{}.txt".format(msa_filepath, "stats", br_mode)
 	try:
-		res_dict = parse_phyml_stats_output(msa_file, stats_filepath)
+		res_dict = parse_phyml_stats_output(msa_filepath, stats_filepath)
 		ll_rearr = float(res_dict["ll"])
 	except:
 		ll_rearr = None
@@ -140,7 +141,7 @@ def parse_neighbors_dirs(ds_path, outpath_prune, outpath_rgft, step_number, cp_i
 					cp_internal_names(rearr_tree_path, treepath_with_internal)
 
 
-				ll_rearr = return_ll(tree_dirpath, msa_file, MSA_PHYLIP_FILENAME, OPT_TYPE)
+				ll_rearr = return_ll(tree_dirpath, OPT_TYPE)
 				'''
 				f = SEP.join([tree_dirpath, "{}_phyml_{}_{}.txt".format(MSA_PHYLIP_FILENAME, "stats", OPT_TYPE)])
 				try:
