@@ -79,7 +79,7 @@ def run_phyml_TRUEmodelparams(msa_filepath, tree_filepath, model_name, alpha, pi
 	rates_interactive = "\n".join(rates)
 	alpha_interactive = 'R\n' if not alpha else 'C\n4\nA\nn\n' + alpha
 	pinv_interactive = '' if not pinv else 'V\nn\n' + pinv
-	if_replace_output = '\n' + '\n'.join(['R','R']) if os.path.exists(SEP.join([SEP.join(tree_filepath.split(SEP)[:-4]), MSA_PHYLIP_FILENAME + "_phyml_tree_br.txt"])) else '' # R for replace, A for append
+	if_replace_output = '\n' + '\n'.join(['R','R']) if os.path.exists(SEP.join([SEP.join(tree_filepath.split(SEP)[:-4]), MSA_PHYLIP_FILENAME + "_phyml_tree_br.txt"])) else '' # R for replace, A for append. **practically should always return '' because of the exist condition outside the function
 	if_subs_opt = "O"        # O for turning off, None for leaving default ml optimisation
 	if_topology_opt = "O"    # O for turning off, None for leaving default (NNI) ml optimisation
 	input_tree_mode = "U"    # U for changing to user tree input, None for leaving default bionj starting tree

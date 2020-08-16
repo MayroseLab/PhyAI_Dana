@@ -181,7 +181,7 @@ def all_SPR(ds_path, tree=None, rewrite_phylip=False, runover=False, job_priorit
 				save_rearr_file(full_tree_dirpath, full_tree, filename=REARRANGEMENTS_NAME, runover=runover)
 			for br_mode in ["br"]: #, "no_opt"]:
 				call_phyml(full_tree_dirpath, REARRANGEMENTS_NAME, orig_msa_file, runover, job_priority, br_mode, cpmsa=True)
-		exit()
+		#exit()
 
 	return
 
