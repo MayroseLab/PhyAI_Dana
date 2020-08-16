@@ -106,10 +106,10 @@ def run_phyml(msa_filepath, full_model, topology_tag, tree_file=None, force_run=
 	phyml_exec_line = create_phyml_exec_line_full_model(msa_filepath, full_model, topology_tag, tree_file=tree_file)
 	res = os.system(phyml_exec_line)
 	os.rename("{}_phyml_tree.txt".format(msa_filepath), output_filename.format(msa_filepath, "tree", topology_tag))
-	os.rename("{}_phyml_stats.txt".format(msa_filepath) + "{}_phyml_stats.txt", output_filename.format(msa_filepath, "stats", topology_tag))
+	os.rename("{}_phyml_stats.txt".format(msa_filepath), output_filename.format(msa_filepath, "stats", topology_tag))
 
 
-	return output_filename.format(msa_filepath, "{}")
+	return output_filename.format(msa_filepath, "{}", topology_tag)
 
 
 
