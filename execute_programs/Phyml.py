@@ -40,24 +40,18 @@ def create_phyml_exec_line(msa_file_full_path, base_model, pinv, gamma, topology
 	# enable fixed model parameters
 	if topology_tag == "br":
 		stats_filpath_for_params =SEP.join([SEP.join(tree_file.split(SEP)[:-4]), PHYML_STATS_FILENAME.format('bionj')])
-		print("****" + stats_filpath_for_params)
 		params_dict = parse_phyml_stats_output(msa_file_full_path, stats_filpath_for_params)
-		print(params_dict["pInv"], params_dict["gamma"],params_dict["fA"],params_dict["fC"],params_dict["fG"],params_dict["fT"])
-		pinv_tags = "-v {}".format(params_dict["pInv"])
-		gamma_tags = "-a {} -c 4".format(params_dict["gamma"])
-		freq_tags = "-f {},{},{},{}".format(params_dict["fA"],params_dict["fC"],params_dict["fG"],params_dict["fT"])   # "fA", "fC", "fG", "fT"
-		model_tags = [PHYML_SUBS_RATES_TAGS[3], freq_tags]
+		f = [params_dict["fA"],params_dict["fC"],params_dict["fG"],params_dict["fT"]]
+		rates = [params_dict["subAC"], params_dict["subAG"], params_dict["subAT"], params_dict["subCG"], params_dict["subCT"], params_dict["subGT"]]
+
+		exec_line = run_phyml_TRUEmodelparams(msa_file_full_path, base_model, params_dict["gamma"], params_dict["pInv"], f, rates)
+		return exec_line
 	else:
-		pinv_tags = PHYML_PINV_TAGS[pinv]
-		gamma_tags = PHYML_GAMMA_TAGS[gamma]
-		model_tags = PHYML_MODEL_TAGS[base_model]
-
-	execution_tags = " ".join(model_tags + [pinv_tags, gamma_tags,
+		execution_tags = " ".join(PHYML_MODEL_TAGS[base_model] + [PHYML_PINV_TAGS[pinv], PHYML_GAMMA_TAGS[gamma],
 							   PHYML_TOPOLOGY_TAGS[topology_tag], PHYML_GENERAL_TAGS, "--run_id " + run_id])
-	if tree_file:
-		execution_tags += " -u " + tree_file
-
-	return " ".join([PHYML_SCRIPT, "-i", msa_file_full_path, execution_tags])
+		if tree_file:
+			execution_tags += " -u " + tree_file
+		return " ".join([PHYML_SCRIPT, "-i", msa_file_full_path, execution_tags])
 
 
 def create_phyml_exec_line_full_model(msa_file_full_path, full_model, topology_tag, tree_file=False):
@@ -66,6 +60,30 @@ def create_phyml_exec_line_full_model(msa_file_full_path, full_model, topology_t
 	base_model = re.sub(r'\+.*', '', full_model)
 
 	return create_phyml_exec_line(msa_file_full_path, base_model, pinv, gamma, topology_tag, tree_file)
+
+
+
+def run_phyml_TRUEmodelparams(msa_filepath, model_name, alpha, pinv, f, rates):
+	'''
+	running phyml in interactive mode to be able to fix substitution model parameters
+	'''
+	subs_model = re.match("([^+]+).*", model_name).group(1)
+	models_dict_fixed = {'JC': '000000', 'F81': '000000', 'K80': '010010', 'HKY': '010010', 'SYM': '012345','GTR': '012345'}
+	model_value = models_dict_fixed.get(subs_model)
+
+	f_interactive = 'E\n' + "\n".join(f) + '\n'
+	rates_interactive = "\n".join(rates) + '\n'
+	alpha_interactive = 'R\n' if not alpha else 'C\n4\nA\nn\n' + alpha + '\n'
+	pinv_interactive = '' if not pinv else 'V\nn\n' + pinv + '\n'
+
+	params_interactive = str(msa_filepath) + '\nA\nA\nR\n' + model_name + "_FixedParams\n+\nM\nM\nM\nM\nK\n" + str(model_value) + "\n" + rates_interactive + f_interactive + alpha_interactive + pinv_interactive + "O\n+\n+\nA\nA\nY\n"
+	interactiveM_command = "echo '" + params_interactive + "' | " + PHYML_SCRIPT + "\n"
+
+	os.system("#!/bin/tcsh\n\n")
+	#os.system(interactiveM_command)
+
+	return interactiveM_command
+
 
 
 def run_phyml(msa_filepath, full_model, topology_tag, tree_file=None, force_run=False, copy_msa=False):
