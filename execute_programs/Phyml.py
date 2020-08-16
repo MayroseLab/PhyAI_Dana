@@ -92,8 +92,8 @@ def run_phyml_TRUEmodelparams(msa_filepath, tree_filepath, model_name, alpha, pi
 	os.system("#!/bin/tcsh\n\n")
 	os.system(interactiveM_command)
 
-	os.rename("{}_phyml_tree.txt".format(msa_filepath), "{}_phyml_{}_{}" + ".txt".format(msa_filepath, "tree", "br"))
-	os.rename("{}_phyml_stats.txt".format(msa_filepath), "{}_phyml_{}_{}" + ".txt".format(msa_filepath, "stats", "br"))
+	os.rename("{}_phyml_tree.txt".format(msa_filepath), "{}_phyml_tree_{}.txt".format(msa_filepath, "br"))
+	os.rename("{}_phyml_stats.txt".format(msa_filepath), "{}_phyml_stats_{}.txt".txt.format(msa_filepath, "br"))
 
 	return interactiveM_command
 
