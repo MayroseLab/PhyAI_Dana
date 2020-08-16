@@ -161,7 +161,7 @@ def parse_neighbors_dirs(ds_path, outpath_prune, outpath_rgft, step_number, cp_i
 	df2.to_csv(outpath_trees)
 
 	# to reduce inodes numbe r- delete subdirs after copying important content to 2 csvs:
-	#shutil.rmtree(all_trees, ignore_errors=True)  # todo: uncomment after debuging
+	shutil.rmtree(all_trees, ignore_errors=True)
 
 	return
 
