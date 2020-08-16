@@ -51,7 +51,10 @@ def create_phyml_exec_line(msa_file_full_path, base_model, pinv, gamma, topology
 							   PHYML_TOPOLOGY_TAGS[topology_tag], PHYML_GENERAL_TAGS, "--run_id " + run_id])
 		if tree_file:
 			execution_tags += " -u " + tree_file
-		return " ".join([PHYML_SCRIPT, "-i", msa_file_full_path, execution_tags])
+
+		phyml_exec_line = " ".join([PHYML_SCRIPT, "-i", msa_file_full_path, execution_tags])
+		os.system(phyml_exec_line)
+		return phyml_exec_line
 
 
 def create_phyml_exec_line_full_model(msa_file_full_path, full_model, topology_tag, tree_file=False):
@@ -87,7 +90,10 @@ def run_phyml_TRUEmodelparams(msa_filepath, tree_filepath, model_name, alpha, pi
 	interactiveM_command = "echo '" + params_interactive + "' | " + PHYML_SCRIPT + "\n"
 
 	os.system("#!/bin/tcsh\n\n")
-	#os.system(interactiveM_command)
+	os.system(interactiveM_command)
+
+	os.rename("{}_phyml_tree.txt".format(msa_filepath), output_filename.format(msa_filepath, "tree", "br"))
+	os.rename("{}_phyml_stats.txt".format(msa_filepath), output_filename.format(msa_filepath, "stats", "br"))
 
 	return interactiveM_command
 
@@ -104,11 +110,6 @@ def run_phyml(msa_filepath, full_model, topology_tag, tree_file=None, force_run=
 		return output_filename.format(msa_filepath, "stats")
 
 	phyml_exec_line = create_phyml_exec_line_full_model(msa_filepath, full_model, topology_tag, tree_file=tree_file)
-	res = os.system(phyml_exec_line)
-	os.rename("{}_phyml_tree.txt".format(msa_filepath), output_filename.format(msa_filepath, "tree", topology_tag))
-	os.rename("{}_phyml_stats.txt".format(msa_filepath), output_filename.format(msa_filepath, "stats", topology_tag))
-
-
 	return output_filename.format(msa_filepath, "{}", topology_tag)
 
 
