@@ -76,13 +76,13 @@ def run_phyml_TRUEmodelparams(msa_filepath, tree_filepath, model_name, alpha, pi
 	rates_interactive = "\n".join(rates)
 	alpha_interactive = 'R\n' if not alpha else 'C\n4\nA\nn\n' + alpha
 	pinv_interactive = '' if not pinv else 'V\nn\n' + pinv
-	if_replace_output = '\n' + '\n'.join(['R','R']) if os.path.exists(SEP.join([SEP.join(tree_filepath.split(SEP)[:-4]), MSA_PHYLIP_FILENAME + "_phyml_tree.txt"])) else '' # R for replace, A for append
+	if_replace_output = '\n' + '\n'.join(['R','R']) if os.path.exists(SEP.join([SEP.join(tree_filepath.split(SEP)[:-4]), MSA_PHYLIP_FILENAME + "_phyml_tree_br.txt"])) else '' # R for replace, A for append
 	if_subs_opt = "O"        # O for turning off, None for leaving default ml optimisation
 	if_topology_opt = "O"    # O for turning off, None for leaving default (NNI) ml optimisation
 	input_tree_mode = "U"    # U for changing to user tree input, None for leaving default bionj starting tree
 	if_LRT = '\n'.join(['A', 'A'])   # for turning off
 
-	params_interactive = '\n'.join([str(msa_filepath), if_replace_output, "+", model_value, rates_interactive, f_interactive, alpha_interactive, pinv_interactive, if_subs_opt, "+", if_topology_opt, input_tree_mode, "+", if_LRT, "Y", tree_filepath, ""])
+	params_interactive = '\n'.join([str(msa_filepath) + if_replace_output, "+", model_value, rates_interactive, f_interactive, alpha_interactive, pinv_interactive, if_subs_opt, "+", if_topology_opt, input_tree_mode, "+", if_LRT, "Y", tree_filepath, ""])
 	#params_interactive = str(msa_filepath) + '\nA\nA\nR\n' + run_id + "\n+\nM\nM\nM\nM\nK\n" + str(model_value) + "\n" + rates_interactive + f_interactive + alpha_interactive + pinv_interactive + "O\n+\n+\nA\nA\nY\n"
 	interactiveM_command = "echo '" + params_interactive + "' | " + PHYML_SCRIPT + "\n"
 
@@ -99,14 +99,14 @@ def run_phyml(msa_filepath, full_model, topology_tag, tree_file=None, force_run=
 		shutil.copy(msa_filepath, msa_copy_path)
 		msa_filepath = msa_copy_path
 
-	output_filename = msa_filepath + "_phyml_{}_" + topology_tag + ".txt"
-	if not force_run and os.path.exists(output_filename.format(msa_filepath, "stats")):
+	output_filename = "{}_phyml_{}_{}" + ".txt"
+	if not force_run and os.path.exists(output_filename.format(msa_filepath, "stats", topology_tag)):
 		return output_filename.format(msa_filepath, "stats")
 
 	phyml_exec_line = create_phyml_exec_line_full_model(msa_filepath, full_model, topology_tag, tree_file=tree_file)
 	res = os.system(phyml_exec_line)
-	os.rename(msa_filepath + "{}_phyml_tree.txt", output_filename.format("tree"))
-	os.rename(msa_filepath + "{}_phyml_stats.txt", output_filename.format("stats"))
+	os.rename("{}_phyml_tree.txt".format(msa_filepath), output_filename.format(msa_filepath, "tree", topology_tag))
+	os.rename("{}_phyml_stats.txt".format(msa_filepath) + "{}_phyml_stats.txt", output_filename.format(msa_filepath, "stats", topology_tag))
 
 
 	return output_filename.format(msa_filepath, "{}")
