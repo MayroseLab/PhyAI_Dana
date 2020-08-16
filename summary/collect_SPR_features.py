@@ -15,8 +15,8 @@ OPT_TYPE = "br"
 
 
 def index_additional_rgft_features(df_rgft, ind, prune_name, rgft_name, features_restree_dict, features_dict_prune):
-	#df_rgft.ix[ind, FEATURES["top_dist"]] = features_dict_prune['top_dist'][prune_name][rgft_name]
-	#df_rgft.ix[ind, FEATURES["bl_dist"]] = features_dict_prune['bl_dist'][prune_name][rgft_name]
+	df_rgft.ix[ind, FEATURES["top_dist"]] = features_dict_prune['top_dist'][prune_name][rgft_name]
+	df_rgft.ix[ind, FEATURES["bl_dist"]] = features_dict_prune['bl_dist'][prune_name][rgft_name]
 	# updated late (23/4)
 	df_rgft.ix[ind, FEATURES["res_bl"]] = features_restree_dict['res_bl']
 	df_rgft.ix[ind, FEATURES["res_tbl"]] = features_restree_dict['res_tbl']
