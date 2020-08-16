@@ -76,7 +76,7 @@ def run_phyml_TRUEmodelparams(msa_filepath, tree_filepath, model_name, alpha, pi
 	rates_interactive = "\n".join(rates)
 	alpha_interactive = 'R\n' if not alpha else 'C\n4\nA\nn\n' + alpha
 	pinv_interactive = '' if not pinv else 'V\nn\n' + pinv
-	if_replace_output = '\n'.join(["",'R','R']) if os.path.exists(msa_filepath + "_phyml_stats_br.txt") else '' # R for replace, A for append
+	if_replace_output = '\n' + '\n'.join(['R','R']) if os.path.exists(msa_filepath + "_phyml_stats_br.txt") else '' # R for replace, A for append
 	if_subs_opt = "O"        # O for turning off, None for leaving default ml optimisation
 	if_topology_opt = "O"    # O for turning off, None for leaving default (NNI) ml optimisation
 	input_tree_mode = "U"    # U for changing to user tree input, None for leaving default bionj starting tree
