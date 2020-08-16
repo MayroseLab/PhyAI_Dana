@@ -107,7 +107,7 @@ def run_phyml(msa_filepath, full_model, topology_tag, tree_file=None, force_run=
 
 	output_filename = "{}_phyml_{}_{}" + ".txt"
 	if not force_run and os.path.exists(output_filename.format(msa_filepath, "stats", topology_tag)):
-		return output_filename.format(msa_filepath, "stats")
+		return output_filename.format(msa_filepath, "stats", topology_tag)
 
 	phyml_exec_line = create_phyml_exec_line_full_model(msa_filepath, full_model, topology_tag, tree_file=tree_file)
 	return output_filename.format(msa_filepath, "{}", topology_tag)
