@@ -44,7 +44,7 @@ def create_phyml_exec_line(msa_file_full_path, base_model, pinv, gamma, topology
 		f = [params_dict["fA"],params_dict["fC"],params_dict["fG"],params_dict["fT"]]
 		rates = [params_dict["subAC"], params_dict["subAG"], params_dict["subAT"], params_dict["subCG"], params_dict["subCT"], params_dict["subGT"]]
 
-		exec_line = run_phyml_TRUEmodelparams(msa_file_full_path, base_model, params_dict["gamma"], params_dict["pInv"], f, rates)
+		exec_line = run_phyml_TRUEmodelparams(msa_file_full_path, tree_file, base_model, params_dict["gamma"], params_dict["pInv"], f, rates)
 		return exec_line
 	else:
 		execution_tags = " ".join(PHYML_MODEL_TAGS[base_model] + [PHYML_PINV_TAGS[pinv], PHYML_GAMMA_TAGS[gamma],
@@ -63,20 +63,27 @@ def create_phyml_exec_line_full_model(msa_file_full_path, full_model, topology_t
 
 
 
-def run_phyml_TRUEmodelparams(msa_filepath, model_name, alpha, pinv, f, rates):
+def run_phyml_TRUEmodelparams(msa_filepath, tree_filepath, model_name, alpha, pinv, f, rates):
 	'''
 	running phyml in interactive mode to be able to fix substitution model parameters
 	'''
+	run_id = '\n'.join(['R','br'])    #
 	subs_model = re.match("([^+]+).*", model_name).group(1)
 	models_dict_fixed = {'JC': '000000', 'F81': '000000', 'K80': '010010', 'HKY': '010010', 'SYM': '012345','GTR': '012345'}
-	model_value = models_dict_fixed.get(subs_model)
+	model_value = '\n'.join(['M\nM\nM\nM\nK', str(models_dict_fixed.get(subs_model))])
 
-	f_interactive = 'E\n' + "\n".join(f) + '\n'
-	rates_interactive = "\n".join(rates) + '\n'
-	alpha_interactive = 'R\n' if not alpha else 'C\n4\nA\nn\n' + alpha + '\n'
-	pinv_interactive = '' if not pinv else 'V\nn\n' + pinv + '\n'
+	f_interactive = 'E\n' + "\n".join(f)
+	rates_interactive = "\n".join(rates)
+	alpha_interactive = 'R\n' if not alpha else 'C\n4\nA\nn\n' + alpha
+	pinv_interactive = '' if not pinv else 'V\nn\n' + pinv
+	if_replace_output = "\n".join(['R','R'])   # R for replace, A for append
+	if_subs_opt = "O"        # O for turning off, None for leaving default ml optimisation
+	if_topology_opt = "O"    # O for turning off, None for leaving default (NNI) ml optimisation
+	input_tree_mode = "U"    # U for changing to user tree input, None for leaving default bionj starting tree
+	if_LRT = '\n'.join(['A', 'A'])
 
-	params_interactive = str(msa_filepath) + '\nA\nA\nR\n' + model_name + "_FixedParams\n+\nM\nM\nM\nM\nK\n" + str(model_value) + "\n" + rates_interactive + f_interactive + alpha_interactive + pinv_interactive + "O\n+\n+\nA\nA\nY\n"
+	params_interactive = '\n'.join([str(msa_filepath), if_replace_output, run_id, "+", model_value, rates_interactive, f_interactive, alpha_interactive, pinv_interactive, if_subs_opt, "+", if_topology_opt, input_tree_mode, "+", if_LRT, "Y", tree_filepath, ""])
+	#params_interactive = str(msa_filepath) + '\nA\nA\nR\n' + run_id + "\n+\nM\nM\nM\nM\nK\n" + str(model_value) + "\n" + rates_interactive + f_interactive + alpha_interactive + pinv_interactive + "O\n+\n+\nA\nA\nY\n"
 	interactiveM_command = "echo '" + params_interactive + "' | " + PHYML_SCRIPT + "\n"
 
 	os.system("#!/bin/tcsh\n\n")
