@@ -8,8 +8,7 @@ from data_processing.traverse_data_dirs import traverse_data_dirs
 
 import warnings
 warnings.filterwarnings("ignore", category=DeprecationWarning)
-from utils.tree_functions import *
-from execute_programs.SPR_move import *
+
 
 OPT_TYPE = "br"
 
@@ -17,7 +16,6 @@ OPT_TYPE = "br"
 def index_additional_rgft_features(df_rgft, ind, prune_name, rgft_name, features_restree_dict, features_dict_prune):
 	df_rgft.ix[ind, FEATURES["top_dist"]] = features_dict_prune['top_dist'][prune_name][rgft_name]
 	df_rgft.ix[ind, FEATURES["bl_dist"]] = features_dict_prune['bl_dist'][prune_name][rgft_name]
-	# updated late (23/4)
 	df_rgft.ix[ind, FEATURES["res_bl"]] = features_restree_dict['res_bl']
 	df_rgft.ix[ind, FEATURES["res_tbl"]] = features_restree_dict['res_tbl']
 
@@ -34,8 +32,7 @@ def return_ll(tree_dirpath, br_mode):
 		ll_rearr = float(res_dict["ll"])
 	except:
 		ll_rearr = None
-		pass
-		#print("does not exist or empty")
+		print("**** {}\ndoes not exist or empty".format(stats_filepath))
 
 	return ll_rearr
 
@@ -54,10 +51,8 @@ def index_shared_features(dff, ind, edge, move_type, features_dicts_dict):
 	#index subtrees features
 	for subtype in ["p", "r"]:
 		dff.ix[ind, FEATURES["ntaxa_{}".format(subtype)]] = features_dicts_dict["ntaxa_{}".format(subtype)][edge]  		#f4,5
-		#dff.ix[ind, FEATURES["pdist_{}".format(subtype)]] = features_dicts_dict["pdist_{}".format(subtype)][edge]    	#f6,7
-		dff.ix[ind, FEATURES["tbl_{}".format(subtype)]] = features_dicts_dict["tbl_{}".format(subtype)][edge]  			#f8,9
-		#dff.ix[ind, FEATURES["pars_{}".format(subtype)]] = features_dicts_dict["pars_{}".format(subtype)][edge] 		#f10,11
-		dff.ix[ind, FEATURES["longest_{}".format(subtype)]] = features_dicts_dict["longest_{}".format(subtype)][edge]	#f12,13
+		dff.ix[ind, FEATURES["tbl_{}".format(subtype)]] = features_dicts_dict["tbl_{}".format(subtype)][edge]  			#f6,7
+		dff.ix[ind, FEATURES["longest_{}".format(subtype)]] = features_dicts_dict["longest_{}".format(subtype)][edge]	#f8,9
 
 	return dff
 
@@ -71,7 +66,6 @@ def collect_features(ds_path, step_number, outpath_prune, outpath_rgft, tree_typ
 
 	suf = "bionj" if tree_type == 'bionj' else 'br'  # if tree_type="random"
 	features_prune_dicts_dict = calc_leaves_features(ds_path + PHYML_TREE_FILENAME.format(suf),"prune")
-	#features_prune_dicts_dict = calc_leaves_features(ds_path + PHYML_TREE_FILENAME.format(suf), orig_ds_msa_file, "prune")
 
 	for i, row in dfr.iterrows():
 		ind = row.name
@@ -79,11 +73,8 @@ def collect_features(ds_path, step_number, outpath_prune, outpath_rgft, tree_typ
 		tree = row["newick"]
 		if row["rgft_name"] == SUBTREE2:	# namely the remaining subtree
 			features_rgft_dicts_dict = calc_leaves_features(tree, "rgft")
-			#features_rgft_dicts_dict = calc_leaves_features(tree, orig_ds_msa_file, "rgft")  # msa will be truncated within the function
-			#pass
 		if not "subtree" in row["rgft_name"] and not ROOTLIKE_NAME in row["rgft_name"] and not ROOTLIKE_NAME in row["prune_name"]:
 			features_restree_dict = calc_leaves_features(tree, "res", rgft_node_name=row["rgft_name"])
-			#features_restree_dict = calc_leaves_features(tree, orig_ds_msa_file, "res", rgft_node_name=row["rgft_name"])
 			df_prune = index_shared_features(df_prune, ind, row["prune_name"], "prune",  features_prune_dicts_dict)
 			df_rgft = index_shared_features(df_rgft, ind, row["rgft_name"], "rgft", features_rgft_dicts_dict)
 			df_rgft = index_additional_rgft_features(df_rgft, ind, row["prune_name"], row["rgft_name"], features_restree_dict, features_prune_dicts_dict)   # also prune dict because for 2 features i didn't want to comp dict within each rgft iteration (needed to compute on the starting tree)
@@ -114,11 +105,6 @@ def parse_neighbors_dirs(ds_path, outpath_prune, outpath_rgft, step_number, cp_i
 
 	res_dict_orig_tree = parse_phyml_stats_output(msa_file, ds_path + PHYML_STATS_FILENAME.format(suf))
 	ll_orig_tree = float(res_dict_orig_tree["ll"])
-	'''
-	with open(ds_path + PHYML_STATS_FILENAME.format(suf)) as fpr:
-		content = fpr.read()
-		ll_orig_tree = float(re.search("Log-likelihood:\s+(.*)", content).group(1).strip())
-	'''
 
 	df = pd.DataFrame(index=np.arange(0))
 	df2 = pd.DataFrame(index=np.arange(0))
@@ -140,18 +126,7 @@ def parse_neighbors_dirs(ds_path, outpath_prune, outpath_rgft, step_number, cp_i
 					rearr_tree_path = SEP.join([tree_dirpath, "{}_phyml_{}_{}.txt".format(MSA_PHYLIP_FILENAME, "tree", OPT_TYPE)])
 					cp_internal_names(rearr_tree_path, treepath_with_internal)
 
-
 				ll_rearr = return_ll(tree_dirpath, OPT_TYPE)
-				'''
-				f = SEP.join([tree_dirpath, "{}_phyml_{}_{}.txt".format(MSA_PHYLIP_FILENAME, "stats", OPT_TYPE)])
-				try:
-					with open(f) as fpr:
-						content = fpr.read()
-						ll_rearr = float(re.search("Log-likelihood:\s+(.*)", content).group(1).strip())
-				except:
-					print(f)
-					ll_rearr = None
-				'''
 
 				df.ix[ind, "prune_name"], df.ix[ind, "rgft_name"] = prune_name, rgft_name
 				df.ix[ind, "orig_ds_ll"], df.ix[ind, "ll"] = ll_orig_tree, ll_rearr
