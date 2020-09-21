@@ -9,8 +9,8 @@ from utils.msa_functions import *
 
 ###############################
 RAXML_NG_SCRIPT = "raxml-ng"
-RAXML_EVALUATE = RAXML_NG_SCRIPT + " --evaluate --msa {msa_file} --opt-branches {opt_bl} --opt-model {opt_model} --model GTR{rates}+I{pinv}+G{alpha}+F{freq} --tree {tree}"# --nofiles interim --log RESULT" # --nofiles"
-RAXML_STARTING = RAXML_NG_SCRIPT + " --tree {tree_type}{{1}} --msa {msa_file} --opt-branches off --opt-model off --model GTR+I+G --start"
+RAXML_EVALUATE = RAXML_NG_SCRIPT + " --evaluate --msa {msa_file} --threads 1 --opt-branches {opt_bl} --opt-model {opt_model} --model GTR{rates}+I{pinv}+G{alpha}+F{freq} --tree {tree}"# --nofiles interim --log RESULT" # --nofiles"
+RAXML_STARTING = RAXML_NG_SCRIPT + " --tree {tree_type}{{1}} --msa {msa_file} --threads 1 --opt-branches off --opt-model off --model GTR+I+G --start"
 RAXML_PARTITIONS = RAXML_NG_SCRIPT + ""
 ###############################
 
