@@ -13,9 +13,7 @@ def collect_features_runtime(ds_path, step_number):
 	PHYML_TREE_FILENAME = "masked_species_real_msa.phy" + "_phyml_tree_{0}.txt"
 	
 	dfr = read_csv(TREES_PER_DS.format(ds_path, step_number), index_col=0)
-	start_time = time()
-	features_prune_dicts_dict = calc_leaves_features(ds_path + PHYML_TREE_FILENAME.format("bionj"), "prune")
-	#'''
+	'''
 	from ete3 import Tree
 	##print(Tree(ds_path + PHYML_TREE_FILENAME.format("bionj"), format=1).get_ascii(show_internal=True))
 	from ete3 import TreeStyle
@@ -24,19 +22,19 @@ def collect_features_runtime(ds_path, step_number):
 	ts.show_branch_length = True
 
 	t = Tree(ds_path + PHYML_TREE_FILENAME.format("bionj"), format=1)
-	t.render(DATA_PATH+ "blah.png",tree_style=ts)
-	print(t.get_ascii(show_internal=True))
-	print("###############")
+	##t.render(DATA_PATH+ "blah.png",tree_style=ts)
+	#print(t.get_ascii(show_internal=True))
+	#print("###############")
 	#'''
+	start_time = time()
+	features_prune_dicts_dict = calc_leaves_features(ds_path + PHYML_TREE_FILENAME.format("bionj"), "prune")
+	#exit()
 	for i, row in dfr.iterrows():
 		tree = row["newick"]
 		if row["rgft_name"] == "subtree2":  # namely the remaining subtree
 			features_rgft_dicts_dict = calc_leaves_features(tree,"rgft")  # msa will be truncated within the function
 		if not "subtree" in row["rgft_name"]:
-			print("prune:", row["prune_name"])
-			print("rgft:", row["rgft_name"])
 			features_restree_dict = calc_leaves_features(tree, "res", rgft_node_name=row["rgft_name"])
-			exit()
 	res = time() - start_time
 	return res
 

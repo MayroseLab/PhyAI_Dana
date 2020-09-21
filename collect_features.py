@@ -19,66 +19,6 @@ from defs_PhyAI import *
 ########################## begining of 'features extraction' section ###########################
 ################################################################################################
 
-def get_msa_from_file(msa_file_path):
-	#open file if exists
-	if not os.path.exists(msa_file_path):
-		return None
-	try:
-		msa = AlignIO.read(msa_file_path, PHYLIP_FORMAT)
-	except:
-		return None
-	return msa
-
-
-def get_msa_properties(msa):
-	"""
-	:param msa: bio.AlignIO format or path to msa file
-	:return:
-	"""
-	if isinstance(msa, str):
-		msa = get_msa_from_file(msa)
-	ntaxa = len(msa)
-	nchars = msa.get_alignment_length()
-
-	return ntaxa, nchars
-
-	
-def get_seqs_dict(msa_file):
-	alignment = get_msa_from_file(msa_file)
-	seqs_dict = {seq.id: seq.seq for seq in alignment}
-	return seqs_dict
-
-
-def trunc_msa(subt, seqs_dict, trunc_msa_path=None):
-	if type(subt) == str:
-		subt = Tree(newick=subt, format=1)
-	records = []
-	for leaf in subt.iter_leaves():  # go over all leaves (all species) in this subtree
-		leaf_name = leaf.name
-		records.append(SeqRecord(seqs_dict[leaf_name], id=leaf_name))
-	trunc_msa = MultipleSeqAlignment(records)
-	if trunc_msa_path:
-		AlignIO.write(trunc_msa, trunc_msa_path, PHYLIP_FORMAT)
-		rewrite_in_phylip(trunc_msa_path)
-
-	return trunc_msa
-
-
-def rewrite_in_phylip(msa_file):
-	data = []
-	with open(msa_file, 'r') as fp:
-		for line in fp.readlines():
-			nline = line.rstrip("\r\n")
-			re_name_only = re.search("^(\S+)\s+\S+",nline)
-			if re_name_only:
-				name_only = re_name_only.group(1)
-				end_name_ix = len(name_only) +1
-				with_spaces = nline[:end_name_ix] + "      " + nline[end_name_ix:]
-				nline = with_spaces
-			data.append(nline)
-
-	with open(msa_file, 'w') as nf:
-		nf.write("\n".join(data))
 
 
 def get_newick_tree(tree):
