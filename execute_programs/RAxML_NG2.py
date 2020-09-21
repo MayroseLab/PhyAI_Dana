@@ -88,9 +88,9 @@ def run_raxml(msa_path, tree_path, mode='fixed_subs', runover=False):
 		RAxML_cmd += " --redo"
 	res = os.system(RAxML_cmd + "\n")
 
-	for suf in ['rba', 'bestModel', 'startTree']:
+	for suf in ['rba', 'bestModel', 'startTree', 'reduced.phy']:
 		filename = msa_path + '.raxml.' + suf
-		os.remove(filename)
+		shutil.rmtree(filename, ignore_errors=True)
 
 	return
 
