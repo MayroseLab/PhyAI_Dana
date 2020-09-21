@@ -143,7 +143,7 @@ def dist_between_nodes_mat(t):
 	mat_bl, mat_top = pd.DataFrame(), pd.DataFrame()
 	nodes_lst = []
 	for node in t.traverse("preorder"):
-		if node.name is '':
+		if node.name == '':
 			continue
 		nodes_lst.append(node)
 	nodes_lst.pop(0)  # this is t, first_node's nonsense parent
@@ -292,7 +292,7 @@ def calc_leaves_features(tree_str, move_type, rgft_node_name=None):
 
 			nname = node.name
 			subtree1, subtree2 = t.children
-			if nname is '':			# EDITED DANA
+			if nname == '':			# EDITED DANA
 				continue			# EDITED DANA
 
 			### EDITED DANA ###
