@@ -10,8 +10,7 @@ from utils.msa_functions import *
 ###############################
 RAXML_NG_SCRIPT = "raxml-ng"
 RAXML_EVALUATE = RAXML_NG_SCRIPT + " --evaluate --msa {msa_file} --opt-branches {opt_bl} --opt-model {opt_model} --model GTR{rates}+I{pinv}+G{alpha}+F{freq} --tree {tree}"# --nofiles interim --log RESULT" # --nofiles"
-RAXML_STARTING1 = RAXML_NG_SCRIPT + " --tree {tree_type}{{1}} --msa {msa_file} --opt-branches off --opt-model off --model GTR+I+G --start"
-RAXML_STARTING2 = RAXML_NG_SCRIPT + " --evaluate --tree {start_tree} --msa {msa_file} --opt-branches on --opt-model on --model GTR+I+G"
+RAXML_STARTING = RAXML_NG_SCRIPT + " --tree {tree_type}{{1}} --msa {msa_file} --opt-branches off --opt-model off --model GTR+I+G --start"
 RAXML_PARTITIONS = RAXML_NG_SCRIPT + ""
 ###############################
 
@@ -65,7 +64,7 @@ def run_raxml(msa_path, tree_path, mode='fixed_subs', runover=False):
 
 	if mode == 'starting_optimized':
 		## first generate a non-optimized parsimony tree
-		RAxML_cmd_generate_start = RAXML_STARTING1.format(msa_file=msa_path, tree_type=STARTING_TREE_TYPE)
+		RAxML_cmd_generate_start = RAXML_STARTING.format(msa_file=msa_path, tree_type=STARTING_TREE_TYPE)
 		if runover:
 			RAxML_cmd_generate_start += " --redo"
 		res = os.system(RAxML_cmd_generate_start + "\n")
@@ -92,7 +91,7 @@ def run_raxml(msa_path, tree_path, mode='fixed_subs', runover=False):
 	res = os.system(RAxML_cmd + "\n")
 
 	for suf in ['rba', 'bestModel', 'startTree']:
-		filename = args.msa_filepath + '.raxml.' + suf
+		filename = msa_path + '.raxml.' + suf
 		os.remove(filename)
 
 	return
