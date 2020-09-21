@@ -74,7 +74,7 @@ def add_atts():
 def do_something(datapath):
 	#add_atts()
 	#delete_err_dirpath(datapath)
-	rearrange_dirs_for_rerun(datapath)
+	#rearrange_dirs_for_rerun(datapath)
 	#missing_results()
 
 	'''

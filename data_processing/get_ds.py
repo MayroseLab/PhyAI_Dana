@@ -2,8 +2,8 @@ import sys, os
 sys.path.append(os.path.dirname(sys.path[0]))
 
 from defs import *
-from Bio import AlignIO
-from data_processing.create_starting_trees import phyml_for_ll
+#from Bio import AlignIO
+#from data_processing.create_starting_trees import phyml_for_ll
 
 pd.set_option('display.max_columns', 10)
 
@@ -50,14 +50,32 @@ def copy_datasets(csv_file):
 	df.to_csv(dirpath + "sampled_datasets.csv")
 	
 	
-		
+def copy_gapped_datasets(dirpath):
+	df_copy_from = pd.read_csv(dirpath + "gappad_datasets.csv")
+
+	for index, row in df_copy_from.iterrows():
+		# dataset_name = re.search("(\/.*)*((\/.*){2}\/)", row["path"]).group(2)
+		dataset_name = re.search("(\/.*data2?\/.*\/)(.*\/.*)", row["path"]).group(2)
+		name_split = dataset_name.split("/")
+		dest_path_dir = DATA_PATH + name_split[0] + SEP
+		if not os.path.exists(dest_path_dir):
+			os.mkdir(dest_path_dir)
+
+		df_copy_from.loc[index, "path"] = dest_path_dir
+		shutil.copy(row["path"] + SEP + MSA_PHYLIP_FILENAME_NOT_MASKED, dest_path_dir + MSA_PHYLIP_FILENAME)
+
+	df = pd.concat([pd.read_csv(dirpath + CHOSEN_DATASETS_FILENAME), df_copy_from], ignore_index=True)
+	df.to_csv(dirpath + "sampled_datasets_updated.csv")
+
+
 
 
 if __name__ == '__main__':
 	dirpath = SUMMARY_FILES_DIR if platform.system() == 'Linux' else DATA_PATH
-	outpath = dirpath + CHOSEN_DATASETS_FILENAME
-
+	#outpath = dirpath + CHOSEN_DATASETS_FILENAME
 	#copy_datasets(dirpath + "validation_set_Shirnas_paths_7to70taxa.csv")
+
+	copy_gapped_datasets(SUMMARY_FILES_DIR)
 	
 	'''
 	df_exist = pd.read_csv(SEP.join([DIRPATH + "validation_set", "summary_files", ""]) + CHOSEN_DATASETS_FILENAME)

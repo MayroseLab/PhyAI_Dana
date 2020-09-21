@@ -4,6 +4,7 @@ sys.path.append("/groups/itay_mayrose/danaazouri/PhyAI/code/")
 from defs import *
 from data_processing.traverse_data_dirs import traverse_data_dirs
 from utils.msa_functions import *
+from execute_programs.RAxML_NG2 import run_raxml
 
 
 
@@ -57,6 +58,8 @@ def generate_starting_trees(datapath, tree_type):
 		generate_random_trees(datapath)
 	if tree_type == 'bionj':
 		phyml_for_ll(datapath, tree_type)
+	if tree_type == 'parsimony':
+		run_raxml(msa_path=datapath+MSA_PHYLIP_FILENAME, tree_path=None, mode='starting_optimized')
 
 
 
@@ -64,7 +67,7 @@ def generate_starting_trees(datapath, tree_type):
 if __name__ == '__main__':
 	parser = argparse.ArgumentParser(description='perform all SPR moves')
 	parser.add_argument('--dataset_path', '-ds', default=None)
-	parser.add_argument('--tree_type', '-ttype', default=None)  # could be bionj or random
+	parser.add_argument('--tree_type', '-ttype', default=None)  # could be bionj | random | parsimony
 	parser.add_argument('--index_to_start_run', '-istart', default=False)
 	parser.add_argument('--nline_to_run', '-nlines', default=False)
 	args = parser.parse_args()

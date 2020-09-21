@@ -23,7 +23,8 @@ else :
 	if os.path.exists(r"D:\Users\Administrator\Dropbox"):	    # in lab
 		DIRPATH = r"D:\Users\Administrator\Dropbox\PhyloAI\\"
 	elif os.path.exists(r"C:\Users\ItayMNB3\Dropbox"):	    # laptop
-		DIRPATH = r"C:\Users\ItayMNB3\Dropbox\PhyloAI\\"
+		#DIRPATH = r"C:\Users\ItayMNB3\Dropbox\PhyloAI\\"
+		DIRPATH = "/groups/itay_mayrose/danaazouri/PhyAI/"    # changed when starting using PyCharm prof
 	#DATA_PATH = SEP.join([DIRPATH, "data", ""])
 
 DATA_PATH = SEP.join([DIRPATH+DIR_PREFIX + "data", "training_datasets", ""])

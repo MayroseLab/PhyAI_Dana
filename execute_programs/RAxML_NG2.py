@@ -64,11 +64,13 @@ def run_raxml(msa_path, tree_path, mode='fixed_subs', runover=False):
 									 freq="{{{0}}}".format("/".join(freq)))
 
 	if mode == 'starting_optimized':
+		## first generate a non-optimized parsimony tree
 		RAxML_cmd_generate_start = RAXML_STARTING1.format(msa_file=msa_path, tree_type=STARTING_TREE_TYPE)
 		if runover:
 			RAxML_cmd_generate_start += " --redo"
 		res = os.system(RAxML_cmd_generate_start + "\n")
 
+		## then optimize all parameters
 		starting_tree_path = msa_path + RAXML_STARTTREE_SUF
 		if os.path.exists(starting_tree_path):
 			RAxML_cmd = RAXML_EVALUATE.format(msa_file=msa_path, tree=starting_tree_path,
@@ -87,8 +89,13 @@ def run_raxml(msa_path, tree_path, mode='fixed_subs', runover=False):
 
 	if runover:
 		RAxML_cmd += " --redo"
-	os.system(RAxML_cmd + "\n")
+	res = os.system(RAxML_cmd + "\n")
 
+	for suf in ['rba', 'bestModel', 'startTree']:
+		filename = args.msa_filepath + '.raxml.' + suf
+		os.remove(filename)
+
+	return
 
 
 
@@ -107,8 +114,3 @@ if __name__ == "__main__":
 	start_time = time.time()
 	res = run_raxml(args.msa_filepath, args.tree_filepath, args.opt_mode, args.runover)
 	print(time.time() - start_time)
-
-
-	for suf in ['rba', 'bestModel', 'startTree']:
-		filename = args.msa_filepath + '.raxml.' + suf
-		os.remove(filename)
