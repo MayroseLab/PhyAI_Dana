@@ -59,7 +59,7 @@ def generate_starting_trees(datapath, tree_type):
 	if tree_type == 'bionj':
 		phyml_for_ll(datapath, tree_type)
 	if tree_type == 'parsimony':
-		run_raxml(msa_path=datapath+MSA_PHYLIP_FILENAME, tree_path=None, mode='starting_optimized')
+		run_raxml(msa_path=datapath+MSA_PHYLIP_FILENAME, tree_path=None, mode='starting_optimized', runover=True)
 
 
 

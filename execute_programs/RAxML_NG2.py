@@ -65,8 +65,6 @@ def run_raxml(msa_path, tree_path, mode='fixed_subs', runover=False):
 	if mode == 'starting_optimized':
 		## first generate a non-optimized parsimony tree
 		RAxML_cmd_generate_start = RAXML_STARTING.format(msa_file=msa_path, tree_type=STARTING_TREE_TYPE)
-		if runover:
-			RAxML_cmd_generate_start += " --redo"
 		res = os.system(RAxML_cmd_generate_start + "\n")
 
 		## then optimize all parameters
