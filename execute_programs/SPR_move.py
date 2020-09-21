@@ -153,7 +153,7 @@ def all_SPR(ds_path, tree=None, rewrite_phylip=False, runover=False, job_priorit
 				#remove_redundant_nodes(full_tree, ntaxa, rgft_name)
 				save_rearr_file(full_tree_dirpath, full_tree, filename=REARRANGEMENTS_NAME, runover=runover)
 			call_ml_software(full_tree_dirpath, REARRANGEMENTS_NAME, orig_msa_file, runover, job_priority, cpmsa=True)
-		exit()
+		#exit()
 
 	return
 
