@@ -15,9 +15,7 @@ SUMMARIES_PER_DS_LST_TEMP = ["newicks_step1.csv", "ds_summary_prune_br_step1.csv
 
 
 def rearrange_dirs_for_rerun(datapath):
-	os.rename(datapath + "v1", datapath + "v2")
-	'''
-	new_dir = datapath + "v2" #+ "run1/"
+	new_dir = datapath + "v2"
 	if not os.path.exists(new_dir):
 		os.mkdir(new_dir)
 
@@ -26,7 +24,7 @@ def rearrange_dirs_for_rerun(datapath):
 	os.system("mv " + datapath + "*.csv " + new_dir)
 	os.system("mv " + datapath + "*.txt " + new_dir)
 	#os.system("mv " + datapath + RANDOM_TREE_DIRNAME + " " + new_dir)
-	'''
+
 	return
 
 
