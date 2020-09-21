@@ -19,10 +19,17 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="04f6d22b-03c8-46f3-ac77-b58c4e95d95d" name="Default Changelist" comment="debug with new neihbors optimization">
+    <list default="true" id="04f6d22b-03c8-46f3-ac77-b58c4e95d95d" name="Default Changelist" comment="debugging">
+      <change beforePath="$PROJECT_DIR$/.idea/code.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/code.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/execute_programs/Phyml.py" beforeDir="false" afterPath="$PROJECT_DIR$/execute_programs/Phyml.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/collect_features.py" beforeDir="false" afterPath="$PROJECT_DIR$/collect_features.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/defs.py" beforeDir="false" afterPath="$PROJECT_DIR$/defs.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/execute_programs/RAxML_NG2.py" beforeDir="false" afterPath="$PROJECT_DIR$/execute_programs/RAxML_NG2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/execute_programs/SPR_move.py" beforeDir="false" afterPath="$PROJECT_DIR$/execute_programs/SPR_move.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/summary/collect_SPR_features.py" beforeDir="false" afterPath="$PROJECT_DIR$/summary/collect_SPR_features.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/summary/run_times.py" beforeDir="false" afterPath="$PROJECT_DIR$/summary/run_times.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trying.py" beforeDir="false" afterPath="$PROJECT_DIR$/trying.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils/tree_functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/tree_functions.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -37,27 +44,34 @@
       </list>
     </option>
   </component>
+  <component name="FlaskConsoleOptions" custom-start-script="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))">
+    <envs>
+      <env key="FLASK_APP" value="app" />
+    </envs>
+    <option name="myCustomStartScript" value="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))" />
+    <option name="myEnvs">
+      <map>
+        <entry key="FLASK_APP" value="app" />
+      </map>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="JupyterTrust" id="10670ef2-f5b1-421d-a855-149e6613b62f" />
   <component name="ProjectId" id="1fa0BNFFj7wVf4iLrRaPR2E5kO8" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="SearchEverywhereHistoryKey" value="100_ds&#9;null&#9;null&#10;TODO&#9;FILE&#9;file://C:/Program Files/Anaconda3/pkgs/sphinx-1.4.6-py35_0/Lib/site-packages/Sphinx-1.4.6-py3.5.egg/sphinx/ext/todo.py&#10;&quot;Sp&#9;null&#9;null&#10;lear&#9;FILE&#9;file://D:/Users/Administrator/Dropbox/PhyloAI/code/execute_programs/learning_by_prune.py&#10;ntaxa&#9;null&#9;null" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/execute_programs" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\ItayMNB3\Dropbox\PhyloAI\code" />
-      <recent name="C:\Users\ItayMNB3\Dropbox\PhyloAI\code\data_processing" />
-      <recent name="D:\Users\Administrator\Dropbox\PhyloAI\code\execute_programs" />
-      <recent name="C:\Users\ItayMNB3\Dropbox\PhyloAI\code\figures" />
-      <recent name="D:\Users\Administrator\Dropbox\PhyloAI\code" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\ItayMNB3\Dropbox\PhyloAI\code" />
       <recent name="C:\Users\ItayMNB3\Dropbox\PhyloAI\code\" />
@@ -65,8 +79,81 @@
       <recent name="D:\Users\Administrator\Dropbox\PhyloAI\code\parsing" />
       <recent name="D:\Users\Administrator\Dropbox\PhyloAI\code\execute_programs" />
     </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\ItayMNB3\Dropbox\PhyloAI\code\execute_programs" />
+      <recent name="C:\Users\ItayMNB3\Dropbox\PhyloAI\code" />
+      <recent name="C:\Users\ItayMNB3\Dropbox\PhyloAI\code\data_processing" />
+      <recent name="D:\Users\Administrator\Dropbox\PhyloAI\code\execute_programs" />
+      <recent name="C:\Users\ItayMNB3\Dropbox\PhyloAI\code\figures" />
+    </key>
   </component>
-  <component name="RunManager" selected="Python.run_times">
+  <component name="RunManager" selected="Python.SPR_move">
+    <configuration name="RAxML_NG (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="code" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/execute_programs" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/execute_programs/RAxML_NG.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="RAxML_NG" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="code" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/execute_programs" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/execute_programs/RAxML_NG.py" />
+      <option name="PARAMETERS" value="-mo parsimony-optimized -f /groups/itay_mayrose/danaazouri/PhyAI/DBset2/data_test/real_msa4.phy -t /groups/itay_mayrose/danaazouri/PhyAI/DBset2/data_test/tree.txt" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="RAxML_NG2" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="code" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/execute_programs" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/execute_programs/RAxML_NG2.py" />
+      <option name="PARAMETERS" value="-f /groups/itay_mayrose/danaazouri/PhyAI/DBset2/data_test/real_msa4.phy -t /groups/itay_mayrose/danaazouri/PhyAI/DBset2/data_test/tree4.txt -mo fixed_subs -r" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="RF_learning" type="PythonConfigurationType" factoryName="Python">
       <module name="code" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -79,6 +166,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/execute_programs/RF_learning.py" />
       <option name="PARAMETERS" value="-mt merged -st 1 -sscore" />
       <option name="SHOW_COMMAND_LINE" value="false" />
@@ -100,6 +188,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="D:\Users\Administrator\Dropbox\PhyloAI\code\execute_programs\RF_learning.py" />
       <option name="PARAMETERS" value="-mt &quot;prune&quot; -st &quot;2&quot;" />
       <option name="SHOW_COMMAND_LINE" value="false" />
@@ -121,8 +210,9 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/execute_programs/SPR_move.py" />
-      <option name="PARAMETERS" value="-ds C:\Users\ItayMNB3\Dropbox\PhyloAI\data\training_datasets\test\\ -st 1" />
+      <option name="PARAMETERS" value="-st 1 -phy -ds /groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/24354/" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -142,6 +232,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
@@ -163,6 +254,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/summary/collect_SPR_features.py" />
       <option name="PARAMETERS" value="-st 1 -ds C:\\Users\\ItayMNB3\\Dropbox\\PhyloAI\data\training_datasets\\" />
       <option name="SHOW_COMMAND_LINE" value="false" />
@@ -172,7 +264,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="data_attributes" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="create_starting_trees" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="code" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -180,12 +272,13 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/figures" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/data_processing" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/figures/data_attributes.py" />
-      <option name="PARAMETERS" value="" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/data_processing/create_starting_trees.py" />
+      <option name="PARAMETERS" value="-ttype parsimony -istart 0 -nlines 1" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -193,7 +286,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="feauture_selection" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="get_ds" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="code" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -201,11 +294,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/figures" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/data_processing" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/figures/feauture_selection.py" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/data_processing/get_ds.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -226,6 +320,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="D:\Users\Administrator\Dropbox\PhyloAI\code\execute_programs\SVM_learning.py" />
       <option name="PARAMETERS" value="-mt &quot;prune&quot;" />
       <option name="SHOW_COMMAND_LINE" value="false" />
@@ -235,7 +330,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="run_times" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="parse_raxmlNG" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="code" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -243,53 +338,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/summary" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/parsing" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/summary/run_times.py" />
-      <option name="PARAMETERS" value="-t features" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="saturation" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="code" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/figures" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/figures/saturation.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="tree_functions" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="code" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/utils" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/utils/tree_functions.py" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\ItayMNB3\Dropbox\PhyloAI\code\parsing\parse_raxmlNG.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -310,8 +364,31 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/trying.py" />
       <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="whore" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="code" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/data_processing" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/data_processing/whore.py" />
+      <option name="PARAMETERS" value="-istart 2 -nlines 98" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -328,6 +405,7 @@
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
       <option name="_new_target" value="&quot;.&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
@@ -340,19 +418,20 @@
       <item itemvalue="Python.collect_SPR_features" />
       <item itemvalue="Python.learning_by_move_type" />
       <item itemvalue="Python.trying" />
-      <item itemvalue="Python.run_times" />
-      <item itemvalue="Python.saturation" />
-      <item itemvalue="Python.feauture_selection" />
-      <item itemvalue="Python.data_attributes" />
-      <item itemvalue="Python.tree_functions" />
+      <item itemvalue="Python.RAxML_NG2" />
+      <item itemvalue="Python.RAxML_NG" />
+      <item itemvalue="Python.RAxML_NG (1)" />
+      <item itemvalue="Python.whore" />
+      <item itemvalue="Python.get_ds" />
+      <item itemvalue="Python.create_starting_trees" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.run_times" />
-        <item itemvalue="Python.tree_functions" />
-        <item itemvalue="Python.data_attributes" />
-        <item itemvalue="Python.saturation" />
-        <item itemvalue="Python.feauture_selection" />
+        <item itemvalue="Python.create_starting_trees" />
+        <item itemvalue="Python.get_ds" />
+        <item itemvalue="Python.whore" />
+        <item itemvalue="Python.RAxML_NG" />
+        <item itemvalue="Python.RAxML_NG (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -368,341 +447,308 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1557671246307</updated>
+      <workItem from="1597244979063" duration="2066000" />
+      <workItem from="1598765216015" duration="3231000" />
+      <workItem from="1599031478673" duration="614000" />
+      <workItem from="1599464924024" duration="4873000" />
+      <workItem from="1599658503480" duration="7588000" />
+      <workItem from="1600166119310" duration="70519000" />
     </task>
-    <task id="LOCAL-00911">
-      <created>1589728212997</created>
-      <option name="number" value="00911" />
-      <option name="presentableId" value="LOCAL-00911" />
-      <option name="project" value="LOCAL" />
-      <updated>1589728212997</updated>
+    <task id="LOCAL‎00964" summary="debug with new neihbors optimization">
+      <created>1597229242148</created>
+      <option name="number" value="LOCAL‎00964" />
+      <option name="presentableId" value="LOCAL‎00964" />
+      <updated>1597229242148</updated>
     </task>
-    <task id="LOCAL-00912">
-      <created>1589728451541</created>
-      <option name="number" value="00912" />
-      <option name="presentableId" value="LOCAL-00912" />
-      <option name="project" value="LOCAL" />
-      <updated>1589728451541</updated>
+    <task id="LOCAL‎00965" summary="debug with new neihbors optimization">
+      <created>1597561107006</created>
+      <option name="number" value="LOCAL‎00965" />
+      <option name="presentableId" value="LOCAL‎00965" />
+      <updated>1597561107007</updated>
     </task>
-    <task id="LOCAL-00913">
-      <created>1589732424310</created>
-      <option name="number" value="00913" />
-      <option name="presentableId" value="LOCAL-00913" />
-      <option name="project" value="LOCAL" />
-      <updated>1589732424310</updated>
+    <task id="LOCAL‎00966" summary="edit interactive_phyml execution line">
+      <created>1597569100303</created>
+      <option name="number" value="LOCAL‎00966" />
+      <option name="presentableId" value="LOCAL‎00966" />
+      <updated>1597569100303</updated>
     </task>
-    <task id="LOCAL-00914">
-      <created>1589732707607</created>
-      <option name="number" value="00914" />
-      <option name="presentableId" value="LOCAL-00914" />
-      <option name="project" value="LOCAL" />
-      <updated>1589732707607</updated>
+    <task id="LOCAL‎00967" summary="edit interactive_phyml execution line">
+      <created>1597570131232</created>
+      <option name="number" value="LOCAL‎00967" />
+      <option name="presentableId" value="LOCAL‎00967" />
+      <updated>1597570131232</updated>
     </task>
-    <task id="LOCAL-00915" summary="correct rnadom strating mode">
-      <created>1589786347867</created>
-      <option name="number" value="00915" />
-      <option name="presentableId" value="LOCAL-00915" />
-      <option name="project" value="LOCAL" />
-      <updated>1589786347867</updated>
+    <task id="LOCAL‎00968" summary="edit interactive_phyml execution line">
+      <created>1597573294863</created>
+      <option name="number" value="LOCAL‎00968" />
+      <option name="presentableId" value="LOCAL‎00968" />
+      <updated>1597573294863</updated>
     </task>
-    <task id="LOCAL-00916">
-      <created>1589786567506</created>
-      <option name="number" value="00916" />
-      <option name="presentableId" value="LOCAL-00916" />
-      <option name="project" value="LOCAL" />
-      <updated>1589786567506</updated>
+    <task id="LOCAL‎00969" summary="edit interactive_phyml execution line">
+      <created>1597576032513</created>
+      <option name="number" value="LOCAL‎00969" />
+      <option name="presentableId" value="LOCAL‎00969" />
+      <updated>1597576032514</updated>
     </task>
-    <task id="LOCAL-00917">
-      <created>1589796378625</created>
-      <option name="number" value="00917" />
-      <option name="presentableId" value="LOCAL-00917" />
-      <option name="project" value="LOCAL" />
-      <updated>1589796378625</updated>
+    <task id="LOCAL‎00970" summary="edit interactive_phyml execution line">
+      <created>1597576479946</created>
+      <option name="number" value="LOCAL‎00970" />
+      <option name="presentableId" value="LOCAL‎00970" />
+      <updated>1597576479946</updated>
     </task>
-    <task id="LOCAL-00918" summary="temp - how many data points from 3700 datasets?">
-      <created>1589810586837</created>
-      <option name="number" value="00918" />
-      <option name="presentableId" value="LOCAL-00918" />
-      <option name="project" value="LOCAL" />
-      <updated>1589810586837</updated>
+    <task id="LOCAL‎00971" summary="edit interactive_phyml execution line">
+      <created>1597576713968</created>
+      <option name="number" value="LOCAL‎00971" />
+      <option name="presentableId" value="LOCAL‎00971" />
+      <updated>1597576713968</updated>
     </task>
-    <task id="LOCAL-00919" summary="temp - how many data points from 3700 datasets?">
-      <created>1589810737657</created>
-      <option name="number" value="00919" />
-      <option name="presentableId" value="LOCAL-00919" />
-      <option name="project" value="LOCAL" />
-      <updated>1589810737657</updated>
+    <task id="LOCAL‎00972" summary="edit interactive_phyml execution line">
+      <created>1597577534205</created>
+      <option name="number" value="LOCAL‎00972" />
+      <option name="presentableId" value="LOCAL‎00972" />
+      <updated>1597577534205</updated>
     </task>
-    <task id="LOCAL-00920" summary="ass attributes to scores csv">
-      <created>1589823435982</created>
-      <option name="number" value="00920" />
-      <option name="presentableId" value="LOCAL-00920" />
-      <option name="project" value="LOCAL" />
-      <updated>1589823435983</updated>
+    <task id="LOCAL‎00973" summary="edit interactive_phyml execution line">
+      <created>1597577836566</created>
+      <option name="number" value="LOCAL‎00973" />
+      <option name="presentableId" value="LOCAL‎00973" />
+      <updated>1597577836566</updated>
     </task>
-    <task id="LOCAL-00921" summary="add attributes to scores csv">
-      <created>1589823949404</created>
-      <option name="number" value="00921" />
-      <option name="presentableId" value="LOCAL-00921" />
-      <option name="project" value="LOCAL" />
-      <updated>1589823949404</updated>
+    <task id="LOCAL‎00974" summary="edit interactive_phyml execution line">
+      <created>1597578559443</created>
+      <option name="number" value="LOCAL‎00974" />
+      <option name="presentableId" value="LOCAL‎00974" />
+      <updated>1597578559443</updated>
     </task>
-    <task id="LOCAL-00922" summary="add attributes to scores csv">
-      <created>1589824418919</created>
-      <option name="number" value="00922" />
-      <option name="presentableId" value="LOCAL-00922" />
-      <option name="project" value="LOCAL" />
-      <updated>1589824418919</updated>
+    <task id="LOCAL‎00975" summary="edit interactive_phyml execution line">
+      <created>1597578765811</created>
+      <option name="number" value="LOCAL‎00975" />
+      <option name="presentableId" value="LOCAL‎00975" />
+      <updated>1597578765811</updated>
     </task>
-    <task id="LOCAL-00923" summary="add attributes to scores csv">
-      <created>1589825380227</created>
-      <option name="number" value="00923" />
-      <option name="presentableId" value="LOCAL-00923" />
-      <option name="project" value="LOCAL" />
-      <updated>1589825380227</updated>
+    <task id="LOCAL‎00976" summary="edit interactive_phyml execution line">
+      <created>1597579419107</created>
+      <option name="number" value="LOCAL‎00976" />
+      <option name="presentableId" value="LOCAL‎00976" />
+      <updated>1597579419107</updated>
     </task>
-    <task id="LOCAL-00924">
-      <created>1590071704081</created>
-      <option name="number" value="00924" />
-      <option name="presentableId" value="LOCAL-00924" />
-      <option name="project" value="LOCAL" />
-      <updated>1590071704082</updated>
+    <task id="LOCAL‎00977" summary="edit interactive_phyml execution line">
+      <created>1597579679355</created>
+      <option name="number" value="LOCAL‎00977" />
+      <option name="presentableId" value="LOCAL‎00977" />
+      <updated>1597579679355</updated>
     </task>
-    <task id="LOCAL-00925" summary="change parameters:&#10;*spearman (now not squared)&#10;*scores 2 and 3 (now not sscore)&#10;*scores 2 and 3 (now not min-max rescaling)">
-      <created>1590071872599</created>
-      <option name="number" value="00925" />
-      <option name="presentableId" value="LOCAL-00925" />
-      <option name="project" value="LOCAL" />
-      <updated>1590071872599</updated>
+    <task id="LOCAL‎00978" summary="edit interactive_phyml execution line">
+      <created>1597579879183</created>
+      <option name="number" value="LOCAL‎00978" />
+      <option name="presentableId" value="LOCAL‎00978" />
+      <updated>1597579879183</updated>
     </task>
-    <task id="LOCAL-00926">
-      <created>1590072231334</created>
-      <option name="number" value="00926" />
-      <option name="presentableId" value="LOCAL-00926" />
-      <option name="project" value="LOCAL" />
-      <updated>1590072231334</updated>
+    <task id="LOCAL‎00979" summary="edit interactive_phyml execution line">
+      <created>1597580012425</created>
+      <option name="number" value="LOCAL‎00979" />
+      <option name="presentableId" value="LOCAL‎00979" />
+      <updated>1597580012425</updated>
     </task>
-    <task id="LOCAL-00927">
-      <created>1590072972041</created>
-      <option name="number" value="00927" />
-      <option name="presentableId" value="LOCAL-00927" />
-      <option name="project" value="LOCAL" />
-      <updated>1590072972041</updated>
+    <task id="LOCAL‎00980" summary="edit interactive_phyml execution line">
+      <created>1597580186336</created>
+      <option name="number" value="LOCAL‎00980" />
+      <option name="presentableId" value="LOCAL‎00980" />
+      <updated>1597580186336</updated>
     </task>
-    <task id="LOCAL-00928">
-      <created>1590073327290</created>
-      <option name="number" value="00928" />
-      <option name="presentableId" value="LOCAL-00928" />
-      <option name="project" value="LOCAL" />
-      <updated>1590073327290</updated>
+    <task id="LOCAL‎00981" summary="run SPR with updated optimization rules for ll calculation">
+      <created>1597584592490</created>
+      <option name="number" value="LOCAL‎00981" />
+      <option name="presentableId" value="LOCAL‎00981" />
+      <updated>1597584592491</updated>
     </task>
-    <task id="LOCAL-00929">
-      <created>1590073609842</created>
-      <option name="number" value="00929" />
-      <option name="presentableId" value="LOCAL-00929" />
-      <option name="project" value="LOCAL" />
-      <updated>1590073609842</updated>
+    <task id="LOCAL‎00982" summary="run SPR with updated optimization rules for ll calculation">
+      <created>1597584766999</created>
+      <option name="number" value="LOCAL‎00982" />
+      <option name="presentableId" value="LOCAL‎00982" />
+      <updated>1597584766999</updated>
     </task>
-    <task id="LOCAL-00930">
-      <created>1590074192962</created>
-      <option name="number" value="00930" />
-      <option name="presentableId" value="LOCAL-00930" />
-      <option name="project" value="LOCAL" />
-      <updated>1590074192962</updated>
+    <task id="LOCAL‎00983" summary="debug SPRs parsing + feature extraction (orig_version)">
+      <created>1597585663714</created>
+      <option name="number" value="LOCAL‎00983" />
+      <option name="presentableId" value="LOCAL‎00983" />
+      <updated>1597585663714</updated>
     </task>
-    <task id="LOCAL-00931">
-      <created>1590074724147</created>
-      <option name="number" value="00931" />
-      <option name="presentableId" value="LOCAL-00931" />
-      <option name="project" value="LOCAL" />
-      <updated>1590074724147</updated>
+    <task id="LOCAL‎00984" summary="debug SPRs parsing + feature extraction (orig_version)">
+      <created>1597586300829</created>
+      <option name="number" value="LOCAL‎00984" />
+      <option name="presentableId" value="LOCAL‎00984" />
+      <updated>1597586300830</updated>
     </task>
-    <task id="LOCAL-00932" summary="temp-&#10;test reg learner on random starting data">
-      <created>1590075852661</created>
-      <option name="number" value="00932" />
-      <option name="presentableId" value="LOCAL-00932" />
-      <option name="project" value="LOCAL" />
-      <updated>1590075852661</updated>
+    <task id="LOCAL‎00985" summary="debug SPRs parsing + feature extraction (orig_version)">
+      <created>1597586681134</created>
+      <option name="number" value="LOCAL‎00985" />
+      <option name="presentableId" value="LOCAL‎00985" />
+      <updated>1597586681134</updated>
     </task>
-    <task id="LOCAL-00933">
-      <created>1590078315515</created>
-      <option name="number" value="00933" />
-      <option name="presentableId" value="LOCAL-00933" />
-      <option name="project" value="LOCAL" />
-      <updated>1590078315516</updated>
+    <task id="LOCAL‎00986" summary="run SPRs + parsing anf features extraction">
+      <created>1597586825224</created>
+      <option name="number" value="LOCAL‎00986" />
+      <option name="presentableId" value="LOCAL‎00986" />
+      <updated>1597586825224</updated>
     </task>
-    <task id="LOCAL-00934" summary="trans exp: exp(x+1)">
-      <created>1590079926290</created>
-      <option name="number" value="00934" />
-      <option name="presentableId" value="LOCAL-00934" />
-      <option name="project" value="LOCAL" />
-      <updated>1590079926290</updated>
+    <task id="LOCAL‎00987" summary="run SPRs + parsing anf features extraction">
+      <created>1597586981100</created>
+      <option name="number" value="LOCAL‎00987" />
+      <option name="presentableId" value="LOCAL‎00987" />
+      <updated>1597586981100</updated>
     </task>
-    <task id="LOCAL-00935">
-      <created>1590157326187</created>
-      <option name="number" value="00935" />
-      <option name="presentableId" value="LOCAL-00935" />
-      <option name="project" value="LOCAL" />
-      <updated>1590157326187</updated>
+    <task id="LOCAL‎00988" summary="q">
+      <created>1597587352475</created>
+      <option name="number" value="LOCAL‎00988" />
+      <option name="presentableId" value="LOCAL‎00988" />
+      <updated>1597587352475</updated>
     </task>
-    <task id="LOCAL-00936">
-      <created>1590157505224</created>
-      <option name="number" value="00936" />
-      <option name="presentableId" value="LOCAL-00936" />
-      <option name="project" value="LOCAL" />
-      <updated>1590157505224</updated>
+    <task id="LOCAL‎00989" summary="q">
+      <created>1597590163578</created>
+      <option name="number" value="LOCAL‎00989" />
+      <option name="presentableId" value="LOCAL‎00989" />
+      <updated>1597590163578</updated>
     </task>
-    <task id="LOCAL-00937" summary="temp excluding 2 features">
-      <created>1590157594201</created>
-      <option name="number" value="00937" />
-      <option name="presentableId" value="LOCAL-00937" />
-      <option name="project" value="LOCAL" />
-      <updated>1590157594201</updated>
+    <task id="LOCAL‎00990" summary="q">
+      <created>1597590242919</created>
+      <option name="number" value="LOCAL‎00990" />
+      <option name="presentableId" value="LOCAL‎00990" />
+      <updated>1597590242919</updated>
     </task>
-    <task id="LOCAL-00938">
-      <created>1590157776668</created>
-      <option name="number" value="00938" />
-      <option name="presentableId" value="LOCAL-00938" />
-      <option name="project" value="LOCAL" />
-      <updated>1590157776669</updated>
+    <task id="LOCAL‎00991" summary="q">
+      <created>1597590719771</created>
+      <option name="number" value="LOCAL‎00991" />
+      <option name="presentableId" value="LOCAL‎00991" />
+      <updated>1597590719771</updated>
     </task>
-    <task id="LOCAL-00939">
-      <created>1590157937715</created>
-      <option name="number" value="00939" />
-      <option name="presentableId" value="LOCAL-00939" />
-      <option name="project" value="LOCAL" />
-      <updated>1590157937715</updated>
+    <task id="LOCAL‎00992" summary="q">
+      <created>1597642104849</created>
+      <option name="number" value="LOCAL‎00992" />
+      <option name="presentableId" value="LOCAL‎00992" />
+      <updated>1597642104849</updated>
     </task>
-    <task id="LOCAL-00940" summary="temp">
-      <created>1590158222364</created>
-      <option name="number" value="00940" />
-      <option name="presentableId" value="LOCAL-00940" />
-      <option name="project" value="LOCAL" />
-      <updated>1590158222364</updated>
+    <task id="LOCAL‎00993" summary="q">
+      <created>1597642494817</created>
+      <option name="number" value="LOCAL‎00993" />
+      <option name="presentableId" value="LOCAL‎00993" />
+      <updated>1597642494817</updated>
     </task>
-    <task id="LOCAL-00941">
-      <created>1590158326001</created>
-      <option name="number" value="00941" />
-      <option name="presentableId" value="LOCAL-00941" />
-      <option name="project" value="LOCAL" />
-      <updated>1590158326001</updated>
+    <task id="LOCAL‎00994" summary="clean">
+      <created>1597643876080</created>
+      <option name="number" value="LOCAL‎00994" />
+      <option name="presentableId" value="LOCAL‎00994" />
+      <updated>1597643876080</updated>
     </task>
-    <task id="LOCAL-00942">
-      <created>1590158929168</created>
-      <option name="number" value="00942" />
-      <option name="presentableId" value="LOCAL-00942" />
-      <option name="project" value="LOCAL" />
-      <updated>1590158929168</updated>
+    <task id="LOCAL‎00995" summary="q">
+      <created>1597729993024</created>
+      <option name="number" value="LOCAL‎00995" />
+      <option name="presentableId" value="LOCAL‎00995" />
+      <updated>1597729993024</updated>
     </task>
-    <task id="LOCAL-00943">
-      <created>1590159016651</created>
-      <option name="number" value="00943" />
-      <option name="presentableId" value="LOCAL-00943" />
-      <option name="project" value="LOCAL" />
-      <updated>1590159016652</updated>
+    <task id="LOCAL‎00996" summary="q">
+      <created>1597730102545</created>
+      <option name="number" value="LOCAL‎00996" />
+      <option name="presentableId" value="LOCAL‎00996" />
+      <updated>1597730102545</updated>
     </task>
-    <task id="LOCAL-00944" summary="temp">
-      <created>1590179347500</created>
-      <option name="number" value="00944" />
-      <option name="presentableId" value="LOCAL-00944" />
-      <option name="project" value="LOCAL" />
-      <updated>1590179347500</updated>
+    <task id="LOCAL‎00997" summary="q">
+      <created>1597730255605</created>
+      <option name="number" value="LOCAL‎00997" />
+      <option name="presentableId" value="LOCAL‎00997" />
+      <updated>1597730255605</updated>
     </task>
-    <task id="LOCAL-00945" summary="temp">
-      <created>1590179468527</created>
-      <option name="number" value="00945" />
-      <option name="presentableId" value="LOCAL-00945" />
-      <option name="project" value="LOCAL" />
-      <updated>1590179468527</updated>
+    <task id="LOCAL‎00998" summary="q">
+      <created>1597742288630</created>
+      <option name="number" value="LOCAL‎00998" />
+      <option name="presentableId" value="LOCAL‎00998" />
+      <updated>1597742288630</updated>
     </task>
-    <task id="LOCAL-00946" summary="temp">
-      <created>1590180496312</created>
-      <option name="number" value="00946" />
-      <option name="presentableId" value="LOCAL-00946" />
-      <option name="project" value="LOCAL" />
-      <updated>1590180496312</updated>
+    <task id="LOCAL‎00999" summary="q">
+      <created>1597834309616</created>
+      <option name="number" value="LOCAL‎00999" />
+      <option name="presentableId" value="LOCAL‎00999" />
+      <updated>1597834309616</updated>
     </task>
-    <task id="LOCAL-00947">
-      <created>1590180617697</created>
-      <option name="number" value="00947" />
-      <option name="presentableId" value="LOCAL-00947" />
-      <option name="project" value="LOCAL" />
-      <updated>1590180617697</updated>
+    <task id="LOCAL‎01000" summary="18f">
+      <created>1599667111227</created>
+      <option name="number" value="LOCAL‎01000" />
+      <option name="presentableId" value="LOCAL‎01000" />
+      <updated>1599667111228</updated>
     </task>
-    <task id="LOCAL-00948" summary="temp save subset df">
-      <created>1590256165928</created>
-      <option name="number" value="00948" />
-      <option name="presentableId" value="LOCAL-00948" />
-      <option name="project" value="LOCAL" />
-      <updated>1590256165929</updated>
+    <task id="LOCAL‎01001" summary="20f">
+      <created>1599667284912</created>
+      <option name="number" value="LOCAL‎01001" />
+      <option name="presentableId" value="LOCAL‎01001" />
+      <updated>1599667284912</updated>
     </task>
-    <task id="LOCAL-00949">
-      <created>1590323931737</created>
-      <option name="number" value="00949" />
-      <option name="presentableId" value="LOCAL-00949" />
-      <option name="project" value="LOCAL" />
-      <updated>1590323931737</updated>
+    <task id="LOCAL‎01002" summary="execute &amp; parse RAxML with fixed params">
+      <created>1600272127334</created>
+      <option name="number" value="LOCAL‎01002" />
+      <option name="presentableId" value="LOCAL‎01002" />
+      <updated>1600272127335</updated>
     </task>
-    <task id="LOCAL‎00950" summary="1st commit after submission (moving from svn to git)">
-      <created>1596711516372</created>
-      <option name="number" value="LOCAL‎00950" />
-      <option name="presentableId" value="LOCAL‎00950" />
-      <updated>1596711516373</updated>
+    <task id="LOCAL‎01003" summary="execute &amp; parse RAxML with fixed params">
+      <created>1600279822330</created>
+      <option name="number" value="LOCAL‎01003" />
+      <option name="presentableId" value="LOCAL‎01003" />
+      <updated>1600279822330</updated>
     </task>
-    <task id="LOCAL‎00951" summary="1st commit after submission (moving from svn to git)">
-      <created>1596712051415</created>
-      <option name="number" value="LOCAL‎00951" />
-      <option name="presentableId" value="LOCAL‎00951" />
-      <updated>1596712051415</updated>
+    <task id="LOCAL‎01004" summary="debugging - raxml parsimony starting">
+      <created>1600618114981</created>
+      <option name="number" value="LOCAL‎01004" />
+      <option name="presentableId" value="LOCAL‎01004" />
+      <updated>1600618114981</updated>
     </task>
-    <task id="LOCAL‎00952" summary="    1st commit after submission (moving from svn to git)">
-      <created>1597214550072</created>
-      <option name="number" value="LOCAL‎00952" />
-      <option name="presentableId" value="LOCAL‎00952" />
-      <updated>1597214550073</updated>
+    <task id="LOCAL‎01005" summary="preparing dir for v3 (raxml-NG starting parsimony trees + raxml-NG optimization)">
+      <created>1600696756115</created>
+      <option name="number" value="LOCAL‎01005" />
+      <option name="presentableId" value="LOCAL‎01005" />
+      <updated>1600696756115</updated>
     </task>
-    <task id="LOCAL‎00953" summary="organizing dirs before reruning all pipeline (with different optimizations)">
-      <created>1597214933725</created>
-      <option name="number" value="LOCAL‎00953" />
-      <option name="presentableId" value="LOCAL‎00953" />
-      <updated>1597214933725</updated>
+    <task id="LOCAL‎01006" summary="preparing dir for v3 (raxml-NG starting parsimony trees + raxml-NG optimization)">
+      <created>1600697072050</created>
+      <option name="number" value="LOCAL‎01006" />
+      <option name="presentableId" value="LOCAL‎01006" />
+      <updated>1600697072050</updated>
     </task>
-    <task id="LOCAL‎00954" summary="organizing dirs before reruning all pipeline (with different optimizations)">
-      <created>1597215299573</created>
-      <option name="number" value="LOCAL‎00954" />
-      <option name="presentableId" value="LOCAL‎00954" />
-      <updated>1597215299573</updated>
+    <task id="LOCAL‎01007" summary="generate starting trees for v3 (raxml-NG starting parsimony trees + raxml-NG optimization)">
+      <created>1600709193181</created>
+      <option name="number" value="LOCAL‎01007" />
+      <option name="presentableId" value="LOCAL‎01007" />
+      <updated>1600709193181</updated>
     </task>
-    <task id="LOCAL‎00955" summary="organizing dirs before reruning all pipeline (with different optimizations)">
-      <created>1597215354756</created>
-      <option name="number" value="LOCAL‎00955" />
-      <option name="presentableId" value="LOCAL‎00955" />
-      <updated>1597215354756</updated>
+    <task id="LOCAL‎01008" summary="debugging - generate starting trees for v3 (raxml-NG starting parsimony trees + raxml-NG optimization)">
+      <created>1600709654062</created>
+      <option name="number" value="LOCAL‎01008" />
+      <option name="presentableId" value="LOCAL‎01008" />
+      <updated>1600709654062</updated>
     </task>
-    <task id="LOCAL‎00956" summary="change bionj optimization default to optimize both the bl AND the subs rate params">
-      <created>1597216133572</created>
-      <option name="number" value="LOCAL‎00956" />
-      <option name="presentableId" value="LOCAL‎00956" />
-      <updated>1597216133572</updated>
+    <task id="LOCAL‎01009" summary="debugging - generate starting trees for v3 (raxml-NG starting parsimony trees + raxml-NG optimization)">
+      <created>1600709915017</created>
+      <option name="number" value="LOCAL‎01009" />
+      <option name="presentableId" value="LOCAL‎01009" />
+      <updated>1600709915017</updated>
     </task>
-    <task id="LOCAL‎00957" summary="enable fixed model parameters">
-      <created>1597222276167</created>
-      <option name="number" value="LOCAL‎00957" />
-      <option name="presentableId" value="LOCAL‎00957" />
-      <updated>1597222276168</updated>
+    <task id="LOCAL‎01010" summary="debugging - set # threads to 1">
+      <created>1600710256220</created>
+      <option name="number" value="LOCAL‎01010" />
+      <option name="presentableId" value="LOCAL‎01010" />
+      <updated>1600710256221</updated>
     </task>
-    <task id="LOCAL‎00958" summary="enable fixed model parameters">
-      <created>1597222763459</created>
-      <option name="number" value="LOCAL‎00958" />
-      <option name="presentableId" value="LOCAL‎00958" />
-      <updated>1597222763459</updated>
+    <task id="LOCAL‎01011" summary="debugging">
+      <created>1600710523277</created>
+      <option name="number" value="LOCAL‎01011" />
+      <option name="presentableId" value="LOCAL‎01011" />
+      <updated>1600710523277</updated>
     </task>
-    <task id="LOCAL‎00959" summary="debug with new neihbors optimization">
-      <created>1597223126154</created>
-      <option name="number" value="LOCAL‎00959" />
-      <option name="presentableId" value="LOCAL‎00959" />
-      <updated>1597223126155</updated>
+    <task id="LOCAL‎01012" summary="debugging">
+      <created>1600710839982</created>
+      <option name="number" value="LOCAL‎01012" />
+      <option name="presentableId" value="LOCAL‎01012" />
+      <updated>1600710839982</updated>
     </task>
-    <option name="localTasksCounter" value="960" />
+    <option name="localTasksCounter" value="1013" />
     <servers />
   </component>
   <component name="TodoView">
@@ -713,6 +759,9 @@
       <are-packages-shown value="true" />
       <is-autoscroll-to-source value="true" />
     </todo-panel>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="UnknownFeatures">
     <option featureType="com.intellij.fileTypeFactory" implementationName="*.csv" />
@@ -730,21 +779,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fixed small bug" />
-    <MESSAGE value="trying analyze subset of 2000&#10;due to&#10;MemoryError" />
-    <MESSAGE value="run new DB on [:2000]&#10;and save csv with preds" />
-    <MESSAGE value="add the new confidence measurement:&#10;&quot;evaluations_required&quot;" />
-    <MESSAGE value="test - filtering bad datasets" />
-    <MESSAGE value="dtype&#10;+" />
-    <MESSAGE value="dtype&#10;+ MALE" />
-    <MESSAGE value="covid-19" />
-    <MESSAGE value="correct rnadom strating mode" />
-    <MESSAGE value="temp - how many data points from 3700 datasets?" />
-    <MESSAGE value="ass attributes to scores csv" />
-    <MESSAGE value="add attributes to scores csv" />
-    <MESSAGE value="change parameters:&#10;*spearman (now not squared)&#10;*scores 2 and 3 (now not sscore)&#10;*scores 2 and 3 (now not min-max rescaling)" />
-    <MESSAGE value="temp-&#10;test reg learner on random starting data" />
-    <MESSAGE value="trans exp: exp(x+1)" />
     <MESSAGE value="temp excluding 2 features" />
     <MESSAGE value="temp" />
     <MESSAGE value="temp save subset df" />
@@ -755,13 +789,33 @@
     <MESSAGE value="change bionj optimization default to optimize both the bl AND the subs rate params" />
     <MESSAGE value="enable fixed model parameters" />
     <MESSAGE value="debug with new neihbors optimization" />
-    <option name="LAST_COMMIT_MESSAGE" value="debug with new neihbors optimization" />
+    <MESSAGE value="edit interactive_phyml execution line" />
+    <MESSAGE value="run SPR with updated optimization rules for ll calculation" />
+    <MESSAGE value="debug SPRs parsing + feature extraction (orig_version)" />
+    <MESSAGE value="run SPRs + parsing anf features extraction" />
+    <MESSAGE value="clean" />
+    <MESSAGE value="q" />
+    <MESSAGE value="18f" />
+    <MESSAGE value="20f" />
+    <MESSAGE value="execute &amp; parse RAxML with fixed params" />
+    <MESSAGE value="debugging - raxml parsimony starting" />
+    <MESSAGE value="preparing dir for v3 (raxml-NG starting parsimony trees + raxml-NG optimization)" />
+    <MESSAGE value="generate starting trees for v3 (raxml-NG starting parsimony trees + raxml-NG optimization)" />
+    <MESSAGE value="debugging - generate starting trees for v3 (raxml-NG starting parsimony trees + raxml-NG optimization)" />
+    <MESSAGE value="debugging - set # threads to 1" />
+    <MESSAGE value="debugging" />
+    <option name="LAST_COMMIT_MESSAGE" value="debugging" />
   </component>
   <component name="WindowStateProjectService">
     <state x="2570" y="233" key="#Menus_and_Toolbars" timestamp="1596705437758">
       <screen x="1920" y="0" width="1680" height="1010" />
     </state>
     <state x="2570" y="233" key="#Menus_and_Toolbars/0.0.1280.680/1920.0.1680.1010@1920.0.1680.1010" timestamp="1596705437758" />
+    <state x="317" y="144" width="1092" height="527" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1600716508803">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="2098" y="374" width="1092" height="527" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.680/1920.0.1680.1010@1920.0.1680.1010" timestamp="1600715440225" />
+    <state x="317" y="144" width="838" height="526" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.680@0.0.1280.680" timestamp="1600716508803" />
     <state x="2297" y="2" width="688" height="661" key="CommitChangelistDialog2" timestamp="1596711385765">
       <screen x="1920" y="0" width="1680" height="1010" />
     </state>
@@ -773,52 +827,94 @@
     </state>
     <state x="2383" y="265" key="FileChooserDialogImpl/0.0.1280.680/1920.0.1680.1010@1920.0.1680.1010" timestamp="1596705485476" />
     <state x="2659" y="328" key="FileChooserDialogImpl/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1596440993685" />
-    <state width="1659" height="316" key="GridCell.Tab.0.bottom" timestamp="1596724232119">
+    <state width="1237" height="167" key="GridCell.Tab.0.bottom" timestamp="1600718113633">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1259" height="126" key="GridCell.Tab.0.bottom/0.0.1280.680/1920.0.1680.1010@0.0.1280.680" timestamp="1598765171680" />
+    <state width="1637" height="162" key="GridCell.Tab.0.bottom/0.0.1280.680/1920.0.1680.1010@1920.0.1680.1010" timestamp="1600715503468" />
+    <state width="1237" height="143" key="GridCell.Tab.0.bottom/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1599666538450" />
+    <state width="1899" height="150" key="GridCell.Tab.0.bottom/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1597830897581" />
+    <state width="1237" height="167" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1600718113633" />
+    <state width="1237" height="167" key="GridCell.Tab.0.center" timestamp="1600718113633">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1259" height="126" key="GridCell.Tab.0.center/0.0.1280.680/1920.0.1680.1010@0.0.1280.680" timestamp="1598765171680" />
+    <state width="1637" height="162" key="GridCell.Tab.0.center/0.0.1280.680/1920.0.1680.1010@1920.0.1680.1010" timestamp="1600715503468" />
+    <state width="1237" height="143" key="GridCell.Tab.0.center/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1599666538449" />
+    <state width="1899" height="150" key="GridCell.Tab.0.center/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1597830897581" />
+    <state width="1237" height="167" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1600718113633" />
+    <state width="1237" height="167" key="GridCell.Tab.0.left" timestamp="1600718113633">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1259" height="126" key="GridCell.Tab.0.left/0.0.1280.680/1920.0.1680.1010@0.0.1280.680" timestamp="1598765171680" />
+    <state width="1637" height="162" key="GridCell.Tab.0.left/0.0.1280.680/1920.0.1680.1010@1920.0.1680.1010" timestamp="1600715503468" />
+    <state width="1237" height="143" key="GridCell.Tab.0.left/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1599666538449" />
+    <state width="1899" height="150" key="GridCell.Tab.0.left/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1597830897581" />
+    <state width="1237" height="167" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1600718113633" />
+    <state width="1237" height="167" key="GridCell.Tab.0.right" timestamp="1600718113633">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1259" height="126" key="GridCell.Tab.0.right/0.0.1280.680/1920.0.1680.1010@0.0.1280.680" timestamp="1598765171680" />
+    <state width="1637" height="162" key="GridCell.Tab.0.right/0.0.1280.680/1920.0.1680.1010@1920.0.1680.1010" timestamp="1600715503468" />
+    <state width="1237" height="143" key="GridCell.Tab.0.right/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1599666538450" />
+    <state width="1899" height="150" key="GridCell.Tab.0.right/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1597830897581" />
+    <state width="1237" height="167" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1600718113633" />
+    <state width="1659" height="246" key="GridCell.Tab.1.bottom" timestamp="1597834687463">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1659" height="246" key="GridCell.Tab.1.bottom/0.0.1280.680/1920.0.1680.1010@1920.0.1680.1010" timestamp="1597762290082" />
+    <state width="1659" height="246" key="GridCell.Tab.1.bottom/0.0.1280.680@0.0.1280.680" timestamp="1597834687463" />
+    <state width="1659" height="246" key="GridCell.Tab.1.center" timestamp="1597834687463">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1659" height="246" key="GridCell.Tab.1.center/0.0.1280.680/1920.0.1680.1010@1920.0.1680.1010" timestamp="1597762290082" />
+    <state width="1659" height="246" key="GridCell.Tab.1.center/0.0.1280.680@0.0.1280.680" timestamp="1597834687463" />
+    <state width="1659" height="246" key="GridCell.Tab.1.left" timestamp="1597834687463">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1659" height="246" key="GridCell.Tab.1.left/0.0.1280.680/1920.0.1680.1010@1920.0.1680.1010" timestamp="1597762290082" />
+    <state width="1659" height="246" key="GridCell.Tab.1.left/0.0.1280.680@0.0.1280.680" timestamp="1597834687463" />
+    <state width="1659" height="246" key="GridCell.Tab.1.right" timestamp="1597834687463">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state width="1659" height="246" key="GridCell.Tab.1.right/0.0.1280.680/1920.0.1680.1010@1920.0.1680.1010" timestamp="1597762290082" />
+    <state width="1659" height="246" key="GridCell.Tab.1.right/0.0.1280.680@0.0.1280.680" timestamp="1597834687463" />
+    <state x="2323" y="159" key="SettingsEditor" timestamp="1599391254553">
       <screen x="1920" y="0" width="1680" height="1010" />
     </state>
-    <state width="1659" height="316" key="GridCell.Tab.0.bottom/0.0.1280.680/1920.0.1680.1010@1920.0.1680.1010" timestamp="1596724232119" />
-    <state width="1750" height="123" key="GridCell.Tab.0.bottom/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1596458408738" />
-    <state width="1109" height="158" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1596642310299" />
-    <state width="1659" height="316" key="GridCell.Tab.0.center" timestamp="1596724232119">
-      <screen x="1920" y="0" width="1680" height="1010" />
-    </state>
-    <state width="1659" height="316" key="GridCell.Tab.0.center/0.0.1280.680/1920.0.1680.1010@1920.0.1680.1010" timestamp="1596724232119" />
-    <state width="1750" height="123" key="GridCell.Tab.0.center/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1596458408737" />
-    <state width="1109" height="158" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1596642310299" />
-    <state width="1659" height="316" key="GridCell.Tab.0.left" timestamp="1596724232119">
-      <screen x="1920" y="0" width="1680" height="1010" />
-    </state>
-    <state width="1659" height="316" key="GridCell.Tab.0.left/0.0.1280.680/1920.0.1680.1010@1920.0.1680.1010" timestamp="1596724232119" />
-    <state width="1750" height="123" key="GridCell.Tab.0.left/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1596458408737" />
-    <state width="1109" height="158" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1596642310299" />
-    <state width="1659" height="316" key="GridCell.Tab.0.right" timestamp="1596724232119">
-      <screen x="1920" y="0" width="1680" height="1010" />
-    </state>
-    <state width="1659" height="316" key="GridCell.Tab.0.right/0.0.1280.680/1920.0.1680.1010@1920.0.1680.1010" timestamp="1596724232119" />
-    <state width="1750" height="123" key="GridCell.Tab.0.right/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1596458408737" />
-    <state width="1109" height="158" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1596642310299" />
-    <state x="2323" y="159" key="SettingsEditor" timestamp="1596712860145">
-      <screen x="1920" y="0" width="1680" height="1010" />
-    </state>
-    <state x="2323" y="159" key="SettingsEditor/0.0.1280.680/1920.0.1680.1010@1920.0.1680.1010" timestamp="1596712860145" />
+    <state x="204" y="0" key="SettingsEditor/0.0.1280.680/1920.0.1680.1010@0.0.1280.680" timestamp="1597334274305" />
+    <state x="2323" y="159" key="SettingsEditor/0.0.1280.680/1920.0.1680.1010@1920.0.1680.1010" timestamp="1599391254553" />
     <state x="2381" y="164" key="SettingsEditor/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1596616610627" />
-    <state x="2414" y="252" key="Vcs.Push.Dialog.v2" timestamp="1597223128110">
-      <screen x="1920" y="0" width="1920" height="1040" />
-    </state>
-    <state x="2352" y="245" key="Vcs.Push.Dialog.v2/0.0.1280.680/1920.0.1680.1010@1920.0.1680.1010" timestamp="1596712053238" />
-    <state x="2414" y="252" key="Vcs.Push.Dialog.v2/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1597223128110" />
-    <state x="2012" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1596442525460">
-      <screen x="1920" y="0" width="1920" height="1040" />
-    </state>
-    <state x="2012" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1596442525460" />
-    <state x="2697" y="360" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1597215281030">
-      <screen x="1920" y="0" width="1920" height="1040" />
-    </state>
-    <state x="2697" y="360" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1597215281030" />
-    <state x="2423" y="221" width="672" height="678" key="search.everywhere.popup" timestamp="1596714418370">
+    <state x="204" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1597247947730" />
+    <state x="2352" y="245" key="Vcs.Push.Dialog.v2" timestamp="1600710841337">
       <screen x="1920" y="0" width="1680" height="1010" />
     </state>
-    <state x="2423" y="221" width="672" height="678" key="search.everywhere.popup/0.0.1280.680/1920.0.1680.1010@1920.0.1680.1010" timestamp="1596714418370" />
+    <state x="2352" y="245" key="Vcs.Push.Dialog.v2/0.0.1280.680/1920.0.1680.1010@1920.0.1680.1010" timestamp="1600710841337" />
+    <state x="329" y="146" key="Vcs.Push.Dialog.v2/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1599667287383" />
+    <state x="2414" y="252" key="Vcs.Push.Dialog.v2/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1597229243174" />
+    <state x="329" y="146" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1597834311265" />
+    <state x="-7" y="0" width="1288" height="687" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1600718149384">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="-7" y="0" width="1288" height="687" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1280.680/1920.0.1680.1010@0.0.1280.680" timestamp="1599463260416" />
+    <state x="2001" y="89" width="1519" height="832" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1280.680/1920.0.1680.1010@1920.0.1680.1010" timestamp="1600714922456" />
+    <state x="-7" y="0" width="1288" height="687" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1599667020638" />
+    <state x="2012" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1596442525460" />
+    <state x="-7" y="0" width="1288" height="687" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1280.680@0.0.1280.680" timestamp="1600718149384" />
+    <state x="2600" y="350" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1600676497257">
+      <screen x="1920" y="0" width="1680" height="1010" />
+    </state>
+    <state x="2600" y="350" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.680/1920.0.1680.1010@1920.0.1680.1010" timestamp="1600676497257" />
+    <state x="2697" y="360" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1597215281030" />
+    <state x="184" y="0" width="1110" height="503" key="dock-window-1" timestamp="1600239292202">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="1920" y="0" width="1405" height="970" key="dock-window-1/0.0.1280.680/1920.0.1680.1010@1920.0.1680.1010" timestamp="1597658284185" />
+    <state x="184" y="0" width="1110" height="503" key="dock-window-1/0.0.1280.680@0.0.1280.680" timestamp="1600239292202" />
+    <state x="2423" y="221" width="672" height="678" key="search.everywhere.popup" timestamp="1600689619932">
+      <screen x="1920" y="0" width="1680" height="1010" />
+    </state>
+    <state x="2423" y="221" width="672" height="678" key="search.everywhere.popup/0.0.1280.680/1920.0.1680.1010@1920.0.1680.1010" timestamp="1600689619932" />
     <state x="2624" y="364" key="svn.passwordDialog" timestamp="1596616680533">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
@@ -845,6 +941,21 @@
         <watch expression="t &amp; &quot;N8&quot;" language="Python" />
       </configuration>
     </watches-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/code$parse_raxmlNG__1_.coverage" NAME="parse_raxmlNG Coverage Results" MODIFIED="1600278107052" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/parsing" />
+    <SUITE FILE_PATH="coverage/code$trying.coverage" NAME="trying Coverage Results" MODIFIED="1600166338346" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/code$create_starting_trees.coverage" NAME="create_starting_trees Coverage Results" MODIFIED="1600708737422" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data_processing" />
+    <SUITE FILE_PATH="coverage/code$RAxML_NG.coverage" NAME="RAxML_NG Coverage Results" MODIFIED="1600676518789" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/execute_programs" />
+    <SUITE FILE_PATH="coverage/code$get_ds.coverage" NAME="get_ds Coverage Results" MODIFIED="1600705717683" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data_processing" />
+    <SUITE FILE_PATH="coverage/code$RAxML_NG2.coverage" NAME="RAxML_NG2 Coverage Results" MODIFIED="1600695406164" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/execute_programs" />
+    <SUITE FILE_PATH="coverage/code$run_times.coverage" NAME="run_times Coverage Results" MODIFIED="1598766767215" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/summary" />
+    <SUITE FILE_PATH="coverage/code$SPR_move.coverage" NAME="SPR_move Coverage Results" MODIFIED="1600717962609" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/execute_programs" />
+    <SUITE FILE_PATH="coverage/code$whore.coverage" NAME="whore Coverage Results" MODIFIED="1600704317743" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data_processing" />
+    <SUITE FILE_PATH="coverage/code$Phyml.coverage" NAME="Phyml Coverage Results" MODIFIED="1600262723563" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/execute_programs" />
+    <SUITE FILE_PATH="coverage/code$parse_raxml_NG.coverage" NAME="parse_raxml_NG Coverage Results" MODIFIED="1600344725106" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/parsing" />
+    <SUITE FILE_PATH="coverage/code$parse_raxml_ng.coverage" NAME="parse_raxmlNG Coverage Results" MODIFIED="1600272038375" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/parsing" />
+    <SUITE FILE_PATH="coverage/code$RAxML_NG__1_.coverage" NAME="RAxML_NG (1) Coverage Results" MODIFIED="1600344774120" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/execute_programs" />
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="watch">

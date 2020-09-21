@@ -10,7 +10,7 @@ from Bio.Phylo.TreeConstruction import *
 from Bio.SeqRecord import SeqRecord
 from io import StringIO
 from collections import OrderedDict
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 
 PHYLIP_FORMAT = "phylip-relaxed"
 SUBTREE1 = "subtree1"
@@ -136,7 +136,9 @@ if __name__ == '__main__':
 	# felsenstein_log_likelihood(datapath + PHYML_TREE_FILENAME, datapath + MSA_PHYLIP_FILENAME, M, pai)
 	# try_calc_leaves_features(tree, datapath + MSA_PHYLIP_FILENAME)
 	#draw_tree(datapath)
-	
+	dirpath = os.getcwd()
+	import raxml
+
 	'''
 	t_last_minus1_str = "(Sp0005:0.0299768,(Sp0011:0.60647,Sp0020:0.0851023)N2:0.0903137,((Sp0004:0.7,(((Sp0002:0.0219083,(Sp0017:0.0136272,(((Sp0018:0.00563617,Sp0013:0.0114737)N42:0.00224516,(Sp0006:0.00656193,(Sp0001:0.0013587,Sp0008:0.00528312)N51:0.00614451)N43:0.00574793)N34:0.00298905,(Sp0012:0.00523325,Sp0015:0.00616787)N35:0.00563218)N25:0.00346597)N17:0.00247621)N12:0.00719293,(Sp0014:0.0108875,Sp0023:0.0140792)N13:0.00740825)N10:0.0200846,(((Sp0010:0.00934953,(Sp0009:0.00929147,Sp0016:0.00579718)N27:0.00281884)N20:0.00963492,(Sp0003:1e-08,Sp0019:0.00115992)N21:0.0155618)N14:0.00272115,((Sp0024:0.00067441,(Sp0021:0.00132866,(Sp0007:0.00134969,Sp0027:0.0013507)N39:0.00067678)N31:0.00066422)N22:0.00683501,(Sp0000:0.00491566,(Sp0025:1e-08,Sp0026:5e-08)N33:0.00718346)N23:0.00147096)N15:0.0160162)N11:0.0151203)N9:0.702)N4:0.702,Sp0022:0.0468355)N3:6.099e-05);"
 	t_last_minus1 = Tree(t_last_minus1_str, format=1)
