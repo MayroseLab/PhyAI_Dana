@@ -59,10 +59,18 @@ DATA_WITH_PREDS = "with_preds_merged_{}.csv"
 SCORES_PER_DS = "scores_per_ds_{}.csv"
 
 
-############# PHYML
+############# PhyML
 PHYML_STATS_FILENAME = MSA_PHYLIP_FILENAME + "_phyml_stats_{0}.txt"
 PHYML_TREE_FILENAME = MSA_PHYLIP_FILENAME + "_phyml_tree_{0}.txt"
 MODEL_DEFAULT = "GTR+I+G"
+
+############# RAxML
+RAXML_STATS_SUF =  '.raxml.log'
+RAXML_TREE_SUF =  '.raxml.BestTree'
+RAXML_STARTTREE_SUF = '.raxml.startTree'
+RAXML_STATS_FILENAME = MSA_PHYLIP_FILENAME + RAXML_STATS_SUF
+RAXML_TREE_FILENAME = MSA_PHYLIP_FILENAME + RAXML_TREE_SUF
+RAXML_STARTTREE_FILENAME = MSA_PHYLIP_FILENAME + RAXML_STARTTREE_SUF
 
 
 ############# learning

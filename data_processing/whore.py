@@ -10,11 +10,14 @@ import warnings
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 
 SUMMARIES_PER_DS_LST = ["ds_summary_prune_br_step1.csv", "ds_summary_prune_br_step2.csv", "ds_summary_rgft_br_step1.csv", "ds_summary_rgft_br_step2.csv", "newicks_step1.csv", "newicks_step2.csv"]
-SUMMARIES_PER_DS_LST_TEMP = ["ds_summary_prune_br_step2.csv"] #, "ds_summary_rgft_br_step1.csv", "newicks_step1.csv"]
+#SUMMARIES_PER_DS_LST_TEMP = ["newicks_step1.csv"] #, "ds_summary_rgft_br_step1.csv", "newicks_step1.csv"]
+SUMMARIES_PER_DS_LST_TEMP = ["newicks_step1.csv", "ds_summary_prune_br_step1.csv", "ds_summary_rgft_br_step1.csv", "masked_species_real_msa.phy_phyml_stats_bionj.txt", "masked_species_real_msa.phy_phyml_tree_bionj.txt", "masked_species_real_msa.phy_phyml_tree_bionj_no_internal.txt"]
 
 
 def rearrange_dirs_for_rerun(datapath):
-	new_dir = datapath + "v1" #+ "run1/"
+	os.rename(datapath + "v1", datapath + "v2")
+	'''
+	new_dir = datapath + "v2" #+ "run1/"
 	if not os.path.exists(new_dir):
 		os.mkdir(new_dir)
 
@@ -22,8 +25,8 @@ def rearrange_dirs_for_rerun(datapath):
 	#	shutil.move(datapath + filename, new_dir)
 	os.system("mv " + datapath + "*.csv " + new_dir)
 	os.system("mv " + datapath + "*.txt " + new_dir)
-	os.system("mv " + datapath + RANDOM_TREE_DIRNAME + " " + new_dir)
-
+	#os.system("mv " + datapath + RANDOM_TREE_DIRNAME + " " + new_dir)
+	'''
 	return
 
 
@@ -45,7 +48,13 @@ def missing_results():
 	df = pd.read_csv(SUMMARY_FILES_DIR + CHOSEN_DATASETS_FILENAME)
 	for index, row in df.iterrows():
 		missing_paths_lst.extend(make_sure_all_exist(row["path"], []))
-
+		'''
+		path = row["path"]
+		old_path = path + "v1/"
+		for filename in SUMMARIES_PER_DS_LST_TEMP:
+			if not os.path.exists(path + filename):
+				shutil.move(old_path + filename, path)
+		#'''
 	with open(SUMMARY_FILES_DIR + "ds_to_rerun.txt", 'w') as fp:
 		fp.write("\n".join(missing_paths_lst))
 	return
@@ -66,11 +75,16 @@ def add_atts():
 
 def do_something(datapath):
 	#add_atts()
-	delete_err_dirpath(datapath)
+	#delete_err_dirpath(datapath)
 	rearrange_dirs_for_rerun(datapath)
 	#missing_results()
-	
 
+	'''
+	df = pd.read_csv(SUMMARY_FILES_DIR + LEARNING_DATA.format("all_moves", "1"))
+	df = df.rename(columns={"res_tree_tbl": "res_tree_tbl_rgft", "res_tree_edge_length": "res_tree_edge_length_rgft"})
+	print(df.columns)
+	df.to_csv(SUMMARY_FILES_DIR + LEARNING_DATA.format("all_moves_up", "1"))
+	'''
 
 
 
@@ -82,7 +96,7 @@ def create_job(dataset_path):
 
 
 if __name__ == '__main__':
-	parser = argparse.ArgumentParser(description='perform all SPR moves')
+	parser = argparse.ArgumentParser()
 	parser.add_argument('--dataset_path', '-ds', default=None)
 	parser.add_argument('--index_to_start_run', '-istart', default=False)
 	parser.add_argument('--nline_to_run', '-nlines', default=False)
