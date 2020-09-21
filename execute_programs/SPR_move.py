@@ -9,6 +9,9 @@ from utils.msa_functions import *
 from data_processing.traverse_data_dirs import traverse_data_dirs
 from summary.collect_SPR_features import *
 
+ML_SOFTWARE = 'RAxML_NG2'     # could be phyml | RAxML_NG2
+
+
 
 
 def prune_branch(t_orig, prune_name):
@@ -51,8 +54,6 @@ def regraft_branch(t_cp_p, rgft_node, prune_node_cp, rgft_name, nname):
 	return t_curr
 
 
-
-
 def add_internal_names(tree_file, tree_file_cp_no_internal, t_orig):
 	shutil.copy(tree_file, tree_file_cp_no_internal)
 	for i, node in enumerate(t_orig.traverse()):
@@ -61,15 +62,13 @@ def add_internal_names(tree_file, tree_file_cp_no_internal, t_orig):
 	t_orig.write(format=3, outfile=tree_file)   # runover the orig file with no internal nodes names
 
 
-
-
-
 def get_tree(ds_path, msa_file, rewrite_phylip):
+	#suf = "bionj" if not RANDOM_TREE_DIRNAME in ds_path else "br"
 	suf = "bionj" if not RANDOM_TREE_DIRNAME in ds_path else "br"
-	tree_file = ds_path + PHYML_TREE_FILENAME.format(suf)
+	tree_file = ds_path + PHYML_TREE_FILENAME.format(suf) if ML_SOFTWARE == 'phyml' else ds_path + RAXML_TREE_FILENAME    # if software=='RAxML_NG2'
 	if rewrite_phylip:
 		rewrite_in_phylip(msa_file)     # for one-time use on new ds
-	tree_file_cp_no_internal = ds_path + PHYML_TREE_FILENAME.format(suf + "_no_internal")
+	tree_file_cp_no_internal = ds_path + PHYML_TREE_FILENAME.format(suf + "_no_internal") if ML_SOFTWARE == 'phyml' else ds_path + RAXML_TREE_FILENAME + "_no_internal"
 	#print("\n################ tree file:" + tree_file + " ################\n")
 	if not os.path.exists(tree_file_cp_no_internal):
 		t_orig = PhyloTree(newick=tree_file, alignment=msa_file, alg_format="iphylip", format=1)
@@ -78,7 +77,6 @@ def get_tree(ds_path, msa_file, rewrite_phylip):
 		t_orig = PhyloTree(newick=tree_file, alignment=msa_file, alg_format="iphylip", format=3)
 
 	return t_orig
-
 
 
 def save_rearr_file(trees_dirpath, rearrtree, filename, runover=False):
@@ -91,19 +89,19 @@ def save_rearr_file(trees_dirpath, rearrtree, filename, runover=False):
 	return tree_path
 
 
-
-def call_phyml(tree_dirpath, file_name, msa_file, runover, job_priority, br_mode, cpmsa=False):
+def call_ml_software(tree_dirpath, file_name, msa_file, runover, job_priority, cpmsa=False, software=ML_SOFTWARE):
+	opt_mode = 'br' if software == 'phyml' else 'fixed_subs'  # if software=='RAxML_NG2'
 	tree_path = tree_dirpath + file_name + ".txt"
-	job_name = "phyml_" + "_".join([re.search("{}/*(.+?)/".format(DATA_PATH), tree_dirpath).group(1), tree_dirpath.split(SEP)[-3], file_name, br_mode])
-	cmd = "python " + CODE_PATH + "execute_programs/Phyml.py " + "-f " + msa_file \
-		  + " -br " + br_mode + " -t " + tree_path
+	job_name = "{}_".format(software) + "_".join([re.search("{}/*(.+?)/".format(DATA_PATH), tree_dirpath).group(1), tree_dirpath.split(SEP)[-3], file_name, opt_mode])
+
+	cmd = "python " + CODE_PATH + "execute_programs/{}.py ".format(software) + "-f " + msa_file \
+		  + " -br " + opt_mode + " -t " + tree_path
 	if runover:
 		cmd += " -r "
 	if cpmsa:
 		cmd += " -cp "
 
 	os.system(cmd)
-
 
 
 def remove_redundant_nodes(tree, ntaxa, node_name = None):
@@ -113,34 +111,6 @@ def remove_redundant_nodes(tree, ntaxa, node_name = None):
 	#	tree.search_nodes(name=node_name)[0].up.delete(preserve_branch_length=True)
 
 	return tree
-
-
-
-def call_phyml_ll(subtrees_dirpath, subtree1, subtree2, seqs_dict, runover=False, job_priority=-1):
-	'''
-	First truncate msa according to each subtree. Then call phyml with the respective tree+trunc_msa file
-	'''
-	for subtree_name in [SUBTREE1, SUBTREE2]:  									  #do same for both subtrees result from prunning
-		tree = subtree1 if subtree_name == SUBTREE1 else subtree2
-		subtree_dirpath = subtrees_dirpath.format(subtree_name)
-		if not os.path.exists(subtree_dirpath):
-			os.makedirs(subtree_dirpath)
-
-		trunc_msa_path = subtree_dirpath + MSA_SUBTREE_FILENAME
-		trunc_msa(tree, seqs_dict, trunc_msa_path)
-		ntaxa = get_msa_properties(trunc_msa_path)[0]
-		#if ntaxa > 2:
-		#	tree = remove_redundant_nodes(tree, ntaxa)
-		treepath = save_rearr_file(subtree_dirpath, tree, filename=subtree_name, runover=runover)  # will print it out WITHOUT the root NAME !
-		print("################################")
-		print(treepath)
-		if ntaxa > 2:
-			call_phyml(subtree_dirpath, subtree_name, trunc_msa_path, runover, job_priority, "no_opt")
-		else: # manual ll calculation for <= 2 alignments
-			# if needed in the future, incorporate function for manual ll calculation. then write to a file (and correct reading in downstream scripts)
-			print("### running phyml for ntaxa <=2 is problematic, thus didn't run for:\n{}".format(subtree_dirpath + subtree_name))
-	
-
 
 
 def create_SPR_job(dataset_path, step_number, tree_type, rewrite_phy, runover):
@@ -157,6 +127,7 @@ def create_SPR_job(dataset_path, step_number, tree_type, rewrite_phy, runover):
 
 
 
+
 def all_SPR(ds_path, tree=None, rewrite_phylip=False, runover=False, job_priority=-1):
 	orig_msa_file = ds_path + MSA_PHYLIP_FILENAME
 	ntaxa = get_msa_properties(orig_msa_file)[0]
@@ -167,7 +138,9 @@ def all_SPR(ds_path, tree=None, rewrite_phylip=False, runover=False, job_priorit
 		prune_name = prune_node.name
 		nname, subtree1, subtree2 = prune_branch(t_orig, prune_name) # subtree1 is the pruned subtree. subtree2 is the remaining subtree
 		subtrees_dirpath = SEP.join([ds_path, REARRANGEMENTS_NAME+"s", prune_name, "{}", ""])
-		call_phyml_ll(subtrees_dirpath, subtree1, subtree2, seqs_dict, runover=runover) # cal phyml foreach subtree + truncated msa
+		#call_phyml_ll(subtrees_dirpath, subtree1, subtree2, seqs_dict, runover=runover) # cal phyml foreach subtree + truncated msa
+		save_rearr_file(subtrees_dirpath.format(SUBTREE1), subtree1, filename=SUBTREE1,runover=runover)  # will print it out WITHOUT the root NAME !
+		save_rearr_file(subtrees_dirpath.format(SUBTREE2), subtree2, filename=SUBTREE2,runover=runover)  # will print it out WITHOUT the root NAME !
 
 		for j, rgft_node in enumerate(subtree2.iter_descendants("levelorder")):
 			rgft_name = rgft_node.name
@@ -179,8 +152,7 @@ def all_SPR(ds_path, tree=None, rewrite_phylip=False, runover=False, job_priorit
 				full_tree = regraft_branch(subtree2, rgft_node, subtree1, rgft_name, nname)
 				#remove_redundant_nodes(full_tree, ntaxa, rgft_name)
 				save_rearr_file(full_tree_dirpath, full_tree, filename=REARRANGEMENTS_NAME, runover=runover)
-			for br_mode in ["br"]: #, "no_opt"]:
-				call_phyml(full_tree_dirpath, REARRANGEMENTS_NAME, orig_msa_file, runover, job_priority, br_mode, cpmsa=True)
+			call_ml_software(full_tree_dirpath, REARRANGEMENTS_NAME, orig_msa_file, runover, job_priority, cpmsa=True)
 		#exit()
 
 	return
@@ -199,7 +171,7 @@ if __name__ == '__main__':
 	parser.add_argument('--nline_to_run', '-nlines', default=False)		 # number of lines from the dataset (int): n^2
 	parser.add_argument('--step_number', '-st', required=True)			 # counting from 1
 	args = parser.parse_args()
-	
+
 	dataset_path = args.dataset_path
 	if dataset_path:
 		dataset_path = dataset_path if args.tree_type == 'bionj' else dataset_path + RANDOM_TREE_DIRNAME # if == 'random

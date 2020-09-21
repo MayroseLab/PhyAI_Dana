@@ -3,6 +3,7 @@ sys.path.append("/groups/itay_mayrose/danaazouri/PhyAI/code/")
 
 from defs import *
 from parsing.parse_phyml import parse_phyml_stats_output
+from parsing.parse_raxml_NG import parse_raxmlNG_output
 from utils.tree_functions import *
 from data_processing.traverse_data_dirs import traverse_data_dirs
 
@@ -10,7 +11,8 @@ import warnings
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 
 
-OPT_TYPE = "br"
+ML_SOFTWARE = 'raxml'     # could be phyml | raxml
+
 
 
 def index_additional_rgft_features(df_rgft, ind, prune_name, rgft_name, features_restree_dict, features_dict_prune):
@@ -22,21 +24,22 @@ def index_additional_rgft_features(df_rgft, ind, prune_name, rgft_name, features
 	return df_rgft
 
 
-
-
-def return_ll(tree_dirpath, br_mode):
+def return_ll(tree_dirpath, br_mode, software=ML_SOFTWARE):
 	msa_filepath = tree_dirpath + MSA_PHYLIP_FILENAME
-	stats_filepath = "{}_phyml_{}_{}.txt".format(msa_filepath, "stats", br_mode)
-	try:
+	if software == 'phyml':
+		stats_filepath = "{}_phyml_{}_{}.txt".format(msa_filepath, "stats", br_mode)
 		res_dict = parse_phyml_stats_output(msa_filepath, stats_filepath)
+	if software == 'raxml':
+		stats_filepath = msa_filepath + RAXML_STATS_SUF
+		res_dict = parse_raxmlNG_output(stats_filepath)
+
+	try:
 		ll_rearr = float(res_dict["ll"])
 	except:
 		ll_rearr = None
 		print("**** {}\ndoes not exist or empty".format(stats_filepath))
 
 	return ll_rearr
-
-
 
 
 def index_shared_features(dff, ind, edge, move_type, features_dicts_dict):
@@ -57,7 +60,6 @@ def index_shared_features(dff, ind, edge, move_type, features_dicts_dict):
 	return dff
 
 
-
 def collect_features(ds_path, step_number, outpath_prune, outpath_rgft, tree_type='bionj'):
 	dfr = pd.read_csv(TREES_PER_DS.format(ds_path, step_number), index_col=0)
 	orig_ds_msa_file = ds_path + MSA_PHYLIP_FILENAME
@@ -65,7 +67,9 @@ def collect_features(ds_path, step_number, outpath_prune, outpath_rgft, tree_typ
 	df_rgft = pd.read_csv(outpath_rgft, index_col=0)
 
 	suf = "bionj" if tree_type == 'bionj' else 'br'  # if tree_type="random"
-	features_prune_dicts_dict = calc_leaves_features(ds_path + PHYML_TREE_FILENAME.format(suf),"prune")
+	tree_file = ds_path + PHYML_TREE_FILENAME.format(suf) if ML_SOFTWARE == 'phyml' else ds_path + RAXML_TREE_FILENAME
+	features_prune_dicts_dict = calc_leaves_features(tree_file,"prune")
+
 
 	for i, row in dfr.iterrows():
 		ind = row.name
@@ -102,8 +106,11 @@ def parse_neighbors_dirs(ds_path, outpath_prune, outpath_rgft, step_number, cp_i
 	outpath_trees = TREES_PER_DS.format(ds_path, step_number)
 	suf = "bionj" if tree_type == 'bionj' else 'br'  # if tree_type="random"
 
+	if ML_SOFTWARE == 'phyml':
+		res_dict_orig_tree = parse_phyml_stats_output(msa_file, ds_path + PHYML_STATS_FILENAME.format(suf))
+	if ML_SOFTWARE == 'raxml':
+		res_dict_orig_tree = parse_raxmlNG_output(ds_path + RAXML_STATS_FILENAME)
 
-	res_dict_orig_tree = parse_phyml_stats_output(msa_file, ds_path + PHYML_STATS_FILENAME.format(suf))
 	ll_orig_tree = float(res_dict_orig_tree["ll"])
 
 	df = pd.DataFrame(index=np.arange(0))
@@ -121,12 +128,12 @@ def parse_neighbors_dirs(ds_path, outpath_prune, outpath_rgft, step_number, cp_i
 			df2.ix[ind, "newick"] = get_newick_tree(tree_path)
 
 			if not "subtree" in rgft_name:  # subtrees are dealt separately ~10 lines above
-				if cp_internal:
+				if cp_internal and ML_SOFTWARE=='phyml':
 					treepath_with_internal = SEP.join([tree_dirpath, REARRANGEMENTS_NAME + ".txt"])
-					rearr_tree_path = SEP.join([tree_dirpath, "{}_phyml_{}_{}.txt".format(MSA_PHYLIP_FILENAME, "tree", OPT_TYPE)])
+					rearr_tree_path = SEP.join([tree_dirpath, "{}_phyml_{}_{}.txt".format(MSA_PHYLIP_FILENAME, "tree", 'br')])
 					cp_internal_names(rearr_tree_path, treepath_with_internal)
 
-				ll_rearr = return_ll(tree_dirpath, OPT_TYPE)
+				ll_rearr = return_ll(tree_dirpath, 'br')
 
 				df.ix[ind, "prune_name"], df.ix[ind, "rgft_name"] = prune_name, rgft_name
 				df.ix[ind, "orig_ds_ll"], df.ix[ind, "ll"] = ll_orig_tree, ll_rearr
@@ -166,8 +173,8 @@ if __name__ == '__main__':
 
 	dataset_path = args.dataset_path
 	if dataset_path:
-		outpath_prune = SUMMARY_PER_DS.format(dataset_path, "prune", OPT_TYPE, args.step_number)
-		outpath_rgft = SUMMARY_PER_DS.format(dataset_path, "rgft", "br", args.step_number)
+		outpath_prune = SUMMARY_PER_DS.format(dataset_path, "prune", 'br', args.step_number)
+		outpath_rgft = SUMMARY_PER_DS.format(dataset_path, "rgft", 'br', args.step_number)
 	
 		res = parse_neighbors_dirs(dataset_path, outpath_prune, outpath_rgft, args.step_number, args.cp_internal)
 		collect_features(dataset_path, args.step_number, outpath_prune, outpath_rgft, args.tree_type)
