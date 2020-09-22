@@ -9,7 +9,7 @@ from utils.msa_functions import *
 from data_processing.traverse_data_dirs import traverse_data_dirs
 from summary.collect_SPR_features import *
 
-ML_SOFTWARE = 'RAxML_NG2'     # could be phyml | RAxML_NG2
+ML_SOFTWARE = 'RAxML_NG'     # could be phyml | RAxML_NG
 
 
 
@@ -65,7 +65,7 @@ def add_internal_names(tree_file, tree_file_cp_no_internal, t_orig):
 def get_tree(ds_path, msa_file, rewrite_phylip):
 	#suf = "bionj" if not RANDOM_TREE_DIRNAME in ds_path else "br"
 	suf = "bionj" if not RANDOM_TREE_DIRNAME in ds_path else "br"
-	tree_file = ds_path + PHYML_TREE_FILENAME.format(suf) if ML_SOFTWARE == 'phyml' else ds_path + RAXML_TREE_FILENAME    # if software=='RAxML_NG2'
+	tree_file = ds_path + PHYML_TREE_FILENAME.format(suf) if ML_SOFTWARE == 'phyml' else ds_path + RAXML_TREE_FILENAME    # if software=='RAxML_NG'
 	if rewrite_phylip:
 		rewrite_in_phylip(msa_file)     # for one-time use on new ds
 	tree_file_cp_no_internal = ds_path + PHYML_TREE_FILENAME.format(suf + "_no_internal") if ML_SOFTWARE == 'phyml' else ds_path + RAXML_TREE_FILENAME + "_no_internal"
@@ -90,7 +90,7 @@ def save_rearr_file(trees_dirpath, rearrtree, filename, runover=False):
 
 
 def call_ml_software(tree_dirpath, file_name, msa_file, runover, job_priority, cpmsa=False, software=ML_SOFTWARE):
-	opt_mode = 'br' if software == 'phyml' else 'fixed_subs'  # if software=='RAxML_NG2'
+	opt_mode = 'br' if software == 'phyml' else 'fixed_subs'  # if software=='RAxML_NG'
 	tree_path = tree_dirpath + file_name + ".txt"
 	job_name = "{}_".format(software) + "_".join([re.search("{}/*(.+?)/".format(DATA_PATH), tree_dirpath).group(1), tree_dirpath.split(SEP)[-3], file_name, opt_mode])
 
