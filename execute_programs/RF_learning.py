@@ -17,7 +17,7 @@ from figures.confidence_interval_dts import plot_pred_true
 from figures.accXsize_boxplot import accXsize_boxplot
 from itertools import combinations
 
-
+ML_SOFTWARE = 'RAxML_NG'     # could be phyml | RAxML_NG
 OPT_TYPE = "br"
 KFOLD = 10     # "LOO"
 GROUP_ID = 'group_id'
@@ -365,7 +365,7 @@ def parse_relevant_summaries_for_learning(df_orig, outpath, move_type, step_numb
 		ds_path = row["path"]
 		ds_path = ds_path if tree_type == 'bionj' else ds_path + RANDOM_TREE_DIRNAME  # if == 'random
 		suf = "bionj" if tree_type == 'bionj' else OPT_TYPE
-		ds_tbl = get_total_branch_lengths(ds_path + PHYML_TREE_FILENAME.format(suf))
+		ds_tbl = get_total_branch_lengths(ds_path + PHYML_TREE_FILENAME.format(suf)) if not ML_SOFTWARE == 'RAxML_NG' else ds_path + RANDOM_TREE_FILENAME
 		summary_per_ds = SUMMARY_PER_DS.format(ds_path, move_type, OPT_TYPE, step_number)
 		print(summary_per_ds)
 		if os.path.exists(summary_per_ds) and FEATURES["bl"] in pd.read_csv(summary_per_ds).columns:
@@ -504,8 +504,8 @@ if __name__ == '__main__':
 	args = parser.parse_args()
 
 	dirpath = SUMMARY_FILES_DIR if platform.system() == 'Linux' else DATA_PATH
-	df_orig = pd.read_csv(dirpath + CHOSEN_DATASETS_FILENAME, dtype=types_dict)
-	df_orig = df_orig[df_orig["path"] != "/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/balibase_RV40_BB40049/"]
+	#df_orig = pd.read_csv(dirpath + CHOSEN_DATASETS_FILENAME, dtype=types_dict, skiprows=[i for i in range(200,5502)])   # todo: skiprows is TEMP  for interim analysis - REMOVE !
+	df_orig = pd.read_csv(dirpath + CHOSEN_DATASETS_FILENAME, dtype=types_dict, nrows=1)
 
 	move_type = args.move_type
 	st = str(args.step_number)
