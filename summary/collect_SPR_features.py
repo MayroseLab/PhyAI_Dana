@@ -87,8 +87,8 @@ def collect_features(ds_path, step_number, outpath_prune, outpath_rgft, tree_typ
 			df_rgft.ix[ind, FEATURES["res_tbl"]] = features_restree_dict['res_tbl']
 
 
-	df_prune = df_prune[(df_prune["prune_name"] != ROOTLIKE_NAME) & (df_prune["rgft_name"] != ROOTLIKE_NAME)].dropna()
-	df_rgft = df_rgft[(df_rgft["prune_name"] != ROOTLIKE_NAME) & (df_rgft["rgft_name"] != ROOTLIKE_NAME)].dropna()
+	df_prune = df_prune[(df_prune["prune_name"] != ROOTLIKE_NAME) & (df_prune["rgft_name"] != ROOTLIKE_NAME)]#.dropna()
+	df_rgft = df_rgft[(df_rgft["prune_name"] != ROOTLIKE_NAME) & (df_rgft["rgft_name"] != ROOTLIKE_NAME)]#.dropna()
 	df_prune.to_csv(outpath_prune)  # runover existing one to fill in all features
 	df_rgft.to_csv(outpath_rgft)    # runover existing one to fill in all features
 	
@@ -143,7 +143,7 @@ def parse_neighbors_dirs(ds_path, outpath_prune, outpath_rgft, step_number, cp_i
 	df2.to_csv(outpath_trees)
 
 	# to reduce inodes numbe r- delete subdirs after copying important content to 2 csvs:
-	shutil.rmtree(all_trees, ignore_errors=True)
+	#.rmtree(all_trees, ignore_errors=True)
 
 	return
 
