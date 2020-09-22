@@ -31,7 +31,7 @@ FIRST_ON_SEC = False           # temp for running 1 on 2
 FEATURE_SELECTION = False      # temp for running feature selection
 SATURATION = False              # temp to asses saturation
 
-N_DATASETS = 3700
+N_DATASETS = 1000
 
 
 def score_rank(df_by_ds, sortby, locatein, random, scale_score):
@@ -60,7 +60,7 @@ def save_df_ranks(df_by_ds, group_id, label):
 
 	cols = ["prune_name", "ranked_label", "ranked_pred", "sp_corr"]
 	tmp = df_by_ds.sort_values(by="pred").reset_index()
-	tmp["sp_corr"] = tmp[[label, "pred"]].corr(method='spearman').ix[1,0]
+	tmp["sp_corr"] = tmp[[label, "pred"]].corr(method='spearman').iloc[1,0]
 	tmp[cols].to_csv(DATA_PATH + str(group_id) + ".csv")
 
 
@@ -130,7 +130,7 @@ def ds_scores(df, move_type, random, scale_score):
 		all_preds.append(pred)
 		r2s.append(0) #r2s.append(r2_score(df_by_ds[label], df_by_ds["pred"], multioutput='variance_weighted'))
 		temp_df = df_by_ds[[label, "pred"]]
-		sp_corr = temp_df.corr(method='spearman').ix[1,0]
+		sp_corr = temp_df.corr(method='spearman').iloc[1,0]
 		if sp_corr:
 			if sp_corr < 0:
 				print(group_id, sp_corr)
@@ -206,7 +206,8 @@ def truncate(df):
 	groups_ids = df[FEATURES[GROUP_ID]].unique()
 	if DBSET == "2":
 		#selected_groups_ids = np.random.choice(groups_ids, 2000, replace=False)
-		n_other_dbs = 490
+		n_other_dbs = 541
+		#todo: uncomment the following two lines
 		selected_groups_ids = np.concatenate((np.random.choice(groups_ids[:-n_other_dbs], N_DATASETS-n_other_dbs, replace=False), groups_ids[-n_other_dbs:]))
 		df = df[df[FEATURES[GROUP_ID]].isin(selected_groups_ids)]
 		groups_ids = df[FEATURES[GROUP_ID]].unique()
@@ -365,7 +366,7 @@ def parse_relevant_summaries_for_learning(df_orig, outpath, move_type, step_numb
 		ds_path = row["path"]
 		ds_path = ds_path if tree_type == 'bionj' else ds_path + RANDOM_TREE_DIRNAME  # if == 'random
 		suf = "bionj" if tree_type == 'bionj' else OPT_TYPE
-		ds_tbl = get_total_branch_lengths(ds_path + PHYML_TREE_FILENAME.format(suf)) if not ML_SOFTWARE == 'RAxML_NG' else ds_path + RANDOM_TREE_FILENAME
+		ds_tbl = get_total_branch_lengths(ds_path + PHYML_TREE_FILENAME.format(suf)) if not ML_SOFTWARE == 'RAxML_NG' else get_total_branch_lengths(ds_path + RAXML_TREE_FILENAME)
 		summary_per_ds = SUMMARY_PER_DS.format(ds_path, move_type, OPT_TYPE, step_number)
 		print(summary_per_ds)
 		if os.path.exists(summary_per_ds) and FEATURES["bl"] in pd.read_csv(summary_per_ds).columns:
@@ -409,9 +410,9 @@ def plot_cumulative_importance(f_list, importances, move_type, sscore):
 	# Format x ticks and labels
 	plt.xticks(x_values, sorted_features, rotation='vertical')
 	# Axis labels and title
-	plt.xlabel('Variable');
-	plt.ylabel('Cumulative Importance');
-	plt.title('Cumulative Importances');
+	plt.xlabel('Variable')
+	plt.ylabel('Cumulative Importance')
+	plt.title('Cumulative Importances')
 
 	plt.tight_layout()
 	plt.savefig(dirpath + "cumulative_importance_{}_{}.png".format(move_type, len(sorted_importances)))
@@ -505,7 +506,7 @@ if __name__ == '__main__':
 
 	dirpath = SUMMARY_FILES_DIR if platform.system() == 'Linux' else DATA_PATH
 	#df_orig = pd.read_csv(dirpath + CHOSEN_DATASETS_FILENAME, dtype=types_dict, skiprows=[i for i in range(200,5502)])   # todo: skiprows is TEMP  for interim analysis - REMOVE !
-	df_orig = pd.read_csv(dirpath + CHOSEN_DATASETS_FILENAME, dtype=types_dict, nrows=1)
+	df_orig = pd.read_csv(dirpath + CHOSEN_DATASETS_FILENAME, dtype=types_dict) #, nrows=30)
 
 	move_type = args.move_type
 	st = str(args.step_number)
@@ -536,7 +537,7 @@ if __name__ == '__main__':
 	features = FEATURES_PRUNE if move_type == "prune" else FEATURES_RGFT if move_type == "rgft" else FEATURES_MERGED
 	features.remove(FEATURES[GROUP_ID])
 	features_to_drop = []
-	
+
 	########################
 	#'''
 	for i in range(len(features)):
