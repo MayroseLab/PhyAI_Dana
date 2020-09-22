@@ -1,6 +1,5 @@
 import os, sys
 from subprocess import call
-__author__ = 'Nomi'
 
 sys.path.append(os.path.dirname(sys.path[0]))
 
@@ -27,7 +26,7 @@ module load python/python-anaconda3.7-itaym
 
 #module load python/anaconda_python-3.5
 
-QUEUE = "itay_25_3"    #r@power9"
+QUEUE = "itay_25_4"    #r@power9"
 SH_FILE = "job.sh"
 DIRECTORY = "run_{}"
 PERMISSION_CMD = "chmod -R 777 ."
