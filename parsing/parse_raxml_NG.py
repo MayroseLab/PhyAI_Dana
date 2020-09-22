@@ -18,9 +18,11 @@ def parse_raxmlNG_output(res_filepath):
             content = fpr.read()
 
         # likelihood
-        res_dict["ll"] = re.search("Final LogLikelihood:\s+(.*)", content).group(1).strip()
-        if not res_dict['ll'] and re.search("BL opt converged to a worse", content):
+        ll_re = re.search("Final LogLikelihood:\s+(.*)", content)
+        if not ll_re and re.search("BL opt converged to a worse likelihood score by", content):
             res_dict["ll"] = re.search("initial LogLikelihood:\s+(.*)", content).group(1).strip()
+        else:
+            res_dict["ll"] = ll_re.group(1).strip()
 
         # gamma (alpha parameter) and proportion of invariant sites
         gamma_regex = re.search("alpha:\s+(\d+\.?\d*)\s+", content)
