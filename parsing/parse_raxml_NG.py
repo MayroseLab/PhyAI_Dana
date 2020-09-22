@@ -19,7 +19,7 @@ def parse_raxmlNG_output(res_filepath):
 
         # likelihood
         res_dict["ll"] = re.search("Final LogLikelihood:\s+(.*)", content).group(1).strip()
-        if not res_dict['ll'] and re.search("BL opt converged to a worse", content).group(1).strip():
+        if not res_dict['ll'] and re.search("BL opt converged to a worse", content):
             res_dict["ll"] = re.search("initial LogLikelihood:\s+(.*)", content).group(1).strip()
 
         # gamma (alpha parameter) and proportion of invariant sites
