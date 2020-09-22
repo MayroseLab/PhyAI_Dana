@@ -177,21 +177,22 @@ if __name__ == '__main__':
 		dataset_path = dataset_path if args.tree_type == 'bionj' else dataset_path + RANDOM_TREE_DIRNAME # if == 'random
 		outpath_prune = SUMMARY_PER_DS.format(dataset_path, "prune", "br", args.step_number)
 		outpath_rgft = SUMMARY_PER_DS.format(dataset_path, "rgft", "br", args.step_number)
-		if not os.path.exists(outpath_rgft) or not os.path.exists(outpath_prune):
-			if args.step_number == "1":
-				res = all_SPR(dataset_path, tree=None, rewrite_phylip=args.rewrite_in_phylip, runover=args.runover, job_priority=-1)
-			else:   # run next step on previous' best tree
-				prev_step = str(int(args.step_number)-1)
-				dfr = pd.read_csv(TREES_PER_DS.format(dataset_path, prev_step), index_col=0)
-				df_sum = pd.read_csv(SUMMARY_PER_DS.format(dataset_path, "prune", "br", prev_step)).set_index('Unnamed: 0')
-				best_tree_id = df_sum["ll"].astype(float).idxmax()
-				tree_str = dfr.loc[best_tree_id, "newick"]
-	
-				res = all_SPR(dataset_path, tree=tree_str, rewrite_phylip=args.rewrite_in_phylip, runover=args.runover, job_priority=-1)
-	
-			# after preforming all steps, parse results and delete all files
-			res = parse_neighbors_dirs(dataset_path, outpath_prune, outpath_rgft, args.step_number, args.cp_internal, tree_type=args.tree_type)
-			collect_features(dataset_path, args.step_number, outpath_prune, outpath_rgft, args.tree_type)
+		# todo: uncomment the folowwing condition after running over the failed runings
+		#if not os.path.exists(outpath_rgft) or not os.path.exists(outpath_prune):
+		if args.step_number == "1":
+			res = all_SPR(dataset_path, tree=None, rewrite_phylip=args.rewrite_in_phylip, runover=args.runover, job_priority=-1)
+		else:   # run next step on previous' best tree
+			prev_step = str(int(args.step_number)-1)
+			dfr = pd.read_csv(TREES_PER_DS.format(dataset_path, prev_step), index_col=0)
+			df_sum = pd.read_csv(SUMMARY_PER_DS.format(dataset_path, "prune", "br", prev_step)).set_index('Unnamed: 0')
+			best_tree_id = df_sum["ll"].astype(float).idxmax()
+			tree_str = dfr.loc[best_tree_id, "newick"]
+
+			res = all_SPR(dataset_path, tree=tree_str, rewrite_phylip=args.rewrite_in_phylip, runover=args.runover, job_priority=-1)
+
+		# after preforming all steps, parse results and delete all files
+		res = parse_neighbors_dirs(dataset_path, outpath_prune, outpath_rgft, args.step_number, args.cp_internal, tree_type=args.tree_type)
+		collect_features(dataset_path, args.step_number, outpath_prune, outpath_rgft, args.tree_type)
 	else:
 		csv_path = SUMMARY_FILES_DIR + CHOSEN_DATASETS_FILENAME
 		res = traverse_data_dirs(create_SPR_job, csv_path, (args.index_to_start_run, args.nline_to_run), args.step_number, args.tree_type, args.rewrite_in_phylip, args.runover)
