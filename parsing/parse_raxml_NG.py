@@ -24,23 +24,23 @@ def parse_raxmlNG_output(res_filepath):
         else:
             res_dict["ll"] = ll_re.group(1).strip()
 
-        # gamma (alpha parameter) and proportion of invariant sites
-        gamma_regex = re.search("alpha:\s+(\d+\.?\d*)\s+", content)
-        pinv_regex = re.search("P-inv.*:\s+(\d+\.?\d*)", content)
-        if gamma_regex:
-            res_dict['gamma'] = gamma_regex.group(1).strip()
-        if pinv_regex:
-            res_dict['pInv'] = pinv_regex.group(1).strip()
+            # gamma (alpha parameter) and proportion of invariant sites
+            gamma_regex = re.search("alpha:\s+(\d+\.?\d*)\s+", content)
+            pinv_regex = re.search("P-inv.*:\s+(\d+\.?\d*)", content)
+            if gamma_regex:
+                res_dict['gamma'] = gamma_regex.group(1).strip()
+            if pinv_regex:
+                res_dict['pInv'] = pinv_regex.group(1).strip()
 
-        # Nucleotides frequencies
-        nucs_freq = re.search("Base frequencies.*?:\s+(\d+\.?\d*)\s+(\d+\.?\d*)\s+(\d+\.?\d*)\s+(\d+\.?\d*)", content)
-        for i,nuc in enumerate("ACGT"):
-            res_dict["f" + nuc] = nucs_freq.group(i+1).strip()
+            # Nucleotides frequencies
+            nucs_freq = re.search("Base frequencies.*?:\s+(\d+\.?\d*)\s+(\d+\.?\d*)\s+(\d+\.?\d*)\s+(\d+\.?\d*)", content)
+            for i,nuc in enumerate("ACGT"):
+                res_dict["f" + nuc] = nucs_freq.group(i+1).strip()
 
-        # substitution frequencies
-        subs_freq = re.search("Substitution rates.*:\s+(\d+\.?\d*)\s+(\d+\.?\d*)\s+(\d+\.?\d*)\s+(\d+\.?\d*)\s+(\d+\.?\d*)\s+(\d+\.?\d*)", content)
-        for i,nuc_pair in enumerate(["AC", "AG", "AT", "CG", "CT", "GT"]):  # todo: make sure order
-            res_dict["sub" + nuc_pair] = subs_freq.group(i+1).strip()
+            # substitution frequencies
+            subs_freq = re.search("Substitution rates.*:\s+(\d+\.?\d*)\s+(\d+\.?\d*)\s+(\d+\.?\d*)\s+(\d+\.?\d*)\s+(\d+\.?\d*)\s+(\d+\.?\d*)", content)
+            for i,nuc_pair in enumerate(["AC", "AG", "AT", "CG", "CT", "GT"]):  # todo: make sure order
+                res_dict["sub" + nuc_pair] = subs_freq.group(i+1).strip()
 
     except:
         print("Error with:", res_filepath)
@@ -53,5 +53,5 @@ def parse_raxmlNG_output(res_filepath):
 if __name__ == '__main__':
     pass
     # test here
-   #res_dict = parse_raxmlNG_output("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data_test/real_msa4.phy.raxml.log")
-   # print(res_dict)
+    res_dict = parse_raxmlNG_output("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/24354/rearrangements/N1/Sp002/masked_species_real_msa.phy.raxml.log")
+    print(res_dict)
