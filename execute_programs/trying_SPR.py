@@ -158,46 +158,54 @@ def all_SPR(ds_path, tree=None, rewrite_phylip=False, runover=False, job_priorit
 		fpw.write(",prune_name,rgft_name,newick")
 
 	# first, copy msa file to memory and save it:
-	msa_rampath = "/dev/shm/tmp" + str(randint(10 ** 6,
-											   10 ** 7 - 1))  # random number to be on the safe side (even though other processes shouldn't be able to access it)
-	with open(msa_rampath, "w") as fpw:
-		with open(orig_msa_file) as fpr:
-			fpw.write(fpr.read())  # don't write the msa string to a variable (or write and release it)
+	msa_rampath = "/dev/shm/tmp" + ds_path.split(SEP)[-1] #  to be on the safe side (even though other processes shouldn't be able to access it)
+	print(msa_rampath)
 
-	rates, pinv, alpha, freq = extract_model_params(msa_rampath, ds_path, 'raxml')
-	df = pd.DataFrame()
-	for i, prune_node in enumerate(t_orig.iter_descendants("levelorder")):
-		prune_name = prune_node.name
-		nname, subtree1, subtree2 = prune_branch(t_orig, prune_name) # subtree1 is the pruned subtree. subtree2 is the remaining subtree
-		subtrees_dirpath = SEP.join([ds_path, REARRANGEMENTS_NAME+"s", prune_name, "{}", ""])
-		#call_phyml_ll(subtrees_dirpath, subtree1, subtree2, seqs_dict, runover=runover) # cal phyml foreach subtree + truncated msa
-		#save_rearr_file(subtrees_dirpath.format(SUBTREE1), subtree1, filename=SUBTREE1,runover=runover)  # will print it out WITHOUT the root NAME !
-		#save_rearr_file(subtrees_dirpath.format(SUBTREE2), subtree2, filename=SUBTREE2,runover=runover)  # will print it out WITHOUT the root NAME !
-		# todo: continue
-		#with open(OUTPUT_TREES_FILE, "a") as fpa:
-		#	fpa.write(", ".join([ind, prune_name, rgft_name, rearr_tree_str]))
+	with open(orig_msa_file) as fpr:
+		msa_str = fpr.read()
 
+	try:
+		with open(msa_rampath, "w") as fpw:
+			fpw.write(msa_str)  # don't write the msa string to a variable (or write and release it)
+		msa_str = ''
 
-		for j, rgft_node in enumerate(subtree2.iter_descendants("levelorder")):
-			ind = str(i) + "," + str(j)
-			rgft_name = rgft_node.name
-			if nname == rgft_name: # if the rgrft node is the one that was pruned
-				continue
-
-			rearr_tree_str = regraft_branch(subtree2, rgft_node, subtree1, rgft_name, nname).write(format=1)
-			### save tree to file by using "append"
-			with open(OUTPUT_TREES_FILE, "a") as fpa:
-				fpa.write(", ".join([ind, prune_name, rgft_name, rearr_tree_str]))
+		rates, pinv, alpha, freq = extract_model_params(msa_rampath, ds_path, 'raxml')
+		df = pd.DataFrame()
+		for i, prune_node in enumerate(t_orig.iter_descendants("levelorder")):
+			prune_name = prune_node.name
+			nname, subtree1, subtree2 = prune_branch(t_orig, prune_name) # subtree1 is the pruned subtree. subtree2 is the remaining subtree
+			subtrees_dirpath = SEP.join([ds_path, REARRANGEMENTS_NAME+"s", prune_name, "{}", ""])
+			#call_phyml_ll(subtrees_dirpath, subtree1, subtree2, seqs_dict, runover=runover) # cal phyml foreach subtree + truncated msa
+			#save_rearr_file(subtrees_dirpath.format(SUBTREE1), subtree1, filename=SUBTREE1,runover=runover)  # will print it out WITHOUT the root NAME !
+			#save_rearr_file(subtrees_dirpath.format(SUBTREE2), subtree2, filename=SUBTREE2,runover=runover)  # will print it out WITHOUT the root NAME !
+			# todo: continue
+			#with open(OUTPUT_TREES_FILE, "a") as fpa:
+			#	fpa.write(", ".join([ind, prune_name, rgft_name, rearr_tree_str]))
 
 
-			ll_rearr = call_raxml_mem(rearr_tree_str, msa_rampath, rates, pinv, alpha, freq)
-			print(ll_rearr)
-			exit()
-			df.loc[ind, "prune_name"], df.loc[ind, "rgft_name"] = prune_name, rgft_name
-			df.loc[ind, "ll"] = ll_rearr
-		#exit()
-	df["orig_ds_ll"] = float(parse_raxmlNG_output(ds_path + RAXML_STATS_FILENAME)['ll'])
-	df.to_csv(SUMMARY_PER_DS.format(dataset_path, "lls", 'br', '1'))   # todo: update
+			for j, rgft_node in enumerate(subtree2.iter_descendants("levelorder")):
+				ind = str(i) + "," + str(j)
+				rgft_name = rgft_node.name
+				if nname == rgft_name: # if the rgrft node is the one that was pruned
+					continue
+
+				rearr_tree_str = regraft_branch(subtree2, rgft_node, subtree1, rgft_name, nname).write(format=1)
+				### save tree to file by using "append"
+				with open(OUTPUT_TREES_FILE, "a") as fpa:
+					fpa.write(", ".join([ind, prune_name, rgft_name, rearr_tree_str]))
+
+
+				ll_rearr = call_raxml_mem(rearr_tree_str, msa_rampath, rates, pinv, alpha, freq)
+				print(ll_rearr)
+				exit()
+				df.loc[ind, "prune_name"], df.loc[ind, "rgft_name"] = prune_name, rgft_name
+				df.loc[ind, "ll"] = ll_rearr
+			#exit()
+		df["orig_ds_ll"] = float(parse_raxmlNG_output(ds_path + RAXML_STATS_FILENAME)['ll'])
+		df.to_csv(SUMMARY_PER_DS.format(dataset_path, "lls", 'br', '1'))   # todo: update
+	except:
+		print('xx')
+	os.remove(msa_rampath)
 	return
 
 
