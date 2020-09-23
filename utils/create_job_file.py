@@ -26,7 +26,7 @@ module load python/python-anaconda3.7-itaym
 
 #module load python/anaconda_python-3.5
 
-QUEUE = "itay_25_3"    #r@power9"
+QUEUE = "itay_25_4"    #r@power9"
 SH_FILE = "job.sh"
 DIRECTORY = "run_{}"
 PERMISSION_CMD = "chmod -R 777 ."
@@ -68,6 +68,8 @@ def get_job_qsub_command(job_name, command, error_files_path, queue=QUEUE, addit
 							 		queue="itaymr")
 	os.system(qsub_cmd)
 	"""
+	if not os.path.exists(error_files_path):
+		os.mkdir(error_files_path)
 
 	return "echo \"{}\"|" \
 		   "qsub -S /bin/bash" \
