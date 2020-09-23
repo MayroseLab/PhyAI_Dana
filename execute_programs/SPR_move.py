@@ -113,6 +113,7 @@ def call_raxml_mem(tree_str, msa_file, rates, pinv, alpha, freq):
 		raxml_stdout = p.communicate()[0]
 		raxml_output = raxml_stdout.decode()
 
+		# todo: !!!!! extract also raxml running time - for the example dataset
 		res_dict = parse_raxmlNG_content(raxml_output)
 		ll = res_dict['ll']
 
