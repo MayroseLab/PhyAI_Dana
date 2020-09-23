@@ -58,14 +58,14 @@ def run_job(cmd, dirpath, sh_file=SH_FILE, job_name="job", priority=-1, chmod=Fa
 	call(cmd.split(" "))
 
 
-def get_job_qsub_command(job_name, command, error_files_path, queue="itaym", additional_params="-l select=ncpus=1"):
+def get_job_qsub_command(job_name, command, error_files_path, queue=QUEUE, additional_params="-l select=ncpus=1"):
 	"""
 	:param additional_params: options: -l nodes=compute-0-261; -l select=ncpus=1
 		## example for how to call the function
-	qsub_cmd = createJobFile.get_job_qsub_command("JobName",
-							 "python script.py -a 1 -b 2",
-							 errors_dir,
-							 queue="itaymr")
+	qsub_cmd = get_job_qsub_command("JobName",
+									"python script.py -a 1 -b 2",
+							 		errors_dir,
+							 		queue="itaymr")
 	os.system(qsub_cmd)
 	"""
 

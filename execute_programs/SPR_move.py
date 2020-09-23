@@ -9,6 +9,7 @@ from summary.collect_SPR_features import *
 from subprocess import Popen, PIPE, STDOUT
 from parsing.parse_raxml_NG import parse_raxmlNG_content
 from execute_programs.RAxML_NG import extract_model_params
+from utils.create_job_file import get_job_qsub_command
 import csv
 
 ML_SOFTWARE = 'RAxML_NG'     # could be phyml | RAxML_NG
@@ -127,14 +128,18 @@ def call_raxml_mem(tree_str, msa_file, rates, pinv, alpha, freq):
 
 def create_SPR_job(dataset_path, step_number, tree_type, rewrite_phy, runover):
 	print("**************************************\n", dataset_path)
-	job_name = "SPR_for_ds"
+	job_name = "SPR_for_ds.sh"
 	cmd = "python " + CODE_PATH + "execute_programs/SPR_move.py -ds " + dataset_path + " -st " + str(step_number) + " -ttype " + tree_type
+
 	if runover:
-		cmd += " -r "
+		cmd += runover
 	if rewrite_phy:
 		cmd += " -phy "
-	create_job_file.main(command=cmd, dirpath=dataset_path, sh_file=job_name + ".sh", multiply_jobs=False,
-						 priority=-1, job_name=job_name)
+
+	qsub_cmd = get_job_qsub_command(job_name=job_name,
+									command=cmd,
+									error_files_path=dataset_path + "error_files/")
+	os.system(qsub_cmd)
 
 
 
