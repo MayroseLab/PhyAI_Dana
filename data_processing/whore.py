@@ -31,6 +31,7 @@ def rearrange_dirs_for_rerun(datapath):
 def delete_err_dirpath(datapath):
 	err_dirpath = datapath + "error_files/"
 	shutil.rmtree(err_dirpath, ignore_errors=True)
+	shutil.rmtree(datapath+REARRANGEMENTS_NAME+"s/", ignore_errors=True)
 	#shutil.rmtree(datapath + RANDOM_TREE_DIRNAME, ignore_errors=True)
 
 
@@ -73,7 +74,7 @@ def add_atts():
 
 def do_something(datapath):
 	#add_atts()
-	#delete_err_dirpath(datapath)
+	delete_err_dirpath(datapath)
 	#rearrange_dirs_for_rerun(datapath)
 	#missing_results()
 
