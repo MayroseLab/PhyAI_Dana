@@ -16,10 +16,10 @@ ML_SOFTWARE = 'raxml'     # could be phyml | raxml
 
 
 def index_additional_rgft_features(df_rgft, ind, prune_name, rgft_name, features_restree_dict, features_dict_prune):
-	df_rgft.ix[ind, FEATURES["top_dist"]] = features_dict_prune['top_dist'][prune_name][rgft_name]
-	df_rgft.ix[ind, FEATURES["bl_dist"]] = features_dict_prune['bl_dist'][prune_name][rgft_name]
-	df_rgft.ix[ind, FEATURES["res_bl"]] = features_restree_dict['res_bl']
-	df_rgft.ix[ind, FEATURES["res_tbl"]] = features_restree_dict['res_tbl']
+	df_rgft.loc[ind, FEATURES["top_dist"]] = features_dict_prune['top_dist'][prune_name][rgft_name]
+	df_rgft.loc[ind, FEATURES["bl_dist"]] = features_dict_prune['bl_dist'][prune_name][rgft_name]
+	df_rgft.loc[ind, FEATURES["res_bl"]] = features_restree_dict['res_bl']
+	df_rgft.loc[ind, FEATURES["res_tbl"]] = features_restree_dict['res_tbl']
 
 	return df_rgft
 
@@ -44,18 +44,18 @@ def return_ll(tree_dirpath, br_mode, software=ML_SOFTWARE):
 
 def index_shared_features(dff, ind, edge, move_type, features_dicts_dict):
 	d_ll = format(dff.loc[ind, "ll"] - dff.loc[ind, "orig_ds_ll"], '.20f')
-	dff.ix[ind, LABEL.format(move_type)] = d_ll  # LABEL
+	dff.loc[ind, LABEL.format(move_type)] = d_ll  # LABEL
 
 	#*tbl of orig tree will be calculated via 'RandomForest_learning' script		#f1  (FeaturePruning)
-	dff.ix[ind, FEATURES["bl"]] = features_dicts_dict["bl"][edge] 					#f2
-	dff.ix[ind, FEATURES["longest"]] = features_dicts_dict["longest"]				#f3
+	dff.loc[ind, FEATURES["bl"]] = features_dicts_dict["bl"][edge] 					#f2
+	dff.loc[ind, FEATURES["longest"]] = features_dicts_dict["longest"]				#f3
 
 
 	#index subtrees features
 	for subtype in ["p", "r"]:
-		dff.ix[ind, FEATURES["ntaxa_{}".format(subtype)]] = features_dicts_dict["ntaxa_{}".format(subtype)][edge]  		#f4,5
-		dff.ix[ind, FEATURES["tbl_{}".format(subtype)]] = features_dicts_dict["tbl_{}".format(subtype)][edge]  			#f6,7
-		dff.ix[ind, FEATURES["longest_{}".format(subtype)]] = features_dicts_dict["longest_{}".format(subtype)][edge]	#f8,9
+		dff.loc[ind, FEATURES["ntaxa_{}".format(subtype)]] = features_dicts_dict["ntaxa_{}".format(subtype)][edge]  		#f4,5
+		dff.loc[ind, FEATURES["tbl_{}".format(subtype)]] = features_dicts_dict["tbl_{}".format(subtype)][edge]  			#f6,7
+		dff.loc[ind, FEATURES["longest_{}".format(subtype)]] = features_dicts_dict["longest_{}".format(subtype)][edge]	#f8,9
 
 	return dff
 
@@ -83,8 +83,8 @@ def collect_features(ds_path, step_number, outpath_prune, outpath_rgft, tree_typ
 			df_rgft = index_shared_features(df_rgft, ind, row["rgft_name"], "rgft", features_rgft_dicts_dict)
 			df_rgft = index_additional_rgft_features(df_rgft, ind, row["prune_name"], row["rgft_name"], features_restree_dict, features_prune_dicts_dict)   # also prune dict because for 2 features i didn't want to comp dict within each rgft iteration (needed to compute on the starting tree)
 			
-			df_rgft.ix[ind, FEATURES["res_bl"]] = features_restree_dict['res_bl']
-			df_rgft.ix[ind, FEATURES["res_tbl"]] = features_restree_dict['res_tbl']
+			df_rgft.loc[ind, FEATURES["res_bl"]] = features_restree_dict['res_bl']
+			df_rgft.loc[ind, FEATURES["res_tbl"]] = features_restree_dict['res_tbl']
 
 
 	df_prune = df_prune[(df_prune["prune_name"] != ROOTLIKE_NAME) & (df_prune["rgft_name"] != ROOTLIKE_NAME)]#.dropna()
@@ -124,8 +124,8 @@ def parse_neighbors_dirs(ds_path, outpath_prune, outpath_rgft, step_number, cp_i
 			treename = SUBTREE1 if j == 0 else SUBTREE2 if j == 1 else REARRANGEMENTS_NAME
 			tree_path = SEP.join([tree_dirpath, "{}.txt".format(treename)])
 			# save all rearrangements on one file per ds (before deleting all)
-			df2.ix[ind, "prune_name"], df2.ix[ind, "rgft_name"] = prune_name, rgft_name
-			df2.ix[ind, "newick"] = get_newick_tree(tree_path)
+			df2.loc[ind, "prune_name"], df2.loc[ind, "rgft_name"] = prune_name, rgft_name
+			df2.loc[ind, "newick"] = get_newick_tree(tree_path)
 
 			if not "subtree" in rgft_name:  # subtrees are dealt separately ~10 lines above
 				if cp_internal and ML_SOFTWARE=='phyml':
@@ -135,8 +135,8 @@ def parse_neighbors_dirs(ds_path, outpath_prune, outpath_rgft, step_number, cp_i
 
 				ll_rearr = return_ll(tree_dirpath, 'br')
 
-				df.ix[ind, "prune_name"], df.ix[ind, "rgft_name"] = prune_name, rgft_name
-				df.ix[ind, "orig_ds_ll"], df.ix[ind, "ll"] = ll_orig_tree, ll_rearr
+				df.loc[ind, "prune_name"], df.loc[ind, "rgft_name"] = prune_name, rgft_name
+				df.loc[ind, "orig_ds_ll"], df.loc[ind, "ll"] = ll_orig_tree, ll_rearr
 
 	df.to_csv(outpath_prune)
 	df.to_csv(outpath_rgft)
