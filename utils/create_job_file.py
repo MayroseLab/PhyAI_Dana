@@ -26,7 +26,7 @@ module load python/python-anaconda3.7-itaym
 
 #module load python/anaconda_python-3.5
 
-QUEUE = "itay_25_4"    #r@power9"
+QUEUE = "itaymaa"    #r@power9"
 SH_FILE = "job.sh"
 DIRECTORY = "run_{}"
 PERMISSION_CMD = "chmod -R 777 ."
@@ -56,6 +56,30 @@ def run_job(cmd, dirpath, sh_file=SH_FILE, job_name="job", priority=-1, chmod=Fa
 	#call qsub command
 	cmd = "qsub -p {priority} {sh_file}".format(priority=priority, sh_file=error_files_path + sh_file)
 	call(cmd.split(" "))
+
+
+def get_job_qsub_command(job_name, command, error_files_path, queue="itaym", additional_params="-l select=ncpus=1"):
+	"""
+	:param additional_params: options: -l nodes=compute-0-261; -l select=ncpus=1
+		## example for how to call the function
+	qsub_cmd = createJobFile.get_job_qsub_command("JobName",
+							 "python script.py -a 1 -b 2",
+							 errors_dir,
+							 queue="itaymr")
+	os.system(qsub_cmd)
+	"""
+
+	return "echo \"{}\"|" \
+		   "qsub -S /bin/bash" \
+		   " -N {}" \
+		   " -j oe" \
+		   " -r y" \
+		   " -q {}" \
+		   " -v PBS_O_SHELL=bash,PBS_ENVIRONMENT=PBS_BATCH" \
+		   " -e {}" \
+		   " -o {}" \
+		   " {}" \
+		   "".format(command, job_name, queue, error_files_path, error_files_path, additional_params)
 
 
 def main(command, dirpath, sh_file, multiply_jobs, priority, job_name):

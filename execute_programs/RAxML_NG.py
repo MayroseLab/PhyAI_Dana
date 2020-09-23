@@ -24,8 +24,9 @@ def extract_model_params(msa_file_full_path, tree_file, software):
 		stats_filpath_for_params = SEP.join([SEP.join(tree_file.split(SEP)[:-4]), PHYML_STATS_FILENAME.format('bionj')])  # [-4] cause each tree_file (when running all SPR) is in /rearrangements/prune_name/rgft_name/tree_filename
 		params_dict = parse_phyml_stats_output(msa_file_full_path, stats_filpath_for_params)
 	if software == 'raxml':
-		log_filpath_for_params = SEP.join([SEP.join(tree_file.split(SEP)[:-4]), RAXML_STATS_FILENAME])
-		#log_filpath_for_params = SEP.join([SEP.join(tree_file.split(SEP)[:-1]), 'real_msa4.phy.raxml.log'])
+		#log_filpath_for_params = SEP.join([SEP.join(tree_file.split(SEP)[:-4]), RAXML_STATS_FILENAME])
+		#log_filpath_for_params = SEP.join([SEP.join(tree_file.split(SEP)[:-1]), 'real_msa3.phy.raxml.log'])
+		log_filpath_for_params = SEP.join([tree_file, RAXML_STATS_FILENAME])  # todo: change! and change the input arg
 		params_dict = parse_raxmlNG_output(log_filpath_for_params)
 
 	freq = [params_dict["fA"], params_dict["fC"], params_dict["fG"], params_dict["fT"]]
