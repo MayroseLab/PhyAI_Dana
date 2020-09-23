@@ -95,58 +95,6 @@ def collect_features(ds_path, step_number, outpath_prune, outpath_rgft, tree_typ
 	return
 
 
-def parse_neighbors_dirs(ds_path, outpath_prune, outpath_rgft, step_number, cp_internal=False, tree_type="bionj"):
-	'''
-	this function is used only when re-running SPR. otherwise, I need to parse the 'newick.csv' (and create truncated msas for subtrees)
-	'''
-	print("**** ", ds_path)
-
-	msa_file = ds_path + MSA_PHYLIP_FILENAME
-	all_trees = ds_path + REARRANGEMENTS_NAME + "s/"
-	outpath_trees = TREES_PER_DS.format(ds_path, step_number)
-	suf = "bionj" if tree_type == 'bionj' else 'br'  # if tree_type="random"
-
-	if ML_SOFTWARE == 'phyml':
-		res_dict_orig_tree = parse_phyml_stats_output(msa_file, ds_path + PHYML_STATS_FILENAME.format(suf))
-	if ML_SOFTWARE == 'raxml':
-		res_dict_orig_tree = parse_raxmlNG_output(ds_path + RAXML_STATS_FILENAME)
-
-	ll_orig_tree = float(res_dict_orig_tree["ll"])
-
-	df = pd.DataFrame(index=np.arange(0))
-	df2 = pd.DataFrame(index=np.arange(0))
-	for i, prune_name in enumerate(os.listdir(all_trees)):
-		prune_dirpath = SEP.join([all_trees, prune_name, ""])
-
-		for j, rgft_name in enumerate(os.listdir(prune_dirpath)):
-			ind = str(i) + "," +str(j)
-			tree_dirpath = SEP.join([all_trees, prune_name, rgft_name, ""])
-			treename = SUBTREE1 if j == 0 else SUBTREE2 if j == 1 else REARRANGEMENTS_NAME
-			tree_path = SEP.join([tree_dirpath, "{}.txt".format(treename)])
-			# save all rearrangements on one file per ds (before deleting all)
-			df2.loc[ind, "prune_name"], df2.loc[ind, "rgft_name"] = prune_name, rgft_name
-			df2.loc[ind, "newick"] = get_newick_tree(tree_path)
-
-			if not "subtree" in rgft_name:  # subtrees are dealt separately ~10 lines above
-				if cp_internal and ML_SOFTWARE=='phyml':
-					treepath_with_internal = SEP.join([tree_dirpath, REARRANGEMENTS_NAME + ".txt"])
-					rearr_tree_path = SEP.join([tree_dirpath, "{}_phyml_{}_{}.txt".format(MSA_PHYLIP_FILENAME, "tree", 'br')])
-					cp_internal_names(rearr_tree_path, treepath_with_internal)
-
-				ll_rearr = return_ll(tree_dirpath, 'br')
-
-				df.loc[ind, "prune_name"], df.loc[ind, "rgft_name"] = prune_name, rgft_name
-				df.loc[ind, "orig_ds_ll"], df.loc[ind, "ll"] = ll_orig_tree, ll_rearr
-
-	df.to_csv(outpath_prune)
-	df.to_csv(outpath_rgft)
-	df2.to_csv(outpath_trees)
-
-	# to reduce inodes numbe r- delete subdirs after copying important content to 2 csvs:
-	shutil.rmtree(all_trees, ignore_errors=True)
-
-	return
-
 
 
 def create_parsing_job(dataset_path, cp_internal, step_number, tree_type):

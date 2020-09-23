@@ -3,17 +3,13 @@ import sys
 sys.path.append("/groups/itay_mayrose/danaazouri/PhyAI/code/")
 
 from defs import *
-from ete3 import Tree, PhyloTree
-from execute_programs.Phyml import run_phyml
-from parsing.parse_phyml import parse_phyml_stats_output
 from utils.msa_functions import *
 from data_processing.traverse_data_dirs import traverse_data_dirs
 from summary.collect_SPR_features import *
-from random import randint
-from subprocess import Popen, PIPE, STDOUT, run
+from subprocess import Popen, PIPE, STDOUT
 from parsing.parse_raxml_NG import parse_raxmlNG_content
 from execute_programs.RAxML_NG import extract_model_params
-from tempfile import SpooledTemporaryFile as tempfile
+import csv
 
 ML_SOFTWARE = 'RAxML_NG'     # could be phyml | RAxML_NG
 RAXML_NG_SCRIPT = "raxml-ng"
@@ -85,16 +81,6 @@ def get_tree(ds_path, msa_file, rewrite_phylip):
 	return t_orig
 
 
-def save_rearr_file(trees_dirpath, rearrtree, filename, runover=False):
-	if not os.path.exists(trees_dirpath):
-		os.makedirs(trees_dirpath)
-	tree_path = trees_dirpath + filename + ".txt"
-	if runover or not os.path.exists(tree_path):
-		rearrtree.write(format=1, outfile=tree_path)
-
-	return tree_path
-
-
 def call_ml_software(tree_dirpath, file_name, msa_file, runover, job_priority, cpmsa=False, software=ML_SOFTWARE):
 	opt_mode = 'br' if software == 'phyml' else 'fixed_subs'  # if software=='RAxML_NG'
 	tree_path = tree_dirpath + file_name + ".txt"
@@ -117,13 +103,12 @@ def call_raxml_mem(tree_str, msa_file, rates, pinv, alpha, freq):
 
 	# first, create tree file in memory and save it:
 	tree_rampath = "/dev/shm/" + msa_file.split(SEP)[-1] + "tree"  # the var is the str: tmp{dir_suffix}
-
 	try:
 		with open(tree_rampath, "w") as fpw:
 			fpw.write(tree_str)
 
 		p = Popen([RAXML_NG_SCRIPT, '--evaluate', '--msa', msa_file,'--threads', '1', '--opt-branches', 'on', '--opt-model', 'off', '--model', model_line_params, '--nofiles', '--tree', tree_rampath],
-				  stdout=PIPE, stdin=PIPE, stderr=STDOUT)    #stdout=PIPE, input=tree_str, encoding='ascii',
+				  stdout=PIPE, stdin=PIPE, stderr=STDOUT)
 		raxml_stdout = p.communicate()[0]
 		raxml_output = raxml_stdout.decode()
 
@@ -135,17 +120,6 @@ def call_raxml_mem(tree_str, msa_file, rates, pinv, alpha, freq):
 		exit()
 	finally:
 		os.remove(tree_rampath)
-
-	#f = tempfile()
-	#f.write(tree_str)
-	#f.seek(0)
-	### now prepare the raxml command, "--tree" should be last because the function behaves as the pipe
-	#p = Popen([RAXML_NG_SCRIPT, '--evaluate', '--msa', msa_file,'--threads', '1', '--opt-branches', 'on', '--opt-model', 'off', '--model', model_line_params, '--nofiles', '--tree', f],
-	#		  stdout=PIPE, stdin=PIPE, stderr=STDOUT)    #stdout=PIPE, input=tree_str, encoding='ascii',
-	### send the newich string through the "input" argument to communicate. Now raxml-ng will run.
-	#raxml_stdout = p.communicate()[0]
-	### extract the stdout string
-	#raxml_output = raxml_stdout.decode()
 
 	return ll
 
@@ -165,14 +139,12 @@ def create_SPR_job(dataset_path, step_number, tree_type, rewrite_phy, runover):
 
 
 
-import csv
 def all_SPR(ds_path, outpath, tree=None, rewrite_phylip=False):
 	orig_msa_file = ds_path + MSA_PHYLIP_FILENAME
 	t_orig = get_tree(ds_path, orig_msa_file, rewrite_phylip) if not tree else PhyloTree(newick=tree, alignment=orig_msa_file, alg_format="iphylip", format=1)
 	t_orig.get_tree_root().name = ROOTLIKE_NAME if not tree else ROOTLIKE_NAME+"_2"
-	OUTPUT_TREES_FILE = ds_path + "newicks_step1.csv"
+	OUTPUT_TREES_FILE = TREES_PER_DS.format(ds_path, '1')
 	with open(OUTPUT_TREES_FILE, "w", newline='') as fpw:
-		#fpw.write(",prune_name,rgft_name,newick\n")
 		csvwriter = csv.writer(fpw)
 		csvwriter.writerow(['', 'prune_name', 'rgft_name', 'newick'])
 
@@ -193,8 +165,6 @@ def all_SPR(ds_path, outpath, tree=None, rewrite_phylip=False):
 			prune_name = prune_node.name
 			nname, subtree1, subtree2 = prune_branch(t_orig, prune_name) # subtree1 is the pruned subtree. subtree2 is the remaining subtree
 			with open(OUTPUT_TREES_FILE, "a", newline='') as fpa:
-				#fpa.write(", ".join([str(i)+",0", prune_name, SUBTREE1, subtree1.write(format=1)]) + "\n")
-				#fpa.write(", ".join([str(i)+",1", prune_name, SUBTREE2, subtree2.write(format=1)]) + "\n")
 				csvwriter = csv.writer(fpa)
 				csvwriter.writerow([str(i)+",0", prune_name, SUBTREE1, subtree1.write(format=1)])
 				csvwriter.writerow([str(i)+",1", prune_name, SUBTREE2, subtree2.write(format=1)])
@@ -208,7 +178,6 @@ def all_SPR(ds_path, outpath, tree=None, rewrite_phylip=False):
 				rearr_tree_str = regraft_branch(subtree2, rgft_node, subtree1, rgft_name, nname).write(format=1)
 				### save tree to file by using "append"
 				with open(OUTPUT_TREES_FILE, "a", newline='') as fpa:
-					#fpa.write(", ".join([ind, prune_name, rgft_name, rearr_tree_str]) + "\n")
 					csvwriter = csv.writer(fpa)
 					csvwriter.writerow([ind, prune_name, rgft_name, rearr_tree_str])
 
@@ -221,7 +190,7 @@ def all_SPR(ds_path, outpath, tree=None, rewrite_phylip=False):
 		df.to_csv(outpath.format("rgft"))
 
 	except Exception as e:
-		print('xx')
+		print('xxxxx')
 		print(e)
 		exit()
 	finally:
@@ -236,7 +205,6 @@ if __name__ == '__main__':
 	parser.add_argument('--dataset_path', '-ds', default=None)
 	parser.add_argument('--runover', '-r', default=False, action='store_true')
 	parser.add_argument('--rewrite_in_phylip', '-phy', default=False, action='store_true')
-	parser.add_argument('--cp_internal', '-cp', default=False, action='store_true')
 	parser.add_argument('--tree_type', '-ttype', default='bionj')  # could be bionj or random
 	parser.add_argument('--index_to_start_run', '-istart', default=False)
 	parser.add_argument('--nline_to_run', '-nlines', default=False)		 # number of lines from the dataset (int): n^2
@@ -247,22 +215,17 @@ if __name__ == '__main__':
 	if dataset_path:
 		dataset_path = dataset_path if args.tree_type == 'bionj' else dataset_path + RANDOM_TREE_DIRNAME # if == 'random
 		outpath = SUMMARY_PER_DS.format(dataset_path, "{}", "br", args.step_number)
-		# todo: uncomment the following condition after running over the failed runnings
-		#if not os.path.exists(outpath_rgft) or not os.path.exists(outpath_prune):
-		#runover=args.runover
-		if args.step_number == "1":
-			res = all_SPR(dataset_path, outpath, tree=None, rewrite_phylip=args.rewrite_in_phylip)
-		else:   # run next step on previous' best tree
-			prev_step = str(int(args.step_number)-1)
-			dfr = pd.read_csv(TREES_PER_DS.format(dataset_path, prev_step), index_col=0)
-			df_sum = pd.read_csv(SUMMARY_PER_DS.format(dataset_path, "prune", "br", prev_step)).set_index('Unnamed: 0')
-			best_tree_id = df_sum["ll"].astype(float).idxmax()
-			tree_str = dfr.loc[best_tree_id, "newick"]
+		if args.runover:
+			if args.step_number == "1":
+				res = all_SPR(dataset_path, outpath, tree=None, rewrite_phylip=args.rewrite_in_phylip)
+			else:   # run next step on previous' best tree
+				prev_step = str(int(args.step_number)-1)
+				dfr = pd.read_csv(TREES_PER_DS.format(dataset_path, prev_step), index_col=0)
+				df_sum = pd.read_csv(SUMMARY_PER_DS.format(dataset_path, "prune", "br", prev_step)).set_index('Unnamed: 0')
+				best_tree_id = df_sum["ll"].astype(float).idxmax()
+				tree_str = dfr.loc[best_tree_id, "newick"]
+				res = all_SPR(dataset_path, outpath, tree=tree_str, rewrite_phylip=args.rewrite_in_phylip)
 
-			res = all_SPR(dataset_path, outpath, tree=tree_str, rewrite_phylip=args.rewrite_in_phylip)
-
-		# after preforming all steps, parse results and delete all files
-		#res = parse_neighbors_dirs(dataset_path, outpath_prune, outpath_rgft, args.step_number, args.cp_internal, tree_type=args.tree_type)
 		collect_features(dataset_path, args.step_number, outpath.format("prune"), outpath.format("rgft"), args.tree_type)
 	else:
 		csv_path = SUMMARY_FILES_DIR + CHOSEN_DATASETS_FILENAME

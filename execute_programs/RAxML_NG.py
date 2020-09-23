@@ -106,16 +106,10 @@ if __name__ == "__main__":
 	parser.add_argument('--tree_filepath', '-t', default=None)
 	parser.add_argument('--opt_mode', '-br', default='fixed_subs')  # could be: fixed_subs | starting_optimized | partitions
 	parser.add_argument('--runover', '-r', default=False, action='store_true')
-	parser.add_argument('--cpmsa', '-cp', default=False, action='store_true')
 	args = parser.parse_args()
 
-	msa_filepath = args.msa_filepath
-	if args.cpmsa:
-		msa_copy_path = SEP.join([SEP.join(args.tree_filepath.split(SEP)[:-1]), MSA_PHYLIP_FILENAME])
-		shutil.copy(args.msa_filepath, msa_copy_path)
-		msa_filepath = msa_copy_path
 
 	import time
 	start_time = time.time()
-	res = run_raxml(msa_filepath, args.tree_filepath, args.opt_mode, args.runover)
+	res = run_raxml(args.msa_filepath, args.tree_filepath, args.opt_mode, args.runover)
 	print(time.time() - start_time)
