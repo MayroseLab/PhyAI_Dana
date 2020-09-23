@@ -132,7 +132,7 @@ def create_SPR_job(dataset_path, step_number, tree_type, rewrite_phy, runover):
 	cmd = "python " + CODE_PATH + "execute_programs/SPR_move.py -ds " + dataset_path + " -st " + str(step_number) + " -ttype " + tree_type
 
 	if runover:
-		cmd += runover
+		cmd += " -r "
 	if rewrite_phy:
 		cmd += " -phy "
 
