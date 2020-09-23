@@ -30,7 +30,7 @@ def prune_branch(t_orig, prune_name):
 	prune_loc = prune_node_cp
 	prune_loc.detach()  # pruning: prune_node_cp is now the subtree we detached. t_cp_p is the one that was left behind
 	t_cp_p.search_nodes(name=nname)[0].delete(preserve_branch_length=True)  # delete the specific node (without its childs) since after pruning this branch should not be divided
-	if not nname:
+	if not nname:   # These 2 lines can be removed
 		nname = "Nnew_p"
 
 	return nname, prune_node_cp, t_cp_p
@@ -102,7 +102,7 @@ def call_raxml_mem(tree_str, msa_file, rates, pinv, alpha, freq):
 									 pinv="{{{0}}}".format(pinv), alpha="{{{0}}}".format(alpha),
 									 freq="{{{0}}}".format("/".join(freq)))
 
-	# first, create tree file in memory and save it:
+	# create tree file in memory and not in the storage:
 	tree_rampath = "/dev/shm/" + msa_file.split(SEP)[-1] + "tree"  # the var is the str: tmp{dir_suffix}
 	try:
 		with open(tree_rampath, "w") as fpw:
@@ -195,7 +195,7 @@ def all_SPR(ds_path, outpath, tree=None, rewrite_phylip=False):
 		df.to_csv(outpath.format("rgft"))
 
 	except Exception as e:
-		print('xxxxx')
+		print('could not complete the all_SPR function on dataset:', dataset_path, '\nError message:')
 		print(e)
 		exit()
 	finally:
@@ -204,13 +204,13 @@ def all_SPR(ds_path, outpath, tree=None, rewrite_phylip=False):
 
 
 
-# -phy -cp -istart 0 -nlines 1 -st 1
+# -st 1 -istart 0 -nlines 1   ## -phy {if first time running anything on the dataset}
 if __name__ == '__main__':
 	parser = argparse.ArgumentParser(description='perform all SPR moves')
 	parser.add_argument('--dataset_path', '-ds', default=None)
 	parser.add_argument('--runover', '-r', default=False, action='store_true')
 	parser.add_argument('--rewrite_in_phylip', '-phy', default=False, action='store_true')
-	parser.add_argument('--tree_type', '-ttype', default='bionj')  # could be bionj or random
+	parser.add_argument('--tree_type', '-ttype', default='bionj') ### does mean NOTHING when runing on RAXML_NG mode    ## could be bionj or random
 	parser.add_argument('--index_to_start_run', '-istart', default=False)
 	parser.add_argument('--nline_to_run', '-nlines', default=False)		 # number of lines from the dataset (int): n^2
 	parser.add_argument('--step_number', '-st', required=True)			 # counting from 1
