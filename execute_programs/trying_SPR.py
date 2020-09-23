@@ -111,15 +111,20 @@ def call_ml_software(tree_dirpath, file_name, msa_file, runover, job_priority, c
 	os.system(cmd)
 
 def call_raxml_mem(tree_str, msa_file, rates, pinv, alpha, freq):
+	print(tree_str)
 	model_line_params = 'GTR{rates}+I{pinv}+G{alpha}+F{freq}'.format(rates="{{{0}}}".format("/".join(rates)),
 									 pinv="{{{0}}}".format(pinv), alpha="{{{0}}}".format(alpha),
 									 freq="{{{0}}}".format("/".join(freq)))
 
 	# now prepare the raxml command, "--tree" should be last because the function behaves as the pipe
-	p = run([RAXML_NG_SCRIPT, '--evaluate', '--msa', msa_file,'--threads', '1', '--opt-branches', 'on', '--opt-model', 'off', '--model', model_line_params, '--nofiles', '--tree'],
-			stdout=PIPE, input=tree_str, encoding='ascii')
+	p = Popen([RAXML_NG_SCRIPT, '--evaluate', '--msa', msa_file,'--threads', '1', '--opt-branches', 'on', '--opt-model', 'off', '--model', model_line_params, '--nofiles', '--tree'],
+			  stdout=PIPE, stdin=PIPE, stderr=STDOUT)    #stdout=PIPE, input=tree_str, encoding='ascii',
+	### send the newich string through the "input" argument to communicate. Now raxml-ng will run.
+	raxml_stdout = p.communicate(input=tree_str.encode())[0]
+	### extract the stdout string
+	raxml_output = raxml_stdout.decode()
 
-	res_dict = parse_raxmlNG_content(p.stdout)
+	res_dict = parse_raxmlNG_content(raxml_output)
 	ll = res_dict['ll']
 
 	return ll
@@ -158,7 +163,7 @@ def all_SPR(ds_path, tree=None, rewrite_phylip=False, runover=False, job_priorit
 		fpw.write(",prune_name,rgft_name,newick")
 
 	# first, copy msa file to memory and save it:
-	msa_rampath = "/dev/shm/tmp" + ds_path.split(SEP)[-1] #  to be on the safe side (even though other processes shouldn't be able to access it)
+	msa_rampath = "/dev/shm/tmp" + ds_path.split(SEP)[-2] #  to be on the safe side (even though other processes shouldn't be able to access it)
 	print(msa_rampath)
 
 	with open(orig_msa_file) as fpr:
@@ -205,7 +210,8 @@ def all_SPR(ds_path, tree=None, rewrite_phylip=False, runover=False, job_priorit
 		df.to_csv(SUMMARY_PER_DS.format(dataset_path, "lls", 'br', '1'))   # todo: update
 	except:
 		print('xx')
-	os.remove(msa_rampath)
+	finally:
+		os.remove(msa_rampath)
 	return
 
 
