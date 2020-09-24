@@ -522,18 +522,20 @@ if __name__ == '__main__':
 		df_rgft_features = dirpath + LEARNING_DATA.format("all_moves_rgft", st + ifrandomstart)
 
 		if not os.path.exists(df_path):
-			parse_relevant_summaries_for_learning(df_orig, df_prune_features, "prune", st, all_moves=True, tree_type=args.tree_type)
-			parse_relevant_summaries_for_learning(df_orig, df_rgft_features, "rgft", st, all_moves=True, tree_type=args.tree_type)
+			#parse_relevant_summaries_for_learning(df_orig, df_prune_features, "prune", st, all_moves=True, tree_type=args.tree_type)
+			#parse_relevant_summaries_for_learning(df_orig, df_rgft_features, "rgft", st, all_moves=True, tree_type=args.tree_type)
 			shared_cols = FEATURES_SHARED + ["path","prune_name","rgft_name","orig_ds_ll", "ll"]
 			complete_df = pd.read_csv(df_prune_features, dtype=types_dict).merge(pd.read_csv(df_rgft_features, dtype=types_dict),on=shared_cols, left_index=True, right_index=True, suffixes=('_prune', '_rgft'))
 			complete_df = complete_df.rename(columns={FEATURES[f]: FEATURES[f] + "_rgft" for f in FEATURES_RGFT_ONLY})
 			complete_df[LABEL.format(move_type)] = complete_df[LABEL.format("prune")]
 			complete_df.to_csv(df_path)
 
-	df_learning = pd.read_csv(df_path, dtype=types_dict)
+	df_learning = pd.read_csv(df_path) #, dtype=types_dict)
 	print(len(df_learning))
 	df_learning = df_learning.dropna()
 	print(len(df_learning))
+	df_learning.to_csv(dirpath + LEARNING_DATA.format("all_moves", st + ifrandomstart + "dropna"))
+	exit()
 	df_learning = fit_transformation(df_learning, move_type, trans=args.transform_target)
 	
 	features = FEATURES_PRUNE if move_type == "prune" else FEATURES_RGFT if move_type == "rgft" else FEATURES_MERGED
