@@ -29,9 +29,9 @@ FIGURES = False
 FIRST_ON_RAND = False
 FIRST_ON_SEC = False           # temp for running 1 on 2
 FEATURE_SELECTION = False      # temp for running feature selection
-SATURATION = False              # temp to asses saturation
+SATURATION = True             # temp to asses saturation
 
-N_DATASETS = 1000
+N_DATASETS = 500
 
 
 def score_rank(df_by_ds, sortby, locatein, random, scale_score):
@@ -207,7 +207,6 @@ def truncate(df):
 	if DBSET == "2":
 		#selected_groups_ids = np.random.choice(groups_ids, 2000, replace=False)
 		n_other_dbs = 541
-		#todo: uncomment the following two lines
 		selected_groups_ids = np.concatenate((np.random.choice(groups_ids[:-n_other_dbs], N_DATASETS-n_other_dbs, replace=False), groups_ids[-n_other_dbs:]))
 		df = df[df[FEATURES[GROUP_ID]].isin(selected_groups_ids)]
 		groups_ids = df[FEATURES[GROUP_ID]].unique()
