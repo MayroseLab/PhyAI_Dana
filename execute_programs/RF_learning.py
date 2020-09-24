@@ -34,8 +34,8 @@ SATURATION = True             # temp to asses saturation
 N_DATASETS = 3000
 
 
-def score_rank(df_by_ds, sortby, locatein, random, scale_score):
-	'''
+def score_ank(df_by_ds, sortby, locatein, random, scale_score):
+	'''r
 	find the best tree in 'sortby' (e.g., predicted as the best) foreach dataset and locate its rank in 'locatein' (e.g., y_test)
 	'''
 
