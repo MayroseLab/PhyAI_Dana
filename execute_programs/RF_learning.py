@@ -31,7 +31,7 @@ FIRST_ON_SEC = False           # temp for running 1 on 2
 FEATURE_SELECTION = False      # temp for running feature selection
 SATURATION = True             # temp to asses saturation
 
-N_DATASETS = 6000
+N_DATASETS = 1000
 
 
 def score_ank(df_by_ds, sortby, locatein, random, scale_score):
@@ -531,11 +531,6 @@ if __name__ == '__main__':
 			complete_df.to_csv(df_path)
 
 	df_learning = pd.read_csv(df_path) #, dtype=types_dict)
-	print(len(df_learning))
-	df_learning = df_learning.dropna()
-	print(len(df_learning))
-	df_learning.to_csv(dirpath + LEARNING_DATA.format("all_moves", st + ifrandomstart + "dropna"))
-	exit()
 	df_learning = fit_transformation(df_learning, move_type, trans=args.transform_target)
 	
 	features = FEATURES_PRUNE if move_type == "prune" else FEATURES_RGFT if move_type == "rgft" else FEATURES_MERGED
