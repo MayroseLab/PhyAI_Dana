@@ -31,7 +31,7 @@ FIRST_ON_SEC = False           # temp for running 1 on 2
 FEATURE_SELECTION = False      # temp for running feature selection
 SATURATION = True             # temp to asses saturation
 
-N_DATASETS = 1000
+N_DATASETS = 2000
 
 
 def score_ank(df_by_ds, sortby, locatein, random, scale_score):
