@@ -31,7 +31,7 @@ FIRST_ON_SEC = False           # temp for running 1 on 2
 FEATURE_SELECTION = False      # temp for running feature selection
 SATURATION = True             # temp to asses saturation
 
-N_DATASETS = 1800
+N_DATASETS = 2000
 
 
 def score_rank(df_by_ds, sortby, locatein, random, scale_score):
@@ -504,8 +504,8 @@ if __name__ == '__main__':
 	args = parser.parse_args()
 
 	dirpath = SUMMARY_FILES_DIR if platform.system() == 'Linux' else DATA_PATH
-	df_orig = pd.read_csv(dirpath + CHOSEN_DATASETS_FILENAME, dtype=types_dict, skiprows=[i for i in range(0,600,3)])   # todo: skiprows is TEMP  for interim analysis - REMOVE !
-	#df_orig = pd.read_csv(dirpath + CHOSEN_DATASETS_FILENAME, dtype=types_dict) #, nrows=30)
+	#df_orig = pd.read_csv(dirpath + CHOSEN_DATASETS_FILENAME, dtype=types_dict, skiprows=[i for i in range(200,5502)])   # todo: skiprows is TEMP  for interim analysis - REMOVE !
+	df_orig = pd.read_csv(dirpath + CHOSEN_DATASETS_FILENAME, dtype=types_dict) #, nrows=30)
 
 	move_type = args.move_type
 	st = str(args.step_number)
@@ -517,12 +517,9 @@ if __name__ == '__main__':
 		if not os.path.exists(df_path):
 			parse_relevant_summaries_for_learning(df_orig, df_path, move_type, st, all_moves=args.all_moves, tree_type=args.tree_type)
 	else:  # parse ALL neighbors to create a merged df off all features of all neighbors
-		#df_path = dirpath + LEARNING_DATA.format("all_moves", st + ifrandomstart)
-		#df_prune_features = dirpath + LEARNING_DATA.format("all_moves_prune", st + ifrandomstart)
-		#df_rgft_features = dirpath + LEARNING_DATA.format("all_moves_rgft", st + ifrandomstart)
-		df_path = dirpath + LEARNING_DATA.format("subset", st + ifrandomstart)
-		df_prune_features = dirpath + LEARNING_DATA.format("subset_prune", st + ifrandomstart)
-		df_rgft_features = dirpath + LEARNING_DATA.format("subset_rgft", st + ifrandomstart)
+		df_path = dirpath + LEARNING_DATA.format("all_moves", st + ifrandomstart)
+		df_prune_features = dirpath + LEARNING_DATA.format("all_moves_prune", st + ifrandomstart)
+		df_rgft_features = dirpath + LEARNING_DATA.format("all_moves_rgft", st + ifrandomstart)
 
 		if not os.path.exists(df_path):
 			parse_relevant_summaries_for_learning(df_orig, df_prune_features, "prune", st, all_moves=True, tree_type=args.tree_type)
@@ -534,6 +531,9 @@ if __name__ == '__main__':
 			complete_df.to_csv(df_path)
 
 	df_learning = pd.read_csv(df_path, dtype=types_dict)
+	print(len(df_learning))
+	df_learning = df_learning.dropna()
+	print(len(df_learning))
 	df_learning = fit_transformation(df_learning, move_type, trans=args.transform_target)
 	
 	features = FEATURES_PRUNE if move_type == "prune" else FEATURES_RGFT if move_type == "rgft" else FEATURES_MERGED
