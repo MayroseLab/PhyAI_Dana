@@ -31,10 +31,10 @@ FIRST_ON_SEC = False           # temp for running 1 on 2
 FEATURE_SELECTION = False      # temp for running feature selection
 SATURATION = True             # temp to asses saturation
 
-N_DATASETS = 5990
+N_DATASETS = 1100
 
 
-def score_ank(df_by_ds, sortby, locatein, random, scale_score):
+def score_rank(df_by_ds, sortby, locatein, random, scale_score):
 	'''r
 	find the best tree in 'sortby' (e.g., predicted as the best) foreach dataset and locate its rank in 'locatein' (e.g., y_test)
 	'''
