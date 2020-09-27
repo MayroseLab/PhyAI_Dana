@@ -69,6 +69,7 @@ def add_internal_names(tree_file, tree_file_cp_no_internal, t_orig):
 def get_tree(ds_path, msa_file, rewrite_phylip, software=ML_SOFTWARE_STATING_TREE):
 	suf = "bionj" if not RANDOM_TREE_DIRNAME in ds_path else "br"
 	tree_file = ds_path + PHYML_TREE_FILENAME.format(suf) if software == 'phyml' else ds_path + RAXML_TREE_FILENAME    # if software=='RAxML_NG'
+	log_filepath = ds_path + PHYML_STATS_FILENAME.format(suf) if software == 'phyml' else ds_path + RAXML_STATS_FILENAME
 	if rewrite_phylip:
 		rewrite_in_phylip(msa_file)     # for one-time use on new ds
 	tree_file_cp_no_internal = ds_path + PHYML_TREE_FILENAME.format(suf + "_no_internal") if software == 'phyml' else ds_path + RAXML_TREE_FILENAME + "_no_internal"
@@ -82,7 +83,7 @@ def get_tree(ds_path, msa_file, rewrite_phylip, software=ML_SOFTWARE_STATING_TRE
 	#	t_orig = PhyloTree(newick=tree_file, alignment=msa_file, alg_format="iphylip", format=3)
 	t_orig = PhyloTree(newick=tree_file, alignment=msa_file, alg_format="iphylip", format=3)
 
-	return t_orig, ds_path + PHYML_STATS_FILENAME.format(suf)
+	return t_orig, log_filepath
 
 
 def call_phyml_storage(tree_dirpath, file_name, msa_file, runover, job_priority, cpmsa=False):
@@ -194,7 +195,8 @@ def all_SPR(ds_path, outpath, tree=None, rewrite_phylip=False):
 				df.loc[ind, "prune_name"], df.loc[ind, "rgft_name"] = prune_name, rgft_name
 				df.loc[ind, "ll"] = ll_rearr
 
-		df["orig_ds_ll"] = float(parse_raxmlNG_output(ds_path + RAXML_STATS_FILENAME)['ll'])
+		df["orig_ds_ll"] = float(parse_phyml_stats_output(msa_rampath, stats_filepath)['ll']) if ML_SOFTWARE_STATING_TREE == 'phyml' else float(parse_raxmlNG_output(stats_filepath)['ll'])
+
 		df.to_csv(outpath.format("prune"))
 		df.to_csv(outpath.format("rgft"))
 
