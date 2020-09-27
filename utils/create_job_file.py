@@ -74,6 +74,7 @@ def get_job_qsub_command(job_name, command, error_files_path, queue=QUEUE, addit
 	return "echo \"{}\"|" \
 		   "qsub -S /bin/bash" \
 		   " -N {}" \
+		   " -j oe" \
 		   " -r y" \
 		   " -q {}" \
 		   " -v PBS_O_SHELL=bash,PBS_ENVIRONMENT=PBS_BATCH" \

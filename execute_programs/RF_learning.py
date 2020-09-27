@@ -18,7 +18,7 @@ from itertools import combinations
 
 pd.set_option('display.max_columns', 40)
 
-ML_SOFTWARE = 'RAxML_NG'     # could be phyml | RAxML_NG
+ML_SOFTWARE_STATING_TREE = 'phyml'     # could be phyml | RAxML_NG
 OPT_TYPE = "br"
 KFOLD = 2     # "LOO"
 GROUP_ID = 'group_id'
@@ -227,7 +227,7 @@ def truncate(df):
 	return df.reset_index(drop=True), groups_ids, test_batch_size
 
 
-def cross_validation_RF(df, move_type, features, trans=False, validation_set=False, random=False, scale_score=True):
+def cross_validation_RF(df, move_type, features, trans=False, validation_set=None, random=False, scale_score=True):
 	#'''
 	df, groups_ids, test_batch_size = truncate(df)
 	res_dict = {}
@@ -267,9 +267,9 @@ def cross_validation_RF(df, move_type, features, trans=False, validation_set=Fal
 		elif FIRST_ON_RAND:
 			df_test = pd.read_csv(dirpath + LEARNING_DATA.format("all_moves", "1_random_starting"))
 		else:   # a reg validation set
-			df_test = pd.read_csv(dirpath + LEARNING_DATA.format("all_moves", "1_validation"))
-			#df_test = pd.read_csv(SUMMARY_FILES_DIR + "example4_testing.csv")
+			df_test = pd.read_csv(dirpath + LEARNING_DATA.format("all_moves", "1_" + validation_set))
 			#df_test = pd.read_csv(SUMMARY_FILES_DIR + "example4_last_step_testing.csv")
+
 		df_test = fit_transformation(df_test, move_type, trans).dropna()
 		y_pred, all_DTs_pred, oob, f_imp = apply_RFR(df_test, df_train, move_type, features)
 		
@@ -355,37 +355,39 @@ def fit_transformation(df, move_type, trans=False):
 	return df
 
 
-def parse_relevant_summaries_for_learning(df_orig, outpath, move_type, step_number, all_moves=False, tree_type='bionj'):
+def parse_relevant_summaries_for_learning(df_orig, outpath, step_number, tree_type='bionj'):
 	ds_path_init = df_orig.iloc[0]["path"]
-	cols = list(pd.read_csv(SUMMARY_PER_DS.format(ds_path_init, move_type, OPT_TYPE, step_number)))
+	cols = list(pd.read_csv(SUMMARY_PER_DS.format(ds_path_init, "prune", OPT_TYPE, step_number)))
 	cols.insert(1, "path")
 	cols.extend([FEATURES[GROUP_ID], FEATURES["group_tbl"]])  # add for group features
-	df = pd.DataFrame(index=np.arange(0), columns=cols)
+	df1 = pd.DataFrame(index=np.arange(0), columns=cols)
+	df2 = pd.DataFrame(index=np.arange(0), columns=cols)
 
 	for i, row in df_orig.iterrows():
 		ds_path = row["path"]
 		ds_path = ds_path if tree_type == 'bionj' else ds_path + RANDOM_TREE_DIRNAME  # if == 'random
 		suf = "bionj" if tree_type == 'bionj' else OPT_TYPE
-		ds_tbl = get_total_branch_lengths(ds_path + PHYML_TREE_FILENAME.format(suf)) if not ML_SOFTWARE == 'RAxML_NG' else get_total_branch_lengths(ds_path + RAXML_TREE_FILENAME)
-		summary_per_ds = SUMMARY_PER_DS.format(ds_path, move_type, OPT_TYPE, step_number)
-		print(summary_per_ds)
-		if os.path.exists(summary_per_ds) and FEATURES["bl"] in pd.read_csv(summary_per_ds).columns:
-			df_ds = pd.read_csv(summary_per_ds)
+		ds_tbl = get_total_branch_lengths(ds_path + PHYML_TREE_FILENAME.format(suf)) if ML_SOFTWARE_STATING_TREE == 'phyml' else get_total_branch_lengths(ds_path + RAXML_TREE_FILENAME)
 
-			if all_moves:
-				df_ds.insert(1, "path", ds_path)
-				df_ds[FEATURES[GROUP_ID]] = str(i)
-				df_ds[FEATURES["group_tbl"]] = ds_tbl
-				df = pd.concat([df, df_ds], ignore_index=True)
-			else:
-				grouped = df_ds.groupby("{}_name".format(move_type), sort=False)
-				for j, (name, group) in enumerate(grouped):
-					best_row_group = list(group.ix[group[LABEL.format(move_type)].astype(float).idxmax()].values)   # changed min to max!
-					best_row_group.insert(1, ds_path)
-					best_row_group.extend([str(i), ds_tbl])							# add group features
-					df.ix[str(i) + "," + str(j)] = best_row_group
-	
-	df.to_csv(outpath)
+		summary_per_ds1 = SUMMARY_PER_DS.format(ds_path, 'prune', OPT_TYPE, step_number)
+		summary_per_ds2 = SUMMARY_PER_DS.format(ds_path, 'rgft', OPT_TYPE, step_number)
+		print(summary_per_ds1)
+		if os.path.exists(summary_per_ds2) and FEATURES["bl"] in pd.read_csv(summary_per_ds2).columns:
+			df_ds1 = pd.read_csv(summary_per_ds1)
+			df_ds2 = pd.read_csv(summary_per_ds2)
+
+			df_ds1.insert(1, "path", ds_path)
+			df_ds2.insert(1, "path", ds_path)
+			df_ds1[FEATURES[GROUP_ID]] = str(i)
+			df_ds2[FEATURES[GROUP_ID]] = str(i)
+			df_ds1[FEATURES["group_tbl"]] = ds_tbl
+			df_ds2[FEATURES["group_tbl"]] = ds_tbl
+
+			df1 = pd.concat([df1, df_ds1], ignore_index=True)
+			df2 = pd.concat([df2, df_ds2], ignore_index=True)
+
+	df1.to_csv(outpath.format('prune'))
+	df2.to_csv(outpath.format('rgft'))
 	
 
 
@@ -496,8 +498,7 @@ if __name__ == '__main__':
 	parser = argparse.ArgumentParser(description='arrange data for learning and implement learning algo')
 	parser.add_argument('--move_type', '-mt', default='prune')	 # could be 'prune' or 'rgft' or 'merged'
 	parser.add_argument('--step_number', '-st', required=True) 	 # counting from 1
-	parser.add_argument('--validation_set', '-val', default=False, action='store_true') # whether to use validation set INSTEAD of cross validation
-	parser.add_argument('--all_moves', '-all', default=False, action='store_true') # necessary only if we want to learn rgft on all
+	parser.add_argument('--validation_set', '-val', default=None) # could be None (default) | validation_set | example | example{n}
 	parser.add_argument('--transform_target', '-trans', default=False)   # if trans, could be XX or YY
 	parser.add_argument('--score_for_random', '-random', default=False, action='store_true')
 	parser.add_argument('--scale_score', '-sscore', default=False, action='store_true')
@@ -505,28 +506,24 @@ if __name__ == '__main__':
 	args = parser.parse_args()
 
 	dirpath = SUMMARY_FILES_DIR if platform.system() == 'Linux' else DATA_PATH
-	#df_orig = pd.read_csv(dirpath + CHOSEN_DATASETS_FILENAME, dtype=types_dict, skiprows=[i for i in range(200,5502)])   # todo: skiprows is TEMP  for interim analysis - REMOVE !
-	df_orig = pd.read_csv(dirpath + CHOSEN_DATASETS_FILENAME, dtype=types_dict) #, nrows=30)
+	df_orig = pd.read_csv(dirpath + CHOSEN_DATASETS_FILENAME, dtype=types_dict) #, nrows=30 OR skiprows=[i for i in range(200,5502)])
 
 	move_type = args.move_type
 	st = str(args.step_number)
-	ifall = "" if not args.all_moves else "all_moves_"
+	ifall = "all_moves"
 	ifrandomstart = "" if args.tree_type == 'bionj' else "_random_starting"  # if == 'random'
 	
 	if not move_type == "merged":
-		df_path = dirpath + LEARNING_DATA.format(ifall + move_type , st)
-		if not os.path.exists(df_path):
-			parse_relevant_summaries_for_learning(df_orig, df_path, move_type, st, all_moves=args.all_moves, tree_type=args.tree_type)
+		pass # no need anymore, antique analysis. if I need check versions before 27/9/20
+		df_path = ''
 	else:  # parse ALL neighbors to create a merged df off all features of all neighbors
-		df_path = dirpath + LEARNING_DATA.format("all_moves", st + ifrandomstart)
-		df_prune_features = dirpath + LEARNING_DATA.format("all_moves_prune", st + ifrandomstart)
-		df_rgft_features = dirpath + LEARNING_DATA.format("all_moves_rgft", st + ifrandomstart)
+		df_path = dirpath + LEARNING_DATA.format(ifall, st + ifrandomstart)
+		df_features = dirpath + LEARNING_DATA.format(ifall + "_{}", st + ifrandomstart)
 
 		if not os.path.exists(df_path):
-			parse_relevant_summaries_for_learning(df_orig, df_prune_features, "prune", st, all_moves=True, tree_type=args.tree_type)
-			parse_relevant_summaries_for_learning(df_orig, df_rgft_features, "rgft", st, all_moves=True, tree_type=args.tree_type)
+			parse_relevant_summaries_for_learning(df_orig, df_features, st, tree_type=args.tree_type)
 			shared_cols = FEATURES_SHARED + ["path","prune_name","rgft_name","orig_ds_ll", "ll"]
-			complete_df = pd.read_csv(df_prune_features, dtype=types_dict).merge(pd.read_csv(df_rgft_features, dtype=types_dict),on=shared_cols, left_index=True, right_index=True, suffixes=('_prune', '_rgft'))
+			complete_df = pd.read_csv(df_features.format('prune'), dtype=types_dict).merge(pd.read_csv(df_features.format('rgft'), dtype=types_dict),on=shared_cols, left_index=True, right_index=True, suffixes=('_prune', '_rgft'))
 			complete_df = complete_df.rename(columns={FEATURES[f]: FEATURES[f] + "_rgft" for f in FEATURES_RGFT_ONLY})
 			complete_df[LABEL.format(move_type)] = complete_df[LABEL.format("prune")]
 			complete_df.to_csv(df_path)
@@ -540,20 +537,22 @@ if __name__ == '__main__':
 
 	########################
 	#'''
+	val = args.validation_set
+	suf = "_{st}_{valtype}".format(st=st, valtype=val) if val and not FIRST_ON_SEC else "_1st_on_2nd" if val else "_{}".format(st)
+	ifsaturation = "" if not SATURATION else "_" + str(N_DATASETS)
+	ifrank = "" if not args.transform_target else "_ytransformed_{}".format(args.transform_target)
+	ifrandomstart = "" if args.tree_type == 'bionj' else "_random_starting"  # if == 'random'
+	suf += ifsaturation + ifrank + ifrandomstart
+
 	for i in range(len(features)):
-		suf = "_{}_validation_set_x".format(st) if args.validation_set and not FIRST_ON_SEC else "_1st_on_2nd" if args.validation_set else "_{}".format(st)
-		ifsaturation = "" if not SATURATION else "_" + str(N_DATASETS)
-		ifrank = "" if not args.transform_target else "_ytransformed_{}".format(args.transform_target)
-		ifrandomstart = "" if args.tree_type == 'bionj' else "_random_starting"   # if == 'random'
-		suf += ifsaturation + ifrank + ifrandomstart
 		csv_with_scores = dirpath + SCORES_PER_DS.format(str(len(features))+ suf)
 		csv_with_preds = dirpath + DATA_WITH_PREDS.format(str(len(features)) + suf)
-		if not os.path.exists(csv_with_scores) or args.validation_set:
+		if not os.path.exists(csv_with_scores) or val:
 			print("*@*@*@* scores for step{} with {} features are not available, thus applying learning".format(suf, len(features)))
-			res_dict, df_out = cross_validation_RF(df_learning, move_type, features, trans=args.transform_target ,validation_set=args.validation_set,random=args.score_for_random,scale_score=args.scale_score)
+			res_dict, df_out = cross_validation_RF(df_learning, move_type, features, trans=args.transform_target ,validation_set=val,random=args.score_for_random,scale_score=args.scale_score)
 			df_out.to_csv(csv_with_preds)
 
-			df_datasets = df_orig if not args.validation_set else pd.read_csv(DIRPATH + "/validation_set2/summary_files/" + CHOSEN_DATASETS_FILENAME)
+			df_datasets = df_orig if not val else pd.read_csv(DIRPATH + "/validation_set2/summary_files/" + CHOSEN_DATASETS_FILENAME)
 			df_datasets = df_datasets[df_datasets["path"].isin(df_out["path"].unique())]
 		else:
 			df_datasets = pd.read_csv(csv_with_scores)
@@ -581,7 +580,7 @@ if __name__ == '__main__':
 		print("***", f)
 		csv_with_scores = dirpath + SCORES_PER_DS.format(str(len(f)) + "_" + f)
 		if not os.path.exists(csv_with_scores):
-			res_dict, df_out = cross_validation_RF(df_learning, move_type, [f], trans=args.transform_target, validation_set=args.validation_set, random=args.score_for_random, scale_score=args.scale_score)
+			res_dict, df_out = cross_validation_RF(df_learning, move_type, [f], trans=args.transform_target, validation_set=val, random=args.score_for_random, scale_score=args.scale_score)
 			df_out.to_csv(dirpath + DATA_WITH_PREDS.format(str(len(f)) + "_" + f))
 			df_datasets = df_orig[df_orig["path"].isin(df_out["path"].unique())]
 		else:
@@ -597,7 +596,7 @@ if __name__ == '__main__':
 	#	csv_with_scores = dirpath + SCORES_PER_DS.format(str(len(features)) + suf + "_" + first_f + "_" + second_f)
 	#	if not os.path.exists(csv_with_scores):
 	#		print("XXXXXXXXXXX")
-	#		res_dict, df_out = cross_validation_RF(df_learning, move_type, [first_f, second_f], trans=args.transform_target, validation_set=args.validation_set, random=args.score_for_random, scale_score=args.scale_score)
+	#		res_dict, df_out = cross_validation_RF(df_learning, move_type, [first_f, second_f], trans=args.transform_target, validation_set=val, random=args.score_for_random, scale_score=args.scale_score)
 	#		df_datasets = df_orig[df_orig["path"].isin(df_out["path"].unique())]
 	#		df_out.to_csv(dirpath + DATA_WITH_PREDS.format(str(len(features)) + suf))
 	#	else:

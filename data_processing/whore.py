@@ -11,8 +11,8 @@ warnings.filterwarnings("ignore", category=DeprecationWarning)
 
 SUMMARIES_PER_DS_LST = ["ds_summary_prune_br_step1.csv", "ds_summary_prune_br_step2.csv", "ds_summary_rgft_br_step1.csv", "ds_summary_rgft_br_step2.csv", "newicks_step1.csv", "newicks_step2.csv"]
 #SUMMARIES_PER_DS_LST_TEMP = ["newicks_step1.csv"] #, "ds_summary_rgft_br_step1.csv", "newicks_step1.csv"]
-SUMMARIES_PER_DS_LST_TEMP = ["newicks_step1.csv", "ds_summary_prune_br_step1.csv", "ds_summary_rgft_br_step1.csv", "masked_species_real_msa.phy_phyml_stats_bionj.txt", "masked_species_real_msa.phy_phyml_tree_bionj.txt", "masked_species_real_msa.phy_phyml_tree_bionj_no_internal.txt"]
-
+#SUMMARIES_PER_DS_LST_TEMP = ["newicks_step1.csv", "ds_summary_prune_br_step1.csv", "ds_summary_rgft_br_step1.csv", "masked_species_real_msa.phy_phyml_stats_bionj.txt", "masked_species_real_msa.phy_phyml_tree_bionj.txt", "masked_species_real_msa.phy_phyml_tree_bionj_no_internal.txt"]
+SUMMARIES_PER_DS_LST_TEMP = ["ds_summary_rgft_br_step1.csv"]
 
 def rearrange_dirs_for_rerun(datapath):
 	new_dir = datapath + "v3/"
@@ -49,13 +49,7 @@ def missing_results():
 	df = pd.read_csv(SUMMARY_FILES_DIR + CHOSEN_DATASETS_FILENAME)
 	for index, row in df.iterrows():
 		missing_paths_lst.extend(make_sure_all_exist(row["path"], []))
-		'''
-		path = row["path"]
-		old_path = path + "v1/"
-		for filename in SUMMARIES_PER_DS_LST_TEMP:
-			if not os.path.exists(path + filename):
-				shutil.move(old_path + filename, path)
-		#'''
+
 	with open(SUMMARY_FILES_DIR + "ds_to_rerun.txt", 'w') as fp:
 		fp.write("\n".join(missing_paths_lst))
 	return
@@ -78,8 +72,7 @@ def do_something(datapath):
 	#add_atts()
 	#delete_err_dirpath(datapath)
 	#earrange_dirs_for_rerun(datapath)
-	#missing_results()
-
+	missing_results()
 
 	'''
 	df = pd.read_csv(SUMMARY_FILES_DIR + LEARNING_DATA.format("all_moves", "1"))
