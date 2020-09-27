@@ -74,13 +74,12 @@ def get_tree(ds_path, msa_file, rewrite_phylip, software=ML_SOFTWARE_STATING_TRE
 		rewrite_in_phylip(msa_file)     # for one-time use on new ds
 	tree_file_cp_no_internal = ds_path + PHYML_TREE_FILENAME.format(suf + "_no_internal") if software == 'phyml' else ds_path + RAXML_TREE_FILENAME + "_no_internal"
 
-	# todo: uncomment later
-	os.remove(tree_file_cp_no_internal)
 	#if not os.path.exists(tree_file_cp_no_internal):
 	#	t_orig = PhyloTree(newick=tree_file, alignment=msa_file, alg_format="iphylip", format=1)
 	#	add_internal_names(tree_file, tree_file_cp_no_internal, t_orig)
 	#else:
 	#	t_orig = PhyloTree(newick=tree_file, alignment=msa_file, alg_format="iphylip", format=3)
+
 	t_orig = PhyloTree(newick=tree_file, alignment=msa_file, alg_format="iphylip", format=3)
 
 	return t_orig, log_filepath
