@@ -15,19 +15,15 @@ RAXML_PARTITIONS = RAXML_NG_SCRIPT + ""
 ###############################
 
 PAR_LENGTH = 50
-SOFTWARE_STARTING_TREES = 'raxml'     # could be either 'raxml' or 'phyml
+ML_SOFTWARE_STATING_TREE = 'raxml'     # could be either 'raxml' or 'phyml
 STARTING_TREE_TYPE='pars'             # could be either 'pars' or 'rand'
 
 
-def extract_model_params(msa_file_full_path, tree_file, software):
+def extract_model_params(msa_file_full_path, log_filepath, software):
 	if software == 'phyml':
-		stats_filpath_for_params = SEP.join([SEP.join(tree_file.split(SEP)[:-4]), PHYML_STATS_FILENAME.format('bionj')])  # [-4] cause each tree_file (when running all SPR) is in /rearrangements/prune_name/rgft_name/tree_filename
-		params_dict = parse_phyml_stats_output(msa_file_full_path, stats_filpath_for_params)
+		params_dict = parse_phyml_stats_output(msa_file_full_path, log_filepath)
 	if software == 'raxml':
-		#log_filpath_for_params = SEP.join([SEP.join(tree_file.split(SEP)[:-4]), RAXML_STATS_FILENAME])
-		#log_filpath_for_params = SEP.join([SEP.join(tree_file.split(SEP)[:-1]), 'real_msa3.phy.raxml.log'])
-		log_filpath_for_params = SEP.join([tree_file, RAXML_STATS_FILENAME])  # todo: change! and change the input arg
-		params_dict = parse_raxmlNG_output(log_filpath_for_params)
+		params_dict = parse_raxmlNG_output(log_filepath)
 
 	freq = [params_dict["fA"], params_dict["fC"], params_dict["fG"], params_dict["fT"]]
 	rates = [params_dict["subAC"], params_dict["subAG"], params_dict["subAT"], params_dict["subCG"],
@@ -55,7 +51,8 @@ def partition_msa(msa_file, partitions_dirpath):
 def run_raxml(msa_path, tree_path, mode='fixed_subs', runover=False):
 	if mode == 'fixed_subs':
 
-		rates, pinv, alpha, freq = extract_model_params(msa_path, tree_path, software=SOFTWARE_STARTING_TREES)
+		log_filpath_for_params = SEP.join([SEP.join(tree_path.split(SEP)[:-4]), RAXML_STATS_FILENAME])    # true only when saving the whole folder hier (namely saving tree file to storage and not to mem)
+		rates, pinv, alpha, freq = extract_model_params(msa_path, log_filpath_for_params, software=ML_SOFTWARE_STATING_TREE)
 		RAxML_cmd = RAXML_EVALUATE.format(msa_file=msa_path, tree=tree_path,
 										  opt_bl='on', opt_model='off',
 									 rates="{{{0}}}".format("/".join(rates)),

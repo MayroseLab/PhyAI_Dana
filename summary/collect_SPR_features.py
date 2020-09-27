@@ -11,6 +11,7 @@ import warnings
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 
 
+ML_SOFTWARE_STATING_TREE = 'phyml'
 ML_SOFTWARE = 'raxml'     # could be phyml | raxml
 
 
@@ -67,7 +68,7 @@ def collect_features(ds_path, step_number, outpath_prune, outpath_rgft, tree_typ
 	df_rgft = pd.read_csv(outpath_rgft, index_col=0)
 
 	suf = "bionj" if tree_type == 'bionj' else 'br'  # if tree_type="random"
-	tree_file = ds_path + PHYML_TREE_FILENAME.format(suf) if ML_SOFTWARE == 'phyml' else ds_path + RAXML_TREE_FILENAME
+	tree_file = ds_path + PHYML_TREE_FILENAME.format(suf) if ML_SOFTWARE_STATING_TREE == 'phyml' else ds_path + RAXML_TREE_FILENAME
 	features_prune_dicts_dict = calc_leaves_features(tree_file,"prune")
 
 

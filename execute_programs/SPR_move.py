@@ -12,7 +12,7 @@ from execute_programs.RAxML_NG import extract_model_params
 from utils.create_job_file import get_job_qsub_command
 import csv
 
-ML_SOFTWARE = 'RAxML_NG'     # could be phyml | RAxML_NG
+ML_SOFTWARE_STATING_TREE = 'phyml'     # could be phyml | RAxML_NG
 RAXML_NG_SCRIPT = "raxml-ng"
 
 
@@ -66,28 +66,31 @@ def add_internal_names(tree_file, tree_file_cp_no_internal, t_orig):
 	t_orig.write(format=3, outfile=tree_file)   # runover the orig file with no internal nodes names
 
 
-def get_tree(ds_path, msa_file, rewrite_phylip):
+def get_tree(ds_path, msa_file, rewrite_phylip, software=ML_SOFTWARE_STATING_TREE):
 	suf = "bionj" if not RANDOM_TREE_DIRNAME in ds_path else "br"
-	tree_file = ds_path + PHYML_TREE_FILENAME.format(suf) if ML_SOFTWARE == 'phyml' else ds_path + RAXML_TREE_FILENAME    # if software=='RAxML_NG'
+	tree_file = ds_path + PHYML_TREE_FILENAME.format(suf) if software == 'phyml' else ds_path + RAXML_TREE_FILENAME    # if software=='RAxML_NG'
 	if rewrite_phylip:
 		rewrite_in_phylip(msa_file)     # for one-time use on new ds
-	tree_file_cp_no_internal = ds_path + PHYML_TREE_FILENAME.format(suf + "_no_internal") if ML_SOFTWARE == 'phyml' else ds_path + RAXML_TREE_FILENAME + "_no_internal"
+	tree_file_cp_no_internal = ds_path + PHYML_TREE_FILENAME.format(suf + "_no_internal") if software == 'phyml' else ds_path + RAXML_TREE_FILENAME + "_no_internal"
 
-	if not os.path.exists(tree_file_cp_no_internal):
-		t_orig = PhyloTree(newick=tree_file, alignment=msa_file, alg_format="iphylip", format=1)
-		add_internal_names(tree_file, tree_file_cp_no_internal, t_orig)
-	else:
-		t_orig = PhyloTree(newick=tree_file, alignment=msa_file, alg_format="iphylip", format=3)
+	# todo: uncomment later
+	os.remove(tree_file_cp_no_internal)
+	#if not os.path.exists(tree_file_cp_no_internal):
+	#	t_orig = PhyloTree(newick=tree_file, alignment=msa_file, alg_format="iphylip", format=1)
+	#	add_internal_names(tree_file, tree_file_cp_no_internal, t_orig)
+	#else:
+	#	t_orig = PhyloTree(newick=tree_file, alignment=msa_file, alg_format="iphylip", format=3)
+	t_orig = PhyloTree(newick=tree_file, alignment=msa_file, alg_format="iphylip", format=3)
 
-	return t_orig
+	return t_orig, ds_path + PHYML_STATS_FILENAME.format(suf)
 
 
-def call_ml_software(tree_dirpath, file_name, msa_file, runover, job_priority, cpmsa=False, software=ML_SOFTWARE):
-	opt_mode = 'br' if software == 'phyml' else 'fixed_subs'  # if software=='RAxML_NG'
+def call_phyml_storage(tree_dirpath, file_name, msa_file, runover, job_priority, cpmsa=False):
+	opt_mode = 'br'  #if software == 'phyml' else 'fixed_subs'  # if software=='RAxML_NG'
 	tree_path = tree_dirpath + file_name + ".txt"
-	job_name = "{}_".format(software) + "_".join([re.search("{}/*(.+?)/".format(DATA_PATH), tree_dirpath).group(1), tree_dirpath.split(SEP)[-3], file_name, opt_mode])
+	job_name = "phyml_" + "_".join([re.search("{}/*(.+?)/".format(DATA_PATH), tree_dirpath).group(1), tree_dirpath.split(SEP)[-3], file_name, opt_mode])
 
-	cmd = "python " + CODE_PATH + "execute_programs/{}.py ".format(software) + "-f " + msa_file \
+	cmd = "python " + CODE_PATH + "execute_programs/phyml.py " + "-f " + msa_file \
 		  + " -br " + opt_mode + " -t " + tree_path
 	if runover:
 		cmd += " -r "
@@ -147,7 +150,7 @@ def create_SPR_job(dataset_path, step_number, tree_type, rewrite_phy, runover):
 
 def all_SPR(ds_path, outpath, tree=None, rewrite_phylip=False):
 	orig_msa_file = ds_path + MSA_PHYLIP_FILENAME
-	t_orig = get_tree(ds_path, orig_msa_file, rewrite_phylip) if not tree else PhyloTree(newick=tree, alignment=orig_msa_file, alg_format="iphylip", format=1)
+	t_orig, stats_filepath = get_tree(ds_path, orig_msa_file, rewrite_phylip) if not tree else PhyloTree(newick=tree, alignment=orig_msa_file, alg_format="iphylip", format=1)
 	t_orig.get_tree_root().name = ROOTLIKE_NAME if not tree else ROOTLIKE_NAME+"_2"
 	OUTPUT_TREES_FILE = TREES_PER_DS.format(ds_path, '1')
 	with open(OUTPUT_TREES_FILE, "w", newline='') as fpw:
@@ -165,7 +168,7 @@ def all_SPR(ds_path, outpath, tree=None, rewrite_phylip=False):
 			fpw.write(msa_str)  # don't write the msa string to a variable (or write and release it)
 		msa_str = ''
 
-		rates, pinv, alpha, freq = extract_model_params(msa_rampath, ds_path, 'raxml')
+		rates, pinv, alpha, freq = extract_model_params(msa_rampath, stats_filepath, ML_SOFTWARE_STATING_TREE)
 		df = pd.DataFrame()
 		for i, prune_node in enumerate(t_orig.iter_descendants("levelorder")):
 			prune_name = prune_node.name
