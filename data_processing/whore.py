@@ -15,15 +15,17 @@ SUMMARIES_PER_DS_LST_TEMP = ["newicks_step1.csv", "ds_summary_prune_br_step1.csv
 
 
 def rearrange_dirs_for_rerun(datapath):
-	new_dir = datapath + "v2"
+	new_dir = datapath + "v3/"
 	if not os.path.exists(new_dir):
 		os.mkdir(new_dir)
-
-	#for filename in SUMMARIES_PER_DS_LST:
-	#	shutil.move(datapath + filename, new_dir)
 	os.system("mv " + datapath + "*.csv " + new_dir)
-	os.system("mv " + datapath + "*.txt " + new_dir)
-	#os.system("mv " + datapath + RANDOM_TREE_DIRNAME + " " + new_dir)
+	os.system("mv " + datapath + RAXML_TREE_FILENAME + "* " + new_dir)
+	os.system("mv " + datapath + RAXML_STATS_FILENAME + " " + new_dir)
+	#os.system("mv " + datapath + "*.txt " + new_dir)
+
+	############ copy bionj tree and stats from v2 dir ###########3
+	bionj_dir = datapath + "v2/"
+	os.system("cp " + bionj_dir + "masked_species_real_msa.phy_phyml_*_bionj*.txt " + datapath)
 
 	return
 
@@ -31,7 +33,7 @@ def rearrange_dirs_for_rerun(datapath):
 def delete_err_dirpath(datapath):
 	err_dirpath = datapath + "error_files/"
 	shutil.rmtree(err_dirpath, ignore_errors=True)
-	shutil.rmtree(datapath+REARRANGEMENTS_NAME+"s/", ignore_errors=True)
+	#shutil.rmtree(datapath+REARRANGEMENTS_NAME+"s/", ignore_errors=True)
 	#shutil.rmtree(datapath + RANDOM_TREE_DIRNAME, ignore_errors=True)
 
 
@@ -75,7 +77,7 @@ def add_atts():
 def do_something(datapath):
 	#add_atts()
 	delete_err_dirpath(datapath)
-	#rearrange_dirs_for_rerun(datapath)
+	rearrange_dirs_for_rerun(datapath)
 	#missing_results()
 
 	'''

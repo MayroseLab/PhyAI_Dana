@@ -3,7 +3,6 @@ sys.path.append("/groups/itay_mayrose/danaazouri/PhyAI/code/")
 import warnings
 warnings.filterwarnings("ignore")			# TEMP
 
-
 from defs import *
 
 from utils.tree_functions import get_total_branch_lengths
@@ -16,6 +15,8 @@ from figures.violin_for_grant import *
 from figures.confidence_interval_dts import plot_pred_true
 from figures.accXsize_boxplot import accXsize_boxplot
 from itertools import combinations
+
+pd.set_option('display.max_columns', 40)
 
 ML_SOFTWARE = 'RAxML_NG'     # could be phyml | RAxML_NG
 OPT_TYPE = "br"
@@ -31,7 +32,7 @@ FIRST_ON_SEC = False           # temp for running 1 on 2
 FEATURE_SELECTION = False      # temp for running feature selection
 SATURATION = True             # temp to asses saturation
 
-N_DATASETS = 5000
+N_DATASETS = 2000
 
 
 def score_rank(df_by_ds, sortby, locatein, random, scale_score):
@@ -522,15 +523,15 @@ if __name__ == '__main__':
 		df_rgft_features = dirpath + LEARNING_DATA.format("all_moves_rgft", st + ifrandomstart)
 
 		if not os.path.exists(df_path):
-			#parse_relevant_summaries_for_learning(df_orig, df_prune_features, "prune", st, all_moves=True, tree_type=args.tree_type)
-			#parse_relevant_summaries_for_learning(df_orig, df_rgft_features, "rgft", st, all_moves=True, tree_type=args.tree_type)
+			parse_relevant_summaries_for_learning(df_orig, df_prune_features, "prune", st, all_moves=True, tree_type=args.tree_type)
+			parse_relevant_summaries_for_learning(df_orig, df_rgft_features, "rgft", st, all_moves=True, tree_type=args.tree_type)
 			shared_cols = FEATURES_SHARED + ["path","prune_name","rgft_name","orig_ds_ll", "ll"]
 			complete_df = pd.read_csv(df_prune_features, dtype=types_dict).merge(pd.read_csv(df_rgft_features, dtype=types_dict),on=shared_cols, left_index=True, right_index=True, suffixes=('_prune', '_rgft'))
 			complete_df = complete_df.rename(columns={FEATURES[f]: FEATURES[f] + "_rgft" for f in FEATURES_RGFT_ONLY})
 			complete_df[LABEL.format(move_type)] = complete_df[LABEL.format("prune")]
 			complete_df.to_csv(df_path)
 
-	df_learning = pd.read_csv(df_path) #, dtype=types_dict)
+	df_learning = pd.read_csv(df_path, dtype=types_dict)
 	df_learning = fit_transformation(df_learning, move_type, trans=args.transform_target)
 	
 	features = FEATURES_PRUNE if move_type == "prune" else FEATURES_RGFT if move_type == "rgft" else FEATURES_MERGED
