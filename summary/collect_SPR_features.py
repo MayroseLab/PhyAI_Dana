@@ -125,7 +125,6 @@ if __name__ == '__main__':
 		outpath_prune = SUMMARY_PER_DS.format(dataset_path, "prune", 'br', args.step_number)
 		outpath_rgft = SUMMARY_PER_DS.format(dataset_path, "rgft", 'br', args.step_number)
 	
-		res = parse_neighbors_dirs(dataset_path, outpath_prune, outpath_rgft, args.step_number, args.cp_internal)
 		collect_features(dataset_path, args.step_number, outpath_prune, outpath_rgft, args.tree_type)
 	else:
 		csv_path = SUMMARY_FILES_DIR + CHOSEN_DATASETS_FILENAME

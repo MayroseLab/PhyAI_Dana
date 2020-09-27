@@ -25,7 +25,8 @@ def parse_raxmlNG_content(content):
 	"""
     res_dict = dict.fromkeys(["ll", "pInv", "gamma",
                               "fA", "fC", "fG", "fT",
-                              "subAC", "subAG", "subAT", "subCG", "subCT", "subGT"], "")
+                              "subAC", "subAG", "subAT", "subCG", "subCT", "subGT",
+                              "time"], "")
 
     # likelihood
     ll_re = re.search("Final LogLikelihood:\s+(.*)", content)
@@ -52,6 +53,8 @@ def parse_raxmlNG_content(content):
         for i,nuc_pair in enumerate(["AC", "AG", "AT", "CG", "CT", "GT"]):  # todo: make sure order
             res_dict["sub" + nuc_pair] = subs_freq.group(i+1).strip()
 
+        # Elapsed time of raxml-ng optimization
+        res_dict["time"] = re.search("Elapsed time:\s+(\d+\.?\d*)\s+seconds", content).group(1).strip()
 
     return res_dict
 
@@ -60,5 +63,6 @@ def parse_raxmlNG_content(content):
 if __name__ == '__main__':
     pass
     # test here
-    res_dict = parse_raxmlNG_output("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/24354/rearrangements/N1/Sp002/masked_species_real_msa.phy.raxml.log")
+    res_dict = parse_raxmlNG_output("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data_test/real_msa3.phy.raxml.log")
     print(res_dict)
+    print(res_dict["time"])

@@ -119,6 +119,7 @@ def call_raxml_mem(tree_str, msa_file, rates, pinv, alpha, freq):
 		# todo: !!!!! extract also raxml running time - for the example dataset
 		res_dict = parse_raxmlNG_content(raxml_output)
 		ll = res_dict['ll']
+		rtime = res_dict['time']
 
 	except Exception as e:
 		print(e)
@@ -126,7 +127,7 @@ def call_raxml_mem(tree_str, msa_file, rates, pinv, alpha, freq):
 	finally:
 		os.remove(tree_rampath)
 
-	return ll
+	return ll, rtime
 
 
 
@@ -190,8 +191,9 @@ def all_SPR(ds_path, outpath, tree=None, rewrite_phylip=False):
 					csvwriter = csv.writer(fpa)
 					csvwriter.writerow([ind, prune_name, rgft_name, rearr_tree_str])
 
-				ll_rearr = call_raxml_mem(rearr_tree_str, msa_rampath, rates, pinv, alpha, freq)
+				ll_rearr, rtime = call_raxml_mem(rearr_tree_str, msa_rampath, rates, pinv, alpha, freq)
 				df.loc[ind, "prune_name"], df.loc[ind, "rgft_name"] = prune_name, rgft_name
+				df.loc[ind, "time"] = rtime
 				df.loc[ind, "ll"] = ll_rearr
 
 		df["orig_ds_ll"] = float(parse_phyml_stats_output(msa_rampath, stats_filepath)['ll']) if ML_SOFTWARE_STATING_TREE == 'phyml' else float(parse_raxmlNG_output(stats_filepath)['ll'])
