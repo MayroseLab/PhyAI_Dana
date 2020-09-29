@@ -20,7 +20,7 @@ pd.set_option('display.max_columns', 40)
 
 ML_SOFTWARE_STATING_TREE = 'phyml'     # could be phyml | RAxML_NG
 OPT_TYPE = "br"
-KFOLD = 10     # "LOO"
+KFOLD = 2     # "LOO"
 GROUP_ID = 'group_id'
 N_ESTIMATORS = 70
 #MAX_DEPTH = 5
@@ -371,8 +371,8 @@ def parse_relevant_summaries_for_learning(df_orig, outpath, step_number, tree_ty
 
 		summary_per_ds1 = SUMMARY_PER_DS.format(ds_path, 'prune', OPT_TYPE, step_number)
 		summary_per_ds2 = SUMMARY_PER_DS.format(ds_path, 'rgft', OPT_TYPE, step_number)
-		print(summary_per_ds1)
-		if os.path.exists(summary_per_ds2) and FEATURES["bl"] in pd.read_csv(summary_per_ds2).columns:
+		print(summary_per_ds2)
+		if os.path.exists(summary_per_ds2): # and FEATURES["bl"] in pd.read_csv(summary_per_ds2).columns:
 			df_ds1 = pd.read_csv(summary_per_ds1)
 			df_ds2 = pd.read_csv(summary_per_ds2)
 
