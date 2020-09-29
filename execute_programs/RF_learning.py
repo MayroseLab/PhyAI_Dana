@@ -20,7 +20,7 @@ pd.set_option('display.max_columns', 40)
 
 ML_SOFTWARE_STATING_TREE = 'phyml'     # could be phyml | RAxML_NG
 OPT_TYPE = "br"
-KFOLD = 2     # "LOO"
+KFOLD = 10     # "LOO"
 GROUP_ID = 'group_id'
 N_ESTIMATORS = 70
 #MAX_DEPTH = 5
@@ -356,6 +356,8 @@ def fit_transformation(df, move_type, trans=False):
 
 
 def parse_relevant_summaries_for_learning(df_orig, outpath, step_number, tree_type='bionj'):
+	if 'example' in step_number:
+		step_number = "1"
 	ds_path_init = df_orig.iloc[0]["path"]
 	cols = list(pd.read_csv(SUMMARY_PER_DS.format(ds_path_init, "prune", OPT_TYPE, step_number)))
 	cols.insert(1, "path")
@@ -500,7 +502,7 @@ def extract_scores_dict(res_dict, df_with_scores):
 if __name__ == '__main__':
 	parser = argparse.ArgumentParser(description='arrange data for learning and implement learning algo')
 	parser.add_argument('--move_type', '-mt', default='prune')	 # could be 'prune' or 'rgft' or 'merged'
-	parser.add_argument('--step_number', '-st', required=True) 	 # counting from 1
+	parser.add_argument('--step_number', '-st', required=True) 	 # counting from 1   ## could also be 'example' !
 	parser.add_argument('--validation_set', '-val', default=None) # could be None (default) | validation_set | example | example{n}
 	parser.add_argument('--transform_target', '-trans', default=False)   # if trans, could be XX or YY
 	parser.add_argument('--score_for_random', '-random', default=False, action='store_true')
@@ -530,7 +532,7 @@ if __name__ == '__main__':
 			complete_df = complete_df.rename(columns={FEATURES[f]: FEATURES[f] + "_rgft" for f in FEATURES_RGFT_ONLY})
 			complete_df[LABEL.format(move_type)] = complete_df[LABEL.format("prune")]
 			complete_df.to_csv(df_path)
-
+	exit()
 	df_learning = pd.read_csv(df_path, dtype=types_dict)
 	df_learning = fit_transformation(df_learning, move_type, trans=args.transform_target)
 	
