@@ -20,7 +20,7 @@ pd.set_option('display.max_columns', 40)
 
 ML_SOFTWARE_STATING_TREE = 'phyml'     # could be phyml | RAxML_NG
 OPT_TYPE = "br"
-KFOLD = 10     # "LOO"
+KFOLD = 2     # "LOO"
 GROUP_ID = 'group_id'
 N_ESTIMATORS = 70
 #MAX_DEPTH = 5
@@ -355,15 +355,21 @@ def fit_transformation(df, move_type, trans=False):
 	return df
 
 
-def parse_relevant_summaries_for_learning(df_orig, outpath, step_number, tree_type='bionj'):
+def parse_relevant_summaries_for_learning(df_orig, step_number, tree_type='bionj'):
 	if 'example' in step_number:
+		df_orig = pd.DataFrame(index=[0], columns=["path"])
+		df_orig.loc[0, "path"] = DATA_PATH + step_number + SEP
 		step_number = "1"
+
 	ds_path_init = df_orig.iloc[0]["path"]
-	cols = list(pd.read_csv(SUMMARY_PER_DS.format(ds_path_init, "prune", OPT_TYPE, step_number)))
-	cols.insert(1, "path")
-	cols.extend([FEATURES[GROUP_ID], FEATURES["group_tbl"]])  # add for group features
-	df1 = pd.DataFrame(index=np.arange(0), columns=cols)
-	df2 = pd.DataFrame(index=np.arange(0), columns=cols)
+	cols1 = list(pd.read_csv(SUMMARY_PER_DS.format(ds_path_init, "prune", OPT_TYPE, step_number)))
+	cols2 = list(pd.read_csv(SUMMARY_PER_DS.format(ds_path_init, "rgft", OPT_TYPE, step_number)))
+	cols1.insert(1, "path")
+	cols2.insert(1, "path")
+	cols1.extend([FEATURES[GROUP_ID], FEATURES["group_tbl"]])  # add for group features
+	cols2.extend([FEATURES[GROUP_ID], FEATURES["group_tbl"]])  # add for group features
+	df1 = pd.DataFrame(index=np.arange(0), columns=cols1)
+	df2 = pd.DataFrame(index=np.arange(0), columns=cols2)
 
 	for i, row in df_orig.iterrows():
 		ds_path = row["path"]
@@ -391,8 +397,7 @@ def parse_relevant_summaries_for_learning(df_orig, outpath, step_number, tree_ty
 			df1 = pd.concat([df1, df_ds1], ignore_index=True)
 			df2 = pd.concat([df2, df_ds2], ignore_index=True)
 
-	df1.to_csv(outpath.format('prune'))
-	df2.to_csv(outpath.format('rgft'))
+	return df1, df2
 	
 
 
@@ -523,12 +528,11 @@ if __name__ == '__main__':
 		df_path = ''
 	else:  # parse ALL neighbors to create a merged df off all features of all neighbors
 		df_path = dirpath + LEARNING_DATA.format(ifall, st + ifrandomstart)
-		df_features = dirpath + LEARNING_DATA.format(ifall + "_{}", st + ifrandomstart)
 
 		if not os.path.exists(df_path):
-			parse_relevant_summaries_for_learning(df_orig, df_features, st, tree_type=args.tree_type)
+			df_features_prune, df_features_rgft = parse_relevant_summaries_for_learning(df_orig, st, tree_type=args.tree_type)
 			shared_cols = FEATURES_SHARED + ["path","prune_name","rgft_name","orig_ds_ll", "ll"]
-			complete_df = pd.read_csv(df_features.format('prune'), dtype=types_dict).merge(pd.read_csv(df_features.format('rgft'), dtype=types_dict),on=shared_cols, left_index=True, right_index=True, suffixes=('_prune', '_rgft'))
+			complete_df = df_features_prune.merge(df_features_rgft,on=shared_cols, left_index=True, right_index=True, suffixes=('_prune', '_rgft'))
 			complete_df = complete_df.rename(columns={FEATURES[f]: FEATURES[f] + "_rgft" for f in FEATURES_RGFT_ONLY})
 			complete_df[LABEL.format(move_type)] = complete_df[LABEL.format("prune")]
 			complete_df.to_csv(df_path)
