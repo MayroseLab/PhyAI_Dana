@@ -67,9 +67,9 @@ def add_atts():
 
 def do_something(datapath):
 	#add_atts()
-	delete_err_dirpath(datapath)
-	rearrange_dirs_for_rerun(datapath)
-	#missing_results()
+	#delete_err_dirpath(datapath)
+	#rearrange_dirs_for_rerun(datapath)
+	missing_results()
 
 	'''
 	df = pd.read_csv(SUMMARY_FILES_DIR + LEARNING_DATA.format("all_moves", "1"))
