@@ -15,17 +15,14 @@ SUMMARIES_PER_DS_LST = ["ds_summary_prune_br_step1.csv", "ds_summary_prune_br_st
 SUMMARIES_PER_DS_LST_TEMP = ["ds_summary_rgft_br_step1.csv"]
 
 def rearrange_dirs_for_rerun(datapath):
-	new_dir = datapath + "v3/"
+	new_dir = datapath + "v1/"
 	if not os.path.exists(new_dir):
 		os.mkdir(new_dir)
 	os.system("mv " + datapath + "*.csv " + new_dir)
-	os.system("mv " + datapath + RAXML_TREE_FILENAME + "* " + new_dir)
-	os.system("mv " + datapath + RAXML_STATS_FILENAME + " " + new_dir)
-	#os.system("mv " + datapath + "*.txt " + new_dir)
+	#os.system("mv " + datapath + RAXML_TREE_FILENAME + "* " + new_dir)
+	#os.system("mv " + datapath + RAXML_STATS_FILENAME + " " + new_dir)
+	os.system("mv " + datapath + "*.txt " + new_dir)
 
-	############ copy bionj tree and stats from v2 dir ###########3
-	bionj_dir = datapath + "v2/"
-	os.system("cp " + bionj_dir + "masked_species_real_msa.phy_phyml_*_bionj*.txt " + datapath)
 
 	return
 
@@ -70,9 +67,9 @@ def add_atts():
 
 def do_something(datapath):
 	#add_atts()
-	#delete_err_dirpath(datapath)
-	#earrange_dirs_for_rerun(datapath)
-	missing_results()
+	delete_err_dirpath(datapath)
+	rearrange_dirs_for_rerun(datapath)
+	#missing_results()
 
 	'''
 	df = pd.read_csv(SUMMARY_FILES_DIR + LEARNING_DATA.format("all_moves", "1"))
