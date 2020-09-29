@@ -367,7 +367,10 @@ def parse_relevant_summaries_for_learning(df_orig, outpath, step_number, tree_ty
 		ds_path = row["path"]
 		ds_path = ds_path if tree_type == 'bionj' else ds_path + RANDOM_TREE_DIRNAME  # if == 'random
 		suf = "bionj" if tree_type == 'bionj' else OPT_TYPE
-		ds_tbl = get_total_branch_lengths(ds_path + PHYML_TREE_FILENAME.format(suf)) if ML_SOFTWARE_STATING_TREE == 'phyml' else get_total_branch_lengths(ds_path + RAXML_TREE_FILENAME)
+		starting_tree = ds_path + PHYML_TREE_FILENAME.format(suf) if ML_SOFTWARE_STATING_TREE == 'phyml' else ds_path + RAXML_TREE_FILENAME
+		if not os.path.exists(starting_tree):
+			continue   # at least untill I finish debugging the failed ~150ds
+		ds_tbl = get_total_branch_lengths(starting_tree)
 
 		summary_per_ds1 = SUMMARY_PER_DS.format(ds_path, 'prune', OPT_TYPE, step_number)
 		summary_per_ds2 = SUMMARY_PER_DS.format(ds_path, 'rgft', OPT_TYPE, step_number)
