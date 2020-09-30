@@ -267,7 +267,7 @@ def cross_validation_RF(df, move_type, features, trans=False, validation_set=Non
 		elif FIRST_ON_RAND:
 			df_test = pd.read_csv(dirpath + LEARNING_DATA.format("all_moves", "1_random_starting"))
 		else:   # a reg validation set
-			df_test = pd.read_csv(dirpath + "l_testing_" + validation_set)
+			df_test = pd.read_csv(dirpath + "l_testing_{}.csv".format(validation_set))
 
 		df_test = fit_transformation(df_test, move_type, trans)  #.dropna()
 		y_pred, all_DTs_pred, oob, f_imp = apply_RFR(df_test, df_train, move_type, features)
