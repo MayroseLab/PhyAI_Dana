@@ -356,7 +356,7 @@ def fit_transformation(df, move_type, trans=False):
 def parse_relevant_summaries_for_learning(df_orig, step_number, tree_type='bionj'):
 	if 'example' in step_number:
 		df_orig = pd.DataFrame(index=[0], columns=["path"])
-		df_orig.loc[0, "path"] = DATA_PATH + step_number + SEP
+		df_orig.loc[0, "path"] = DATA_PATH + step_number.split("_")[0] + SEP
 		step_number = "1" if not "st2" in step_number else "2"
 
 	ds_path_init = df_orig.iloc[0]["path"]
