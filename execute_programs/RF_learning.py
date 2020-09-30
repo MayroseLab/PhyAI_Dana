@@ -267,8 +267,7 @@ def cross_validation_RF(df, move_type, features, trans=False, validation_set=Non
 		elif FIRST_ON_RAND:
 			df_test = pd.read_csv(dirpath + LEARNING_DATA.format("all_moves", "1_random_starting"))
 		else:   # a reg validation set
-			df_test = pd.read_csv(dirpath + LEARNING_DATA.format("all_moves", "1_" + validation_set))
-			#df_test = pd.read_csv(SUMMARY_FILES_DIR + "example4_last_step_testing.csv")
+			df_test = pd.read_csv(dirpath + "l_testing_" + validation_set)
 
 		df_test = fit_transformation(df_test, move_type, trans)  #.dropna()
 		y_pred, all_DTs_pred, oob, f_imp = apply_RFR(df_test, df_train, move_type, features)
@@ -534,7 +533,7 @@ if __name__ == '__main__':
 			complete_df = complete_df.rename(columns={FEATURES[f]: FEATURES[f] + "_rgft" for f in FEATURES_RGFT_ONLY})
 			complete_df[LABEL.format(move_type)] = complete_df[LABEL.format("prune")]
 			complete_df.to_csv(df_path)
-	exit()
+
 	df_learning = pd.read_csv(df_path, dtype=types_dict)
 	df_learning = fit_transformation(df_learning, move_type, trans=args.transform_target)
 
