@@ -20,7 +20,7 @@ pd.set_option('display.max_columns', 40)
 
 ML_SOFTWARE_STATING_TREE = 'phyml'     # could be phyml | RAxML_NG
 OPT_TYPE = "br"
-KFOLD = 10     # "LOO"                                                         # todo: revert to 10
+KFOLD = 2     # "LOO"                                                         # todo: revert to 10
 GROUP_ID = 'group_id'
 N_ESTIMATORS = 70
 #MAX_DEPTH = 5
@@ -32,7 +32,7 @@ FIRST_ON_SEC = False           # temp for running 1 on 2
 FEATURE_SELECTION = False      # temp for running feature selection
 SATURATION = True              # temp to asses saturation
 
-N_DATASETS = 3000
+N_DATASETS = 1500
 
 
 def score_rank(df_by_ds, sortby, locatein, random, scale_score):
@@ -203,8 +203,9 @@ def apply_RFR(df_test, df_train, move_type, features):
 
 
 def truncate(df):
-	df = df.dropna()
+
 	groups_ids = df[FEATURES[GROUP_ID]].unique()
+	print(groups_ids)
 	if DBSET == "2":
 		#selected_groups_ids = np.random.choice(groups_ids, 2000, replace=False)
 		n_other_dbs = 541
@@ -296,9 +297,6 @@ def cross_validation_RF(df, move_type, features, trans=False, validation_set=Non
 
 
 def fit_transformation(df, move_type, trans=False):
-	'''
-	df = pd.read_csv("C:\\Users\\ItayMNB3\\Desktop\\learning_all_moves_step1.csv", dtype=types_dict)#, nrows=2000)
-	'''
 	groups_ids = df[FEATURES[GROUP_ID]].unique()
 	for group_id in groups_ids:
 		scaling_factor = df[df[FEATURES[GROUP_ID]] == group_id]["orig_ds_ll"].iloc[0]
@@ -326,8 +324,8 @@ def fit_transformation(df, move_type, trans=False):
 	if trans == 'exp':
 		df[LABEL.format(move_type)] = np.exp2(df[LABEL.format(move_type)]+1)
 		#df[LABEL.format(move_type)] = df[LABEL.format(move_type)].transform(np.exp2)
-	from scipy.special import exp10
 	if trans == 'exp10':
+		from scipy.special import exp10
 		df[LABEL.format(move_type)] = exp10(df[LABEL.format(move_type)] + 1)
 	
 	'''
@@ -352,6 +350,7 @@ def fit_transformation(df, move_type, trans=False):
 	plt.savefig("C:\\Users\\ItayMNB3\\Dropbox\\PhyloAI\\PhyAI_writing\\figures\\" + "FigS4.tif", dpi=300)
 	exit()
 	'''
+
 	return df
 
 
@@ -538,8 +537,9 @@ if __name__ == '__main__':
 			complete_df.to_csv(df_path)
 
 	df_learning = pd.read_csv(df_path, dtype=types_dict)
+	# todo: remove time cols and resave
 	df_learning = fit_transformation(df_learning, move_type, trans=args.transform_target)
-	
+
 	features = FEATURES_PRUNE if move_type == "prune" else FEATURES_RGFT if move_type == "rgft" else FEATURES_MERGED
 	features.remove(FEATURES[GROUP_ID])
 	features_to_drop = []
