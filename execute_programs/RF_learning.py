@@ -20,7 +20,7 @@ pd.set_option('display.max_columns', 40)
 
 ML_SOFTWARE_STATING_TREE = 'phyml'     # could be phyml | RAxML_NG
 OPT_TYPE = "br"
-KFOLD = 2     # "LOO"                                                         # todo: revert to 10
+KFOLD = 10     # "LOO"                                                         # todo: revert to 10
 GROUP_ID = 'group_id'
 N_ESTIMATORS = 70
 #MAX_DEPTH = 5
@@ -32,7 +32,7 @@ FIRST_ON_SEC = False           # temp for running 1 on 2
 FEATURE_SELECTION = False      # temp for running feature selection
 SATURATION = True              # temp to asses saturation
 
-N_DATASETS = 1500
+N_DATASETS = 3000
 
 
 def score_rank(df_by_ds, sortby, locatein, random, scale_score):
@@ -271,7 +271,7 @@ def cross_validation_RF(df, move_type, features, trans=False, validation_set=Non
 			df_test = pd.read_csv(dirpath + LEARNING_DATA.format("all_moves", "1_" + validation_set))
 			#df_test = pd.read_csv(SUMMARY_FILES_DIR + "example4_last_step_testing.csv")
 
-		df_test = fit_transformation(df_test, move_type, trans).dropna()
+		df_test = fit_transformation(df_test, move_type, trans)  #.dropna()
 		y_pred, all_DTs_pred, oob, f_imp = apply_RFR(df_test, df_train, move_type, features)
 		
 		oobs.append(oob)
