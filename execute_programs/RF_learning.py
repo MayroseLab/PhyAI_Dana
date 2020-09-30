@@ -537,7 +537,6 @@ if __name__ == '__main__':
 			complete_df.to_csv(df_path)
 
 	df_learning = pd.read_csv(df_path, dtype=types_dict)
-	# todo: remove time cols and resave
 	df_learning = fit_transformation(df_learning, move_type, trans=args.transform_target)
 
 	features = FEATURES_PRUNE if move_type == "prune" else FEATURES_RGFT if move_type == "rgft" else FEATURES_MERGED
@@ -550,7 +549,6 @@ if __name__ == '__main__':
 	suf = "_{st}_{valtype}".format(st=st, valtype=val) if val and not FIRST_ON_SEC else "_1st_on_2nd" if val else "_{}".format(st)
 	ifsaturation = "" if not SATURATION else "_" + str(N_DATASETS)
 	ifrank = "" if not args.transform_target else "_ytransformed_{}".format(args.transform_target)
-	ifrandomstart = "" if args.tree_type == 'bionj' else "_random_starting"  # if == 'random'
 	suf += ifsaturation + ifrank + ifrandomstart
 
 	for i in range(len(features)):
