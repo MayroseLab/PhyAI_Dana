@@ -298,6 +298,8 @@ def cross_validation_RF(df, move_type, features, trans=False, validation_set=Non
 
 def fit_transformation(df, move_type, trans=False):
 	groups_ids = df[FEATURES[GROUP_ID]].unique()
+	print(len(groups_ids))
+	exit()
 	for group_id in groups_ids:
 		scaling_factor = df[df[FEATURES[GROUP_ID]] == group_id]["orig_ds_ll"].iloc[0]
 		df.loc[df[FEATURES[GROUP_ID]] == group_id, LABEL.format(move_type)] /= -scaling_factor    # todo: make sure I run it with minus/abs to preserve order. also change 'ascending' to True in 'get_cumsun_preds' function
