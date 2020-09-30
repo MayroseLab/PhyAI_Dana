@@ -54,8 +54,11 @@ def parse_raxmlNG_content(content):
             res_dict["sub" + nuc_pair] = subs_freq.group(i+1).strip()
 
         # Elapsed time of raxml-ng optimization
-        res_dict["time"] = re.search("Elapsed time:\s+(\d+\.?\d*)\s+seconds", content).group(1).strip()
-
+        rtime = re.search("Elapsed time:\s+(\d+\.?\d*)\s+seconds", content)
+        if rtime:
+            res_dict["time"] = rtime.group(1).strip()
+        else:
+            res_dict["time"] = 'no ll opt_no time'
     return res_dict
 
 
