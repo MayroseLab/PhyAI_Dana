@@ -357,7 +357,7 @@ def parse_relevant_summaries_for_learning(df_orig, step_number, tree_type='bionj
 	if 'example' in step_number:
 		df_orig = pd.DataFrame(index=[0], columns=["path"])
 		df_orig.loc[0, "path"] = DATA_PATH + step_number + SEP
-		step_number = "1"
+		step_number = "1" if not "st2" in step_number else "2"
 
 	ds_path_init = df_orig.iloc[0]["path"]
 	cols1 = list(pd.read_csv(SUMMARY_PER_DS.format(ds_path_init, "prune", OPT_TYPE, step_number)))
@@ -534,7 +534,7 @@ if __name__ == '__main__':
 			complete_df = complete_df.rename(columns={FEATURES[f]: FEATURES[f] + "_rgft" for f in FEATURES_RGFT_ONLY})
 			complete_df[LABEL.format(move_type)] = complete_df[LABEL.format("prune")]
 			complete_df.to_csv(df_path)
-
+	exit()
 	df_learning = pd.read_csv(df_path, dtype=types_dict)
 	df_learning = fit_transformation(df_learning, move_type, trans=args.transform_target)
 

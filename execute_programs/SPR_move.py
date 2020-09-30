@@ -69,7 +69,6 @@ def add_internal_names(tree_file, tree_file_cp_no_internal, t_orig):
 def get_tree(ds_path, msa_file, rewrite_phylip, software=ML_SOFTWARE_STATING_TREE):
 	suf = "bionj" if not RANDOM_TREE_DIRNAME in ds_path else "br"
 	tree_file = ds_path + PHYML_TREE_FILENAME.format(suf) if software == 'phyml' else ds_path + RAXML_TREE_FILENAME    # if software=='RAxML_NG'
-	log_filepath = ds_path + PHYML_STATS_FILENAME.format(suf) if software == 'phyml' else ds_path + RAXML_STATS_FILENAME
 	if rewrite_phylip:
 		rewrite_in_phylip(msa_file)     # for one-time use on new ds
 
@@ -80,7 +79,7 @@ def get_tree(ds_path, msa_file, rewrite_phylip, software=ML_SOFTWARE_STATING_TRE
 	else:
 		t_orig = PhyloTree(newick=tree_file, alignment=msa_file, alg_format="iphylip", format=3)
 
-	return t_orig, log_filepath
+	return t_orig
 
 
 def call_phyml_storage(tree_dirpath, file_name, msa_file, runover, job_priority, cpmsa=False):
@@ -150,9 +149,12 @@ def create_SPR_job(dataset_path, step_number, tree_type, rewrite_phy, runover):
 
 def all_SPR(ds_path, outpath, tree=None, rewrite_phylip=False):
 	orig_msa_file = ds_path + MSA_PHYLIP_FILENAME
-	t_orig, stats_filepath = get_tree(ds_path, orig_msa_file, rewrite_phylip) if not tree else PhyloTree(newick=tree, alignment=orig_msa_file, alg_format="iphylip", format=1)
+	suf = "bionj" if not RANDOM_TREE_DIRNAME in ds_path else "br"
+	stats_filepath = ds_path + PHYML_STATS_FILENAME.format(suf) if ML_SOFTWARE_STATING_TREE == 'phyml' else ds_path + RAXML_STATS_FILENAME
+	t_orig = get_tree(ds_path, orig_msa_file, rewrite_phylip) if not tree else PhyloTree(newick=tree, alignment=orig_msa_file, alg_format="iphylip", format=1)
 	t_orig.get_tree_root().name = ROOTLIKE_NAME if not tree else ROOTLIKE_NAME+"_2"
-	OUTPUT_TREES_FILE = TREES_PER_DS.format(ds_path, '1')
+	st = "1" if not tree else "2"
+	OUTPUT_TREES_FILE = TREES_PER_DS.format(ds_path, st)
 	with open(OUTPUT_TREES_FILE, "w", newline='') as fpw:
 		csvwriter = csv.writer(fpw)
 		csvwriter.writerow(['', 'prune_name', 'rgft_name', 'newick'])
