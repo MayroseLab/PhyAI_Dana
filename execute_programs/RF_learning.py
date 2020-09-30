@@ -32,7 +32,7 @@ FIRST_ON_SEC = False           # temp for running 1 on 2
 FEATURE_SELECTION = False      # temp for running feature selection
 SATURATION = True              # temp to asses saturation
 
-N_DATASETS = 3000
+N_DATASETS = 3000    # [1500,5858]
 
 
 def score_rank(df_by_ds, sortby, locatein, random, scale_score):
@@ -203,7 +203,6 @@ def apply_RFR(df_test, df_train, move_type, features):
 
 
 def truncate(df):
-
 	groups_ids = df[FEATURES[GROUP_ID]].unique()
 	print(groups_ids)
 	if DBSET == "2":
@@ -298,8 +297,6 @@ def cross_validation_RF(df, move_type, features, trans=False, validation_set=Non
 
 def fit_transformation(df, move_type, trans=False):
 	groups_ids = df[FEATURES[GROUP_ID]].unique()
-	print(len(groups_ids))
-	exit()
 	for group_id in groups_ids:
 		scaling_factor = df[df[FEATURES[GROUP_ID]] == group_id]["orig_ds_ll"].iloc[0]
 		df.loc[df[FEATURES[GROUP_ID]] == group_id, LABEL.format(move_type)] /= -scaling_factor    # todo: make sure I run it with minus/abs to preserve order. also change 'ascending' to True in 'get_cumsun_preds' function
