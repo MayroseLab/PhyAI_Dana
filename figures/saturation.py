@@ -71,7 +71,8 @@ def plot_corr(df):
 	plt.xlabel('Number of empirical datasets in training', size = 14)
 	fig.tight_layout()
 	fig.set_size_inches(7, 4, forward=True)
-	plt.savefig("C:\\Users\\ItayMNB3\\Dropbox\\PhyloAI\\PhyAI_writing\\figures\\" + "FigS3.tif", dpi=300)
+	#plt.savefig("C:\\Users\\ItayMNB3\\Dropbox\\PhyloAI\\PhyAI_writing\\figures\\" + "FigS3.tif", dpi=300)
+	plt.savefig(SUMMARY_FILES_DIR + "saturation.png")
 	#plt.show()
 
 
@@ -105,8 +106,9 @@ if __name__ == '__main__':
 	ndots_older = [600, 840, 1310, 1790, 2260, 2670, 3210, 3870, 3860, 4670, 6060]
 	xticks_older = [600, 900, 1300, 1800, 2300,2700, 3200, 3700, 4000, 4700, 6000]
 	
-	ndots = [500, 1000, 1500, 2000, 2500, 3000, 3700, 4300, 5000, 6000]
-	xticks = [500, 1000, 1500, 2000, 2500, 3000, 3700, 4300, 5000, 6000]
+	ndots = ["1500_k2", 2200, 3000, 4000, 5000, 5850]
+	xticks = [1500, 2200, 3000, 4000, 5000, 6000]
+	dirpath = SUMMARY_FILES_DIR
 	df = concat_n_features(dirpath, ndots, xticks)
 	#plot_scores2(df)
 	plot_corr(df)
@@ -125,3 +127,14 @@ if __name__ == '__main__':
 	F,p = stats.f_oneway(a3700,a4300,a5000,a6000)
 	print(p)
 	'''
+
+
+	a1500 = df.loc[df[N_DATASETS_COL] == xticks[0], SCORES_LST[0]].dropna().values
+	a2200 = df.loc[df[N_DATASETS_COL] == xticks[1], SCORES_LST[0]].dropna().values
+	a3000 = df.loc[df[N_DATASETS_COL] == xticks[2], SCORES_LST[0]].dropna().values
+	a4000 = df.loc[df[N_DATASETS_COL] == xticks[3], SCORES_LST[0]].dropna().values
+	a5000 = df.loc[df[N_DATASETS_COL] == xticks[4], SCORES_LST[0]].dropna().values
+	a6000 = df.loc[df[N_DATASETS_COL] == xticks[5], SCORES_LST[0]].dropna().values
+
+	F, p = stats.f_oneway(a5000, a6000)
+	print(p)
