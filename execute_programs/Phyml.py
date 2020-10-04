@@ -40,6 +40,9 @@ def create_phyml_exec_line(msa_file_full_path, base_model, pinv, gamma, topology
 	# enable fixed model parameters
 	if topology_tag == "br":
 		stats_filpath_for_params =SEP.join([SEP.join(tree_file.split(SEP)[:-4]), PHYML_STATS_FILENAME.format('bionj')])
+		###
+		stats_filpath_for_params = "/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/example/masked_species_real_msa.phy_phyml_stats_bionj.txt"
+		###
 		params_dict = parse_phyml_stats_output(msa_file_full_path, stats_filpath_for_params)
 		f = [params_dict["fA"],params_dict["fC"],params_dict["fG"],params_dict["fT"]]
 		rates = [params_dict["subAC"], params_dict["subAG"], params_dict["subAT"], params_dict["subCG"], params_dict["subCT"], params_dict["subGT"]]

@@ -91,7 +91,7 @@ def call_phyml_storage(tree_dirpath, file_name, msa_file, runover=False, job_pri
 	####
 	#job_name = "phyml_" + "_".join([re.search("{}/*(.+?)/".format(DATA_PATH), tree_dirpath).group(1), tree_dirpath.split(SEP)[-3], file_name, opt_mode])
 
-	cmd = "python " + CODE_PATH + "execute_programs/phyml.py " + "-f " + msa_file \
+	cmd = "python " + CODE_PATH + "execute_programs/Phyml.py " + "-f " + msa_file \
 		  + " -br " + opt_mode + " -t " + tree_path
 	if runover:
 		cmd += " -r "
