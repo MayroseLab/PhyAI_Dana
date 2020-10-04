@@ -32,7 +32,7 @@ FIRST_ON_SEC = False           # temp for running 1 on 2
 FEATURE_SELECTION = False      # temp for running feature selection
 SATURATION = True              # temp to asses saturation
 
-N_DATASETS = 5850    # [1500,5858]
+N_DATASETS = 4200    # [1500,5858]
 
 
 def score_rank(df_by_ds, sortby, locatein, random, scale_score):
@@ -235,8 +235,7 @@ def cross_validation_RF(df, move_type, features, trans=False, validation_set=Non
 	my_y_pred, imps = np.full(len(df), np.nan), np.full(len(df), np.nan)
 	
 	if not validation_set:
-		all_dts = [np.full(len(df), np.nan) for i in range(N_ESTIMATORS)]
-	
+
 		for low_i in groups_ids[::test_batch_size]:
 			low_i, = np.where(groups_ids == low_i)
 			low_i = int(low_i)
@@ -253,10 +252,6 @@ def cross_validation_RF(df, move_type, features, trans=False, validation_set=Non
 			oobs.append(oob)
 			f_imps.append(f_imp)
 			my_y_pred[df_test.index.values] = y_pred       # sort the predictions into a vector sorted according to the respective dataset
-			#for ix in range(len((all_dts))):
-			#	all_dts[ix][df_test.index.values] = all_DTs_pred[ix]
-		#for k, dt_preds in enumerate(all_dts):
-		#	df["dt" + str(k)] = dt_preds
 	
 		df["pred"] = my_y_pred
 	
@@ -267,7 +262,7 @@ def cross_validation_RF(df, move_type, features, trans=False, validation_set=Non
 		elif FIRST_ON_RAND:
 			df_test = pd.read_csv(dirpath + LEARNING_DATA.format("all_moves", "1_random_starting"))
 		else:   # a reg validation set
-			df_test = pd.read_csv(dirpath + "l_testing_{}.csv".format(validation_set))
+			df_test = pd.read_csv(dirpath + "model_testing_{}.csv".format(validation_set))
 
 		df_test = fit_transformation(df_test, move_type, trans)  #.dropna()
 		y_pred, all_DTs_pred, oob, f_imp = apply_RFR(df_test, df_train, move_type, features)
@@ -534,7 +529,8 @@ if __name__ == '__main__':
 			complete_df[LABEL.format(move_type)] = complete_df[LABEL.format("prune")]
 			complete_df.to_csv(df_path)
 
-	df_learning = pd.read_csv(df_path, dtype=types_dict)
+	#df_learning = pd.read_csv(df_path, dtype=types_dict)
+	df_learning = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/summary_files/v2_fixed_subs/learning_all_moves_step1.csv", dtype=types_dict)
 	df_learning = fit_transformation(df_learning, move_type, trans=args.transform_target)
 
 	features = FEATURES_PRUNE if move_type == "prune" else FEATURES_RGFT if move_type == "rgft" else FEATURES_MERGED
