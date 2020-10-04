@@ -82,16 +82,12 @@ def get_tree(ds_path, msa_file, rewrite_phylip, software=ML_SOFTWARE_STARTING_TR
 	return t_orig
 
 
-def call_phyml_storage(tree_dirpath, file_name, msa_file, runover=False, job_priority="-1", cpmsa=False):
+def call_phyml_storage(tree_dirpath, file_name, msa_file, runover, job_priority, cpmsa=False):
 	opt_mode = 'br'  #if software == 'phyml' else 'fixed_subs'  # if software=='RAxML_NG'
 	tree_path = tree_dirpath + file_name + ".txt"
-	####
-	tree_path = tree_dirpath
-	job_name = 'phyml'
-	####
-	#job_name = "phyml_" + "_".join([re.search("{}/*(.+?)/".format(DATA_PATH), tree_dirpath).group(1), tree_dirpath.split(SEP)[-3], file_name, opt_mode])
+	job_name = "phyml_" + "_".join([re.search("{}/*(.+?)/".format(DATA_PATH), tree_dirpath).group(1), tree_dirpath.split(SEP)[-3], file_name, opt_mode])
 
-	cmd = "python " + CODE_PATH + "execute_programs/Phyml.py " + "-f " + msa_file \
+	cmd = "python " + CODE_PATH + "execute_programs/phyml.py " + "-f " + msa_file \
 		  + " -br " + opt_mode + " -t " + tree_path
 	if runover:
 		cmd += " -r "
@@ -209,19 +205,12 @@ def all_SPR(ds_path, outpath, tree=None, rewrite_phylip=False):
 				time_append_rearr_end = time.time()
 				print("time append rearr:", time_append_rearr_end-time_rgft_end)
 
-				#ll_rearr, rtime = call_raxml_mem(rearr_tree_str, msa_rampath, rates, pinv, alpha, freq)
-				tree_rampath = "/dev/shm/" + msa_rampath.split(SEP)[-1] + "tree"  # the var is the str: tmp{dir_suffix}
-				####
-				with open(tree_rampath, "w") as fpw:
-					fpw.write(rearr_tree_str)
-				ll_rearr, rtime = call_phyml_storage(tree_rampath, REARRANGEMENTS_NAME, msa_rampath), 0
-				os.remove(tree_rampath)
-				####
+				ll_rearr, rtime = call_raxml_mem(rearr_tree_str, msa_rampath, rates, pinv, alpha, freq)
 				print("time raxml:", time.time() - time_append_rearr_end)
 				df.loc[ind, "prune_name"], df.loc[ind, "rgft_name"] = prune_name, rgft_name
 				df.loc[ind, "time"] = rtime
 				df.loc[ind, "ll"] = ll_rearr
-				#exit()
+				exit()
 		df["orig_ds_ll"] = float(params_dict["ll"])
 		df.to_csv(outpath.format("prune"))
 		df.to_csv(outpath.format("rgft"))
