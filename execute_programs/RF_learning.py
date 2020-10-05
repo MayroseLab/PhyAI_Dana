@@ -303,7 +303,7 @@ def fit_transformation(df, move_type, trans=False):
 	if trans == 'rank':
 		groups_ids = df[FEATURES[GROUP_ID]].unique()
 		for group_id in groups_ids:
-			df.loc[df[FEATURES[GROUP_ID]] == group_id, LABEL.format(move_type)] = \df.loc[df[FEATURES[GROUP_ID]] == group_id, LABEL.format(move_type)].rank(ascending=True) #, pct=True)
+			df.loc[df[FEATURES[GROUP_ID]] == group_id, LABEL.format(move_type)] = df.loc[df[FEATURES[GROUP_ID]] == group_id, LABEL.format(move_type)].rank(ascending=True) #, pct=True)
 	if trans == "standard":
 		scaler = StandardScaler()
 		scaler.fit(df[LABEL.format(move_type)].values.reshape(-1,1))
