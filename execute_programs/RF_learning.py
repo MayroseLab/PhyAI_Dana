@@ -204,14 +204,14 @@ def apply_RFR(df_test, df_train, move_type, features):
 
 def truncate(df):
 	groups_ids = df[FEATURES[GROUP_ID]].unique()
-	'''
+	#'''
 	if DBSET == "2":
 		#selected_groups_ids = np.random.choice(groups_ids, 2000, replace=False)
 		n_other_dbs = 541
 		selected_groups_ids = np.concatenate((np.random.choice(groups_ids[:-n_other_dbs], N_DATASETS-n_other_dbs, replace=False), groups_ids[-n_other_dbs:]))
 		df = df[df[FEATURES[GROUP_ID]].isin(selected_groups_ids)]
 		groups_ids = df[FEATURES[GROUP_ID]].unique()
-	'''
+	# '''
 	kfold = len(groups_ids) if KFOLD=="LOO" else KFOLD
 	assert len(groups_ids) >= kfold
 	ndel = len(groups_ids) % kfold
