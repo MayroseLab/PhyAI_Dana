@@ -290,26 +290,20 @@ def cross_validation_RF(df, move_type, features, trans=False, validation_set=Non
 
 
 def fit_transformation(df, move_type, trans=False):
-	groups_ids = df[FEATURES[GROUP_ID]].unique()
-	for group_id in groups_ids:
-		scaling_factor = df[df[FEATURES[GROUP_ID]] == group_id]["orig_ds_ll"].iloc[0]
-		df.loc[df[FEATURES[GROUP_ID]] == group_id, LABEL.format(move_type)] /= -scaling_factor    # todo: make sure I run it with minus/abs to preserve order. also change 'ascending' to True in 'get_cumsun_preds' function
-		if trans == 'rank':
-			df.loc[df[FEATURES[GROUP_ID]] == group_id, LABEL.format(move_type)] = \
-				df.loc[df[FEATURES[GROUP_ID]] == group_id, LABEL.format(move_type)].rank(ascending=False) #, pct=True)
-	
+	# scale to the abs value of the starting tree ll
+	df[LABEL.format(move_type)] /= -df["orig_ds_ll"]  # minus (abs) to preserve order. 'ascending' should be True in 'get_cumsun_preds' function
+
 	'''
 	all = len(df)
 	print(len(df[df[LABEL.format(move_type)] > 0])/all)
 	print(all)
-	
-	f = plt.figure()
-	sns.set_context("paper", font_scale=1.2)
-	#from sklearn import preprocessing
-	#scaler = StandardScaler()
-	df["No transformation on target value"] = (df[LABEL.format(move_type)].values.reshape(-1, 1))
-	df["No transformation on target value"].plot.kde(by=FEATURES[GROUP_ID])
 	'''
+
+	#'''
+	if trans == 'rank':
+		groups_ids = df[FEATURES[GROUP_ID]].unique()
+		for group_id in groups_ids:
+			df.loc[df[FEATURES[GROUP_ID]] == group_id, LABEL.format(move_type)] = \df.loc[df[FEATURES[GROUP_ID]] == group_id, LABEL.format(move_type)].rank(ascending=True) #, pct=True)
 	if trans == "standard":
 		scaler = StandardScaler()
 		scaler.fit(df[LABEL.format(move_type)].values.reshape(-1,1))
@@ -322,25 +316,32 @@ def fit_transformation(df, move_type, trans=False):
 		df[LABEL.format(move_type)] = exp10(df[LABEL.format(move_type)] + 1)
 	
 	'''
-	#df.loc[df[FEATURES[GROUP_ID]] == group_id, LABEL.format(move_type)].plot.hist(by=FEATURES[GROUP_ID])
-	#df[LABEL.format(move_type)].plot.kde(by=FEATURES[GROUP_ID])
+	f = plt.figure()
+	sns.set_context("paper", font_scale=1.2)
+	#from sklearn import preprocessing
+	#scaler = StandardScaler()
+	df["No transformation on target value"] = (df[LABEL.format(move_type)].values.reshape(-1, 1))
+	df["No transformation on target value"].plot.kde(by=FEATURES[GROUP_ID])
+	#plt.show()
+
 	df["exp2 (2^) transformation on target value"] = (np.exp2(df[LABEL.format(move_type)]+1).values.reshape(-1, 1))-2
 	df["exp2 (2^) transformation on target value"].plot.kde(by=FEATURES[GROUP_ID])
+	from scipy.special import exp10
+	df["10^ (exp10)"] = (exp10(df[LABEL.format(move_type)] + 1).values.reshape(-1, 1))-10
+	df["10^ (exp10)"].plot.kde(by=FEATURES[GROUP_ID])
 	#df["expe (e^) transformation on target value"] = (np.exp(df[LABEL.format(move_type)] + 1).values.reshape(-1,1)) - np.e
 	#df["expe (e^) transformation on target value"].plot.kde(by=FEATURES[GROUP_ID])
-	#df["10^ (exp210)"] = (exp10(df[LABEL.format(move_type)] + 1).values.reshape(-1, 1))-10
-	#df["10^ (exp210)"].plot.kde(by=FEATURES[GROUP_ID])
 
 	plt.xlim(-0.2,0.01)
 	plt.xlabel("Target value")
 	plt.xticks(np.arange(-0.2, 0.025, step=0.02))
 	plt.axvline(0, 0, 45, color='grey')
 	plt.legend()
-	#plt.show()
+
 	f.tight_layout()
 	f.set_size_inches(7, 7, forward=True)
 	# plt.savefig("C:\\Users\\ItayMNB3\\Dropbox\\PhyloAI\\PhyAI_writing\\to_submit\\" + "Fig2.tif", dpi=300)
-	plt.savefig("C:\\Users\\ItayMNB3\\Dropbox\\PhyloAI\\PhyAI_writing\\figures\\" + "FigS4.tif", dpi=300)
+	plt.show()
 	exit()
 	'''
 
