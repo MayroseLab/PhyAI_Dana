@@ -32,7 +32,7 @@ FIRST_ON_SEC = False           # temp for running 1 on 2
 FEATURE_SELECTION = False      # temp for running feature selection
 SATURATION = True              # temp to asses saturation
 
-N_DATASETS = 1500    # [1500,5858]
+N_DATASETS = 4200    # [1500,5858]
 
 
 def score_rank(df_by_ds, sortby, locatein, random, scale_score):
@@ -262,8 +262,7 @@ def cross_validation_RF(df, move_type, features, trans=False, validation_set=Non
 		elif FIRST_ON_RAND:
 			df_test = pd.read_csv(dirpath + LEARNING_DATA.format("all_moves", "1_random_starting"))
 		else:   # a reg validation set
-			#df_test = pd.read_csv(dirpath + "model_testing_{}.csv".format(validation_set))
-			df_test = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/summary_files/v1/example4_testing.csv")
+			df_test = pd.read_csv(dirpath + "model_testing_{}.csv".format(validation_set))
 
 		df_test = fit_transformation(df_test, move_type, trans)  #.dropna()
 		y_pred, all_DTs_pred, oob, f_imp = apply_RFR(df_test, df_train, move_type, features)
