@@ -74,7 +74,7 @@ def get_tree(ds_path, msa_file, rewrite_phylip):
 		t_orig = PhyloTree(newick=tree_file, alignment=msa_file, alg_format="iphylip", format=1)
 		add_internal_names(tree_file, tree_file_cp_no_internal, t_orig)
 	else:
-		t_orig = PhyloTree(newick=tree_file, alignment=msa_file, alg_format="iphylip", format=3)
+		t_orig = PhyloTree(newick=tree_file, alignment=msa_file, alg_format="iphylip", format=1)
 
 	return t_orig
 
