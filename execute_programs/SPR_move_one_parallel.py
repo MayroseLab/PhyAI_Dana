@@ -204,8 +204,8 @@ if __name__ == '__main__':
 	parser.add_argument('--runover', '-r', default=False, action='store_true')
 	parser.add_argument('--rewrite_in_phylip', '-phy', default=False, action='store_true')
 	parser.add_argument('--tree_type', '-ttype', default='bionj')  # could be bionj or random
-	parser.add_argument('--msa_path', '-msa', default=False)
-	parser.add_argument('--prune_name', '-pr', default=False)
+	parser.add_argument('--msa_path', '-msa', required=False)
+	parser.add_argument('--prune_name', '-pr', required=False)
 	args = parser.parse_args()
 	
 	dataset_path = args.dataset_path
