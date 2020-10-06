@@ -223,6 +223,6 @@ if __name__ == '__main__':
 		t_orig.get_tree_root().name = ROOTLIKE_NAME
 		
 		for i, prune_node in enumerate(t_orig.iter_descendants("levelorder")):
-			if i <= 33:
+			if i > 33:
 				prune_name = prune_node.name
 				create_SPR_i_job(dataset_path, orig_msa_file, prune_name, args.tree_type, args.rewrite_in_phylip, args.runover)
