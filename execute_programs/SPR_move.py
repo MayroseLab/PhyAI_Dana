@@ -210,7 +210,7 @@ def all_SPR(ds_path, outpath, tree=None, rewrite_phylip=False):
 				df.loc[ind, "prune_name"], df.loc[ind, "rgft_name"] = prune_name, rgft_name
 				df.loc[ind, "time"] = rtime
 				df.loc[ind, "ll"] = ll_rearr
-				exit()
+				#exit()
 		df["orig_ds_ll"] = float(params_dict["ll"])
 		df.to_csv(outpath.format("prune"))
 		df.to_csv(outpath.format("rgft"))
