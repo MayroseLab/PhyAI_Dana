@@ -530,7 +530,8 @@ if __name__ == '__main__':
 			complete_df[LABEL.format(move_type)] = complete_df[LABEL.format("prune")]
 			complete_df.to_csv(df_path)
 
-	df_learning = pd.read_csv(df_path, dtype=types_dict)
+	#df_learning = pd.read_csv(df_path, dtype=types_dict)
+	df_learning = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/summary_files/v2_fixed_subs/learning_all_moves_step1.csv", dtype=types_dict)
 	df_learning = fit_transformation(df_learning, move_type, trans=args.transform_target)
 	if 'example' in st:   # if I only need to merge the summary file into model_testing_examplexx.csv
 		exit()
