@@ -219,12 +219,12 @@ if __name__ == '__main__':
 			res = all_SPR_i(dataset_path, args.msa_path, args.prune_name, runover=args.runover, job_priority=-1)
 	
 	else:
-		dataset_path = DATA_PATH + "example4/second_step/"
+		dataset_path = DATA_PATH + "exampleV2"
 		orig_msa_file = dataset_path + MSA_PHYLIP_FILENAME
 		t_orig = get_tree(dataset_path, orig_msa_file, args.rewrite_in_phylip)
 		t_orig.get_tree_root().name = ROOTLIKE_NAME
 		
 		for i, prune_node in enumerate(t_orig.iter_descendants("levelorder")):
-			if i <= 33:
+			if i <= 1:
 				prune_name = prune_node.name
 				create_SPR_i_job(dataset_path, orig_msa_file, prune_name, args.tree_type, args.rewrite_in_phylip, args.runover)
