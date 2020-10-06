@@ -532,7 +532,8 @@ if __name__ == '__main__':
 
 	df_learning = pd.read_csv(df_path, dtype=types_dict)
 	df_learning = fit_transformation(df_learning, move_type, trans=args.transform_target)
-
+	if 'example' in st:   # if I only need to merge the summary file into model_testing_examplexx.csv
+		exit()
 	features = FEATURES_PRUNE if move_type == "prune" else FEATURES_RGFT if move_type == "rgft" else FEATURES_MERGED
 	features.remove(FEATURES[GROUP_ID])
 	features_to_drop = []
