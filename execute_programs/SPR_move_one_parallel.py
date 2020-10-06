@@ -198,13 +198,11 @@ def all_SPR_i(ds_path, orig_msa_file, prune_name, runover=False, job_priority=-1
 
 
 
-# -phy -cp -istart 0 -nlines 1 -st 1
 if __name__ == '__main__':
 	parser = argparse.ArgumentParser(description='perform all SPR moves')
 	parser.add_argument('--dataset_path', '-ds', default=None)
 	parser.add_argument('--runover', '-r', default=False, action='store_true')
 	parser.add_argument('--rewrite_in_phylip', '-phy', default=False, action='store_true')
-	parser.add_argument('--cp_internal', '-cp', default=False, action='store_true')
 	parser.add_argument('--tree_type', '-ttype', default='bionj')  # could be bionj or random
 	parser.add_argument('--msa_path', '-msa', default=False)
 	parser.add_argument('--prune_name', '-pr', default=False)
@@ -219,7 +217,7 @@ if __name__ == '__main__':
 			res = all_SPR_i(dataset_path, args.msa_path, args.prune_name, runover=args.runover, job_priority=-1)
 	
 	else:
-		dataset_path = DATA_PATH + "exampleV2"
+		dataset_path = DATA_PATH + "exampleV2/"
 		orig_msa_file = dataset_path + MSA_PHYLIP_FILENAME
 		t_orig = get_tree(dataset_path, orig_msa_file, args.rewrite_in_phylip)
 		t_orig.get_tree_root().name = ROOTLIKE_NAME
