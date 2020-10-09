@@ -139,24 +139,17 @@ def ds_scores(df, move_type, random, scale_score):
 			sp_corrs.append(sp_corr)
 		else:
 			sp_corrs.append(None)
+
+		'''    # I don't use this score anymore
 		# compute 'confidence score'
 		cumsum_true_best = get_cumsum_threshold(df_by_ds, label)
 		if cumsum_true_best:
 			thresholds.append(cumsum_true_best)
 		else:
 			print("########", group_id)
-
-	
 	required_evaluations_scores = calc_required_evaluations_score(grouped_df_by_ds, thresholds, c=C)
-	
-	if FIGURES:
-		ranked = False
-		errs_down, errs_up = dts_assessment(df_by_ds, label, pred, errs_down, errs_up, ranked)
-		X = list(rank_pred_by_ds.keys())
-		if ranked:
-			plot_pred_true(X, list(rank_pred_by_ds.values()), np.ones(len(X)), errs_down, errs_up)
-		else:
-			plot_pred_true(X, all_preds, all_true, errs_down, errs_up)
+	'''
+	required_evaluations_scores = [0,0]    # I don't use this score anymore
 
 
 	return rank_pred_by_ds, rank_test_by_ds, sp_corrs, r2s, required_evaluations_scores
@@ -195,8 +188,6 @@ def apply_RFR(df_test, df_train, move_type, features):
 	f_imp = regressor.feature_importances_
 
 	all_DTs_pred = []
-	#all_DTs_pred = [t.predict(X_test) for t in regressor.estimators_]
-	#dev_vec = confidence_score(all_DTs_pred, y_pred, percentile=90)
 
 
 	return y_pred, all_DTs_pred, oob, f_imp
@@ -469,12 +460,6 @@ def print_and_index_results(df_datasets, res_dict, move_type, sscore, features):
 	print("ndatasets: ", len(res_vec1))
 	
 	
-	if FIGURES:
-		plot_violin({"rank of best predicted\nSPR move": res_vec1_scaled}, {"predicted rank of best\nSPR move": res_vec2_scaled})
-		plot_hist({"rank of best predicted\nSPR move": res_vec1_scaled}, {"predicted rank of best\nSPR move": res_vec2_scaled})
-		accXsize_boxplot(res_vec1)
-	
-	
 	print("##########################")
 	return df_datasets
 
@@ -547,7 +532,6 @@ if __name__ == '__main__':
 	ifsaturation = "" if not SATURATION else "_" + str(N_DATASETS)
 	ifrank = "" if not args.transform_target else "_ytransformed_{}".format(args.transform_target)
 	suf += ifsaturation + ifrank + ifrandomstart
-	suf += "V2"  # TEMP !!!!
 
 	for i in range(len(features)):
 		csv_with_scores = dirpath + SCORES_PER_DS.format(str(len(features))+ suf)
