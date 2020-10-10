@@ -32,7 +32,7 @@ FIRST_ON_SEC = False           # temp for running 1 on 2
 FEATURE_SELECTION = False      # temp for running feature selection
 SATURATION = True              # temp to asses saturation
 
-N_DATASETS = 3200    # [1500,5858]
+N_DATASETS = 4200    # [1500,5858]
 
 
 def score_rank(df_by_ds, sortby, locatein, random, scale_score):
@@ -424,6 +424,7 @@ def print_and_index_results(df_datasets, res_dict, move_type, sscore, features):
 	#### score 1 ####
 	spearman_corrs = res_dict['spearman_corr']
 	df_datasets['corr'] = spearman_corrs
+	print(spearman_corrs)     # todo: temp, remove
 	print("\nsapearman corr:\n" + "mean:", mean([e for e in spearman_corrs if not math.isnan(e)]), ", median:",median(spearman_corrs))
 	#print("\nsapearman corr:\n", spearman_corrs)
 	
