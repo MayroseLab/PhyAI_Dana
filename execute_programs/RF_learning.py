@@ -441,10 +441,9 @@ def print_and_index_results(df_datasets, res_dict, move_type, sscore, features):
 	print("\nbest true rank in pred :\n" + "mean:",np.mean(res_vec2_scaled), ", median:", np.median(res_vec2_scaled))
 	
 	#### score 4 ####
-	res_vec2_scaled.sort()
-	required_evaluations = res_dict['%neighbors']
-	df_datasets['required_evaluations_0.95'] = required_evaluations
-	print("\nmean %neighbors (0.95): {}".format(sum(required_evaluations)/len(required_evaluations)))
+	#required_evaluations = res_dict['%neighbors']
+	#df_datasets['required_evaluations_0.95'] = required_evaluations
+	#print("\nmean %neighbors (0.95): {}".format(sum(required_evaluations)/len(required_evaluations)))
 	
 	#'''### feature importance ####
 	mean_importances = res_dict['f_importance']   # index in first row only (score foreach run and not foreach dataset)
@@ -475,7 +474,7 @@ def sort_features(res_dict, features):
 	
 def extract_scores_dict(res_dict, df_with_scores):
 	res_dict['rank_first_pred'], res_dict["rank_first_true"] = df_with_scores['best_predicted_ranking'].values, df_with_scores['best_empirically_ranking'].values
-	res_dict['spearman_corr'], res_dict['%neighbors'], res_dict['oob'] = df_with_scores['corr'].values, df_with_scores['required_evaluations_0.95'].values, df_with_scores.loc[0, 'oob']
+	res_dict['spearman_corr'], res_dict['oob'] = df_with_scores['corr'].values, df_with_scores.loc[0, 'oob']
 	res_dict['f_importance'] = df_with_scores.loc[0, df_with_scores.columns[pd.Series(df_with_scores.columns).str.startswith('imp_')]].values
 
 	return res_dict
