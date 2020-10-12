@@ -12,7 +12,7 @@ import shutil
 from utils import create_job_file
 from ete3 import *
 
-DBSET = "2"  #"validation_set2/"
+DBSET = "2"     #"validation_set2/"
 DIR_PREFIX = "" if DBSET == "1" else "DBset2/" if DBSET == "2" else "validation_set/" if DBSET== "val1" else "validation_set2/"
 SEP = "/"
 
