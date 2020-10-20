@@ -64,12 +64,34 @@ def add_atts():
 	df_scores.to_csv(SUMMARY_FILES_DIR + SCORES_PER_DS.format("20_1_4300_ytransformed_exp_with_atts"))
 	return
 
+def create_data_dirs():
+	dirpath = "/groups/itay_mayrose/danaazouri/PhyAI/starting_trees_ml_minus1/data/training_datasets/"
+	df_paths = pd.DataFrame()
+	df_trees = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/exampleSml/newicks_step1.csv")
+	df_trees = df_trees[df_trees["rgft_name"] != SUBTREE1]
+	df_trees = df_trees[df_trees["rgft_name"] != SUBTREE2]
+	for i,row in df_trees.iterrows():
+		tree_str = row['newick']
+		dataset_dirpath = dirpath + row['prune_name'] + '_' + row['rgft_name'] + SEP
+		if not os.path.exists(dataset_dirpath):
+			os.mkdir(dataset_dirpath)
+
+		with open(dataset_dirpath + 'masked_species_real_msa.phy_phyml_tree_bionj.txt', 'w') as fp:
+			fp.write(tree_str)
+
+		df_paths.loc[i, "path"] = dataset_dirpath
+		exit()
+
+	df_paths.to_csv("/groups/itay_mayrose/danaazouri/PhyAI/starting_trees_ml_minus1/" + CHOSEN_DATASETS_FILENAME)
+	return
+
 
 def do_something(datapath):
 	#add_atts()
 	#delete_err_dirpath(datapath)
 	#rearrange_dirs_for_rerun(datapath)
-	missing_results()
+	#missing_results()
+	create_data_dirs()
 
 	'''
 	df = pd.read_csv(SUMMARY_FILES_DIR + LEARNING_DATA.format("all_moves", "1"))
@@ -77,6 +99,7 @@ def do_something(datapath):
 	print(df.columns)
 	df.to_csv(SUMMARY_FILES_DIR + LEARNING_DATA.format("all_moves_up", "1"))
 	'''
+
 
 
 

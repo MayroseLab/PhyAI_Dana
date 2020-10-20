@@ -147,10 +147,14 @@ def create_SPR_job(dataset_path, step_number, tree_type, rewrite_phy, runover):
 
 
 def all_SPR(ds_path, outpath, tree=None, rewrite_phylip=False):
-	time1_start = time.time()
 	orig_msa_file = ds_path + MSA_PHYLIP_FILENAME
 	suf = "bionj" if not RANDOM_TREE_DIRNAME in ds_path else "br"
 	stats_filepath = ds_path + PHYML_STATS_FILENAME.format(suf) if ML_SOFTWARE_STARTING_TREE == 'phyml' else ds_path + RAXML_STATS_FILENAME
+	# TEMP !!!!!  ######
+	if 'ml_minus1' in ds_path:
+		orig_msa_file = "/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/exampleSml/masked_species_real_msa.phy"
+		stats_filepath = "/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/exampleSml/masked_species_real_msa.phy_phyml_stats_bionj.txt"
+	# TEMP !!!!!  ######
 	t_orig = get_tree(ds_path, orig_msa_file, rewrite_phylip) if not tree else PhyloTree(newick=tree, alignment=orig_msa_file, alg_format="iphylip", format=1)
 	t_orig.get_tree_root().name = ROOTLIKE_NAME if not tree else ROOTLIKE_NAME+"_2"
 	st = "1" if not tree else "2"
@@ -169,44 +173,31 @@ def all_SPR(ds_path, outpath, tree=None, rewrite_phylip=False):
 		with open(msa_rampath, "w") as fpw:
 			fpw.write(msa_str)  # don't write the msa string to a variable (or write and release it)
 		msa_str = ''
-		time1_end = time.time()
-		print("time read tree, tmp_msa:", time1_end - time1_start)
 		params_dict = (parse_phyml_stats_output(None, stats_filepath)) if ML_SOFTWARE_STARTING_TREE == 'phyml' else float(parse_raxmlNG_output(stats_filepath))
 		freq, rates, pinv, alpha = [params_dict["fA"], params_dict["fC"], params_dict["fG"], params_dict["fT"]], [params_dict["subAC"], params_dict["subAG"], params_dict["subAT"], params_dict["subCG"],params_dict["subCT"], params_dict["subGT"]], params_dict["pInv"], params_dict["gamma"]
-		time2_end = time.time()
-		print("time extract subs params:", time2_end - time1_end)
 
 		df = pd.DataFrame()
 		for i, prune_node in enumerate(t_orig.iter_descendants("levelorder")):
 			prune_name = prune_node.name
-			time_prune_start = time.time()
 			nname, subtree1, subtree2 = prune_branch(t_orig, prune_name) # subtree1 is the pruned subtree. subtree2 is the remaining subtree
-			time_prune_end = time.time()
-			print("time prune:", time_prune_end-time_prune_start)
 			with open(OUTPUT_TREES_FILE, "a", newline='') as fpa:
 				csvwriter = csv.writer(fpa)
 				csvwriter.writerow([str(i)+",0", prune_name, SUBTREE1, subtree1.write(format=1)])
 				csvwriter.writerow([str(i)+",1", prune_name, SUBTREE2, subtree2.write(format=1)])
-			print("time append subtrees:", time.time()-time_prune_end)
+
 			for j, rgft_node in enumerate(subtree2.iter_descendants("levelorder")):
 				ind = str(i) + "," + str(j)
 				rgft_name = rgft_node.name
 				if nname == rgft_name: # if the rgrft node is the one that was pruned
 					continue
-				time_rgft_start = time.time()
 				rearr_tree_str = regraft_branch(subtree2, rgft_node, subtree1, rgft_name, nname).write(format=1)
-				time_rgft_end = time.time()
-				print("time rgft:",time_rgft_end -time_rgft_start)
 				### save tree to file by using "append"
 
 				with open(OUTPUT_TREES_FILE, "a", newline='') as fpa:
 					csvwriter = csv.writer(fpa)
 					csvwriter.writerow([ind, prune_name, rgft_name, rearr_tree_str])
-				time_append_rearr_end = time.time()
-				print("time append rearr:", time_append_rearr_end-time_rgft_end)
 
 				ll_rearr, rtime = call_raxml_mem(rearr_tree_str, msa_rampath, rates, pinv, alpha, freq)
-				print("time raxml:", time.time() - time_append_rearr_end)
 				df.loc[ind, "prune_name"], df.loc[ind, "rgft_name"] = prune_name, rgft_name
 				df.loc[ind, "time"] = rtime
 				df.loc[ind, "ll"] = ll_rearr
