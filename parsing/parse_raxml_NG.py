@@ -35,7 +35,7 @@ def parse_raxmlNG_content(content):
         if ll_ini:
             res_dict["ll"] = ll_ini.group(1).strip()
         else:
-            res_dict["ll"] = print('raxml-ng error, check known errors in "parse_raxmlNG_content" function')
+            res_dict["ll"] = 'raxml-ng error, check known errors in "parse_raxmlNG_content" function'
     else:
         res_dict["ll"] = ll_re.group(1).strip()
 
