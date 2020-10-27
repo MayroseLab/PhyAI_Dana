@@ -31,8 +31,11 @@ def parse_raxmlNG_content(content):
     # likelihood
     ll_re = re.search("Final LogLikelihood:\s+(.*)", content)
     if not ll_re and (re.search("BL opt converged to a worse likelihood score by", content) or re.search("failed", content) or re.search("Error", content)):
-        print('raxml-ng error, check known errors in "parse_raxmlNG_content" function')
-        res_dict["ll"] = re.search("initial LogLikelihood:\s+(.*)", content).group(1).strip()
+        ll_ini = re.search("initial LogLikelihood:\s+(.*)", content)
+        if ll_ini:
+            res_dict["ll"] = ll_ini.group(1).strip()
+        else:
+            res_dict["ll"] = print('raxml-ng error, check known errors in "parse_raxmlNG_content" function')
     else:
         res_dict["ll"] = ll_re.group(1).strip()
 
@@ -49,16 +52,12 @@ def parse_raxmlNG_content(content):
         if nucs_freq:
             for i,nuc in enumerate("ACGT"):
                 res_dict["f" + nuc] = nucs_freq.group(i+1).strip()
-        else:
-            print("****** 1")
 
         # substitution frequencies
         subs_freq = re.search("Substitution rates.*:\s+(\d+\.?\d*)\s+(\d+\.?\d*)\s+(\d+\.?\d*)\s+(\d+\.?\d*)\s+(\d+\.?\d*)\s+(\d+\.?\d*)", content)
         if subs_freq:
             for i,nuc_pair in enumerate(["AC", "AG", "AT", "CG", "CT", "GT"]):  # todo: make sure order
                 res_dict["sub" + nuc_pair] = subs_freq.group(i+1).strip()
-        else:
-            print("****** 2")
 
         # Elapsed time of raxml-ng optimization
         rtime = re.search("Elapsed time:\s+(\d+\.?\d*)\s+seconds", content)

@@ -118,7 +118,7 @@ def call_raxml_mem(tree_str, msa_file, rates, pinv, alpha, freq):
 		rtime = res_dict['time']
 
 	except Exception as e:
-		print(msa_file.split(SEP)[-1])
+		print(msa_file.split(SEP)[-1][3:])
 		print(e)
 		exit()
 	finally:
