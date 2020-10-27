@@ -40,8 +40,6 @@ def regraft_branch(t_cp_p, rgft_node, prune_node_cp, rgft_name, nname):
 	'''
 	get a tree with the 2 concatenated subtrees
 	'''
-	# print("### rgft node: ", rgft_name)
-
 	new_branch_length = rgft_node.dist /2
 	t_temp = PhyloTree()  			   # for concatenation of both subtrees ahead, to avoid polytomy
 	t_temp.add_child(prune_node_cp)
@@ -77,7 +75,8 @@ def get_tree(ds_path, msa_file, rewrite_phylip, software=ML_SOFTWARE_STARTING_TR
 	#	t_orig = PhyloTree(newick=tree_file, alignment=msa_file, alg_format="iphylip", format=1)
 	#	add_internal_names(tree_file, tree_file_cp_no_internal, t_orig)
 	#else:
-	t_orig = PhyloTree(newick=tree_file, alignment=msa_file, alg_format="iphylip", format=3)
+		#t_orig = PhyloTree(newick=tree_file, alignment=msa_file, alg_format="iphylip", format=3)
+	t_orig = PhyloTree(newick=tree_file, alignment=msa_file, alg_format="iphylip", format=1)
 
 	return t_orig
 
@@ -112,6 +111,7 @@ def call_raxml_mem(tree_str, msa_file, rates, pinv, alpha, freq):
 				  stdout=PIPE, stdin=PIPE, stderr=STDOUT)
 		raxml_stdout = p.communicate()[0]
 		raxml_output = raxml_stdout.decode()
+		print("\n"+raxml_output+"\n")
 
 		res_dict = parse_raxmlNG_content(raxml_output)
 		ll = res_dict['ll']
@@ -156,7 +156,12 @@ def all_SPR(ds_path, outpath, tree=None, rewrite_phylip=False):
 		stats_filepath = "/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/exampleSml/masked_species_real_msa.phy_phyml_stats_bionj.txt"
 	# TEMP !!!!!  ######
 	t_orig = get_tree(ds_path, orig_msa_file, rewrite_phylip) if not tree else PhyloTree(newick=tree, alignment=orig_msa_file, alg_format="iphylip", format=1)
-	t_orig.get_tree_root().name = ROOTLIKE_NAME if not tree else ROOTLIKE_NAME+"_2"
+	#t_orig.get_tree_root().name = ROOTLIKE_NAME if not tree else ROOTLIKE_NAME+"_2"
+	# TEMP !!!!!  ######
+	if 'ml_minus1' in ds_path:
+		print('xxxxxxx')
+		t_orig.get_tree_root().name = ROOTLIKE_NAME + "_2"
+	# TEMP !!!!!  ######
 	st = "1" if not tree else "2"
 	OUTPUT_TREES_FILE = TREES_PER_DS.format(ds_path, st)
 	with open(OUTPUT_TREES_FILE, "w", newline='') as fpw:
@@ -173,9 +178,9 @@ def all_SPR(ds_path, outpath, tree=None, rewrite_phylip=False):
 		with open(msa_rampath, "w") as fpw:
 			fpw.write(msa_str)  # don't write the msa string to a variable (or write and release it)
 		msa_str = ''
-		params_dict = (parse_phyml_stats_output(None, stats_filepath)) if ML_SOFTWARE_STARTING_TREE == 'phyml' else float(parse_raxmlNG_output(stats_filepath))
-		freq, rates, pinv, alpha = [params_dict["fA"], params_dict["fC"], params_dict["fG"], params_dict["fT"]], [params_dict["subAC"], params_dict["subAG"], params_dict["subAT"], params_dict["subCG"],params_dict["subCT"], params_dict["subGT"]], params_dict["pInv"], params_dict["gamma"]
 
+		params_dict = (parse_phyml_stats_output(None, stats_filepath)) if ML_SOFTWARE_STARTING_TREE == 'phyml' else parse_raxmlNG_output(stats_filepath)
+		freq, rates, pinv, alpha = [params_dict["fA"], params_dict["fC"], params_dict["fG"], params_dict["fT"]], [params_dict["subAC"], params_dict["subAG"], params_dict["subAT"], params_dict["subCG"],params_dict["subCT"], params_dict["subGT"]], params_dict["pInv"], params_dict["gamma"]
 		df = pd.DataFrame()
 		for i, prune_node in enumerate(t_orig.iter_descendants("levelorder")):
 			prune_name = prune_node.name
@@ -196,7 +201,8 @@ def all_SPR(ds_path, outpath, tree=None, rewrite_phylip=False):
 				with open(OUTPUT_TREES_FILE, "a", newline='') as fpa:
 					csvwriter = csv.writer(fpa)
 					csvwriter.writerow([ind, prune_name, rgft_name, rearr_tree_str])
-
+				#print(rearr_tree_str)
+				#exit()
 				ll_rearr, rtime = call_raxml_mem(rearr_tree_str, msa_rampath, rates, pinv, alpha, freq)
 				df.loc[ind, "prune_name"], df.loc[ind, "rgft_name"] = prune_name, rgft_name
 				df.loc[ind, "time"] = rtime
