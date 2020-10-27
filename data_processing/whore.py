@@ -89,7 +89,7 @@ def do_something(datapath):
 	#delete_err_dirpath(datapath)
 	#rearrange_dirs_for_rerun(datapath)
 	#missing_results()
-	create_data_dirs(datapath)
+	create_data_dirs()
 
 	'''
 	df = pd.read_csv(SUMMARY_FILES_DIR + LEARNING_DATA.format("all_moves", "1"))

@@ -96,19 +96,19 @@ def call_phyml_storage(tree_dirpath, file_name, msa_file, runover, job_priority,
 	os.system(cmd)
 
 
-def call_raxml_mem(tree_str, msa_file, rates, pinv, alpha, freq):
+def call_raxml_mem(tree_str, msa_tmpfile, rates, pinv, alpha, freq):
 	model_line_params = 'GTR{rates}+I{pinv}+G{alpha}+F{freq}'.format(rates="{{{0}}}".format("/".join(rates)),
 									 pinv="{{{0}}}".format(pinv), alpha="{{{0}}}".format(alpha),
 									 freq="{{{0}}}".format("/".join(freq)))
 
 	# create tree file in memory and not in the storage:
 	#tree_rampath = "/dev/shm/" + msa_file.split(SEP)[-1] + "tree"  # the var is the str: tmp{dir_suffix}
-	tree_rampath = "/dev/shm/" + msa_file.split(SEP)[-1] + str(random.random()) + "tree"
+	tree_rampath = "/dev/shm/" + msa_tmpfile.split(SEP)[-1] + str(random.random()) + "tree"
 	try:
 		with open(tree_rampath, "w") as fpw:
 			fpw.write(tree_str)
 
-		p = Popen([RAXML_NG_SCRIPT, '--evaluate', '--msa', msa_file,'--threads', '1', '--opt-branches', 'on', '--opt-model', 'off', '--model', model_line_params, '--nofiles', '--tree', tree_rampath],
+		p = Popen([RAXML_NG_SCRIPT, '--evaluate', '--msa', msa_tmpfile,'--threads', '1', '--opt-branches', 'on', '--opt-model', 'off', '--model', model_line_params, '--nofiles', '--tree', tree_rampath],
 				  stdout=PIPE, stdin=PIPE, stderr=STDOUT)
 		raxml_stdout = p.communicate()[0]
 		raxml_output = raxml_stdout.decode()
@@ -151,17 +151,18 @@ def all_SPR(ds_path, outpath, tree=None, rewrite_phylip=False):
 	orig_msa_file = ds_path + MSA_PHYLIP_FILENAME
 	suf = "bionj" if not RANDOM_TREE_DIRNAME in ds_path else "br"
 	stats_filepath = ds_path + PHYML_STATS_FILENAME.format(suf) if ML_SOFTWARE_STARTING_TREE == 'phyml' else ds_path + RAXML_STATS_FILENAME
+
 	# TEMP !!!!!  ######
 	if 'ml_minus1' in ds_path:
 		orig_msa_file = "/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/exampleSml/masked_species_real_msa.phy"
 		stats_filepath = "/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/exampleSml/masked_species_real_msa.phy_phyml_stats_bionj.txt"
 	# TEMP !!!!!  ######
+
 	t_orig = get_tree(ds_path, orig_msa_file, rewrite_phylip) if not tree else PhyloTree(newick=tree, alignment=orig_msa_file, alg_format="iphylip", format=1)
+
+	# TEMP (uncomment): !!!!!  ######
 	#t_orig.get_tree_root().name = ROOTLIKE_NAME if not tree else ROOTLIKE_NAME+"_2"
-	# TEMP !!!!!  ######
-	#if 'ml_minus1' in ds_path:
-	#	t_orig.get_tree_root().name = ROOTLIKE_NAME + "_2"
-	# TEMP !!!!!  ######
+
 	st = "1" if not tree else "2"
 	OUTPUT_TREES_FILE = TREES_PER_DS.format(ds_path, st)
 	with open(OUTPUT_TREES_FILE, "w", newline='') as fpw:
@@ -170,6 +171,7 @@ def all_SPR(ds_path, outpath, tree=None, rewrite_phylip=False):
 
 	# first, copy msa file to memory and save it:
 	msa_rampath = "/dev/shm/tmp" + ds_path.split(SEP)[-2] #  to be on the safe side (even though other processes shouldn't be able to access it)
+	print("*******************", msa_rampath)
 
 	with open(orig_msa_file) as fpr:
 		msa_str = fpr.read()
