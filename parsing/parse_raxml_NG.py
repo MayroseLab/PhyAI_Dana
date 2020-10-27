@@ -30,14 +30,15 @@ def parse_raxmlNG_content(content):
 
     # likelihood
     ll_re = re.search("Final LogLikelihood:\s+(.*)", content)
-    if not ll_re and (re.search("BL opt converged to a worse likelihood score by", content) or re.search("failed", content) or re.search("Error", content)):
+    if ll_re:
+        res_dict["ll"] = ll_re.group(1).strip()
+    elif re.search("BL opt converged to a worse likelihood score by", content) or re.search("failed", content):
         ll_ini = re.search("initial LogLikelihood:\s+(.*)", content)
         if ll_ini:
             res_dict["ll"] = ll_ini.group(1).strip()
-        else:
-            res_dict["ll"] = 'raxml-ng error, check known errors in "parse_raxmlNG_content" function'
     else:
-        res_dict["ll"] = ll_re.group(1).strip()
+        res_dict["ll"] = 'unknown raxml-ng error, check "parse_raxmlNG_content" function'
+
 
         # gamma (alpha parameter) and proportion of invariant sites
         gamma_regex = re.search("alpha:\s+(\d+\.?\d*)\s+", content)
