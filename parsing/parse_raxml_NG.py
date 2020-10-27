@@ -46,13 +46,19 @@ def parse_raxmlNG_content(content):
 
         # Nucleotides frequencies
         nucs_freq = re.search("Base frequencies.*?:\s+(\d+\.?\d*)\s+(\d+\.?\d*)\s+(\d+\.?\d*)\s+(\d+\.?\d*)", content)
-        for i,nuc in enumerate("ACGT"):
-            res_dict["f" + nuc] = nucs_freq.group(i+1).strip()
+        if nucs_freq:
+            for i,nuc in enumerate("ACGT"):
+                res_dict["f" + nuc] = nucs_freq.group(i+1).strip()
+        else:
+            print("****** 1")
 
         # substitution frequencies
         subs_freq = re.search("Substitution rates.*:\s+(\d+\.?\d*)\s+(\d+\.?\d*)\s+(\d+\.?\d*)\s+(\d+\.?\d*)\s+(\d+\.?\d*)\s+(\d+\.?\d*)", content)
-        for i,nuc_pair in enumerate(["AC", "AG", "AT", "CG", "CT", "GT"]):  # todo: make sure order
-            res_dict["sub" + nuc_pair] = subs_freq.group(i+1).strip()
+        if subs_freq:
+            for i,nuc_pair in enumerate(["AC", "AG", "AT", "CG", "CT", "GT"]):  # todo: make sure order
+                res_dict["sub" + nuc_pair] = subs_freq.group(i+1).strip()
+        else:
+            print("****** 2")
 
         # Elapsed time of raxml-ng optimization
         rtime = re.search("Elapsed time:\s+(\d+\.?\d*)\s+seconds", content)
