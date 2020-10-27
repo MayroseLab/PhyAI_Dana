@@ -159,7 +159,6 @@ def all_SPR(ds_path, outpath, tree=None, rewrite_phylip=False):
 	#t_orig.get_tree_root().name = ROOTLIKE_NAME if not tree else ROOTLIKE_NAME+"_2"
 	# TEMP !!!!!  ######
 	if 'ml_minus1' in ds_path:
-		print('xxxxxxx')
 		t_orig.get_tree_root().name = ROOTLIKE_NAME + "_2"
 	# TEMP !!!!!  ######
 	st = "1" if not tree else "2"
@@ -201,13 +200,12 @@ def all_SPR(ds_path, outpath, tree=None, rewrite_phylip=False):
 				with open(OUTPUT_TREES_FILE, "a", newline='') as fpa:
 					csvwriter = csv.writer(fpa)
 					csvwriter.writerow([ind, prune_name, rgft_name, rearr_tree_str])
-				#print(rearr_tree_str)
-				#exit()
+
 				ll_rearr, rtime = call_raxml_mem(rearr_tree_str, msa_rampath, rates, pinv, alpha, freq)
 				df.loc[ind, "prune_name"], df.loc[ind, "rgft_name"] = prune_name, rgft_name
 				df.loc[ind, "time"] = rtime
 				df.loc[ind, "ll"] = ll_rearr
-				#exit()
+
 		df["orig_ds_ll"] = float(params_dict["ll"])
 		df.to_csv(outpath.format("prune"))
 		df.to_csv(outpath.format("rgft"))

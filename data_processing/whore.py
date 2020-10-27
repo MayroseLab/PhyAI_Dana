@@ -14,6 +14,8 @@ SUMMARIES_PER_DS_LST = ["ds_summary_prune_br_step1.csv", "ds_summary_prune_br_st
 #SUMMARIES_PER_DS_LST_TEMP = ["newicks_step1.csv", "ds_summary_prune_br_step1.csv", "ds_summary_rgft_br_step1.csv", "masked_species_real_msa.phy_phyml_stats_bionj.txt", "masked_species_real_msa.phy_phyml_tree_bionj.txt", "masked_species_real_msa.phy_phyml_tree_bionj_no_internal.txt"]
 SUMMARIES_PER_DS_LST_TEMP = ["ds_summary_rgft_br_step1.csv"]
 
+
+
 def rearrange_dirs_for_rerun(datapath):
 	new_dir = datapath + "v1/"
 	if not os.path.exists(new_dir):
@@ -22,7 +24,6 @@ def rearrange_dirs_for_rerun(datapath):
 	#os.system("mv " + datapath + RAXML_TREE_FILENAME + "* " + new_dir)
 	#os.system("mv " + datapath + RAXML_STATS_FILENAME + " " + new_dir)
 	os.system("mv " + datapath + "*.txt " + new_dir)
-
 
 	return
 
@@ -76,8 +77,10 @@ def create_data_dirs():
 		if not os.path.exists(dataset_dirpath):
 			os.mkdir(dataset_dirpath)
 
-		with open(dataset_dirpath + 'masked_species_real_msa.phy_phyml_tree_bionj.txt', 'w') as fp:
-			fp.write(tree_str)
+		#with open(dataset_dirpath + 'masked_species_real_msa.phy_phyml_tree_bionj.txt', 'w') as fp:
+			#fp.write(tree_str)
+		t = Tree(tree_str, format=1)
+		t.write(dataset_dirpath + 'masked_species_real_msa.phy_phyml_tree_bionj.txt', format=1)
 
 		df_paths.loc[i, "path"] = dataset_dirpath
 		exit()

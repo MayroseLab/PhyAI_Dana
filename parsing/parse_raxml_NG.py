@@ -31,8 +31,8 @@ def parse_raxmlNG_content(content):
     # likelihood
     ll_re = re.search("Final LogLikelihood:\s+(.*)", content)
     if not ll_re and (re.search("BL opt converged to a worse likelihood score by", content) or re.search("failed", content) or re.search("Error", content)):
+        print('raxml-ng error, check known errors in "parse_raxmlNG_content" function')
         res_dict["ll"] = re.search("initial LogLikelihood:\s+(.*)", content).group(1).strip()
-        print('raxml-ng error')
     else:
         res_dict["ll"] = ll_re.group(1).strip()
 

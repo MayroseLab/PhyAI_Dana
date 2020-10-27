@@ -8,6 +8,8 @@ RAXML_NG_SCRIPT = "raxml-ng"    # after you install raxml-ng on your machine
 MSA_PHYLIP_FILENAME = "masked_species_real_msa.phy"
 
 
+
+
 def return_likelihood(tree, msa_file, rates, pinv, alpha, freq):
 	"""
 	:param tree: ETEtree OR a newick string
@@ -135,7 +137,7 @@ def parse_phyml_stats_output(stats_filepath):
 
 def prune_branch(t_orig, prune_name):
 	'''
-	get (a copy of) both subtrees after pruning
+	returns (a copy of) both ETE subtrees after pruning
 	'''
 	t_cp_p = t_orig.copy()  # the original tree is needed for each iteration
 	assert t_cp_p & prune_name    # todo Oz: add indicative error
@@ -152,7 +154,8 @@ def prune_branch(t_orig, prune_name):
 
 def regraft_branch(t_cp_p, prune_node_cp, rgft_name, nname):
 	'''
-	get a tree with the 2 concatenated subtrees
+	recieves: 2 ETE subtrees and 2 node names
+	returns: an ETEtree with the 2 concatenated ETE subtrees
 	'''
 
 	t_temp = Tree()  # for concatenation of both subtrees ahead, to avoid polytomy
@@ -195,12 +198,11 @@ def add_internal_names(tree_file, t_orig, newfile_suffix="_with_internal.txt"):
 
 
 if __name__ == '__main__':
-	# update to full path
+	# test on 1 dataset only
 	DATAPATH = "/groups/itay_mayrose/danaazouri/PhyAI/ML_workshop/reinforcement_data/"
 	df = pd.read_csv(DATAPATH + "data/sampled_datasets.csv")
-	# test on 1 dataset only
-	curr_path = df.loc[0, "path"]
-	tree_path = DATAPATH + curr_path + MSA_PHYLIP_FILENAME + "_phyml_tree_bionj.txt"
+	curr_path = DATAPATH + df.loc[0, "path"]
+	tree_path = curr_path + MSA_PHYLIP_FILENAME + "_phyml_tree_bionj.txt"
 
 	t_orig = Tree(newick=tree_path, format=1)    # ETEtree
 	t_orig.get_tree_root().name = "ROOT_LIKE"    # ETEtree
