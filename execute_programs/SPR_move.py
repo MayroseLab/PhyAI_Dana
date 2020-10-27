@@ -102,7 +102,8 @@ def call_raxml_mem(tree_str, msa_file, rates, pinv, alpha, freq):
 									 freq="{{{0}}}".format("/".join(freq)))
 
 	# create tree file in memory and not in the storage:
-	tree_rampath = "/dev/shm/" + msa_file.split(SEP)[-1] + "tree"  # the var is the str: tmp{dir_suffix}
+	#tree_rampath = "/dev/shm/" + msa_file.split(SEP)[-1] + "tree"  # the var is the str: tmp{dir_suffix}
+	tree_rampath = "/dev/shm/" + msa_file.split(SEP)[-1] + str(random.random()) + "tree"
 	try:
 		with open(tree_rampath, "w") as fpw:
 			fpw.write(tree_str)
@@ -158,8 +159,8 @@ def all_SPR(ds_path, outpath, tree=None, rewrite_phylip=False):
 	t_orig = get_tree(ds_path, orig_msa_file, rewrite_phylip) if not tree else PhyloTree(newick=tree, alignment=orig_msa_file, alg_format="iphylip", format=1)
 	#t_orig.get_tree_root().name = ROOTLIKE_NAME if not tree else ROOTLIKE_NAME+"_2"
 	# TEMP !!!!!  ######
-	if 'ml_minus1' in ds_path:
-		t_orig.get_tree_root().name = ROOTLIKE_NAME + "_2"
+	#if 'ml_minus1' in ds_path:
+	#	t_orig.get_tree_root().name = ROOTLIKE_NAME + "_2"
 	# TEMP !!!!!  ######
 	st = "1" if not tree else "2"
 	OUTPUT_TREES_FILE = TREES_PER_DS.format(ds_path, st)
@@ -195,8 +196,8 @@ def all_SPR(ds_path, outpath, tree=None, rewrite_phylip=False):
 				if nname == rgft_name: # if the rgrft node is the one that was pruned
 					continue
 				rearr_tree_str = regraft_branch(subtree2, rgft_node, subtree1, rgft_name, nname).write(format=1)
-				### save tree to file by using "append"
 
+				### save tree to file by using "append"
 				with open(OUTPUT_TREES_FILE, "a", newline='') as fpa:
 					csvwriter = csv.writer(fpa)
 					csvwriter.writerow([ind, prune_name, rgft_name, rearr_tree_str])

@@ -76,14 +76,10 @@ def create_data_dirs():
 		dataset_dirpath = dirpath + row['prune_name'] + '_' + row['rgft_name'] + SEP
 		if not os.path.exists(dataset_dirpath):
 			os.mkdir(dataset_dirpath)
-
-		#with open(dataset_dirpath + 'masked_species_real_msa.phy_phyml_tree_bionj.txt', 'w') as fp:
-			#fp.write(tree_str)
-		t = Tree(tree_str, format=1)
-		t.write(dataset_dirpath + 'masked_species_real_msa.phy_phyml_tree_bionj.txt', format=1)
+		with open(dataset_dirpath + 'masked_species_real_msa.phy_phyml_tree_bionj.txt', 'w') as fp:
+			fp.write(tree_str)
 
 		df_paths.loc[i, "path"] = dataset_dirpath
-		exit()
 
 	df_paths.to_csv("/groups/itay_mayrose/danaazouri/PhyAI/starting_trees_ml_minus1/" + CHOSEN_DATASETS_FILENAME)
 	return
