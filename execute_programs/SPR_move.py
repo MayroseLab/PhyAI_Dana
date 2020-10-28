@@ -103,7 +103,9 @@ def call_raxml_mem(tree_str, msa_tmpfile, rates, pinv, alpha, freq):
 
 	# create tree file in memory and not in the storage:
 	#tree_rampath = "/dev/shm/" + msa_file.split(SEP)[-1] + "tree"  # the var is the str: tmp{dir_suffix}
-	tree_rampath = "/dev/shm/" + msa_tmpfile.split(SEP)[-1] + str(random.random()) + "tree"
+	os.chdir("/dev/shm/")
+	tree_rampath = msa_tmpfile.split(SEP)[-1] + str(random.random()) + "tree"
+	#tree_rampath = "/dev/shm/" + msa_tmpfile.split(SEP)[-1] + str(random.random()) + "tree"
 	try:
 		with open(tree_rampath, "w") as fpw:
 			fpw.write(tree_str)
@@ -119,7 +121,7 @@ def call_raxml_mem(tree_str, msa_tmpfile, rates, pinv, alpha, freq):
 		rtime = res_dict['time']
 
 	except Exception as e:
-		print(msa_file.split(SEP)[-1][3:])
+		print(msa_tmpfile.split(SEP)[-1][3:])
 		print(e)
 		exit()
 	finally:
@@ -152,16 +154,13 @@ def all_SPR(ds_path, outpath, tree=None, rewrite_phylip=False):
 	suf = "bionj" if not RANDOM_TREE_DIRNAME in ds_path else "br"
 	stats_filepath = ds_path + PHYML_STATS_FILENAME.format(suf) if ML_SOFTWARE_STARTING_TREE == 'phyml' else ds_path + RAXML_STATS_FILENAME
 
-	# TEMP !!!!!  ######
 	if 'ml_minus1' in ds_path:
 		orig_msa_file = "/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/exampleSml/masked_species_real_msa.phy"
 		stats_filepath = "/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/exampleSml/masked_species_real_msa.phy_phyml_stats_bionj.txt"
-	# TEMP !!!!!  ######
-
-	t_orig = get_tree(ds_path, orig_msa_file, rewrite_phylip) if not tree else PhyloTree(newick=tree, alignment=orig_msa_file, alg_format="iphylip", format=1)
 
 	# TEMP (uncomment): !!!!!  ######
-	#t_orig.get_tree_root().name = ROOTLIKE_NAME if not tree else ROOTLIKE_NAME+"_2"
+	#t_orig.get_tree_root().name = ROOTLIKE_NAME   # if not tree else ROOTLIKE_NAME+"_2"
+	t_orig = get_tree(ds_path, orig_msa_file, rewrite_phylip) if not tree else PhyloTree(newick=tree, alignment=orig_msa_file, alg_format="iphylip", format=1)
 
 	st = "1" if not tree else "2"
 	OUTPUT_TREES_FILE = TREES_PER_DS.format(ds_path, st)
@@ -171,7 +170,6 @@ def all_SPR(ds_path, outpath, tree=None, rewrite_phylip=False):
 
 	# first, copy msa file to memory and save it:
 	msa_rampath = "/dev/shm/tmp" + ds_path.split(SEP)[-2] #  to be on the safe side (even though other processes shouldn't be able to access it)
-	print("*******************", msa_rampath)
 
 	with open(orig_msa_file) as fpr:
 		msa_str = fpr.read()
