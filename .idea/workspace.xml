@@ -22,9 +22,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="04f6d22b-03c8-46f3-ac77-b58c4e95d95d" name="Default Changelist" comment="debug - unknown error of raxml-ng (try using relpath instead of full path)">
-      <change beforePath="$PROJECT_DIR$/.idea/code.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/code.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="04f6d22b-03c8-46f3-ac77-b58c4e95d95d" name="Default Changelist" comment="debug - unknown error of raxml-ng (try using relpath instead of full path)&#10;** re-generate SPR for ml (without Nnew_p node)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/defs.py" beforeDir="false" afterPath="$PROJECT_DIR$/defs.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/execute_programs/SPR_move.py" beforeDir="false" afterPath="$PROJECT_DIR$/execute_programs/SPR_move.py" afterDir="false" />
@@ -442,13 +440,7 @@
       <workItem from="1602757667346" duration="33842000" />
       <workItem from="1603615941324" duration="536000" />
       <workItem from="1603630365272" duration="1771000" />
-      <workItem from="1603885184296" duration="3523000" />
-    </task>
-    <task id="LOCAL‎01136" summary="analysis saturation with 10^">
-      <created>1601910949543</created>
-      <option name="number" value="LOCAL‎01136" />
-      <option name="presentableId" value="LOCAL‎01136" />
-      <updated>1601910949543</updated>
+      <workItem from="1603885184296" duration="4906000" />
     </task>
     <task id="LOCAL‎01137" summary="analysis saturation with 10^">
       <created>1601911071959</created>
@@ -748,7 +740,14 @@
       <option name="project" value="LOCAL" />
       <updated>1603884679299</updated>
     </task>
-    <option name="localTasksCounter" value="1185" />
+    <task id="LOCAL-01185" summary="debug - unknown error of raxml-ng (try using relpath instead of full path)&#10;** re-generate SPR for ml (without Nnew_p node)">
+      <created>1603900527015</created>
+      <option name="number" value="01185" />
+      <option name="presentableId" value="LOCAL-01185" />
+      <option name="project" value="LOCAL" />
+      <updated>1603900527016</updated>
+    </task>
+    <option name="localTasksCounter" value="1186" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -770,7 +769,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="test" />
     <MESSAGE value="analysis" />
     <MESSAGE value="testing raxml vs phyml on example" />
     <MESSAGE value="testing raxml vs phyml on example&#10;TEMP CHANGES" />
@@ -795,7 +793,8 @@
     <MESSAGE value="organize" />
     <MESSAGE value="debug - unknown error of raxml-ng" />
     <MESSAGE value="debug - unknown error of raxml-ng (try using relpath instead of full path)" />
-    <option name="LAST_COMMIT_MESSAGE" value="debug - unknown error of raxml-ng (try using relpath instead of full path)" />
+    <MESSAGE value="debug - unknown error of raxml-ng (try using relpath instead of full path)&#10;** re-generate SPR for ml (without Nnew_p node)" />
+    <option name="LAST_COMMIT_MESSAGE" value="debug - unknown error of raxml-ng (try using relpath instead of full path)&#10;** re-generate SPR for ml (without Nnew_p node)" />
   </component>
   <component name="WindowStateProjectService">
     <state x="2570" y="233" key="#Menus_and_Toolbars" timestamp="1596705437758">
@@ -904,7 +903,7 @@
     <state x="2381" y="164" key="SettingsEditor/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1596616610627" />
     <state x="204" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1602501651365" />
     <state x="306" y="0" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1603809972823" />
-    <state x="494" y="223" key="Vcs.Push.Dialog.v2" timestamp="1603884682902">
+    <state x="494" y="223" key="Vcs.Push.Dialog.v2" timestamp="1603900529223">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="329" y="146" key="Vcs.Push.Dialog.v2/0.0.1280.680/103.-1050.1680.1010@0.0.1280.680" timestamp="1602511685167" />
@@ -913,7 +912,7 @@
     <state x="329" y="146" key="Vcs.Push.Dialog.v2/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1599667287383" />
     <state x="2414" y="252" key="Vcs.Push.Dialog.v2/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1602764904349" />
     <state x="329" y="146" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1603015319154" />
-    <state x="494" y="223" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1603884682902" />
+    <state x="494" y="223" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1603900529223" />
     <state x="-7" y="0" width="1288" height="687" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1603729725414">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
