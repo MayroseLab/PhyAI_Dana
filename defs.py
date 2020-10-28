@@ -14,7 +14,7 @@ from ete3 import *
 
 DBSET = "2"     #"validation_set2/"
 DIR_PREFIX = "" if DBSET == "1" else "DBset2/" if DBSET == "2" else "validation_set/" if DBSET== "val1" else "validation_set2/"
-#DIR_PREFIX = 'starting_trees_ml_minus1/'    # TEMP !!!!!
+DIR_PREFIX = 'starting_trees_ml_minus1/'    # TEMP !!!!!
 SEP = "/"
 
 if platform.system() == 'Linux':
