@@ -30,8 +30,8 @@ def prune_branch(t_orig, prune_name):
 	prune_loc = prune_node_cp
 	prune_loc.detach()  # pruning: prune_node_cp is now the subtree we detached. t_cp_p is the one that was left behind
 	t_cp_p.search_nodes(name=nname)[0].delete(preserve_branch_length=True)  # delete the specific node (without its childs) since after pruning this branch should not be divided
-	if not nname:   # These 2 lines can be removed
-		nname = "Nnew_p"
+	#if not nname:   # These 2 lines can be removed
+	#	nname = "Nnew_p"
 
 	return nname, prune_node_cp, t_cp_p
 
@@ -103,15 +103,14 @@ def call_raxml_mem(tree_str, msa_tmpfile, rates, pinv, alpha, freq):
 
 	# create tree file in memory and not in the storage:
 	#tree_rampath = "/dev/shm/" + msa_file.split(SEP)[-1] + "tree"  # the var is the str: tmp{dir_suffix}
-	os.chdir("/dev/shm/")
-	tree_rampath = msa_tmpfile.split(SEP)[-1] + str(random.random()) + "tree"
-	#tree_rampath = "/dev/shm/" + msa_tmpfile.split(SEP)[-1] + str(random.random()) + "tree"
+
+	tree_rampath = "/dev/shm/" + msa_tmpfile.split(SEP)[-1] + str(random.random()) + "tree"
+
 	try:
 		with open(tree_rampath, "w") as fpw:
 			fpw.write(tree_str)
 
-		p = Popen([RAXML_NG_SCRIPT, '--evaluate', '--msa', msa_tmpfile,'--threads', '1', '--opt-branches', 'on', '--opt-model', 'off', '--model', model_line_params, '--nofiles', '--tree', tree_rampath],
-				  stdout=PIPE, stdin=PIPE, stderr=STDOUT)
+		p = Popen([RAXML_NG_SCRIPT, '--evaluate', '--msa', msa_tmpfile,'--threads', '1', '--opt-branches', 'on', '--opt-model', 'off', '--model', model_line_params, '--nofiles', '--tree', tree_rampath], stdout=PIPE, stdin=PIPE, stderr=STDOUT)
 		raxml_stdout = p.communicate()[0]
 		raxml_output = raxml_stdout.decode()
 		print("\n"+raxml_output+"\n")
@@ -159,8 +158,8 @@ def all_SPR(ds_path, outpath, tree=None, rewrite_phylip=False):
 		stats_filepath = "/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/exampleSml/masked_species_real_msa.phy_phyml_stats_bionj.txt"
 
 	# TEMP (uncomment): !!!!!  ######
-	#t_orig.get_tree_root().name = ROOTLIKE_NAME   # if not tree else ROOTLIKE_NAME+"_2"
 	t_orig = get_tree(ds_path, orig_msa_file, rewrite_phylip) if not tree else PhyloTree(newick=tree, alignment=orig_msa_file, alg_format="iphylip", format=1)
+	t_orig.get_tree_root().name = ROOTLIKE_NAME  # if not tree else ROOTLIKE_NAME+"_2"
 
 	st = "1" if not tree else "2"
 	OUTPUT_TREES_FILE = TREES_PER_DS.format(ds_path, st)
