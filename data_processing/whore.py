@@ -77,7 +77,9 @@ def create_data_dirs():
 			os.mkdir(dataset_dirpath)
 		#with open(dataset_dirpath + 'masked_species_real_msa.phy_phyml_tree_bionj.txt', 'w') as fp:
 		#	fp.write(tree_str)
-		Tree(tree_str, format=1).write(dataset_dirpath + 'masked_species_real_msa.phy_phyml_tree_bionj.txt', format=1)
+		t = Tree(tree_str, format=1)
+		(t&ROOTLIKE_NAME).delete()
+		t.write(format=1, outfile=dataset_dirpath + 'masked_species_real_msa.phy_phyml_tree_bionj.txt')
 		exit()
 		df_paths.loc[i, "path"] = dataset_dirpath
 

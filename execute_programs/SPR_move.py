@@ -102,9 +102,7 @@ def call_raxml_mem(tree_str, msa_tmpfile, rates, pinv, alpha, freq):
 									 freq="{{{0}}}".format("/".join(freq)))
 
 	# create tree file in memory and not in the storage:
-	#tree_rampath = "/dev/shm/" + msa_file.split(SEP)[-1] + "tree"  # the var is the str: tmp{dir_suffix}
-
-	tree_rampath = "/dev/shm/" + msa_tmpfile.split(SEP)[-1] + str(random.random()) + "tree"
+	tree_rampath = "/dev/shm/" + msa_tmpfile.split(SEP)[-1] + "tree"  # the var is the str: tmp{dir_suffix}
 
 	try:
 		with open(tree_rampath, "w") as fpw:
@@ -157,9 +155,12 @@ def all_SPR(ds_path, outpath, tree=None, rewrite_phylip=False):
 		orig_msa_file = "/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/exampleSml/masked_species_real_msa.phy"
 		stats_filepath = "/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/exampleSml/masked_species_real_msa.phy_phyml_stats_bionj.txt"
 
-	# TEMP (uncomment): !!!!!  ######
+	## TEMP (uncomment): !!!!!  ######
 	t_orig = get_tree(ds_path, orig_msa_file, rewrite_phylip) if not tree else PhyloTree(newick=tree, alignment=orig_msa_file, alg_format="iphylip", format=1)
-	#t_orig.get_tree_root().name = ROOTLIKE_NAME  # if not tree else ROOTLIKE_NAME+"_2"
+	##t_orig.get_tree_root().name = ROOTLIKE_NAME  # if not tree else ROOTLIKE_NAME+"_2"
+	print(t_orig.get_ascii(show_internal=True))
+	print(t_orig.write(format=1))
+
 
 	st = "1" if not tree else "2"
 	OUTPUT_TREES_FILE = TREES_PER_DS.format(ds_path, st)
@@ -194,6 +195,7 @@ def all_SPR(ds_path, outpath, tree=None, rewrite_phylip=False):
 				rgft_name = rgft_node.name
 				if nname == rgft_name: # if the rgrft node is the one that was pruned
 					continue
+
 				rearr_tree_str = regraft_branch(subtree2, rgft_node, subtree1, rgft_name, nname).write(format=1)
 
 				### save tree to file by using "append"
@@ -202,6 +204,7 @@ def all_SPR(ds_path, outpath, tree=None, rewrite_phylip=False):
 					csvwriter.writerow([ind, prune_name, rgft_name, rearr_tree_str])
 
 				ll_rearr, rtime = call_raxml_mem(rearr_tree_str, msa_rampath, rates, pinv, alpha, freq)
+
 				df.loc[ind, "prune_name"], df.loc[ind, "rgft_name"] = prune_name, rgft_name
 				df.loc[ind, "time"] = rtime
 				df.loc[ind, "ll"] = ll_rearr
