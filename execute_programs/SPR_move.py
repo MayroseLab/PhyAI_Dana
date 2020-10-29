@@ -195,10 +195,8 @@ def all_SPR(ds_path, outpath, tree=None, rewrite_phylip=False):
 				rgft_name = rgft_node.name
 				if nname == rgft_name: # if the rgrft node is the one that was pruned
 					continue
-
 				rearr_tree_str = regraft_branch(subtree2, rgft_node, subtree1, rgft_name, nname).write(format=1)
-				print(rearr_tree_str)
-				exit()
+
 				### save tree to file by using "append"
 				with open(OUTPUT_TREES_FILE, "a", newline='') as fpa:
 					csvwriter = csv.writer(fpa)
@@ -210,8 +208,6 @@ def all_SPR(ds_path, outpath, tree=None, rewrite_phylip=False):
 				df.loc[ind, "time"] = rtime
 				df.loc[ind, "ll"] = ll_rearr
 
-			print(df)
-			exit()
 
 		df["orig_ds_ll"] = float(params_dict["ll"])
 		df.to_csv(outpath.format("prune"))
