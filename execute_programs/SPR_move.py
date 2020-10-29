@@ -30,8 +30,8 @@ def prune_branch(t_orig, prune_name):
 	prune_loc = prune_node_cp
 	prune_loc.detach()  # pruning: prune_node_cp is now the subtree we detached. t_cp_p is the one that was left behind
 	t_cp_p.search_nodes(name=nname)[0].delete(preserve_branch_length=True)  # delete the specific node (without its childs) since after pruning this branch should not be divided
-	#if not nname:   # These 2 lines can be removed
-	#	nname = "Nnew_p"
+	if not nname:   # These 2 lines can be removed
+		nname = "Nnew_p"
 
 	return nname, prune_node_cp, t_cp_p
 
@@ -158,7 +158,7 @@ def all_SPR(ds_path, outpath, tree=None, rewrite_phylip=False):
 
 	t_orig = get_tree(ds_path, orig_msa_file, rewrite_phylip) if not tree else PhyloTree(newick=tree, alignment=orig_msa_file, alg_format="iphylip", format=1)
 	#(t_orig&ROOTLIKE_NAME).delete()
-	#t_orig.set_outgroup(t_orig.get_tree_root().children[0])
+	t_orig.set_outgroup(t_orig&ROOTLIKE_NAME)
 	#t_orig.get_tree_root().name = ROOTLIKE_NAME    # if not tree else ROOTLIKE_NAME+"_2"
 	print(t_orig.get_ascii(show_internal=True))
 	t_orig.write(format=1, outfile=ds_path + "1.tre")
