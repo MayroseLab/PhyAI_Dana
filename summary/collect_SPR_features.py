@@ -88,8 +88,8 @@ def collect_features(ds_path, step_number, outpath_prune, outpath_rgft, tree_typ
 			df_rgft.loc[ind, FEATURES["res_tbl"]] = features_restree_dict['res_tbl']
 
 
-	df_prune = df_prune[(df_prune["prune_name"] != ROOTLIKE_NAME) & (df_prune["rgft_name"] != ROOTLIKE_NAME)].dropna()
-	df_rgft = df_rgft[(df_rgft["prune_name"] != ROOTLIKE_NAME) & (df_rgft["rgft_name"] != ROOTLIKE_NAME)].dropna()
+	df_prune = df_prune[(df_prune["prune_name"] != ROOTLIKE_NAME) & (df_prune["rgft_name"] != ROOTLIKE_NAME)]  #.dropna()
+	df_rgft = df_rgft[(df_rgft["prune_name"] != ROOTLIKE_NAME) & (df_rgft["rgft_name"] != ROOTLIKE_NAME)]      #.dropna()
 	df_prune.to_csv(outpath_prune)  # runover existing one to fill in all features
 	df_rgft.to_csv(outpath_rgft)    # runover existing one to fill in all features
 	
