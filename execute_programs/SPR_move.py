@@ -157,7 +157,7 @@ def all_SPR(ds_path, outpath, tree=None, rewrite_phylip=False):
 		stats_filepath = "/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/exampleSml/masked_species_real_msa.phy_phyml_stats_bionj.txt"
 
 	t_orig = get_tree(ds_path, orig_msa_file, rewrite_phylip) if not tree else PhyloTree(newick=tree, alignment=orig_msa_file, alg_format="iphylip", format=1)
-	(t_orig&ROOTLIKE_NAME).delete()
+	#(t_orig&ROOTLIKE_NAME).delete()
 	#t_orig.set_outgroup(t_orig.get_tree_root().children[0])
 	#t_orig.get_tree_root().name = ROOTLIKE_NAME    # if not tree else ROOTLIKE_NAME+"_2"
 	print(t_orig.get_ascii(show_internal=True))
@@ -184,7 +184,7 @@ def all_SPR(ds_path, outpath, tree=None, rewrite_phylip=False):
 		params_dict = (parse_phyml_stats_output(None, stats_filepath)) if ML_SOFTWARE_STARTING_TREE == 'phyml' else parse_raxmlNG_output(stats_filepath)
 		freq, rates, pinv, alpha = [params_dict["fA"], params_dict["fC"], params_dict["fG"], params_dict["fT"]], [params_dict["subAC"], params_dict["subAG"], params_dict["subAT"], params_dict["subCG"],params_dict["subCT"], params_dict["subGT"]], params_dict["pInv"], params_dict["gamma"]
 		df = pd.DataFrame()
-		for i, prune_node in enumerate(t_orig.iter_descendants("levelorder")):
+		for i, prune_node in enumerate(t_orig.iter_descendants("postorder")):
 			prune_name = prune_node.name
 			nname, subtree1, subtree2 = prune_branch(t_orig, prune_name) # subtree1 is the pruned subtree. subtree2 is the remaining subtree
 			with open(OUTPUT_TREES_FILE, "a", newline='') as fpa:
