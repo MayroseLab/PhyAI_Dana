@@ -80,7 +80,7 @@ def create_data_dirs():
 		t = Tree(tree_str, format=1)
 		(t&ROOTLIKE_NAME).delete()
 		t.write(format=1, outfile=dataset_dirpath + 'masked_species_real_msa.phy_phyml_tree_bionj.txt')
-		exit()
+
 		df_paths.loc[i, "path"] = dataset_dirpath
 
 	df_paths.to_csv(SUMMARY_FILES_DIR + CHOSEN_DATASETS_FILENAME)

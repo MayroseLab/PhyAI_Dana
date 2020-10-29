@@ -111,7 +111,7 @@ def call_raxml_mem(tree_str, msa_tmpfile, rates, pinv, alpha, freq):
 		p = Popen([RAXML_NG_SCRIPT, '--evaluate', '--msa', msa_tmpfile,'--threads', '1', '--opt-branches', 'on', '--opt-model', 'off', '--model', model_line_params, '--nofiles', '--tree', tree_rampath], stdout=PIPE, stdin=PIPE, stderr=STDOUT)
 		raxml_stdout = p.communicate()[0]
 		raxml_output = raxml_stdout.decode()
-		print("\n"+raxml_output+"\n")
+		#print("\n"+raxml_output+"\n")
 
 		res_dict = parse_raxmlNG_content(raxml_output)
 		ll = res_dict['ll']
@@ -155,9 +155,9 @@ def all_SPR(ds_path, outpath, tree=None, rewrite_phylip=False):
 		orig_msa_file = "/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/exampleSml/masked_species_real_msa.phy"
 		stats_filepath = "/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/exampleSml/masked_species_real_msa.phy_phyml_stats_bionj.txt"
 
-	## TEMP (uncomment): !!!!!  ######
 	t_orig = get_tree(ds_path, orig_msa_file, rewrite_phylip) if not tree else PhyloTree(newick=tree, alignment=orig_msa_file, alg_format="iphylip", format=1)
-	##t_orig.get_tree_root().name = ROOTLIKE_NAME  # if not tree else ROOTLIKE_NAME+"_2"
+	#t_orig.set_outgroup(t_orig.get_tree_root().children[0])
+	t_orig.get_tree_root().name = ROOTLIKE_NAME    # if not tree else ROOTLIKE_NAME+"_2"
 	print(t_orig.get_ascii(show_internal=True))
 	print(t_orig.write(format=1))
 
@@ -197,7 +197,8 @@ def all_SPR(ds_path, outpath, tree=None, rewrite_phylip=False):
 					continue
 
 				rearr_tree_str = regraft_branch(subtree2, rgft_node, subtree1, rgft_name, nname).write(format=1)
-
+				print(rearr_tree_str)
+				exit()
 				### save tree to file by using "append"
 				with open(OUTPUT_TREES_FILE, "a", newline='') as fpa:
 					csvwriter = csv.writer(fpa)
@@ -208,6 +209,9 @@ def all_SPR(ds_path, outpath, tree=None, rewrite_phylip=False):
 				df.loc[ind, "prune_name"], df.loc[ind, "rgft_name"] = prune_name, rgft_name
 				df.loc[ind, "time"] = rtime
 				df.loc[ind, "ll"] = ll_rearr
+
+			print(df)
+			exit()
 
 		df["orig_ds_ll"] = float(params_dict["ll"])
 		df.to_csv(outpath.format("prune"))
