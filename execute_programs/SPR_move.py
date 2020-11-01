@@ -111,12 +111,11 @@ def call_raxml_mem(tree_str, msa_tmpfile, rates, pinv, alpha, freq):
 		p = Popen([RAXML_NG_SCRIPT, '--evaluate', '--msa', msa_tmpfile,'--threads', '1', '--opt-branches', 'on', '--opt-model', 'off', '--model', model_line_params, '--nofiles', '--tree', tree_rampath], stdout=PIPE, stdin=PIPE, stderr=STDOUT)
 		raxml_stdout = p.communicate()[0]
 		raxml_output = raxml_stdout.decode()
-		print("\n"+raxml_output+"\n")
+		#print("\n"+raxml_output+"\n")
 
 		res_dict = parse_raxmlNG_content(raxml_output)
 		ll = res_dict['ll']
 		rtime = res_dict['time']
-		print("rtime:", rtime)
 
 	except Exception as e:
 		print(msa_tmpfile.split(SEP)[-1][3:])
@@ -157,12 +156,11 @@ def all_SPR(ds_path, outpath, tree=None, rewrite_phylip=False):
 		stats_filepath = "/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/exampleSml/masked_species_real_msa.phy_phyml_stats_bionj.txt"
 
 	t_orig = get_tree(ds_path, orig_msa_file, rewrite_phylip) if not tree else PhyloTree(newick=tree, alignment=orig_msa_file, alg_format="iphylip", format=1)
-	t_orig.unroot()
-	#(t_orig&ROOTLIKE_NAME).delete()
-	#t_orig.set_outgroup(t_orig&ROOTLIKE_NAME)
-	#t_orig.get_tree_root().name = ROOTLIKE_NAME    # if not tree else ROOTLIKE_NAME+"_2"
-	print(t_orig.get_ascii(show_internal=True))
-	t_orig.write(format=1, outfile=ds_path + "1.tre")
+	if 'ml_minus1' in ds_path:
+		t_orig.unroot()   # TEMP !!!!!
+		t_orig.get_tree_root().name = ROOTLIKE_NAME+"_2"
+	else:
+		t_orig.get_tree_root().name = ROOTLIKE_NAME if not tree else ROOTLIKE_NAME + "_2"
 
 
 	st = "1" if not tree else "2"

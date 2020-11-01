@@ -70,17 +70,14 @@ def create_data_dirs():
 	df_trees = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/exampleSml/newicks_step1.csv")
 	df_trees = df_trees[df_trees["rgft_name"] != SUBTREE1]
 	df_trees = df_trees[df_trees["rgft_name"] != SUBTREE2]
-	for i,row in df_trees.head(3).iterrows():
+	for i,row in df_trees.iterrows():
 		tree_str = row['newick']
 		dataset_dirpath = DATA_PATH + row['prune_name'] + '_' + row['rgft_name'] + SEP
 		if not os.path.exists(dataset_dirpath):
 			os.mkdir(dataset_dirpath)
-		#with open(dataset_dirpath + 'masked_species_real_msa.phy_phyml_tree_bionj.txt', 'w') as fp:
-		#	fp.write(tree_str)
-		t = Tree(tree_str, format=1)
-		#(t&ROOTLIKE_NAME).delete()
-		t.write(format=1, outfile=dataset_dirpath + 'masked_species_real_msa.phy_phyml_tree_bionj.txt')
-		#exit()
+		with open(dataset_dirpath + 'masked_species_real_msa.phy_phyml_tree_bionj.txt', 'w') as fp:
+			fp.write(tree_str)
+
 		df_paths.loc[i, "path"] = dataset_dirpath
 
 	df_paths.to_csv(SUMMARY_FILES_DIR + CHOSEN_DATASETS_FILENAME)
