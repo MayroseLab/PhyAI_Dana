@@ -157,7 +157,7 @@ def all_SPR(ds_path, outpath, tree=None, rewrite_phylip=False):
 
 	t_orig = get_tree(ds_path, orig_msa_file, rewrite_phylip) if not tree else PhyloTree(newick=tree, alignment=orig_msa_file, alg_format="iphylip", format=1)
 	if 'ml_minus1' in ds_path:
-		t_orig.unroot()   # TEMP !!!!!
+		t_orig.unroot()
 		t_orig.get_tree_root().name = ROOTLIKE_NAME+"_2"
 	else:
 		t_orig.get_tree_root().name = ROOTLIKE_NAME if not tree else ROOTLIKE_NAME + "_2"
