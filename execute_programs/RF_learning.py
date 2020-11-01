@@ -15,12 +15,13 @@ from figures.violin_for_grant import *
 from figures.confidence_interval_dts import plot_pred_true
 from figures.accXsize_boxplot import accXsize_boxplot
 from itertools import combinations
+import pickle
 
 pd.set_option('display.max_columns', 40)
 
 ML_SOFTWARE_STATING_TREE = 'phyml'     # could be phyml | RAxML_NG
 OPT_TYPE = "br"
-KFOLD = 10     # "LOO"                                                         # todo: revert to 10
+KFOLD = 10     # "LOO"
 GROUP_ID = 'group_id'
 N_ESTIMATORS = 70
 #MAX_DEPTH = 5
@@ -175,17 +176,22 @@ def confidence_score(all_samples, ypred, percentile=90):
 	return 0, err_down, err_up
 
 
-def apply_RFR(df_test, df_train, move_type, features):
+def apply_RFR(df_test, df_train, move_type, features, cv=True):
 	X_train, y_train = split_features_label(df_train, move_type, features)
 	X_test, y_test = split_features_label(df_test, move_type, features)
-	start_time = time.time()
+
+	model_path = SUMMARY_FILES_DIR + 'finalized_model.sav'
+	if not os.path.exists(model_path) and not cv:
+		regressor = RandomForestRegressor(n_estimators=N_ESTIMATORS, max_features=0.33,  oob_score=True).fit(X_train, y_train) # 0.33=nfeatures/3. this is like in R (instead of default=n_features)
+		# save the model to disk
+		pickle.dump(regressor, open(model_path, 'wb'))
+
+	# load the model from disk
+	loaded_model = pickle.load(open(model_path, 'rb'))
+	y_pred = loaded_model.predict(X_test)
 	
-	regressor = RandomForestRegressor(n_estimators=N_ESTIMATORS, max_features=0.33,  oob_score=True).fit(X_train, y_train) # 0.33=nfeatures/3. this is like in R (instead of default=n_features)
-	print("--- %s seconds ---" % (time.time() - start_time))
-	y_pred = regressor.predict(X_test)
-	
-	oob = regressor.oob_score_
-	f_imp = regressor.feature_importances_
+	oob = loaded_model.oob_score_
+	f_imp = loaded_model.feature_importances_
 
 	all_DTs_pred = []
 
@@ -238,7 +244,7 @@ def cross_validation_RF(df, move_type, features, trans=False, validation_set=Non
 			df_train = df.loc[df[FEATURES[GROUP_ID]].isin(train_ixs)]
 	
 	
-			y_pred, all_DTs_pred, oob, f_imp = apply_RFR(df_test, df_train, move_type, features)
+			y_pred, all_DTs_pred, oob, f_imp = apply_RFR(df_test, df_train, move_type, features, cv=True)
 			
 			oobs.append(oob)
 			f_imps.append(f_imp)
@@ -256,7 +262,7 @@ def cross_validation_RF(df, move_type, features, trans=False, validation_set=Non
 			df_test = pd.read_csv(dirpath + "model_testing_{}.csv".format(validation_set))
 
 		df_test = fit_transformation(df_test, move_type, trans)  #.dropna()
-		y_pred, all_DTs_pred, oob, f_imp = apply_RFR(df_test, df_train, move_type, features)
+		y_pred, all_DTs_pred, oob, f_imp = apply_RFR(df_test, df_train, move_type, features, cv=False)
 		
 		oobs.append(oob)
 		f_imps.append(f_imp)
@@ -424,7 +430,6 @@ def print_and_index_results(df_datasets, res_dict, move_type, sscore, features):
 	#### score 1 ####
 	spearman_corrs = res_dict['spearman_corr']
 	df_datasets['corr'] = spearman_corrs
-	print(spearman_corrs)     # todo: temp, remove
 	print("\nsapearman corr:\n" + "mean:", mean([e for e in spearman_corrs if not math.isnan(e)]), ", median:",median(spearman_corrs))
 	#print("\nsapearman corr:\n", spearman_corrs)
 	
