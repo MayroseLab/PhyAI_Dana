@@ -30,8 +30,8 @@ def prune_branch(t_orig, prune_name):
 	prune_loc = prune_node_cp
 	prune_loc.detach()  # pruning: prune_node_cp is now the subtree we detached. t_cp_p is the one that was left behind
 	t_cp_p.search_nodes(name=nname)[0].delete(preserve_branch_length=True)  # delete the specific node (without its childs) since after pruning this branch should not be divided
-	if not nname:   # These 2 lines can be removed
-		nname = "Nnew_p"
+	#if not nname:   # These 2 lines can be removed
+	#	nname = "Nnew_p"
 
 	return nname, prune_node_cp, t_cp_p
 
@@ -184,7 +184,7 @@ def all_SPR(ds_path, outpath, tree=None, rewrite_phylip=False):
 		params_dict = (parse_phyml_stats_output(None, stats_filepath)) if ML_SOFTWARE_STARTING_TREE == 'phyml' else parse_raxmlNG_output(stats_filepath)
 		freq, rates, pinv, alpha = [params_dict["fA"], params_dict["fC"], params_dict["fG"], params_dict["fT"]], [params_dict["subAC"], params_dict["subAG"], params_dict["subAT"], params_dict["subCG"],params_dict["subCT"], params_dict["subGT"]], params_dict["pInv"], params_dict["gamma"]
 		df = pd.DataFrame()
-		for i, prune_node in enumerate(t_orig.iter_descendants("postorder")):
+		for i, prune_node in enumerate(t_orig.iter_descendants("levelorder")):
 			prune_name = prune_node.name
 			nname, subtree1, subtree2 = prune_branch(t_orig, prune_name) # subtree1 is the pruned subtree. subtree2 is the remaining subtree
 			with open(OUTPUT_TREES_FILE, "a", newline='') as fpa:
