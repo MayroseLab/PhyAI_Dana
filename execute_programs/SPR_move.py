@@ -157,8 +157,9 @@ def all_SPR(ds_path, outpath, tree=None, rewrite_phylip=False):
 		stats_filepath = "/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/exampleSml/masked_species_real_msa.phy_phyml_stats_bionj.txt"
 
 	t_orig = get_tree(ds_path, orig_msa_file, rewrite_phylip) if not tree else PhyloTree(newick=tree, alignment=orig_msa_file, alg_format="iphylip", format=1)
+	t_orig.unroot()
 	#(t_orig&ROOTLIKE_NAME).delete()
-	t_orig.set_outgroup(t_orig&ROOTLIKE_NAME)
+	#t_orig.set_outgroup(t_orig&ROOTLIKE_NAME)
 	#t_orig.get_tree_root().name = ROOTLIKE_NAME    # if not tree else ROOTLIKE_NAME+"_2"
 	print(t_orig.get_ascii(show_internal=True))
 	t_orig.write(format=1, outfile=ds_path + "1.tre")

@@ -61,7 +61,7 @@ def add_atts():
 		full_path = dirpath + tree_relpath
 		tbl = get_total_branch_lengths(full_path)
 		df_scores.ix[i, "tbl"] = tbl
-		
+
 	df_scores.to_csv(SUMMARY_FILES_DIR + SCORES_PER_DS.format("20_1_4300_ytransformed_exp_with_atts"))
 	return
 
@@ -70,7 +70,7 @@ def create_data_dirs():
 	df_trees = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/exampleSml/newicks_step1.csv")
 	df_trees = df_trees[df_trees["rgft_name"] != SUBTREE1]
 	df_trees = df_trees[df_trees["rgft_name"] != SUBTREE2]
-	for i,row in df_trees.iterrows():
+	for i,row in df_trees.head(3).iterrows():
 		tree_str = row['newick']
 		dataset_dirpath = DATA_PATH + row['prune_name'] + '_' + row['rgft_name'] + SEP
 		if not os.path.exists(dataset_dirpath):
@@ -80,7 +80,7 @@ def create_data_dirs():
 		t = Tree(tree_str, format=1)
 		#(t&ROOTLIKE_NAME).delete()
 		t.write(format=1, outfile=dataset_dirpath + 'masked_species_real_msa.phy_phyml_tree_bionj.txt')
-		exit()
+		#exit()
 		df_paths.loc[i, "path"] = dataset_dirpath
 
 	df_paths.to_csv(SUMMARY_FILES_DIR + CHOSEN_DATASETS_FILENAME)
