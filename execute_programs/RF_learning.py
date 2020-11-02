@@ -34,7 +34,7 @@ FIRST_ON_SEC = False           # temp for running 1 on 2
 FEATURE_SELECTION = False      # temp for running feature selection
 SATURATION = True              # temp to asses saturation
 
-N_DATASETS = 4200    # [1500,5858]
+N_DATASETS = 2200    # [1500,5858]
 
 
 def score_rank(df_by_ds, sortby, locatein, random, scale_score):
@@ -534,7 +534,7 @@ if __name__ == '__main__':
 		exit()
 
 	#df_learning = pd.read_csv(df_path, dtype=types_dict)
-	df_learning = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/summary_files/v2_fixed_subs/learning_all_moves_step1.csv", dtype=types_dict, nrows=2000).dropna()
+	df_learning = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/summary_files/v2_fixed_subs/learning_all_moves_step1.csv", dtype=types_dict).dropna()
 	df_learning = fit_transformation(df_learning, move_type, trans=args.transform_target)
 
 	features = FEATURES_PRUNE if move_type == "prune" else FEATURES_RGFT if move_type == "rgft" else FEATURES_MERGED
