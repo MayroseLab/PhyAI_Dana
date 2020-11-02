@@ -186,14 +186,14 @@ def apply_RFR(df_test, df_train, move_type, features, cv=True):
 		regressor = RandomForestRegressor(n_estimators=N_ESTIMATORS, max_features=0.33,  oob_score=True).fit(X_train, y_train) # 0.33=nfeatures/3. this is like in R (instead of default=n_features)
 		# save the model to disk
 		#pickle.dump(regressor, open(model_path, 'wb'))
-		#joblib.dump(regressor, open(model_path, 'wb'))
+		joblib.dump(regressor, open(model_path, 'wb'))
 
 	#loaded_model = pickle.load(open(model_path, 'rb'))
-	#loaded_model = joblib.load(model_path)
-	y_pred = regressor.predict(X_test)
+	loaded_model = joblib.load(model_path)
+	y_pred = loaded_model.predict(X_test)
 	
-	oob = regressor.oob_score_
-	f_imp = regressor.feature_importances_
+	oob = loaded_model.oob_score_
+	f_imp = loaded_model.feature_importances_
 
 	all_DTs_pred = []
 
