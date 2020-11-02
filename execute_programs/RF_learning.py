@@ -16,6 +16,7 @@ from figures.confidence_interval_dts import plot_pred_true
 from figures.accXsize_boxplot import accXsize_boxplot
 from itertools import combinations
 import pickle
+import joblib
 
 pd.set_option('display.max_columns', 40)
 
@@ -180,14 +181,24 @@ def apply_RFR(df_test, df_train, move_type, features, cv=True):
 	X_train, y_train = split_features_label(df_train, move_type, features)
 	X_test, y_test = split_features_label(df_test, move_type, features)
 
-	model_path = SUMMARY_FILES_DIR + 'finalized_model.sav'
+	model_path = SUMMARY_FILES_DIR + 'finalized_model_joblib.sav'
 	if not os.path.exists(model_path) and not cv:
 		regressor = RandomForestRegressor(n_estimators=N_ESTIMATORS, max_features=0.33,  oob_score=True).fit(X_train, y_train) # 0.33=nfeatures/3. this is like in R (instead of default=n_features)
 		# save the model to disk
-		pickle.dump(regressor, open(model_path, 'wb'))
-
+		#pickle.dump(regressor, open(model_path, 'wb'))
+		joblib.dump(regressor, open(model_path, 'wb'))
+	'''
 	# load the model from disk
-	loaded_model = pickle.load(open(model_path, 'rb'))
+	model = []
+	while True:
+		packet = s.recv(4096)
+		if not packet:
+			break
+		model.append(packet)
+	data_arr = pickle.loads(b"".join(model))
+	'''
+	#loaded_model = pickle.loads(model_path)
+	loaded_model = joblib.load(model_path)
 	y_pred = loaded_model.predict(X_test)
 	
 	oob = loaded_model.oob_score_
