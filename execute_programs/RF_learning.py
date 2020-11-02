@@ -34,7 +34,7 @@ FIRST_ON_SEC = False           # temp for running 1 on 2
 FEATURE_SELECTION = False      # temp for running feature selection
 SATURATION = True              # temp to asses saturation
 
-N_DATASETS = 2200    # [1500,5858]
+N_DATASETS = 4200    # [1500,5858]
 
 
 def score_rank(df_by_ds, sortby, locatein, random, scale_score):
@@ -181,28 +181,19 @@ def apply_RFR(df_test, df_train, move_type, features, cv=True):
 	X_train, y_train = split_features_label(df_train, move_type, features)
 	X_test, y_test = split_features_label(df_test, move_type, features)
 
-	model_path = SUMMARY_FILES_DIR + 'finalized_model_joblib.sav'
+	model_path = SUMMARY_FILES_DIR + 'finalized_model_V1.sav'
 	if not os.path.exists(model_path) and not cv:
 		regressor = RandomForestRegressor(n_estimators=N_ESTIMATORS, max_features=0.33,  oob_score=True).fit(X_train, y_train) # 0.33=nfeatures/3. this is like in R (instead of default=n_features)
 		# save the model to disk
 		#pickle.dump(regressor, open(model_path, 'wb'))
-		joblib.dump(regressor, open(model_path, 'wb'))
-	'''
-	# load the model from disk
-	model = []
-	while True:
-		packet = s.recv(4096)
-		if not packet:
-			break
-		model.append(packet)
-	data_arr = pickle.loads(b"".join(model))
-	'''
-	#loaded_model = pickle.loads(model_path)
-	loaded_model = joblib.load(model_path)
-	y_pred = loaded_model.predict(X_test)
+		#joblib.dump(regressor, open(model_path, 'wb'))
+
+	#loaded_model = pickle.load(open(model_path, 'rb'))
+	#loaded_model = joblib.load(model_path)
+	y_pred = regressor.predict(X_test)
 	
-	oob = loaded_model.oob_score_
-	f_imp = loaded_model.feature_importances_
+	oob = regressor.oob_score_
+	f_imp = regressor.feature_importances_
 
 	all_DTs_pred = []
 
@@ -534,7 +525,8 @@ if __name__ == '__main__':
 		exit()
 
 	#df_learning = pd.read_csv(df_path, dtype=types_dict)
-	df_learning = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/summary_files/v2_fixed_subs/learning_all_moves_step1.csv", dtype=types_dict).dropna()
+	#df_learning = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/summary_files/v2_fixed_subs/learning_all_moves_step1.csv", dtype=types_dict).dropna()
+	df_learning = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/summary_files/v1/learning_all_moves_step1.csv", dtype=types_dict).dropna()
 	df_learning = fit_transformation(df_learning, move_type, trans=args.transform_target)
 
 	features = FEATURES_PRUNE if move_type == "prune" else FEATURES_RGFT if move_type == "rgft" else FEATURES_MERGED
