@@ -534,7 +534,7 @@ if __name__ == '__main__':
 		exit()
 
 	#df_learning = pd.read_csv(df_path, dtype=types_dict)
-	df_learning = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/summary_files/v2_fixed_subs/learning_all_moves_step1.csv", dtype=types_dict).dropna()
+	df_learning = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/summary_files/v2_fixed_subs/learning_all_moves_step1.csv", dtype=types_dict, nrows=2000).dropna()
 	df_learning = fit_transformation(df_learning, move_type, trans=args.transform_target)
 
 	features = FEATURES_PRUNE if move_type == "prune" else FEATURES_RGFT if move_type == "rgft" else FEATURES_MERGED
