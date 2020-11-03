@@ -88,6 +88,6 @@ if __name__ == '__main__':
         res = calc_ll_runtime(dirname)
     if args.ll_or_features == "features":
         # res = collect_features_runtime(DATA_PATH + "example4/", "1")
-        res = collect_features_runtime(DATA_PATH + "test/", "1")
+        res = collect_features_runtime(, "1")
 
     print("--- %s seconds ---" % (str(res)))

@@ -1,14 +1,14 @@
 import sys
 sys.path.append("/groups/itay_mayrose/danaazouri/PhyAI/code/")
 
-from defs import *
+#from defs import *
 from itertools import combinations
 #from utils.msa_functions import *
-#from itertools import combinations
+from itertools import combinations
 
-#from os.path import exists
-#from ete3 import Tree
-#from collections import OrderedDict
+from os.path import exists
+from ete3 import Tree
+from collections import OrderedDict
 
 
 
@@ -84,7 +84,7 @@ def get_total_branch_lengths(tree):
 	"""
 	branches = get_branch_lengths(tree)
 	return sum(branches)
-	
+
 
 def estimate_lengths(t, rgft_node):
 	res_tbl = get_total_branch_lengths(t)   # tbl after naive bl estimations (like in RAxML) in both the pruning and the rgft locations. before otimization!
