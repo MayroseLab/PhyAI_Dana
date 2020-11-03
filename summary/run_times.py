@@ -27,14 +27,13 @@ def collect_features_runtime(ds_path, step_number):
 	#print("###############")
 	#'''
     start_time = time()
-    features_prune_dicts_dict = calc_leaves_features(ds_path + PHYML_TREE_FILENAME.format("bionj"), "prune")
-    # exit()
+    calc_leaves_features(ds_path + PHYML_TREE_FILENAME.format("bionj"), "prune")
     for i, row in dfr.iterrows():
         tree = row["newick"]
         if row["rgft_name"] == "subtree2":  # namely the remaining subtree
-            features_rgft_dicts_dict = calc_leaves_features(tree, "rgft")  # msa will be truncated within the function
+            calc_leaves_features(tree, "rgft")  # msa will be truncated within the function
         if not "subtree" in row["rgft_name"]:
-            features_restree_dict = calc_leaves_features(tree, "res", rgft_node_name=row["rgft_name"])
+            calc_leaves_features(tree, "res", rgft_node_name=row["rgft_name"])
     res = time() - start_time
     return res
 
@@ -88,6 +87,6 @@ if __name__ == '__main__':
         res = calc_ll_runtime(dirname)
     if args.ll_or_features == "features":
         # res = collect_features_runtime(DATA_PATH + "example4/", "1")
-        res = collect_features_runtime(, "1")
+        res = collect_features_runtime("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/exampleSphaero/", "1")
 
     print("--- %s seconds ---" % (str(res)))

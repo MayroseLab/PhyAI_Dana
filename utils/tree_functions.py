@@ -51,7 +51,7 @@ def get_newick_tree(tree):
 	:param tree: newick tree string or txt file containing one tree
 	:return:	tree: a string of the tree in ete3.Tree format
 	"""
-	if os.path.exists(tree):
+	if exists(tree):
 		with open(tree, 'r') as tree_fpr:
 			tree = tree_fpr.read().strip()
 	return tree
@@ -66,8 +66,9 @@ def get_branch_lengths(tree):
 		if type(tree) == str:
 			tree = Tree(get_newick_tree(tree), format=1)
 		tree_root = tree.get_tree_root()
-	except:
-		print(tree)
+	except Exception as e:
+		print(e)
+		return tree
 	if len(tree) == 1 and not "(" in tree:  # in one-branch trees, sometimes the newick string is without "(" and ")" so the .iter_decendants returns None
 		return [tree.dist]
 	branches = []
