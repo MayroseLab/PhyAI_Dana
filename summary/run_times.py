@@ -32,8 +32,10 @@ def collect_features_runtime(ds_path, step_number):
         tree = row["newick"]
         if row["rgft_name"] == "subtree2":  # namely the remaining subtree
             calc_leaves_features(tree, "rgft")  # msa will be truncated within the function
-        if not "subtree" in row["rgft_name"]:
-            calc_leaves_features(tree, "res", rgft_node_name=row["rgft_name"])
+        #if not "subtree" in row["rgft_name"]:
+        #    start_time = time()
+        #    calc_leaves_features(tree, "res", rgft_node_name=row["rgft_name"])
+
     res = time() - start_time
     return res
 
