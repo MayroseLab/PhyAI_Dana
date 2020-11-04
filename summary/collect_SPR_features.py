@@ -74,7 +74,7 @@ def collect_features(ds_path, step_number, outpath_prune, outpath_rgft, tree_typ
 
 	for i, row in dfr.iterrows():
 		ind = row.name
-		print(ind)
+		#print(ind)
 		tree = row["newick"]
 		if row["rgft_name"] == SUBTREE2:	# namely the remaining subtree
 			features_rgft_dicts_dict = calc_leaves_features(tree, "rgft")

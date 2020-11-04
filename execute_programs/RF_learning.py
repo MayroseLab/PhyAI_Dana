@@ -181,7 +181,7 @@ def apply_RFR(df_test, df_train, move_type, features, cv=True):
 	X_train, y_train = split_features_label(df_train, move_type, features)
 	X_test, y_test = split_features_label(df_test, move_type, features)
 
-	model_path = SUMMARY_FILES_DIR + 'finalized_model_joblib_exp10.sav'
+	model_path = SUMMARY_FILES_DIR + 'finalized_model_joblib.sav'
 	if not os.path.exists(model_path) and not cv:
 		regressor = RandomForestRegressor(n_estimators=N_ESTIMATORS, max_features=0.33,  oob_score=True).fit(X_train, y_train) # 0.33=nfeatures/3. this is like in R (instead of default=n_features)
 		# save the model to disk
