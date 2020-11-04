@@ -250,7 +250,6 @@ def calc_leaves_features_orig(tree_str, move_type, rgft_node_name=None):
 def calc_leaves_features(tree_str, move_type, rgft_node_name=None):
 	if not move_type == "res":
 		t = Tree(newick=tree_str, format=1)
-		t.unroot()
 		ntaxa = len(t)
 		tbl = get_total_branch_lengths(tree_str)
 

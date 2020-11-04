@@ -17,16 +17,8 @@ ML_SOFTWARE = 'raxml'     # could be phyml | raxml
 
 
 def index_additional_rgft_features(df_rgft, ind, prune_name, rgft_name, features_restree_dict, features_dict_prune):
-	# if k1 in d_all and k2 in d_all[k1]:
-	#if prune_name in features_dict_prune['top_dist'] and rgft_name in features_dict_prune['top_dist'][prune_name]:
 	df_rgft.loc[ind, FEATURES["top_dist"]] = features_dict_prune['top_dist'][prune_name][rgft_name]
-	#else:
-	#	df_rgft.loc[ind, FEATURES["top_dist"]] = 'key error: {}, {}'.format(prune_name, rgft_name)
-	#if prune_name in features_dict_prune['bl_dist'] and rgft_name in features_dict_prune['bl_dist'][prune_name]:
 	df_rgft.loc[ind, FEATURES["bl_dist"]] = features_dict_prune['bl_dist'][prune_name][rgft_name]
-	#else:
-	#	df_rgft.loc[ind, FEATURES["bl_dist"]] = 'key error: {}, {}'.format(prune_name, rgft_name)
-
 	df_rgft.loc[ind, FEATURES["res_bl"]] = features_restree_dict['res_bl']
 	df_rgft.loc[ind, FEATURES["res_tbl"]] = features_restree_dict['res_tbl']
 
@@ -82,7 +74,7 @@ def collect_features(ds_path, step_number, outpath_prune, outpath_rgft, tree_typ
 
 	for i, row in dfr.iterrows():
 		ind = row.name
-		#print(ind)
+		print(ind)
 		tree = row["newick"]
 		if row["rgft_name"] == SUBTREE2:	# namely the remaining subtree
 			features_rgft_dicts_dict = calc_leaves_features(tree, "rgft")
