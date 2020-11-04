@@ -11,6 +11,7 @@ from parsing.parse_raxml_NG import parse_raxmlNG_content
 from execute_programs.RAxML_NG import extract_model_params
 from utils.create_job_file import get_job_qsub_command
 import csv
+from execute_programs import Phyml
 
 ML_SOFTWARE_STARTING_TREE = 'phyml'     # could be phyml | RAxML_NG
 RAXML_NG_SCRIPT = "raxml-ng"
@@ -249,6 +250,15 @@ if __name__ == '__main__':
 				df_sum = pd.read_csv(SUMMARY_PER_DS.format(dataset_path, "prune", "br", prev_step)).set_index('Unnamed: 0')
 				best_tree_id = df_sum["ll"].astype(float).idxmax()
 				tree_str = dfr.loc[best_tree_id, "newick"]
+
+				with open(dataset_path + 'starting_tree_for_st2.txt', 'w') as fp:
+					fp.write(tree_str)
+				Phyml.run_phyml(dataset_path + MSA_PHYLIP_FILENAME, MODEL_DEFAULT, 'bionj', tree_file=dataset_path + 'starting_tree_for_st2.txt')
+				with open(dataset_path+'masked_species_real_msa.phy_phyml_stats_bionj_st1.txt', 'r') as fp:
+					tree_str = fp.read()
+
+				print(tree_str)
+				exit()
 				res = all_SPR(dataset_path, outpath, tree=tree_str, rewrite_phylip=args.rewrite_in_phylip)
 
 		collect_features(dataset_path, args.step_number, outpath.format("prune"), outpath.format("rgft"), args.tree_type)
