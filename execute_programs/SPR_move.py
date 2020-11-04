@@ -251,14 +251,8 @@ if __name__ == '__main__':
 				best_tree_id = df_sum["ll"].astype(float).idxmax()
 				tree_str = dfr.loc[best_tree_id, "newick"]
 
-				with open(dataset_path + 'starting_tree_for_st2.txt', 'w') as fp:
-					fp.write(tree_str)
-				Phyml.run_phyml(dataset_path + MSA_PHYLIP_FILENAME, MODEL_DEFAULT, 'bionj', tree_file=dataset_path + 'starting_tree_for_st2.txt')
-				with open(dataset_path+'masked_species_real_msa.phy_phyml_stats_bionj_st1.txt', 'r') as fp:
-					tree_str = fp.read()
-
-				print(tree_str)
-				exit()
+				with open('/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/exampleSphaero/masked_species_real_msa.phy_phyml_tree_bionj_st2.txt', 'r') as fp:
+					tree_str = fp.read().strip()
 				res = all_SPR(dataset_path, outpath, tree=tree_str, rewrite_phylip=args.rewrite_in_phylip)
 
 		collect_features(dataset_path, args.step_number, outpath.format("prune"), outpath.format("rgft"), args.tree_type)
