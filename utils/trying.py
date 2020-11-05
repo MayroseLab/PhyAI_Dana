@@ -96,6 +96,6 @@ if __name__ == '__main__':
 			submit_job_ll(i, args.nline_to_run)
 	else:
 		dataset_path = DATA_PATH + 'example404/'
-		outpath_prune = SUMMARY_PER_DS.format(dataset_path + 'results_by_susbsets', "prune", 'br', '1_subs_{}_{}'.format(args.index_to_start_run, args.nline_to_run))
-		outpath_rgft = SUMMARY_PER_DS.format(dataset_path + 'results_by_susbsets', "rgft", 'br', '1_subs_{}_{}'.format(args.index_to_start_run, args.nline_to_run))
+		outpath_prune = SUMMARY_PER_DS.format(dataset_path + 'results_by_susbsets/', "prune", 'br', '1_subs_{}_{}'.format(args.index_to_start_run, args.nline_to_run))
+		outpath_rgft = SUMMARY_PER_DS.format(dataset_path + 'results_by_susbsets/', "rgft", 'br', '1_subs_{}_{}'.format(args.index_to_start_run, args.nline_to_run))
 		index_ll_and_features(dataset_path, outpath_prune, outpath_rgft, args.index_to_start_run, args.nline_to_run)
