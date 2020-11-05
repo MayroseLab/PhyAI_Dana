@@ -92,7 +92,7 @@ if __name__ == '__main__':
 
 
 	if not args.index_to_start_run:
-		for i in range(1, NROWS, args.nline_to_run):
+		for i in range(1, NROWS, int(args.nline_to_run)):
 			submit_job_ll(i, args.nline_to_run)
 	else:
 		dataset_path = DATA_PATH + 'example404/'
