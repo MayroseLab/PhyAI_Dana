@@ -185,8 +185,6 @@ def all_SPR(ds_path, outpath, tree=None, rewrite_phylip=False):
 		freq, rates, pinv, alpha = [params_dict["fA"], params_dict["fC"], params_dict["fG"], params_dict["fT"]], [params_dict["subAC"], params_dict["subAG"], params_dict["subAT"], params_dict["subCG"],params_dict["subCT"], params_dict["subGT"]], params_dict["pInv"], params_dict["gamma"]
 		df = pd.DataFrame()
 		for i, prune_node in enumerate(t_orig.iter_descendants("levelorder")):
-			if i < 476 :
-				continue
 			prune_name = prune_node.name
 			nname, subtree1, subtree2 = prune_branch(t_orig, prune_name) # subtree1 is the pruned subtree. subtree2 is the remaining subtree
 			with open(OUTPUT_TREES_FILE, "a", newline='') as fpa:
@@ -206,11 +204,11 @@ def all_SPR(ds_path, outpath, tree=None, rewrite_phylip=False):
 					csvwriter = csv.writer(fpa)
 					csvwriter.writerow([ind, prune_name, rgft_name, rearr_tree_str])
 
-				#ll_rearr, rtime = call_raxml_mem(rearr_tree_str, msa_rampath, rates, pinv, alpha, freq)    # todo: uncomment ! temp for large ds
+				ll_rearr, rtime = call_raxml_mem(rearr_tree_str, msa_rampath, rates, pinv, alpha, freq)
 
 				df.loc[ind, "prune_name"], df.loc[ind, "rgft_name"] = prune_name, rgft_name
-				#df.loc[ind, "time"] = rtime			# todo: uncomment ! temp for large ds
-				#df.loc[ind, "ll"] = ll_rearr			# todo: uncomment ! temp for large ds
+				df.loc[ind, "time"] = rtime
+				df.loc[ind, "ll"] = ll_rearr
 
 
 		df["orig_ds_ll"] = float(params_dict["ll"])
@@ -257,7 +255,7 @@ if __name__ == '__main__':
 					tree_str = fp.read().strip()
 				res = all_SPR(dataset_path, outpath, tree=tree_str, rewrite_phylip=args.rewrite_in_phylip)
 
-		#collect_features(dataset_path, args.step_number, outpath.format("prune"), outpath.format("rgft"), args.tree_type)   # todo: uncomment ! temp for large ds
+		collect_features(dataset_path, args.step_number, outpath.format("prune"), outpath.format("rgft"), args.tree_type)
 	else:
 		csv_path = SUMMARY_FILES_DIR + CHOSEN_DATASETS_FILENAME
 		res = traverse_data_dirs(create_SPR_job, csv_path, (args.index_to_start_run, args.nline_to_run), args.step_number, args.tree_type, args.rewrite_in_phylip, args.runover)

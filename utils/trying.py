@@ -11,7 +11,7 @@ from summary.collect_SPR_features import *
 
 
 
-NROWS = 365380
+NROWS = 365400   #365380
 
 
 def index_ll_and_features(ds_path, outpath_prune, outpath_rgft, istart, nlines):
@@ -44,7 +44,7 @@ def index_ll_and_features(ds_path, outpath_prune, outpath_rgft, istart, nlines):
 			features_rgft_dicts_dict = calc_leaves_features(tree, "rgft")
 		if not "subtree" in row["rgft_name"] and not ROOTLIKE_NAME in row["rgft_name"] and not ROOTLIKE_NAME in row["prune_name"]:
 			prune_name, rgft_name = row["prune_name"], row['rgft_name']
-			df_prune.loc[ind, "prune_name"], df_prune.loc[ind, "rgft_name"] = prune_name, rgft_name
+			df_prune.loc[ind, "prune_name"], df_prune.loc[ind, "rgft_name"], df_rgft.loc[ind, "prune_name"], df_rgft.loc[ind, "rgft_name"] = prune_name, rgft_name, prune_name, rgft_name
 
 			ll_rearr, rtime = call_raxml_mem(tree, orig_ds_msa_file, rates, pinv, alpha, freq)
 			df_prune.loc[ind, "time"], df_rgft.loc[ind, "time"] = rtime, rtime
@@ -93,10 +93,9 @@ if __name__ == '__main__':
 
 
 	if not args.index_to_start_run:
-		n = 384
-		NROWS = 1000
-		for i in range(0, NROWS, n):
-			submit_job_ll(i, n)
+		#for i in range(1, NROWS, args.nline_to_run):
+			#submit_job_ll(i, args.nline_to_run)
+		submit_job_ll(1, 4)
 	else:
 		dataset_path = DATA_PATH + 'example404/'
 		outpath_prune = SUMMARY_PER_DS.format(dataset_path + 'results_by_susbsets', "prune", 'br', '1_subs_{}_{}'.format(args.index_to_start_run, args.nline_to_run))
