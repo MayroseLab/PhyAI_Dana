@@ -76,7 +76,7 @@ if __name__ == '__main__':
 	else:
 		id = args.subset_id
 		istart = int(args.istart)
-		skp_lst = [i for i in range(0, istart)]
+		skp_lst = [i for i in range(1, istart)]
 		skp_lst2 = [i for i in range(istart + size, NROWS)]
 		skp_lst.extend(skp_lst2)
 
