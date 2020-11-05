@@ -87,7 +87,7 @@ if __name__ == '__main__':
 		ml_tree.set_outgroup(ml_tree & 'Sp0000')
 
 		#df_subs = df.iloc[start:start+int(size)]
-		paths = df['path'].values.uniqe()
+		paths = df['path'].uniqe()
 		for path in paths:
 			index_rf_scores(df, path, ml_tree)
 		df.to_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/summary_files/with_preds_merged_20_1_ml_minus1_set_with_RFscore_subs{}.csv".format(id))
