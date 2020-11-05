@@ -11,7 +11,7 @@ from summary.collect_SPR_features import *
 
 
 
-NROWS = 365400   #365380
+NROWS = 365400   #365380  ##491087
 
 
 def index_ll_and_features(ds_path, outpath_prune, outpath_rgft, istart, nlines):
