@@ -68,9 +68,9 @@ def index_ll_and_features(ds_path, outpath_prune, outpath_rgft, istart, nlines):
 
 
 def submit_job_ll(istart, nlines):
-	print("**************************************   ", str(istart), str(nlines))
+	print("**************************************   ", str(istart))
 	job_name = "index_ll_large_dataset.sh"
-	cmd = "python " + CODE_PATH + "utils/trying.py -istart " + str(istart) + " -inlines " + str(nlines)
+	cmd = "python " + CODE_PATH + "utils/trying.py -istart " + str(istart) + " -nlines " + str(nlines)
 
 	qsub_cmd = get_job_qsub_command(job_name=job_name,
 									command=cmd,
