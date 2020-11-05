@@ -49,7 +49,7 @@ def index_rf_scores(df, path, t1):
 
 
 def submit_job(id, start):
-	print("**************************************\n", id, start)
+	print("**************************************   ", id, start)
 	job_name = "calc_RF.sh"
 	cmd = "python " + CODE_PATH + "summary/score_last_step.py -i " + start + " -id " + id
 
@@ -70,7 +70,6 @@ if __name__ == '__main__':
 	if not args.istart:
 		for id,start in enumerate(range(0, 6187910, size)):
 			submit_job(str(id), str(start))
-			exit()
 
 	else:
 		df = pd.read_csv(
@@ -86,7 +85,7 @@ if __name__ == '__main__':
 		id = args.subset_id
 		start = args.istart
 
-		df_subs = df.iloc[start:start+size]
+		df_subs = df.iloc[start:start+str(size)]
 		grouped_df_by_ds = df_subs.groupby(FEATURES[GROUP_ID], sort=False)
 		for group_id, df_by_ds in grouped_df_by_ds:
 			path = df_by_ds['path'].values[0]
