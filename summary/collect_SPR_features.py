@@ -71,11 +71,11 @@ def collect_features(ds_path, step_number, outpath_prune, outpath_rgft, tree_typ
 	tree_file = ds_path + PHYML_TREE_FILENAME.format(suf) if ML_SOFTWARE_STATING_TREE == 'phyml' else ds_path + RAXML_TREE_FILENAME
 	features_prune_dicts_dict = calc_leaves_features(tree_file,"prune")
 
-
 	for i, row in dfr.iterrows():
 		ind = row.name
 		#print(ind)
 		tree = row["newick"]
+
 		if row["rgft_name"] == SUBTREE2:	# namely the remaining subtree
 			features_rgft_dicts_dict = calc_leaves_features(tree, "rgft")
 		if not "subtree" in row["rgft_name"] and not ROOTLIKE_NAME in row["rgft_name"] and not ROOTLIKE_NAME in row["prune_name"]:
@@ -86,7 +86,7 @@ def collect_features(ds_path, step_number, outpath_prune, outpath_rgft, tree_typ
 			
 			df_rgft.loc[ind, FEATURES["res_bl"]] = features_restree_dict['res_bl']
 			df_rgft.loc[ind, FEATURES["res_tbl"]] = features_restree_dict['res_tbl']
-
+		
 
 	df_prune = df_prune[(df_prune["prune_name"] != ROOTLIKE_NAME) & (df_prune["rgft_name"] != ROOTLIKE_NAME)]  #.dropna()
 	df_rgft = df_rgft[(df_rgft["prune_name"] != ROOTLIKE_NAME) & (df_rgft["rgft_name"] != ROOTLIKE_NAME)]      #.dropna()
