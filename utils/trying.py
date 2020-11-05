@@ -86,13 +86,13 @@ if __name__ == '__main__':
 	#print(temp_df['d_ll_prune'].head(30), "\n")
 
 	parser = argparse.ArgumentParser(description='perform all SPR moves')
-	parser.add_argument('--index_to_start_run', '-istart', default=False)
+	parser.add_argument('--index_to_start_run', '-istart', default=1)
 	parser.add_argument('--nline_to_run', '-nlines', default=False)
 	args = parser.parse_args()
 
 
 	if not args.index_to_start_run:
-		for i in range(1, NROWS, int(args.nline_to_run)):
+		for i in range(args.index_to_start_run, NROWS, int(args.nline_to_run)):
 			submit_job_ll(i, args.nline_to_run)
 	else:
 		dataset_path = DATA_PATH + 'example404/'
