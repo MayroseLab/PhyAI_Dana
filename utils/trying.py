@@ -29,11 +29,10 @@ def index_ll_and_features(ds_path, outpath_prune, outpath_rgft, istart, nlines):
 	stats_filepath = ds_path + PHYML_STATS_FILENAME.format('bionj')
 	tree_file = ds_path + PHYML_TREE_FILENAME.format('bionj')
 	params_dict = parse_phyml_stats_output(None, stats_filepath)
+	print(params_dict)
 	freq, rates, pinv, alpha = [params_dict["fA"], params_dict["fC"], params_dict["fG"], params_dict["fT"]], [params_dict["subAC"], params_dict["subAG"], params_dict["subAT"], params_dict["subCG"],params_dict["subCT"], params_dict["subGT"]], params_dict["pInv"], params_dict["gamma"]
 	orig_ds_ll = float(params_dict["ll"])
-	df_prune["orig_ds_ll"], df_rgft["orig_ds_ll"] = orig_ds_ll, orig_ds_ll
-	print(df_prune)
-	print(df_rgft)
+
 	features_prune_dicts_dict = calc_leaves_features(tree_file, "prune")
 
 	for i, row in dfr.iterrows():
@@ -50,6 +49,8 @@ def index_ll_and_features(ds_path, outpath_prune, outpath_rgft, istart, nlines):
 			ll_rearr, rtime = call_raxml_mem(tree, orig_ds_msa_file, rates, pinv, alpha, freq)
 			df_prune.loc[ind, "time"], df_rgft.loc[ind, "time"] = rtime, rtime
 			df_prune.loc[ind, "ll"], df_rgft.loc[ind, "ll"] = float(ll_rearr), float(ll_rearr)
+			df_prune.loc[ind,"orig_ds_ll"], df_rgft.loc[ind,"orig_ds_ll"] = orig_ds_ll, orig_ds_ll
+			print(df)
 
 			features_restree_dict = calc_leaves_features(tree, "res", rgft_node_name=row["rgft_name"])
 			df_prune = index_shared_features(df_prune, ind, row["prune_name"], "prune", features_prune_dicts_dict)
