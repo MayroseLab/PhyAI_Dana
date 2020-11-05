@@ -61,22 +61,23 @@ def submit_job(id, start):
 
 
 if __name__ == '__main__':
-
 	parser = argparse.ArgumentParser(description='arrange data for learning and implement learning algo')
 	parser.add_argument('--istart', '-i', default=None)
 	parser.add_argument('--subset_id', '-id', default=None)
 	args = parser.parse_args()
 
 	NROWS = 6187910
-	size = 61880
+	size = 618800
+
+
 	if not args.istart:
-		for id,start in enumerate(range(0, 6187910, size)):
+		for id,start in enumerate(range(0, NROWS, size)):
 			submit_job(str(id), str(start))
 
 	else:
 		id = args.subset_id
-		istart = int(args.istart)
-		skp_lst = [i for i in range(1, istart)]
+		istart = int(args.istart) +1   # bacause i is heading row when using skiprows
+		skp_lst = [i for i in range(1, istart)] if not id == 0 else []
 		skp_lst2 = [i for i in range(istart + size, NROWS)]
 		skp_lst.extend(skp_lst2)
 
@@ -87,7 +88,7 @@ if __name__ == '__main__':
 		ml_tree.set_outgroup(ml_tree & 'Sp0000')
 
 		#df_subs = df.iloc[start:start+int(size)]
-		paths = df['path'].uniqe()
+		paths = df['path'].unique()
 		for path in paths:
 			index_rf_scores(df, path, ml_tree)
 		df.to_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/summary_files/with_preds_merged_20_1_ml_minus1_set_with_RFscore_subs{}.csv".format(id))
