@@ -61,6 +61,7 @@ def submit_job(id, start):
 
 
 if __name__ == '__main__':
+	'''
 	parser = argparse.ArgumentParser(description='arrange data for learning and implement learning algo')
 	parser.add_argument('--istart', '-i', default=None)
 	parser.add_argument('--subset_id', '-id', default=None)
@@ -97,7 +98,7 @@ if __name__ == '__main__':
 	df_path = "/groups/itay_mayrose/danaazouri/PhyAI/DBset2/summary_files/with_preds_merged_20_1_ml_minus1_set_with_RFscore.csv"
 	if not os.path.exists(df_path):
 		df = pd.DataFrame()
-		for id in range(0, 100):
+		for id in range(0, 10):
 			subs_withRFscore = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/summary_files/with_preds_merged_20_1_ml_minus1_set_with_RFscore_subs{}.csv".format(id))
 			df = pd.concat([df, subs_withRFscore], ignore_index=True)
 		df.to_csv(df_path)
@@ -110,7 +111,6 @@ if __name__ == '__main__':
 
 	grouped_df_by_ds = df.groupby(FEATURES[GROUP_ID], sort=False)
 	for group_id, df_by_ds in grouped_df_by_ds:
-		path = df_by_ds['path'].values[0]
 		rf_best_pred_by_ds[group_id], rank_rf0_by_ds[group_id] = rf_rank(df_by_ds)
 		print(rf_best_pred_by_ds[group_id], rank_rf0_by_ds[group_id])
 
@@ -119,4 +119,3 @@ if __name__ == '__main__':
 	print(rank_rf0_by_ds)
 	print(mean(rf_best_pred_by_ds), median(rf_best_pred_by_ds))
 	print(mean(rank_rf0_by_ds), median(rank_rf0_by_ds))
-	'''
