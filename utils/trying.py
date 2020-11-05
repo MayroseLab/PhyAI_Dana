@@ -6,33 +6,34 @@ sys.path.append("/groups/itay_mayrose/danaazouri/PhyAI/code/")
 
 from defs import *
 from utils.create_job_file import get_job_qsub_command
-from parsing.parse_phyml import parse_phyml_stats_output
 from summary.collect_SPR_features import *
+from execute_programs.SPR_move import call_raxml_mem
 
 
 
-NROWS = 365400   #365380  ##491087
+NROWS = 491100   #365400   #365380  ##491087
 
 
 def index_ll_and_features(ds_path, outpath_prune, outpath_rgft, istart, nlines):
 	istart, nlines = int(istart), int(nlines)
-	skp_lst = [i for i in range(0, istart)]
+	skp_lst = [i for i in range(1, istart)] if not istart == 1 else []
 	skp_lst2 = [i for i in range(istart+nlines, NROWS)]
 	skp_lst.extend(skp_lst2)
-	dfr = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/example404/newicks_step1_subset_upto_i475.csv", index_col=0, skiprows=skp_lst)
-	print("done reading file subset")
+	print(skp_lst[:50])
+	dfr = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/example404/newicks_step1.csv", index_col=0, skiprows=skp_lst)
+	print(dfr)
 	#dfr = dfr.iloc[istart:istart+nlines]
 	orig_ds_msa_file = ds_path + MSA_PHYLIP_FILENAME
 	df_prune, df_rgft = pd.DataFrame(), pd.DataFrame()
 
-	from execute_programs.SPR_move import call_raxml_mem
 	stats_filepath = ds_path + PHYML_STATS_FILENAME.format('bionj')
 	tree_file = ds_path + PHYML_TREE_FILENAME.format('bionj')
 	params_dict = parse_phyml_stats_output(None, stats_filepath)
 	freq, rates, pinv, alpha = [params_dict["fA"], params_dict["fC"], params_dict["fG"], params_dict["fT"]], [params_dict["subAC"], params_dict["subAG"], params_dict["subAT"], params_dict["subCG"],params_dict["subCT"], params_dict["subGT"]], params_dict["pInv"], params_dict["gamma"]
 	orig_ds_ll = float(params_dict["ll"])
 	df_prune["orig_ds_ll"], df_rgft["orig_ds_ll"] = orig_ds_ll, orig_ds_ll
-
+	print(df_prune)
+	print(df_rgft)
 	features_prune_dicts_dict = calc_leaves_features(tree_file, "prune")
 
 	for i, row in dfr.iterrows():
@@ -57,7 +58,9 @@ def index_ll_and_features(ds_path, outpath_prune, outpath_rgft, istart, nlines):
 
 			df_rgft.loc[ind, FEATURES["res_bl"]] = features_restree_dict['res_bl']
 			df_rgft.loc[ind, FEATURES["res_tbl"]] = features_restree_dict['res_tbl']
-
+			print("\nXXXXXXX\n")
+			print(df_prune)
+			print("\nXXXXXXX\n")
 
 	df_prune = df_prune[(df_prune["prune_name"] != ROOTLIKE_NAME) & (df_prune["rgft_name"] != ROOTLIKE_NAME)]  # .dropna()
 	df_rgft = df_rgft[(df_rgft["prune_name"] != ROOTLIKE_NAME) & (df_rgft["rgft_name"] != ROOTLIKE_NAME)]  # .dropna()
@@ -74,7 +77,7 @@ def submit_job_ll(istart, nlines):
 
 	qsub_cmd = get_job_qsub_command(job_name=job_name,
 									command=cmd,
-									error_files_path=SUMMARY_FILES_DIR + "error_files/")
+									error_files_path=DATA_PATH + "example404/error_files/")
 	os.system(qsub_cmd)
 
 
@@ -93,9 +96,8 @@ if __name__ == '__main__':
 
 
 	if not args.index_to_start_run:
-		#for i in range(1, NROWS, args.nline_to_run):
-			#submit_job_ll(i, args.nline_to_run)
-		submit_job_ll(1, 4)
+		for i in range(1, NROWS, args.nline_to_run):
+			submit_job_ll(i, args.nline_to_run)
 	else:
 		dataset_path = DATA_PATH + 'example404/'
 		outpath_prune = SUMMARY_PER_DS.format(dataset_path + 'results_by_susbsets', "prune", 'br', '1_subs_{}_{}'.format(args.index_to_start_run, args.nline_to_run))
