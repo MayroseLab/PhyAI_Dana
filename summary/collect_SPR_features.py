@@ -44,8 +44,8 @@ def return_ll(tree_dirpath, br_mode, software=ML_SOFTWARE):
 
 
 def index_shared_features(dff, ind, edge, move_type, features_dicts_dict):
-	#d_ll = format(dff.loc[ind, "ll"] - dff.loc[ind, "orig_ds_ll"], '.20f')     # todo: uncomment ! temp for large ds
-	#dff.loc[ind, LABEL.format(move_type)] = d_ll  # LABEL						# todo: uncomment ! temp for large ds
+	d_ll = format(dff.loc[ind, "ll"] - dff.loc[ind, "orig_ds_ll"], '.20f')
+	dff.loc[ind, LABEL.format(move_type)] = d_ll  # LABEL
 
 	#*tbl of orig tree will be calculated via 'RandomForest_learning' script		#f1  (FeaturePruning)
 	dff.loc[ind, FEATURES["bl"]] = features_dicts_dict["bl"][edge] 					#f2
