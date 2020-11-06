@@ -86,7 +86,7 @@ if __name__ == '__main__':
 	#print(temp_df['d_ll_prune'].head(30), "\n")
 
 	parser = argparse.ArgumentParser(description='perform all SPR moves')
-	parser.add_argument('--index_to_start_run', '-istart', default=1)
+	parser.add_argument('--index_to_start_run', '-istart', default=False)
 	parser.add_argument('--nline_to_run', '-nlines', default=False)
 	args = parser.parse_args()
 
@@ -99,6 +99,8 @@ if __name__ == '__main__':
 		df.to_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/example404/newicks_step1_with_ids.csv")
 
 		group_ids_full = df["group_id"]
+		with open ("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/example404/lst.txt", 'w') as fp:
+			fp.write(group_ids_full)
 		group_ids = group_ids_full.unique()
 		for group in group_ids:
 			#nlines = len(group_ids_full[group_ids_full == group])
