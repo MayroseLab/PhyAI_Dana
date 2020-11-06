@@ -86,8 +86,7 @@ if __name__ == '__main__':
 
 	if not args.index_to_start_run:
 		df = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/example404/newicks_step1_with_ids.csv")
-		df.to_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/example404/test.csv")
-		exit()
+
 		group_ids_full = df["group_id"]
 		group_ids = group_ids_full.unique()
 		for group in group_ids[:4]:

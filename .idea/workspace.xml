@@ -24,7 +24,6 @@
   <component name="ChangeListManager">
     <list default="true" id="04f6d22b-03c8-46f3-ac77-b58c4e95d95d" name="Default Changelist" comment="handeling large csv - devide to subsets">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/trying.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/trying.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -471,21 +470,7 @@
       <workItem from="1604303523693" duration="1427000" />
       <workItem from="1604341673288" duration="48535000" />
       <workItem from="1604511759909" duration="2350000" />
-      <workItem from="1604609938406" duration="8528000" />
-    </task>
-    <task id="LOCAL-01205" summary="learning data V_x">
-      <created>1604335595863</created>
-      <option name="number" value="01205" />
-      <option name="presentableId" value="LOCAL-01205" />
-      <option name="project" value="LOCAL" />
-      <updated>1604335595863</updated>
-    </task>
-    <task id="LOCAL-01206" summary="merge ml_minus1 summaries">
-      <created>1604336166904</created>
-      <option name="number" value="01206" />
-      <option name="presentableId" value="LOCAL-01206" />
-      <option name="project" value="LOCAL" />
-      <updated>1604336166904</updated>
+      <workItem from="1604609938406" duration="9161000" />
     </task>
     <task id="LOCAL-01207" summary="merge ml_minus1 summaries">
       <created>1604336506067</created>
@@ -810,7 +795,19 @@
       <option name="presentableId" value="LOCAL‎01253" />
       <updated>1604676612394</updated>
     </task>
-    <option name="localTasksCounter" value="1254" />
+    <task id="LOCAL‎01254" summary="handeling large csv - devide to subsets">
+      <created>1604678894644</created>
+      <option name="number" value="LOCAL‎01254" />
+      <option name="presentableId" value="LOCAL‎01254" />
+      <updated>1604678894644</updated>
+    </task>
+    <task id="LOCAL‎01255" summary="handeling large csv - devide to subsets">
+      <created>1604679017128</created>
+      <option name="number" value="LOCAL‎01255" />
+      <option name="presentableId" value="LOCAL‎01255" />
+      <updated>1604679017128</updated>
+    </task>
+    <option name="localTasksCounter" value="1256" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -894,7 +891,7 @@
     <state x="2659" y="328" key="FileChooserDialogImpl/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1601399002874" />
     <state x="493" y="190" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1602350905561" />
     <state x="740" y="291" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1603616131784" />
-    <state width="1237" height="216" key="GridCell.Tab.0.bottom" timestamp="1604678575677">
+    <state width="1237" height="216" key="GridCell.Tab.0.bottom" timestamp="1604678964497">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state width="795" height="104" key="GridCell.Tab.0.bottom/0.0.1280.680/103.-1050.1680.1010@0.0.1280.680" timestamp="1602511895239" />
@@ -903,9 +900,9 @@
     <state width="1637" height="110" key="GridCell.Tab.0.bottom/0.0.1280.680/1920.0.1680.1010@1920.0.1680.1010" timestamp="1601814955222" />
     <state width="1237" height="143" key="GridCell.Tab.0.bottom/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1599666538450" />
     <state width="1347" height="184" key="GridCell.Tab.0.bottom/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1602768642279" />
-    <state width="1237" height="216" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1604678575677" />
+    <state width="1237" height="216" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1604678964497" />
     <state width="1877" height="211" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1604606700510" />
-    <state width="1237" height="216" key="GridCell.Tab.0.center" timestamp="1604678575677">
+    <state width="1237" height="216" key="GridCell.Tab.0.center" timestamp="1604678964496">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state width="795" height="104" key="GridCell.Tab.0.center/0.0.1280.680/103.-1050.1680.1010@0.0.1280.680" timestamp="1602511895239" />
@@ -914,9 +911,9 @@
     <state width="1637" height="110" key="GridCell.Tab.0.center/0.0.1280.680/1920.0.1680.1010@1920.0.1680.1010" timestamp="1601814955222" />
     <state width="1237" height="143" key="GridCell.Tab.0.center/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1599666538449" />
     <state width="1347" height="184" key="GridCell.Tab.0.center/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1602768642279" />
-    <state width="1237" height="216" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1604678575677" />
+    <state width="1237" height="216" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1604678964496" />
     <state width="1877" height="211" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1604606700510" />
-    <state width="1237" height="216" key="GridCell.Tab.0.left" timestamp="1604678575676">
+    <state width="1237" height="216" key="GridCell.Tab.0.left" timestamp="1604678964496">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state width="795" height="104" key="GridCell.Tab.0.left/0.0.1280.680/103.-1050.1680.1010@0.0.1280.680" timestamp="1602511895238" />
@@ -925,9 +922,9 @@
     <state width="1637" height="110" key="GridCell.Tab.0.left/0.0.1280.680/1920.0.1680.1010@1920.0.1680.1010" timestamp="1601814955221" />
     <state width="1237" height="143" key="GridCell.Tab.0.left/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1599666538449" />
     <state width="1347" height="184" key="GridCell.Tab.0.left/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1602768642278" />
-    <state width="1237" height="216" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1604678575676" />
+    <state width="1237" height="216" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1604678964496" />
     <state width="1877" height="211" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1604606700510" />
-    <state width="1237" height="216" key="GridCell.Tab.0.right" timestamp="1604678575677">
+    <state width="1237" height="216" key="GridCell.Tab.0.right" timestamp="1604678964496">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state width="795" height="104" key="GridCell.Tab.0.right/0.0.1280.680/103.-1050.1680.1010@0.0.1280.680" timestamp="1602511895239" />
@@ -936,7 +933,7 @@
     <state width="1637" height="110" key="GridCell.Tab.0.right/0.0.1280.680/1920.0.1680.1010@1920.0.1680.1010" timestamp="1601814955222" />
     <state width="1237" height="143" key="GridCell.Tab.0.right/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1599666538450" />
     <state width="1347" height="184" key="GridCell.Tab.0.right/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1602768642279" />
-    <state width="1237" height="216" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1604678575677" />
+    <state width="1237" height="216" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1604678964496" />
     <state width="1877" height="211" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1604606700510" />
     <state width="1877" height="348" key="GridCell.Tab.1.bottom" timestamp="1604341659437">
       <screen x="0" y="0" width="1920" height="1040" />
@@ -962,6 +959,10 @@
     <state width="1659" height="246" key="GridCell.Tab.1.right/0.0.1280.680/1920.0.1680.1010@1920.0.1680.1010" timestamp="1597762290082" />
     <state width="1237" height="144" key="GridCell.Tab.1.right/0.0.1280.680@0.0.1280.680" timestamp="1601913072675" />
     <state width="1877" height="348" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1604341659437" />
+    <state x="280" y="102" key="MultipleFileMergeDialog" timestamp="1604678952449">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="280" y="102" key="MultipleFileMergeDialog/0.0.1280.680@0.0.1280.680" timestamp="1604678952449" />
     <state x="306" y="0" key="SettingsEditor" timestamp="1603809972823">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -971,7 +972,7 @@
     <state x="2381" y="164" key="SettingsEditor/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1596616610627" />
     <state x="204" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1602501651365" />
     <state x="306" y="0" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1603809972823" />
-    <state x="329" y="120" key="Vcs.Push.Dialog.v2" timestamp="1604676614113">
+    <state x="329" y="120" key="Vcs.Push.Dialog.v2" timestamp="1604679019841">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="329" y="146" key="Vcs.Push.Dialog.v2/0.0.1280.680/103.-1050.1680.1010@0.0.1280.680" timestamp="1602511685167" />
@@ -979,7 +980,7 @@
     <state x="2352" y="245" key="Vcs.Push.Dialog.v2/0.0.1280.680/1920.0.1680.1010@1920.0.1680.1010" timestamp="1601817418173" />
     <state x="329" y="146" key="Vcs.Push.Dialog.v2/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1599667287383" />
     <state x="2414" y="252" key="Vcs.Push.Dialog.v2/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1602764904349" />
-    <state x="329" y="120" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1604676614113" />
+    <state x="329" y="120" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1604679019841" />
     <state x="494" y="223" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1604606563745" />
     <state x="-7" y="0" width="1288" height="687" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1604660460970">
       <screen x="0" y="0" width="1280" height="680" />
