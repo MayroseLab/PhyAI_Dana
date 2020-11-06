@@ -88,18 +88,17 @@ if __name__ == '__main__':
 		df = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/example404/newicks_step1.csv",index_col=1)
 		for i, row in df.iterrows():
 			ind = row.name
-			print(ind, ":", ind[0])
-			#df.loc[ind, "group_id"] = ind[0]
-		exit()
+			g_id = ind.split(",")[0]
+			print(ind, ":", g_id)
+			df.loc[ind, "group_id"] = g_id
+		#exit()
 		df.to_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/example404/newicks_step1_with_ids.csv")
 
-		df = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/example404/newicks_step1_with_ids.csv")
-		print(len(df))
-		print(df.tail()['group_id'])
-		exit()
+		#df = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/example404/newicks_step1_with_ids.csv")
+
 		group_ids_full = df["group_id"]
 		group_ids = group_ids_full.unique()
-		for group in group_ids[8:]:
+		for group in group_ids[:11]:
 			s = df.index[df["group_id"] == group].tolist()
 			submit_job_ll(s[0], len(s))
 	else:
