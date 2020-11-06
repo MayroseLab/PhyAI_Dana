@@ -92,8 +92,20 @@ if __name__ == '__main__':
 
 
 	if not args.index_to_start_run:
-		for i in range(args.index_to_start_run, NROWS, int(args.nline_to_run)):
-			submit_job_ll(i, args.nline_to_run)
+		df = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/example404/newicks_step1.csv", index_col=0)
+		for i, row in df.iterrows():
+			ind = row.name
+			df.loc[ind, "group_id"] = ind[0]
+		df.to_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/example404/newicks_step1_with_ids.csv")
+
+		group_ids_full = df["group_id"]
+		group_ids = group_ids_full.unique()
+		for group in group_ids:
+			#nlines = len(group_ids_full[group_ids_full == group])
+			s = df.index[df["group_id"] == group].tolist()
+			print(min(s), len(s))
+
+			#submit_job_ll(min(s), len(s))
 	else:
 		dataset_path = DATA_PATH + 'example404/'
 		outpath_prune = SUMMARY_PER_DS.format(dataset_path + 'results_by_susbsets/', "prune", 'br', '1_subs_{}_{}'.format(args.index_to_start_run, args.nline_to_run))

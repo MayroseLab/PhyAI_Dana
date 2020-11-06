@@ -103,7 +103,7 @@ def call_raxml_mem(tree_str, msa_tmpfile, rates, pinv, alpha, freq):
 									 freq="{{{0}}}".format("/".join(freq)))
 
 	# create tree file in memory and not in the storage:
-	tree_rampath = "/dev/shm/" + msa_tmpfile.split(SEP)[-1] + "tree"  # the var is the str: tmp{dir_suffix}
+	tree_rampath = "/dev/shm/" + str(random.random()) + "tree"  # the var is the str: tmp{dir_suffix}
 
 	try:
 		with open(tree_rampath, "w") as fpw:
