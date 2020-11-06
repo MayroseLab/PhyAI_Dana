@@ -89,7 +89,7 @@ if __name__ == '__main__':
 
 		group_ids_full = df["group_id"]
 		group_ids = group_ids_full.unique()
-		for group in group_ids[4:]:
+		for group in group_ids[9:]:
 			s = df.index[df["group_id"] == group].tolist()
 			submit_job_ll(s[0], len(s))
 	else:
