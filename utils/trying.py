@@ -16,8 +16,8 @@ NROWS = 491100   #365400   #365380  ##491087
 
 def index_ll_and_features(ds_path, outpath_prune, outpath_rgft, istart, nlines):
 	istart, nlines = int(istart), int(nlines)
-	skp_lst = [i for i in range(1, istart)] if not istart == 1 else []
-	skp_lst2 = [i for i in range(istart+nlines, NROWS)]
+	skp_lst = [i for i in range(1, istart)] if not istart == 0 else []
+	skp_lst2 = [i for i in range(1 + istart+nlines, NROWS)]
 	skp_lst.extend(skp_lst2)
 	dfr = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/example404/newicks_step1.csv", index_col=0, skiprows=skp_lst)
 
@@ -33,8 +33,6 @@ def index_ll_and_features(ds_path, outpath_prune, outpath_rgft, istart, nlines):
 	for i, row in dfr.iterrows():
 		ind = row.name
 		tree = row["newick"]
-		#nprune, nrgft = row['prune_name'], row['rgft_name']
-		#df_prune.loc[ind, "prune_name"], df_prune.loc[ind, "rgft_name"], df_rgft.loc[ind, "prune_name"], df_rgft.loc[ind, "rgft_name"] = nprune, nrgft, nprune, nrgft
 		if row["rgft_name"] == SUBTREE2:  # namely the remaining subtree
 			features_rgft_dicts_dict = calc_leaves_features(tree, "rgft")
 		if not "subtree" in row["rgft_name"] and not ROOTLIKE_NAME in row["rgft_name"] and not ROOTLIKE_NAME in row["prune_name"]:
@@ -53,10 +51,6 @@ def index_ll_and_features(ds_path, outpath_prune, outpath_rgft, istart, nlines):
 
 			df_rgft.loc[ind, FEATURES["res_bl"]] = features_restree_dict['res_bl']
 			df_rgft.loc[ind, FEATURES["res_tbl"]] = features_restree_dict['res_tbl']
-			print("\nXXXXXXX\n")
-			print(df_prune)
-			print("\nXXXXXXX\n")
-			print(df_rgft)
 
 	df_prune = df_prune[(df_prune["prune_name"] != ROOTLIKE_NAME) & (df_prune["rgft_name"] != ROOTLIKE_NAME)]  # .dropna()
 	df_rgft = df_rgft[(df_rgft["prune_name"] != ROOTLIKE_NAME) & (df_rgft["rgft_name"] != ROOTLIKE_NAME)]  # .dropna()
@@ -90,26 +84,19 @@ if __name__ == '__main__':
 	parser.add_argument('--nline_to_run', '-nlines', default=False)
 	args = parser.parse_args()
 
-
 	if not args.index_to_start_run:
-		df = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/example404/newicks_step1.csv", index_col=1)
-		for i, row in df.iterrows():
-			ind = row.name
-			df.loc[ind, "group_id"] = ind[0]
-		df.to_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/example404/newicks_step1_with_ids.csv")
-		group_ids_full = df["group_id"]
-		with open ("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/example404/lst.txt", 'w') as fp:
-			fp.write(group_ids_full)
-		group_ids = group_ids_full.unique()
-		print(group_ids)
+		df = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/example404/newicks_step1_with_ids.csv")
+		df.to_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/example404/test.csv")
 		exit()
-		for group in group_ids[:2]:
-			#nlines = len(group_ids_full[group_ids_full == group])
+		group_ids_full = df["group_id"]
+		group_ids = group_ids_full.unique()
+		for group in group_ids[:4]:
 			s = df.index[df["group_id"] == group].tolist()
-			#print(min(s), len(s))
-			submit_job_ll(min(s), len(s))
+			submit_job_ll(s[0], len(s))
 	else:
 		dataset_path = DATA_PATH + 'example404/'
 		outpath_prune = SUMMARY_PER_DS.format(dataset_path + 'results_by_susbsets/', "prune", 'br', '1_subs_{}_{}'.format(args.index_to_start_run, args.nline_to_run))
 		outpath_rgft = SUMMARY_PER_DS.format(dataset_path + 'results_by_susbsets/', "rgft", 'br', '1_subs_{}_{}'.format(args.index_to_start_run, args.nline_to_run))
+
+		print(args.index_to_start_run, args.nline_to_run)
 		index_ll_and_features(dataset_path, outpath_prune, outpath_rgft, args.index_to_start_run, args.nline_to_run)
