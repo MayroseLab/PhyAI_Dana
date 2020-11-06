@@ -61,14 +61,14 @@ def index_ll_and_features(ds_path, outpath_prune, outpath_rgft, istart, nlines):
 
 
 def submit_job_ll(istart, nlines):
-	print("**************************************   ", str(istart))
+	print("**************************************   ", str(istart), str(nlines))
 	job_name = "index_ll_large_dataset.sh"
 	cmd = "python " + CODE_PATH + "utils/trying.py -istart " + str(istart) + " -nlines " + str(nlines)
 
-	qsub_cmd = get_job_qsub_command(job_name=job_name,
-									command=cmd,
-									error_files_path=DATA_PATH + "example404/error_files/")
-	os.system(qsub_cmd)
+	#qsub_cmd = get_job_qsub_command(job_name=job_name,
+	#								command=cmd,
+	#								error_files_path=DATA_PATH + "example404/error_files/")
+	#os.system(qsub_cmd)
 
 
 
@@ -89,7 +89,7 @@ if __name__ == '__main__':
 
 		group_ids_full = df["group_id"]
 		group_ids = group_ids_full.unique()
-		for group in group_ids[:4]:
+		for group in group_ids[4:]:
 			s = df.index[df["group_id"] == group].tolist()
 			submit_job_ll(s[0], len(s))
 	else:
