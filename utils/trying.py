@@ -96,11 +96,13 @@ if __name__ == '__main__':
 		for i, row in df.iterrows():
 			ind = row.name
 			df.loc[ind, "group_id"] = ind[0]
-		#df = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/example404/newicks_step1_with_ids.csv")
+		df.to_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/example404/newicks_step1_with_ids.csv")
 		group_ids_full = df["group_id"]
-		#with open ("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/example404/lst.txt", 'w') as fp:
-		#	fp.write(group_ids_full)
+		with open ("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/example404/lst.txt", 'w') as fp:
+			fp.write(group_ids_full)
 		group_ids = group_ids_full.unique()
+		print(group_ids)
+		exit()
 		for group in group_ids[:2]:
 			#nlines = len(group_ids_full[group_ids_full == group])
 			s = df.index[df["group_id"] == group].tolist()
