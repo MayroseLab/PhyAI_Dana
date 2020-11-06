@@ -15,9 +15,9 @@ NROWS = 491100   #365400   #365380  ##491087
 
 
 def index_ll_and_features(ds_path, outpath_prune, outpath_rgft, istart, nlines):
-	istart, nlines = int(istart), int(nlines)
+	istart, nlines = int(istart)+1, int(nlines)
 	skp_lst = [i for i in range(1, istart)] if not istart == 0 else []
-	skp_lst2 = [i for i in range(1 + istart+nlines, NROWS)]
+	skp_lst2 = [i for i in range(istart+nlines, NROWS)]
 	skp_lst.extend(skp_lst2)
 	dfr = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/example404/newicks_step1.csv", index_col=0, skiprows=skp_lst)
 
@@ -65,10 +65,10 @@ def submit_job_ll(istart, nlines):
 	job_name = "index_ll_large_dataset.sh"
 	cmd = "python " + CODE_PATH + "utils/trying.py -istart " + str(istart) + " -nlines " + str(nlines)
 
-	#qsub_cmd = get_job_qsub_command(job_name=job_name,
-	#								command=cmd,
-	#								error_files_path=DATA_PATH + "example404/error_files/")
-	#os.system(qsub_cmd)
+	qsub_cmd = get_job_qsub_command(job_name=job_name,
+									command=cmd,
+									error_files_path=DATA_PATH + "example404/error_files/")
+	os.system(qsub_cmd)
 
 
 
@@ -85,7 +85,7 @@ if __name__ == '__main__':
 	args = parser.parse_args()
 
 	if not args.index_to_start_run:
-		df = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/example404/newicks_step1_with_ids.csv")
+		df = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/example404/newicks_step1_with_ids.csv", nrows=10000)
 
 		group_ids_full = df["group_id"]
 		group_ids = group_ids_full.unique()
