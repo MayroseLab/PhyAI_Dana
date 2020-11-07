@@ -85,13 +85,24 @@ if __name__ == '__main__':
 	args = parser.parse_args()
 
 	if not args.index_to_start_run:
-		df = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/example404/newicks_step1_with_ids.csv",index_col=1)
+		dataset_path = DATA_PATH + 'example404/'
+		df = pd.read_csv(dataset_path + "newicks_step1_with_ids.csv",index_col=1)
 
 		group_ids_full = df["group_id"]
 		group_ids = group_ids_full.unique()
-		for group in group_ids[4:]:
+		df_merged_prune, df_merged_rgft = pd.DataFrame(), pd.DataFrame()
+		for group in group_ids:
 			s = df.index[df["group_id"] == group].tolist()
-			submit_job_ll(s[0], len(s))
+
+			outpath_prune = pd.read_csv(SUMMARY_PER_DS.format(dataset_path + 'results_by_susbsets/', "prune", 'br', '1_subs_{}_{}'.format(s[0], len(s))))
+			outpath_rgft = pd.read_csv(SUMMARY_PER_DS.format(dataset_path + 'results_by_susbsets/', "rgft", 'br','1_subs_{}_{}'.format(s[0], len(s))))
+			df_merged_prune = pd.concat([df_merged_prune, outpath_prune], ignore_index=True)
+			df_merged_rgft = pd.concat([df_merged_rgft, outpath_rgft], ignore_index=True)
+		df_merged_prune.to_csv(SUMMARY_PER_DS.format(dataset_path, "prune", 'br','1_test'))
+		df_merged_rgft.to_csv(SUMMARY_PER_DS.format(dataset_path, "rgft", 'br', '1_test'))
+
+
+	#submit_job_ll(s[0], len(s))
 	else:
 		dataset_path = DATA_PATH + 'example404/'
 		outpath_prune = SUMMARY_PER_DS.format(dataset_path + 'results_by_susbsets/', "prune", 'br', '1_subs_{}_{}'.format(args.index_to_start_run, args.nline_to_run))
