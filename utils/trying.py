@@ -73,6 +73,13 @@ def submit_job_ll(istart, nlines):
 
 
 if __name__ == '__main__':
+
+	df = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/summary_files/with_preds_merged_20_1_example404_4200_ytransformed_exp.csv")
+	temp_df = df[[LABEL.format('merged'), "pred"]]
+	sp_corr = temp_df.corr(method='spearman').iloc[1, 0]
+	pr_corr = temp_df.corr(method='pearson').iloc[1, 0]
+	print(sp_corr, pr_corr)
+	exit()
 	#df = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/summary_files/with_preds_merged_20_1_ml_minus1_set_4200_ytransformed_exp.csv")
 	#temp_df = df.sort_values(by='pred', ascending=False).reset_index()
 	#print(temp_df['d_ll_prune'].head(30), "\n")
