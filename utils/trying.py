@@ -11,7 +11,7 @@ from execute_programs.SPR_move import call_raxml_mem
 
 
 
-EXAMPLE_DIRNAME = 'example403/'
+EXAMPLE_DIRNAME = 'example493/'
 
 
 def index_ll_and_features(ds_path, outpath_prune, outpath_rgft, istart, nlines, NROWS):
@@ -84,7 +84,7 @@ if __name__ == '__main__':
 		NROWS = len(df)
 		group_ids_full = df["group_id"]
 		group_ids = group_ids_full.unique()
-		for group in group_ids[:4]:                        # todo: run the rest after manual checking (replace abovelines with read csv)
+		for group in group_ids[:4]: # [4:500]:
 			s = df.index[df["group_id"] == group].tolist()
 			submit_job_ll(s[0], len(s), NROWS)
 
