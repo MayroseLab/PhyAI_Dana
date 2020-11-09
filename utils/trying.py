@@ -8,10 +8,44 @@ from defs import *
 from utils.create_job_file import get_job_qsub_command
 from summary.collect_SPR_features import *
 from execute_programs.SPR_move import call_raxml_mem
+from subprocess import Popen, PIPE, STDOUT
+from parsing.parse_raxml_NG import parse_raxmlNG_content
+
+
+EXAMPLE_DIRNAME = 'example59/'
+RAXML_NG_SCRIPT = 'raxml-ng'
 
 
 
-EXAMPLE_DIRNAME = 'example493/'
+def run_raxml_mem_partitioned(tree_str, msa_tmpfile, log_filepath):
+	model_line_params = ''
+
+	# create tree file in memory and not in the storage:
+	tree_rampath = "/dev/shm/" + str(random.random()) + str(random.random()) + "tree"  # the var is the str: tmp{dir_suffix}
+
+	try:
+		with open(tree_rampath, "w") as fpw:
+			fpw.write(tree_str)
+
+		p = Popen([RAXML_NG_SCRIPT, '--evaluate','--opt-branches', 'on',
+				   '--opt-model', 'off', '--msa', msa_tmpfile, '--threads', '2', '--model', log_filepath, '--nofiles', '--redo', '--tree', tree_rampath],
+				  stdout=PIPE, stdin=PIPE, stderr=STDOUT)
+		raxml_stdout = p.communicate()[0]
+		raxml_output = raxml_stdout.decode()
+		#print("\n"+raxml_output+"\n")
+
+		res_dict = parse_raxmlNG_content(raxml_output)
+		ll = res_dict['ll']
+		rtime = res_dict['time']
+
+	except Exception as e:
+		print(msa_tmpfile.split(SEP)[-1][3:])
+		print(e)
+		exit()
+	finally:
+		os.remove(tree_rampath)
+
+	return ll, rtime
 
 
 def index_ll_and_features(ds_path, outpath_prune, outpath_rgft, istart, nlines, NROWS):
@@ -22,16 +56,23 @@ def index_ll_and_features(ds_path, outpath_prune, outpath_rgft, istart, nlines, 
 	dfr = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/{}newicks_step1.csv".format(EXAMPLE_DIRNAME), index_col=0, skiprows=skp_lst)
 
 	orig_ds_msa_file = ds_path + MSA_PHYLIP_FILENAME
-	stats_filepath = ds_path + PHYML_STATS_FILENAME.format('bionj')
-	tree_file = ds_path + PHYML_TREE_FILENAME.format('bionj')
-	params_dict = parse_phyml_stats_output(None, stats_filepath)
-	freq, rates, pinv, alpha = [params_dict["fA"], params_dict["fC"], params_dict["fG"], params_dict["fT"]], [params_dict["subAC"], params_dict["subAG"], params_dict["subAT"], params_dict["subCG"],params_dict["subCT"], params_dict["subGT"]], params_dict["pInv"], params_dict["gamma"]
-	orig_ds_ll = float(params_dict["ll"])
+	if not '59' in EXAMPLE_DIRNAME:
+		stats_filepath = ds_path + PHYML_STATS_FILENAME.format('bionj')
+		tree_file = ds_path + PHYML_TREE_FILENAME.format('bionj')
+		params_dict = parse_phyml_stats_output(None, stats_filepath)
+		freq, rates, pinv, alpha = [params_dict["fA"], params_dict["fC"], params_dict["fG"], params_dict["fT"]], [params_dict["subAC"], params_dict["subAG"], params_dict["subAT"], params_dict["subCG"],params_dict["subCT"], params_dict["subGT"]], params_dict["pInv"], params_dict["gamma"]
+		orig_ds_ll = float(params_dict["ll"])
+	else:
+		tree_file = "/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/example59/tree_partitione_model_opt.txt"
+		log_filepath = "/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/example59/partitioned/partitioned_output.raxml.bestModel"
+		orig_ds_ll = -52052.674807
+
 
 	features_prune_dicts_dict = calc_leaves_features(tree_file, "prune")
 	df_prune, df_rgft = pd.DataFrame(), pd.DataFrame()
 	for i, row in dfr.iterrows():
 		ind = row.name
+		print(ind)
 		tree = row["newick"]
 		if row["rgft_name"] == SUBTREE2:  # namely the remaining subtree
 			features_rgft_dicts_dict = calc_leaves_features(tree, "rgft")
@@ -39,7 +80,11 @@ def index_ll_and_features(ds_path, outpath_prune, outpath_rgft, istart, nlines, 
 			prune_name, rgft_name = row["prune_name"], row['rgft_name']
 			df_prune.loc[ind, "prune_name"], df_prune.loc[ind, "rgft_name"], df_rgft.loc[ind, "prune_name"], df_rgft.loc[ind, "rgft_name"] = prune_name, rgft_name, prune_name, rgft_name
 
-			ll_rearr, rtime = call_raxml_mem(tree, orig_ds_msa_file, rates, pinv, alpha, freq)
+			if not '59' in EXAMPLE_DIRNAME:
+				ll_rearr, rtime = call_raxml_mem(tree, orig_ds_msa_file, rates, pinv, alpha, freq)
+			else:
+				ll_rearr, rtime = run_raxml_mem_partitioned(tree, orig_ds_msa_file, log_filepath)
+
 			df_prune.loc[ind, "time"], df_rgft.loc[ind, "time"] = rtime, rtime
 			df_prune.loc[ind, "ll"], df_rgft.loc[ind, "ll"] = float(ll_rearr), float(ll_rearr)
 			df_prune.loc[ind,"orig_ds_ll"], df_rgft.loc[ind,"orig_ds_ll"] = orig_ds_ll, orig_ds_ll
@@ -51,6 +96,9 @@ def index_ll_and_features(ds_path, outpath_prune, outpath_rgft, istart, nlines, 
 
 			df_rgft.loc[ind, FEATURES["res_bl"]] = features_restree_dict['res_bl']
 			df_rgft.loc[ind, FEATURES["res_tbl"]] = features_restree_dict['res_tbl']
+
+			print(df_prune)
+			exit()
 
 	df_prune = df_prune[(df_prune["prune_name"] != ROOTLIKE_NAME) & (df_prune["rgft_name"] != ROOTLIKE_NAME)]  # .dropna()
 	df_rgft = df_rgft[(df_rgft["prune_name"] != ROOTLIKE_NAME) & (df_rgft["rgft_name"] != ROOTLIKE_NAME)]  # .dropna()
@@ -80,7 +128,17 @@ if __name__ == '__main__':
 	args = parser.parse_args()
 
 	if not args.index_to_start_run:
+		df = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/{}newicks_step1.csv".format(EXAMPLE_DIRNAME),index_col=0)
+
+		for i, row in df.iterrows():
+			ind = row.name
+			g_id = ind.split(",")[0]
+			print(ind, ":", g_id)
+			df.loc[ind, "group_id"] = g_id
+		df.to_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/{}newicks_step1_with_ids.csv".format(EXAMPLE_DIRNAME))
+		#exit()
 		df = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/{}newicks_step1_with_ids.csv".format(EXAMPLE_DIRNAME),index_col=0)
+
 		NROWS = len(df)
 		group_ids_full = df["group_id"]
 		group_ids = group_ids_full.unique()
