@@ -1,8 +1,7 @@
 import sys
 
-
-
 sys.path.append("/groups/itay_mayrose/danaazouri/PhyAI/code/")
+
 
 from defs import *
 from utils.create_job_file import get_job_qsub_command
@@ -12,13 +11,12 @@ from subprocess import Popen, PIPE, STDOUT
 from parsing.parse_raxml_NG import parse_raxmlNG_content
 
 
-EXAMPLE_DIRNAME = 'example59/'
-RAXML_NG_SCRIPT = 'raxml-ng'
+EXAMPLE_DIRNAME = 'example403/'
 
 
 
 def run_raxml_mem_partitioned(tree_str, msa_tmpfile, log_filepath):
-	model_line_params = ''
+	RAXML_NG_SCRIPT = 'raxml-ng'
 
 	# create tree file in memory and not in the storage:
 	tree_rampath = "/dev/shm/" + str(random.random()) + str(random.random()) + "tree"  # the var is the str: tmp{dir_suffix}
@@ -124,8 +122,28 @@ if __name__ == '__main__':
 	parser.add_argument('--nrows_total_in_csv', '-nrows_total', default=False)
 	args = parser.parse_args()
 
+	'''
+	dataset_path = DATA_PATH + EXAMPLE_DIRNAME
+	df = pd.read_csv(dataset_path + "newicks_step1_with_ids.csv")  # -, index_col=1)
+
+	group_ids_full = df["group_id"]
+	group_ids = group_ids_full.unique()
+	df_merged_prune, df_merged_rgft = pd.DataFrame(), pd.DataFrame()
+	for group in group_ids:
+		s = df.index[df["group_id"] == group].tolist()
+
+		outpath_prune = pd.read_csv(SUMMARY_PER_DS.format(dataset_path + 'results_by_susbsets/', "prune", 'br',
+														  '1_subs_{}_{}'.format(s[0], len(s))))
+		outpath_rgft = pd.read_csv(SUMMARY_PER_DS.format(dataset_path + 'results_by_susbsets/', "rgft", 'br',
+														 '1_subs_{}_{}'.format(s[0], len(s))))
+		df_merged_prune = pd.concat([df_merged_prune, outpath_prune], ignore_index=True)
+		df_merged_rgft = pd.concat([df_merged_rgft, outpath_rgft], ignore_index=True)
+	df_merged_prune.to_csv(SUMMARY_PER_DS.format(dataset_path, "prune", 'br', '1'))
+	df_merged_rgft.to_csv(SUMMARY_PER_DS.format(dataset_path, "rgft", 'br', '1'))
+	exit()
+	'''
 	if not args.index_to_start_run:
-		'''
+
 		df = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/{}newicks_step1.csv".format(EXAMPLE_DIRNAME),index_col=0)
 
 		for i, row in df.iterrows():
@@ -135,26 +153,14 @@ if __name__ == '__main__':
 			df.loc[ind, "group_id"] = g_id
 		df.to_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/{}newicks_step1_with_ids.csv".format(EXAMPLE_DIRNAME))
 		#exit()
-		'''
 		df = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/{}newicks_step1_with_ids.csv".format(EXAMPLE_DIRNAME)) #,index_col=0)
 
 		NROWS = len(df)
 		group_ids_full = df["group_id"]
 		group_ids = group_ids_full.unique()
-		for group in group_ids[4:]:
+		for group in group_ids[:4]:
 			s = df.index[df["group_id"] == group].tolist()
 			submit_job_ll(s[0], len(s), NROWS)
-
-			'''
-			dataset_path = DATA_PATH + EXAMPLE_DIRNAME
-			outpath_prune = pd.read_csv(SUMMARY_PER_DS.format(dataset_path + 'results_by_susbsets/', "prune", 'br', '1_subs_{}_{}'.format(s[0], len(s))))
-			outpath_rgft = pd.read_csv(SUMMARY_PER_DS.format(dataset_path + 'results_by_susbsets/', "rgft", 'br','1_subs_{}_{}'.format(s[0], len(s))))
-			df_merged_prune = pd.concat([df_merged_prune, outpath_prune], ignore_index=True)
-			df_merged_rgft = pd.concat([df_merged_rgft, outpath_rgft], ignore_index=True)
-		df_merged_prune.to_csv(SUMMARY_PER_DS.format(dataset_path, "prune", 'br','1_test'))
-		df_merged_rgft.to_csv(SUMMARY_PER_DS.format(dataset_path, "rgft", 'br', '1_test'))
-		'''
-
 
 	else:
 		dataset_path = DATA_PATH + EXAMPLE_DIRNAME
