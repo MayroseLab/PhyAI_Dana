@@ -246,14 +246,15 @@ if __name__ == '__main__':
 			if args.step_number == "1":
 				res = all_SPR(dataset_path, outpath, tree=None, rewrite_phylip=args.rewrite_in_phylip)
 			else:   # run next step on previous' best tree
-				prev_step = str(int(args.step_number)-1)
-				dfr = pd.read_csv(TREES_PER_DS.format(dataset_path, prev_step), index_col=0)
-				df_sum = pd.read_csv(SUMMARY_PER_DS.format(dataset_path, "prune", "br", prev_step)).set_index('Unnamed: 0')
-				best_tree_id = df_sum["ll"].astype(float).idxmax()
-				tree_str = dfr.loc[best_tree_id, "newick"]
-
-				with open('/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/exampleSphaero/masked_species_real_msa.phy_phyml_tree_bionj_st2.txt', 'r') as fp:
+				#prev_step = str(int(args.step_number)-1)
+				#dfr = pd.read_csv(TREES_PER_DS.format(dataset_path, prev_step), index_col=0)
+				#df_sum = pd.read_csv(SUMMARY_PER_DS.format(dataset_path, "prune", "br", prev_step)).set_index('Unnamed: 0')
+				#best_tree_id = df_sum["ll"].astype(float).idxmax()
+				#tree_str = dfr.loc[best_tree_id, "newick"]
+				treepath = args.step_number   # !!!!!!!!!!!!!!!!!!!!!!!! TEMP !!!!!!!!!!!!!!!!
+				with open(dataset_path + treepath + '.txt', 'r') as fp:
 					tree_str = fp.read().strip()
+				# !!!!!!!!!!!!!!!!!!!!!!!! TEMP !!!!!!!!!!!!!!!!
 				res = all_SPR(dataset_path, outpath, tree=tree_str, rewrite_phylip=args.rewrite_in_phylip)
 
 		collect_features(dataset_path, args.step_number, outpath.format("prune"), outpath.format("rgft"), args.tree_type)
