@@ -128,6 +128,7 @@ if __name__ == '__main__':
 	args = parser.parse_args()
 
 	if not args.index_to_start_run:
+		'''
 		df = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/{}newicks_step1.csv".format(EXAMPLE_DIRNAME),index_col=0)
 
 		for i, row in df.iterrows():
@@ -137,7 +138,8 @@ if __name__ == '__main__':
 			df.loc[ind, "group_id"] = g_id
 		df.to_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/{}newicks_step1_with_ids.csv".format(EXAMPLE_DIRNAME))
 		#exit()
-		df = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/{}newicks_step1_with_ids.csv".format(EXAMPLE_DIRNAME),index_col=0)
+		'''
+		df = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/{}newicks_step1_with_ids.csv".format(EXAMPLE_DIRNAME)) #,index_col=0)
 
 		NROWS = len(df)
 		group_ids_full = df["group_id"]
