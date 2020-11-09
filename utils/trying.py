@@ -11,7 +11,7 @@ from execute_programs.SPR_move import call_raxml_mem
 
 
 
-EXAMPLE_DIRNAME = 'example403/'
+EXAMPLE_DIRNAME = 'example493/'
 
 
 def index_ll_and_features(ds_path, outpath_prune, outpath_rgft, istart, nlines, NROWS):
@@ -80,7 +80,7 @@ if __name__ == '__main__':
 	args = parser.parse_args()
 
 	if not args.index_to_start_run:
-		upto_row = 94900
+		upto_row = 182600
 		df = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/{}newicks_step1.csv".format(EXAMPLE_DIRNAME),index_col=0, nrows=upto_row)
 
 		for i, row in df.iterrows():
