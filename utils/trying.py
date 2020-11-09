@@ -72,7 +72,6 @@ def index_ll_and_features(ds_path, outpath_prune, outpath_rgft, istart, nlines, 
 	df_prune, df_rgft = pd.DataFrame(), pd.DataFrame()
 	for i, row in dfr.iterrows():
 		ind = row.name
-		print(ind)
 		tree = row["newick"]
 		if row["rgft_name"] == SUBTREE2:  # namely the remaining subtree
 			features_rgft_dicts_dict = calc_leaves_features(tree, "rgft")
@@ -97,8 +96,6 @@ def index_ll_and_features(ds_path, outpath_prune, outpath_rgft, istart, nlines, 
 			df_rgft.loc[ind, FEATURES["res_bl"]] = features_restree_dict['res_bl']
 			df_rgft.loc[ind, FEATURES["res_tbl"]] = features_restree_dict['res_tbl']
 
-			print(df_prune)
-			exit()
 
 	df_prune = df_prune[(df_prune["prune_name"] != ROOTLIKE_NAME) & (df_prune["rgft_name"] != ROOTLIKE_NAME)]  # .dropna()
 	df_rgft = df_rgft[(df_rgft["prune_name"] != ROOTLIKE_NAME) & (df_rgft["rgft_name"] != ROOTLIKE_NAME)]  # .dropna()
