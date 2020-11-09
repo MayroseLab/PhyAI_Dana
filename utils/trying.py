@@ -11,7 +11,7 @@ from subprocess import Popen, PIPE, STDOUT
 from parsing.parse_raxml_NG import parse_raxmlNG_content
 
 
-EXAMPLE_DIRNAME = 'example403/'
+EXAMPLE_DIRNAME = 'example493/'
 
 
 
