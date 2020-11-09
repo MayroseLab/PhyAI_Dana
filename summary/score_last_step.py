@@ -95,6 +95,8 @@ if __name__ == '__main__':
 		df.to_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/summary_files/with_preds_merged_20_1_ml_minus1_set_with_RFscore_subs{}.csv".format(id))
 
 	'''
+	from statistics import mean, median
+
 	df_path = "/groups/itay_mayrose/danaazouri/PhyAI/DBset2/summary_files/with_preds_merged_20_1_ml_minus1_set_with_RFscore.csv"
 	if not os.path.exists(df_path):
 		df = pd.DataFrame()
@@ -112,10 +114,16 @@ if __name__ == '__main__':
 	grouped_df_by_ds = df.groupby(FEATURES[GROUP_ID], sort=False)
 	for group_id, df_by_ds in grouped_df_by_ds:
 		rf_best_pred_by_ds[group_id], rank_rf0_by_ds[group_id] = rf_rank(df_by_ds)
-		print(rf_best_pred_by_ds[group_id], rank_rf0_by_ds[group_id])
+		#print(rf_best_pred_by_ds[group_id], rank_rf0_by_ds[group_id])
 
-	from statistics import mean, median
 	print(rf_best_pred_by_ds)
 	print(rank_rf0_by_ds)
-	print(mean(rf_best_pred_by_ds), median(rf_best_pred_by_ds))
-	print(mean(rank_rf0_by_ds), median(rank_rf0_by_ds))
+	print(mean(rf_best_pred_by_ds.values()), median(rf_best_pred_by_ds.values()))
+	print(mean(rank_rf0_by_ds.values()), median(rank_rf0_by_ds.values()))
+	print("\n")
+	THRESHOLD = 1
+	mylst = list(rank_rf0_by_ds.values())
+	print(len(mylst))
+	print(len([i for i in mylst if i <= THRESHOLD]))
+	print(len([i for i in mylst if i <= 0.401123]))
+	print(len([i for i in mylst if i <= 0.20056]))
