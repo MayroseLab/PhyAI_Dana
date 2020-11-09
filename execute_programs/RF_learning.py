@@ -348,8 +348,11 @@ def fit_transformation(df, move_type, trans=False):
 def parse_relevant_summaries_for_learning(df_orig, step_number, tree_type='bionj'):
 	if 'example' in step_number:
 		df_orig = pd.DataFrame(index=[0], columns=["path"])
-		df_orig.loc[0, "path"] = DATA_PATH + step_number.split("_")[0] + SEP
-		step_number = step_number.split("_")[1] if "_" in step_number else "1"
+		splt = step_number.split("_")
+		df_orig.loc[0, "path"] = DATA_PATH + splt[0] + SEP
+		step_number = splt[1]  if "_" in step_number else "1"
+		if "_" in step_number:
+			step_number += "_" + splt[2]
 
 	ds_path_init = df_orig.iloc[0]["path"]
 	cols1 = list(pd.read_csv(SUMMARY_PER_DS.format(ds_path_init, "prune", OPT_TYPE, step_number)))
