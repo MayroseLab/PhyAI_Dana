@@ -76,11 +76,11 @@ if __name__ == '__main__':
 	parser = argparse.ArgumentParser(description='perform all SPR moves')
 	parser.add_argument('--index_to_start_run', '-istart', default=False)
 	parser.add_argument('--nline_to_run', '-nlines', default=False)
-	parser.add_argument('--nros_total_in_csv', '-nrows_total', default=False)
+	parser.add_argument('--nrows_total_in_csv', '-nrows_total', default=False)
 	args = parser.parse_args()
 
 	if not args.index_to_start_run:
-		df = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/{}newicks_step1_with_ids.csv".format(EXAMPLE_DIRNAME),index_col=1, nrows=10000)
+		df = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/{}newicks_step1_with_ids.csv".format(EXAMPLE_DIRNAME),index_col=0, nrows=2000)
 		NROWS = len(df)
 		group_ids_full = df["group_id"]
 		group_ids = group_ids_full.unique()
@@ -105,4 +105,4 @@ if __name__ == '__main__':
 		outpath_rgft = SUMMARY_PER_DS.format(dataset_path + 'results_by_susbsets/', "rgft", 'br', '1_subs_{}_{}'.format(args.index_to_start_run, args.nline_to_run))
 
 		print(args.index_to_start_run, args.nline_to_run)
-		index_ll_and_features(dataset_path, outpath_prune, outpath_rgft, args.index_to_start_run, args.nline_to_run, args.nrows_total)
+		index_ll_and_features(dataset_path, outpath_prune, outpath_rgft, args.index_to_start_run, args.nline_to_run, args.nrows_total_in_csv)
