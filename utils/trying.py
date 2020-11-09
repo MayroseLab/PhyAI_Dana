@@ -80,15 +80,15 @@ if __name__ == '__main__':
 	args = parser.parse_args()
 
 	if not args.index_to_start_run:
-		upto_row = 182600
-		df = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/{}newicks_step1.csv".format(EXAMPLE_DIRNAME),index_col=0, nrows=upto_row)
+		fromrow = 182600
+		df = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/{}newicks_step1.csv".format(EXAMPLE_DIRNAME),index_col=0, skiprows=[i for i in range(1,fromrow)])
 
 		for i, row in df.iterrows():
 			ind = row.name
 			g_id = ind.split(",")[0]
 			print(ind, ":", g_id)
 			df.loc[ind, "group_id"] = g_id
-		df.to_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/{}newicks_step1_with_ids_upto_row{}.csv".format(EXAMPLE_DIRNAME, upto_row))
+		df.to_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/{}newicks_step1_with_ids_from_row{}.csv".format(EXAMPLE_DIRNAME, fromrow))
 		exit()
 		NROWS = len(df)
 		#df = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/example404/newicks_step1_with_ids.csv",index_col=1)
