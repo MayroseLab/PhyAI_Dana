@@ -81,7 +81,7 @@ if __name__ == '__main__':
 
 	if not args.index_to_start_run:
 		upto_row = 94900
-		df = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/{}newicks_step1.csv".format(EXAMPLE_DIRNAME),index_col=1, nrows=upto_row)
+		df = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/{}newicks_step1.csv".format(EXAMPLE_DIRNAME),index_col=0, nrows=upto_row)
 
 		for i, row in df.iterrows():
 			ind = row.name
