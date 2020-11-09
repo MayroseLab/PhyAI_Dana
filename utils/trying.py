@@ -67,7 +67,7 @@ def submit_job_ll(istart, nlines, NROWS):
 
 	qsub_cmd = get_job_qsub_command(job_name=job_name,
 									command=cmd,
-									error_files_path=DATA_PATH + "example404/error_files/")
+									error_files_path=DATA_PATH + EXAMPLE_DIRNAME +"error_files/")
 	os.system(qsub_cmd)
 
 
