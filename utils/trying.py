@@ -11,7 +11,7 @@ from execute_programs.SPR_move import call_raxml_mem
 
 
 
-EXAMPLE_DIRNAME = 'example493/'
+EXAMPLE_DIRNAME = 'example403/'
 
 
 def index_ll_and_features(ds_path, outpath_prune, outpath_rgft, istart, nlines, NROWS):
