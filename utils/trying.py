@@ -11,7 +11,7 @@ from execute_programs.SPR_move import call_raxml_mem
 
 
 
-EXAMPLE_DIRNAME = 'example403/'
+EXAMPLE_DIRNAME = 'example493/'
 
 
 def index_ll_and_features(ds_path, outpath_prune, outpath_rgft, istart, nlines, NROWS):
@@ -79,24 +79,9 @@ if __name__ == '__main__':
 	parser.add_argument('--nros_total_in_csv', '-nrows_total', default=False)
 	args = parser.parse_args()
 
-	#df1 = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/example403/newicks_step1_with_ids_upto_row182600.csv")
-	#df2 = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/example403/newicks_step1_with_ids_from_row182600.csv")
-	#pd.concat([df1,df2]).to_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/example493/newicks_step1_with_ids.csv")
-	#exit()
 	if not args.index_to_start_run:
-		fromrow = 94900
-		df = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/{}newicks_step1.csv".format(EXAMPLE_DIRNAME),index_col=0, skiprows=[i for i in range(1,fromrow)])
-
-		for i, row in df.iterrows():
-			ind = row.name
-			g_id = ind.split(",")[0]
-			print(ind, ":", g_id)
-			df.loc[ind, "group_id"] = g_id
-		df.to_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/{}newicks_step1_with_ids_from_row{}.csv".format(EXAMPLE_DIRNAME, fromrow))
-		exit()
-
+		df = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/{}newicks_step1_with_ids.csv".format(EXAMPLE_DIRNAME),index_col=1, nrows=10000)
 		NROWS = len(df)
-		df = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/{}newicks_step1_with_ids.csv".format(EXAMPLE_DIRNAME),index_col=1)
 		group_ids_full = df["group_id"]
 		group_ids = group_ids_full.unique()
 		for group in group_ids[:4]:                        # todo: run the rest after manual checking (replace abovelines with read csv)
