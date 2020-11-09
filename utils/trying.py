@@ -132,10 +132,8 @@ if __name__ == '__main__':
 	for group in group_ids:
 		s = df.index[df["group_id"] == group].tolist()
 
-		outpath_prune = pd.read_csv(SUMMARY_PER_DS.format(dataset_path + 'results_by_susbsets/', "prune", 'br',
-														  '1_subs_{}_{}'.format(s[0], len(s))))
-		outpath_rgft = pd.read_csv(SUMMARY_PER_DS.format(dataset_path + 'results_by_susbsets/', "rgft", 'br',
-														 '1_subs_{}_{}'.format(s[0], len(s))))
+		outpath_prune = pd.read_csv(SUMMARY_PER_DS.format(dataset_path + 'results_by_susbsets/', "prune", 'br','1_subs_{}_{}'.format(s[0], len(s))))
+		outpath_rgft = pd.read_csv(SUMMARY_PER_DS.format(dataset_path + 'results_by_susbsets/', "rgft", 'br','1_subs_{}_{}'.format(s[0], len(s))))
 		df_merged_prune = pd.concat([df_merged_prune, outpath_prune], ignore_index=True)
 		df_merged_rgft = pd.concat([df_merged_rgft, outpath_rgft], ignore_index=True)
 	df_merged_prune.to_csv(SUMMARY_PER_DS.format(dataset_path, "prune", 'br', '1'))
