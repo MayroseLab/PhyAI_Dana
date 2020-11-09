@@ -103,7 +103,7 @@ def call_raxml_mem(tree_str, msa_tmpfile, rates, pinv, alpha, freq):
 									 freq="{{{0}}}".format("/".join(freq)))
 
 	# create tree file in memory and not in the storage:
-	tree_rampath = "/dev/shm/" + str(random.random()) + "tree"  # the var is the str: tmp{dir_suffix}
+	tree_rampath = "/dev/shm/" + str(random.random())  + str(random.random()) + "tree"  # the var is the str: tmp{dir_suffix}
 
 	try:
 		with open(tree_rampath, "w") as fpw:
@@ -182,7 +182,8 @@ def all_SPR(ds_path, outpath, tree=None, rewrite_phylip=False):
 		msa_str = ''
 
 		params_dict = (parse_phyml_stats_output(None, stats_filepath)) if ML_SOFTWARE_STARTING_TREE == 'phyml' else parse_raxmlNG_output(stats_filepath)
-		freq, rates, pinv, alpha = [params_dict["fA"], params_dict["fC"], params_dict["fG"], params_dict["fT"]], [params_dict["subAC"], params_dict["subAG"], params_dict["subAT"], params_dict["subCG"],params_dict["subCT"], params_dict["subGT"]], params_dict["pInv"], params_dict["gamma"]
+		# todo: uncomment :
+		#freq, rates, pinv, alpha = [params_dict["fA"], params_dict["fC"], params_dict["fG"], params_dict["fT"]], [params_dict["subAC"], params_dict["subAG"], params_dict["subAT"], params_dict["subCG"],params_dict["subCT"], params_dict["subGT"]], params_dict["pInv"], params_dict["gamma"]
 		df = pd.DataFrame()
 		for i, prune_node in enumerate(t_orig.iter_descendants("levelorder")):
 			prune_name = prune_node.name
@@ -204,16 +205,16 @@ def all_SPR(ds_path, outpath, tree=None, rewrite_phylip=False):
 					csvwriter = csv.writer(fpa)
 					csvwriter.writerow([ind, prune_name, rgft_name, rearr_tree_str])
 
-				ll_rearr, rtime = call_raxml_mem(rearr_tree_str, msa_rampath, rates, pinv, alpha, freq)
+				#ll_rearr, rtime = call_raxml_mem(rearr_tree_str, msa_rampath, rates, pinv, alpha, freq)   # todo: uncomment
 
-				df.loc[ind, "prune_name"], df.loc[ind, "rgft_name"] = prune_name, rgft_name
-				df.loc[ind, "time"] = rtime
-				df.loc[ind, "ll"] = ll_rearr
+				#df.loc[ind, "prune_name"], df.loc[ind, "rgft_name"] = prune_name, rgft_name   # todo: uncomment
+				#df.loc[ind, "time"] = rtime   # todo: uncomment
+				#df.loc[ind, "ll"] = ll_rearr   # todo: uncomment
 
 
-		df["orig_ds_ll"] = float(params_dict["ll"])
-		df.to_csv(outpath.format("prune"))
-		df.to_csv(outpath.format("rgft"))
+		#df["orig_ds_ll"] = float(params_dict["ll"])   # todo: uncomment
+		#df.to_csv(outpath.format("prune"))   # todo: uncomment
+		#df.to_csv(outpath.format("rgft"))   # todo: uncomment
 
 	except Exception as e:
 		print('could not complete the all_SPR function on dataset:', dataset_path, '\nError message:')
@@ -255,7 +256,7 @@ if __name__ == '__main__':
 					tree_str = fp.read().strip()
 				res = all_SPR(dataset_path, outpath, tree=tree_str, rewrite_phylip=args.rewrite_in_phylip)
 
-		collect_features(dataset_path, args.step_number, outpath.format("prune"), outpath.format("rgft"), args.tree_type)
+		#collect_features(dataset_path, args.step_number, outpath.format("prune"), outpath.format("rgft"), args.tree_type)   # todo: uncomment
 	else:
 		csv_path = SUMMARY_FILES_DIR + CHOSEN_DATASETS_FILENAME
 		res = traverse_data_dirs(create_SPR_job, csv_path, (args.index_to_start_run, args.nline_to_run), args.step_number, args.tree_type, args.rewrite_in_phylip, args.runover)
