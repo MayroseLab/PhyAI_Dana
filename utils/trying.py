@@ -11,15 +11,15 @@ from execute_programs.SPR_move import call_raxml_mem
 
 
 
-NROWS = 491100   #365400   #365380  ##491087
+EXAMPLE_DIRNAME = 'example493/'
 
 
-def index_ll_and_features(ds_path, outpath_prune, outpath_rgft, istart, nlines):
+def index_ll_and_features(ds_path, outpath_prune, outpath_rgft, istart, nlines, NROWS):
 	istart, nlines = int(istart)+1, int(nlines)
 	skp_lst = [i for i in range(1, istart)] if not istart == 0 else []
 	skp_lst2 = [i for i in range(istart+nlines, NROWS)]
 	skp_lst.extend(skp_lst2)
-	dfr = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/example404/newicks_step1.csv", index_col=0, skiprows=skp_lst)
+	dfr = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/{}newicks_step1.csv".format(EXAMPLE_DIRNAME), index_col=0, skiprows=skp_lst)
 
 	orig_ds_msa_file = ds_path + MSA_PHYLIP_FILENAME
 	stats_filepath = ds_path + PHYML_STATS_FILENAME.format('bionj')
@@ -60,10 +60,10 @@ def index_ll_and_features(ds_path, outpath_prune, outpath_rgft, istart, nlines):
 	return
 
 
-def submit_job_ll(istart, nlines):
+def submit_job_ll(istart, nlines, NROWS):
 	print("**************************************   ", str(istart), str(nlines))
 	job_name = "index_ll_large_dataset.sh"
-	cmd = "python " + CODE_PATH + "utils/trying.py -istart " + str(istart) + " -nlines " + str(nlines)
+	cmd = "python " + CODE_PATH + "utils/trying.py -istart " + str(istart) + " -nlines " + str(nlines) + " -nrows_total " + str(NROWS)
 
 	qsub_cmd = get_job_qsub_command(job_name=job_name,
 									command=cmd,
@@ -73,45 +73,44 @@ def submit_job_ll(istart, nlines):
 
 
 if __name__ == '__main__':
-
-	df = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/summary_files/with_preds_merged_20_1_example404_4200_ytransformed_exp_first.csv")
-	print((len(df)-len(df['pred'].unique()))/len(df))
-	#print(len(df[LABEL.format('merged')].unique()))
-	exit()
-	#df = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/summary_files/with_preds_merged_20_1_ml_minus1_set_4200_ytransformed_exp.csv")
-	#temp_df = df.sort_values(by='pred', ascending=False).reset_index()
-	#print(temp_df['d_ll_prune'].head(30), "\n")
-	#temp_df = df.sort_values(by='d_ll_merged', ascending=False).reset_index()
-	#print(temp_df['d_ll_prune'].head(30), "\n")
-
 	parser = argparse.ArgumentParser(description='perform all SPR moves')
 	parser.add_argument('--index_to_start_run', '-istart', default=False)
 	parser.add_argument('--nline_to_run', '-nlines', default=False)
+	parser.add_argument('--nros_total_in_csv', '-nrows_total', default=False)
 	args = parser.parse_args()
 
 	if not args.index_to_start_run:
-		dataset_path = DATA_PATH + 'example404/'
-		df = pd.read_csv(dataset_path + "newicks_step1_with_ids.csv",index_col=1)
+		df = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/{}newicks_step1.csv".format(EXAMPLE_DIRNAME),index_col=1)
+		for i, row in df.iterrows():
+			ind = row.name
+			g_id = ind.split(",")[0]
+			print(ind, ":", g_id)
+			df.loc[ind, "group_id"] = g_id
+		df.to_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/{}newicks_step1_with_ids.csv".format(EXAMPLE_DIRNAME))
 
+		NROWS = len(df)
+		#df = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/example404/newicks_step1_with_ids.csv",index_col=1)
 		group_ids_full = df["group_id"]
 		group_ids = group_ids_full.unique()
-		df_merged_prune, df_merged_rgft = pd.DataFrame(), pd.DataFrame()
-		for group in group_ids:
+		for group in group_ids[:4]:                        # todo: run the rest after manual checking (replace abovelines with read csv)
 			s = df.index[df["group_id"] == group].tolist()
+			submit_job_ll(s[0], len(s), NROWS)
 
+			'''
+			dataset_path = DATA_PATH + EXAMPLE_DIRNAME
 			outpath_prune = pd.read_csv(SUMMARY_PER_DS.format(dataset_path + 'results_by_susbsets/', "prune", 'br', '1_subs_{}_{}'.format(s[0], len(s))))
 			outpath_rgft = pd.read_csv(SUMMARY_PER_DS.format(dataset_path + 'results_by_susbsets/', "rgft", 'br','1_subs_{}_{}'.format(s[0], len(s))))
 			df_merged_prune = pd.concat([df_merged_prune, outpath_prune], ignore_index=True)
 			df_merged_rgft = pd.concat([df_merged_rgft, outpath_rgft], ignore_index=True)
 		df_merged_prune.to_csv(SUMMARY_PER_DS.format(dataset_path, "prune", 'br','1_test'))
 		df_merged_rgft.to_csv(SUMMARY_PER_DS.format(dataset_path, "rgft", 'br', '1_test'))
+		'''
 
 
-	#submit_job_ll(s[0], len(s))
 	else:
-		dataset_path = DATA_PATH + 'example404/'
+		dataset_path = DATA_PATH + EXAMPLE_DIRNAME
 		outpath_prune = SUMMARY_PER_DS.format(dataset_path + 'results_by_susbsets/', "prune", 'br', '1_subs_{}_{}'.format(args.index_to_start_run, args.nline_to_run))
 		outpath_rgft = SUMMARY_PER_DS.format(dataset_path + 'results_by_susbsets/', "rgft", 'br', '1_subs_{}_{}'.format(args.index_to_start_run, args.nline_to_run))
 
 		print(args.index_to_start_run, args.nline_to_run)
-		index_ll_and_features(dataset_path, outpath_prune, outpath_rgft, args.index_to_start_run, args.nline_to_run)
+		index_ll_and_features(dataset_path, outpath_prune, outpath_rgft, args.index_to_start_run, args.nline_to_run, args.nrows_total)
