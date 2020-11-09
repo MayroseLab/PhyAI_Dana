@@ -17,7 +17,7 @@ EXAMPLE_DIRNAME = 'example403/'
 def index_ll_and_features(ds_path, outpath_prune, outpath_rgft, istart, nlines, NROWS):
 	istart, nlines = int(istart)+1, int(nlines)
 	skp_lst = [i for i in range(1, istart)] if not istart == 0 else []
-	skp_lst2 = [i for i in range(istart+nlines, NROWS)]
+	skp_lst2 = [i for i in range(istart+nlines, int(NROWS))]
 	skp_lst.extend(skp_lst2)
 	dfr = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/{}newicks_step1.csv".format(EXAMPLE_DIRNAME), index_col=0, skiprows=skp_lst)
 
