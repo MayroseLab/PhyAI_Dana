@@ -71,13 +71,13 @@ def get_tree(ds_path, msa_file, rewrite_phylip, software=ML_SOFTWARE_STARTING_TR
 	if rewrite_phylip:
 		rewrite_in_phylip(msa_file)     # for one-time use on new ds
 
-	#tree_file_cp_no_internal = ds_path + PHYML_TREE_FILENAME.format(suf + "_no_internal") if software == 'phyml' else ds_path + RAXML_TREE_FILENAME + "_no_internal"
-	#if not os.path.exists(tree_file_cp_no_internal):
-	#	t_orig = PhyloTree(newick=tree_file, alignment=msa_file, alg_format="iphylip", format=1)
-	#	add_internal_names(tree_file, tree_file_cp_no_internal, t_orig)
-	#else:
-		#t_orig = PhyloTree(newick=tree_file, alignment=msa_file, alg_format="iphylip", format=3)
-	t_orig = PhyloTree(newick=tree_file, alignment=msa_file, alg_format="iphylip", format=1)
+	tree_file_cp_no_internal = ds_path + PHYML_TREE_FILENAME.format(suf + "_no_internal") if software == 'phyml' else ds_path + RAXML_TREE_FILENAME + "_no_internal"
+	if not os.path.exists(tree_file_cp_no_internal):
+		t_orig = PhyloTree(newick=tree_file, alignment=msa_file, alg_format="iphylip", format=1)
+		add_internal_names(tree_file, tree_file_cp_no_internal, t_orig)
+	else:
+		t_orig = PhyloTree(newick=tree_file, alignment=msa_file, alg_format="iphylip", format=3)
+	#t_orig = PhyloTree(newick=tree_file, alignment=msa_file, alg_format="iphylip", format=1)
 
 	return t_orig
 
@@ -207,6 +207,7 @@ def all_SPR(ds_path, outpath, tree=None, rewrite_phylip=False):
 
 				#ll_rearr, rtime = call_raxml_mem(rearr_tree_str, msa_rampath, rates, pinv, alpha, freq)   # todo: uncomment
 
+				#df.loc[ind, "prune_name"], df.loc[ind, "rgft_name"] = prune_name, rgft_name   # todo: uncomment
 				#df.loc[ind, "prune_name"], df.loc[ind, "rgft_name"] = prune_name, rgft_name   # todo: uncomment
 				#df.loc[ind, "time"] = rtime   # todo: uncomment
 				#df.loc[ind, "ll"] = ll_rearr   # todo: uncomment
