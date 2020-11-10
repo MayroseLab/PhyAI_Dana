@@ -122,7 +122,7 @@ if __name__ == '__main__':
 	parser.add_argument('--nrows_total_in_csv', '-nrows_total', default=False)
 	args = parser.parse_args()
 
-	'''
+	#'''
 	dataset_path = DATA_PATH + EXAMPLE_DIRNAME
 	df = pd.read_csv(dataset_path + "newicks_step1_with_ids.csv")  # -, index_col=1)
 
@@ -139,7 +139,7 @@ if __name__ == '__main__':
 	df_merged_prune.to_csv(SUMMARY_PER_DS.format(dataset_path, "prune", 'br', '1'))
 	df_merged_rgft.to_csv(SUMMARY_PER_DS.format(dataset_path, "rgft", 'br', '1'))
 	exit()
-	'''
+	#'''
 	if not args.index_to_start_run:
 		'''
 		df = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/{}newicks_step1.csv".format(EXAMPLE_DIRNAME),index_col=0)
