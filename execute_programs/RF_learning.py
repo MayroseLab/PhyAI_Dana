@@ -353,8 +353,6 @@ def parse_relevant_summaries_for_learning(df_orig, step_number, tree_type='bionj
 		step_number = "_".join(splt[1:]) if "_" in step_number else "1"
 
 	ds_path_init = df_orig.iloc[0]["path"]
-	print(SUMMARY_PER_DS.format(ds_path_init, "prune", OPT_TYPE, step_number))
-	exit()
 	cols1 = list(pd.read_csv(SUMMARY_PER_DS.format(ds_path_init, "prune", OPT_TYPE, step_number)))
 	cols2 = list(pd.read_csv(SUMMARY_PER_DS.format(ds_path_init, "rgft", OPT_TYPE, step_number)))
 	cols1.insert(1, "path")
@@ -369,6 +367,8 @@ def parse_relevant_summaries_for_learning(df_orig, step_number, tree_type='bionj
 		ds_path = ds_path if tree_type == 'bionj' else ds_path + RANDOM_TREE_DIRNAME  # if == 'random
 		suf = "bionj" if tree_type == 'bionj' else OPT_TYPE
 		starting_tree = ds_path + PHYML_TREE_FILENAME.format(suf) if ML_SOFTWARE_STATING_TREE == 'phyml' else ds_path + RAXML_TREE_FILENAME
+		if "pred" in step_number:
+			starting_tree = ds_path + step_number + '.txt'
 		if not os.path.exists(starting_tree):
 			continue   # at least untill I finish debugging the failed ~150ds
 		ds_tbl = get_total_branch_lengths(starting_tree)
