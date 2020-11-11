@@ -122,7 +122,7 @@ if __name__ == '__main__':
 	parser.add_argument('--nrows_total_in_csv', '-nrows_total', default=False)
 	args = parser.parse_args()
 
-	#'''
+	'''
 	dataset_path = DATA_PATH + EXAMPLE_DIRNAME
 	df = pd.read_csv(dataset_path + "newicks_step1_with_ids.csv")  # -, index_col=1)
 

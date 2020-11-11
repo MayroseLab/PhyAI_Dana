@@ -69,6 +69,8 @@ def collect_features(ds_path, step_number, outpath_prune, outpath_rgft, tree_typ
 
 	suf = "bionj" if tree_type == 'bionj' else 'br'  # if tree_type="random"
 	tree_file = ds_path + PHYML_TREE_FILENAME.format(suf) if ML_SOFTWARE_STATING_TREE == 'phyml' else ds_path + RAXML_TREE_FILENAME
+	if "pred" in step_number:
+		tree_file = ds_path + step_number  + '.txt'
 	features_prune_dicts_dict = calc_leaves_features(tree_file,"prune")
 
 	for i, row in dfr.iterrows():
