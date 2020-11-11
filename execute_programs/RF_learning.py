@@ -353,6 +353,8 @@ def parse_relevant_summaries_for_learning(df_orig, step_number, tree_type='bionj
 		step_number = "_".join(splt[1:]) if "_" in step_number else "1"
 
 	ds_path_init = df_orig.iloc[0]["path"]
+	print(SUMMARY_PER_DS.format(ds_path_init, "prune", OPT_TYPE, step_number))
+	exit()
 	cols1 = list(pd.read_csv(SUMMARY_PER_DS.format(ds_path_init, "prune", OPT_TYPE, step_number)))
 	cols2 = list(pd.read_csv(SUMMARY_PER_DS.format(ds_path_init, "rgft", OPT_TYPE, step_number)))
 	cols1.insert(1, "path")
