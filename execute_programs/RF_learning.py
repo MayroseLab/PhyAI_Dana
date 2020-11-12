@@ -31,7 +31,7 @@ FIGURES = False
 
 FIRST_ON_RAND = False
 FIRST_ON_SEC = False           # temp for running 1 on 2
-FEATURE_SELECTION = True       # temp for running feature selection
+FEATURE_SELECTION = False       # temp for running feature selection
 SATURATION = False             # temp to asses saturation
 
 N_DATASETS = 4200    # [1500,5858]
@@ -536,7 +536,7 @@ if __name__ == '__main__':
 	features_to_drop = []
 
 	########################
-	'''
+	#'''
 	val = args.validation_set
 	suf = "_{st}_{valtype}".format(st=st, valtype=val) if val and not FIRST_ON_SEC else "_1st_on_2nd" if val else "_{}".format(st)
 	ifsaturation = "" if not SATURATION else "_" + str(N_DATASETS)
@@ -581,3 +581,4 @@ if __name__ == '__main__':
 			res_dict = extract_scores_dict({}, df_datasets)
 		df_datasets = print_and_index_results(df_datasets, res_dict, move_type, args.scale_score, [f])
 		df_datasets.to_csv(csv_with_scores)
+	#'''
