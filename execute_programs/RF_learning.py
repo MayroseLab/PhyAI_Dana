@@ -536,7 +536,7 @@ if __name__ == '__main__':
 	features_to_drop = []
 
 	########################
-	#'''
+	'''
 	val = args.validation_set
 	suf = "_{st}_{valtype}".format(st=st, valtype=val) if val and not FIRST_ON_SEC else "_1st_on_2nd" if val else "_{}".format(st)
 	ifsaturation = "" if not SATURATION else "_" + str(N_DATASETS)
@@ -567,19 +567,13 @@ if __name__ == '__main__':
 			features_to_drop.append(sorted_features[-1])
 			print("**dropped features:", features_to_drop)
 	
-	'''  #
-	### temp - one/two-features analysis
-	suf = "_{}".format(st)
-	ifsaturation = "" if not SATURATION else "_" + str(N_DATASETS)
-	ifrank = "" if not args.transform_target else "_ytransformed"
-	suf += ifsaturation + ifrank
-	suf += "_{}_maxd".format(str(MAX_DEPTH))
-
-	for f in features:
+	'''
+	### temp - one-feature analysis
+	for i,f in enumerate(features)[2:]:
 		print("***", f)
-		csv_with_scores = dirpath + SCORES_PER_DS.format(str(len(f)) + "_" + f)
+		csv_with_scores = dirpath + SCORES_PER_DS.format(f + '_' +str(i+3))
 		if not os.path.exists(csv_with_scores):
-			res_dict, df_out = cross_validation_RF(df_learning, move_type, [f], trans=args.transform_target, validation_set=val, random=args.score_for_random, scale_score=args.scale_score)
+			res_dict, df_out = cross_validation_RF(df_learning, move_type, [f], trans=args.transform_target, validation_set=None, random=args.score_for_random, scale_score=args.scale_score)
 			df_out.to_csv(dirpath + DATA_WITH_PREDS.format(str(len(f)) + "_" + f))
 			df_datasets = df_orig[df_orig["path"].isin(df_out["path"].unique())]
 		else:
@@ -587,20 +581,3 @@ if __name__ == '__main__':
 			res_dict = extract_scores_dict({}, df_datasets)
 		df_datasets = print_and_index_results(df_datasets, res_dict, move_type, args.scale_score, [f])
 		df_datasets.to_csv(csv_with_scores)
-
-	#for pair in combinations(features, r=2):
-	#	first_f = pair[0]
-	#	second_f = pair[1]
-	#	print("***", first_f, "," ,second_f)
-	#	csv_with_scores = dirpath + SCORES_PER_DS.format(str(len(features)) + suf + "_" + first_f + "_" + second_f)
-	#	if not os.path.exists(csv_with_scores):
-	#		print("XXXXXXXXXXX")
-	#		res_dict, df_out = cross_validation_RF(df_learning, move_type, [first_f, second_f], trans=args.transform_target, validation_set=val, random=args.score_for_random, scale_score=args.scale_score)
-	#		df_datasets = df_orig[df_orig["path"].isin(df_out["path"].unique())]
-	#		df_out.to_csv(dirpath + DATA_WITH_PREDS.format(str(len(features)) + suf))
-	#	else:
-	#		df_datasets = pd.read_csv(csv_with_scores)
-	#		res_dict = extract_scores_dict({}, df_datasets)
-	#	df_datasets = print_and_index_results(df_datasets, res_dict, move_type, args.scale_score, [first_f, second_f])
-	#	df_datasets.to_csv(csv_with_scores)
-	#'''
