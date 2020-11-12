@@ -569,9 +569,9 @@ if __name__ == '__main__':
 	
 	'''
 	### temp - one-feature analysis
-	for i,f in enumerate(features)[2:]:
+	for i,f in enumerate(features[2:]):
 		print("***", f)
-		csv_with_scores = dirpath + SCORES_PER_DS.format(f + '_' +str(i+3))
+		csv_with_scores = dirpath + SCORES_PER_DS.format(f + '_' +str(i+1))
 		if not os.path.exists(csv_with_scores):
 			res_dict, df_out = cross_validation_RF(df_learning, move_type, [f], trans=args.transform_target, validation_set=None, random=args.score_for_random, scale_score=args.scale_score)
 			df_out.to_csv(dirpath + DATA_WITH_PREDS.format(str(len(f)) + "_" + f))
