@@ -181,17 +181,20 @@ def apply_RFR(df_test, df_train, move_type, features, cv=True):
 	X_train, y_train = split_features_label(df_train, move_type, features)
 	X_test, y_test = split_features_label(df_test, move_type, features)
 
-	model_path = SUMMARY_FILES_DIR + 'finalized_model_joblib.sav'
-	if not os.path.exists(model_path) and not cv:
-		regressor = RandomForestRegressor(n_estimators=N_ESTIMATORS, max_features=0.33,  oob_score=True).fit(X_train, y_train) # 0.33=nfeatures/3. this is like in R (instead of default=n_features)
-		# save the model to disk
-		joblib.dump(regressor, open(model_path, 'wb'))
+	if not FEATURE_SELECTION:
+		model_path = SUMMARY_FILES_DIR + 'finalized_model_joblib.sav'
+		if not os.path.exists(model_path) and not cv:
+			regressor = RandomForestRegressor(n_estimators=N_ESTIMATORS, max_features=0.33,  oob_score=True).fit(X_train, y_train) # 0.33=nfeatures/3. this is like in R (instead of default=n_features)
+			# save the model to disk
+			joblib.dump(regressor, open(model_path, 'wb'))
+		model = joblib.load(model_path)
+	else:
+		model = RandomForestRegressor(n_estimators=N_ESTIMATORS, max_features=0.33, oob_score=True).fit(X_train, y_train)
 
-	loaded_model = joblib.load(model_path)
-	y_pred = loaded_model.predict(X_test)
+	y_pred = model.predict(X_test)
 	
-	oob = loaded_model.oob_score_
-	f_imp = loaded_model.feature_importances_
+	oob = model.oob_score_
+	f_imp = model.feature_importances_
 
 	all_DTs_pred = []
 
