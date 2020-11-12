@@ -22,9 +22,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="04f6d22b-03c8-46f3-ac77-b58c4e95d95d" name="Default Changelist" comment="run additional large datasets">
+    <list default="true" id="04f6d22b-03c8-46f3-ac77-b58c4e95d95d" name="Default Changelist" comment="-">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/summary/score_last_step.py" beforeDir="false" afterPath="$PROJECT_DIR$/summary/score_last_step.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/execute_programs/RF_learning.py" beforeDir="false" afterPath="$PROJECT_DIR$/execute_programs/RF_learning.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,7 +92,7 @@
       <recent name="D:\Users\Administrator\Dropbox\PhyloAI\code\execute_programs" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.trying (1)">
+  <component name="RunManager" selected="Python.RF_learning">
     <configuration name="RAxML_NG" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="code" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -129,7 +129,7 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/execute_programs/RF_learning.py" />
-      <option name="PARAMETERS" value="-st 1 -mt merged -trans exp -sscore -val example" />
+      <option name="PARAMETERS" value="-st exampleSphaero_best_pred_st2 -mt merged -sscore" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -173,7 +173,7 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/execute_programs/SPR_move.py" />
-      <option name="PARAMETERS" value="-st 2 -r -ds /groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/exampleSphaero/" />
+      <option name="PARAMETERS" value="-st best_pred_st2 -r -ds /groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/exampleSphaero/" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -217,7 +217,7 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/summary/collect_SPR_features.py" />
-      <option name="PARAMETERS" value="-st 1 -ds /groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/example/" />
+      <option name="PARAMETERS" value="-st best_pred_st2 -ds /groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/exampleSphaero/" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -349,6 +349,28 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/utils/trying.py" />
+      <option name="PARAMETERS" value="-istart 0 -nlines 4 -nrows_total 12160" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="trying" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="code" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/utils" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/utils/trying.py" />
       <option name="PARAMETERS" value="-istart 1 -nlines 3" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -433,10 +455,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.trying (1)" />
+        <item itemvalue="Python.trying" />
         <item itemvalue="Python.score_last_step" />
         <item itemvalue="Python.trying" />
         <item itemvalue="Python.trying_copy" />
-        <item itemvalue="Python.whore" />
       </list>
     </recent_temporary>
   </component>
@@ -472,180 +494,8 @@
       <workItem from="1604341673288" duration="48535000" />
       <workItem from="1604511759909" duration="2350000" />
       <workItem from="1604609938406" duration="18434000" />
-      <workItem from="1604907237742" duration="12443000" />
-    </task>
-    <task id="LOCAL-01238" summary="handeling large csv - devide to subsets">
-      <created>1604599136642</created>
-      <option name="number" value="01238" />
-      <option name="presentableId" value="LOCAL-01238" />
-      <option name="project" value="LOCAL" />
-      <updated>1604599136642</updated>
-    </task>
-    <task id="LOCAL-01239" summary="handeling large csv - devide to subsets">
-      <created>1604600842121</created>
-      <option name="number" value="01239" />
-      <option name="presentableId" value="LOCAL-01239" />
-      <option name="project" value="LOCAL" />
-      <updated>1604600842121</updated>
-    </task>
-    <task id="LOCAL-01240" summary="handeling large csv - devide to subsets">
-      <created>1604600889623</created>
-      <option name="number" value="01240" />
-      <option name="presentableId" value="LOCAL-01240" />
-      <option name="project" value="LOCAL" />
-      <updated>1604600889623</updated>
-    </task>
-    <task id="LOCAL-01241" summary="handeling large csv - devide to subsets">
-      <created>1604601045184</created>
-      <option name="number" value="01241" />
-      <option name="presentableId" value="LOCAL-01241" />
-      <option name="project" value="LOCAL" />
-      <updated>1604601045184</updated>
-    </task>
-    <task id="LOCAL-01242" summary="handeling large csv - devide to subsets">
-      <created>1604603539006</created>
-      <option name="number" value="01242" />
-      <option name="presentableId" value="LOCAL-01242" />
-      <option name="project" value="LOCAL" />
-      <updated>1604603539006</updated>
-    </task>
-    <task id="LOCAL-01243" summary="handeling large csv - devide to subsets">
-      <created>1604604212279</created>
-      <option name="number" value="01243" />
-      <option name="presentableId" value="LOCAL-01243" />
-      <option name="project" value="LOCAL" />
-      <updated>1604604212279</updated>
-    </task>
-    <task id="LOCAL-01244" summary="handeling large csv - devide to subsets">
-      <created>1604604361574</created>
-      <option name="number" value="01244" />
-      <option name="presentableId" value="LOCAL-01244" />
-      <option name="project" value="LOCAL" />
-      <updated>1604604361574</updated>
-    </task>
-    <task id="LOCAL-01245" summary="handeling large csv - devide to subsets">
-      <created>1604604974524</created>
-      <option name="number" value="01245" />
-      <option name="presentableId" value="LOCAL-01245" />
-      <option name="project" value="LOCAL" />
-      <updated>1604604974524</updated>
-    </task>
-    <task id="LOCAL-01246" summary="handeling large csv - devide to subsets">
-      <created>1604605813237</created>
-      <option name="number" value="01246" />
-      <option name="presentableId" value="LOCAL-01246" />
-      <option name="project" value="LOCAL" />
-      <updated>1604605813237</updated>
-    </task>
-    <task id="LOCAL-01247" summary="handeling large csv - devide to subsets">
-      <created>1604605984318</created>
-      <option name="number" value="01247" />
-      <option name="presentableId" value="LOCAL-01247" />
-      <option name="project" value="LOCAL" />
-      <updated>1604605984318</updated>
-    </task>
-    <task id="LOCAL-01248" summary="handeling large csv - devide to subsets">
-      <created>1604606560957</created>
-      <option name="number" value="01248" />
-      <option name="presentableId" value="LOCAL-01248" />
-      <option name="project" value="LOCAL" />
-      <updated>1604606560957</updated>
-    </task>
-    <task id="LOCAL‎01249" summary="handeling large csv - devide to subsets">
-      <created>1604658828862</created>
-      <option name="number" value="LOCAL‎01249" />
-      <option name="presentableId" value="LOCAL‎01249" />
-      <updated>1604658828862</updated>
-    </task>
-    <task id="LOCAL‎01250" summary="handeling large csv - devide to subsets">
-      <created>1604660575035</created>
-      <option name="number" value="LOCAL‎01250" />
-      <option name="presentableId" value="LOCAL‎01250" />
-      <updated>1604660575035</updated>
-    </task>
-    <task id="LOCAL‎01251" summary="handeling large csv - devide to subsets">
-      <created>1604661686011</created>
-      <option name="number" value="LOCAL‎01251" />
-      <option name="presentableId" value="LOCAL‎01251" />
-      <updated>1604661686011</updated>
-    </task>
-    <task id="LOCAL‎01252" summary="handeling large csv - devide to subsets">
-      <created>1604662313945</created>
-      <option name="number" value="LOCAL‎01252" />
-      <option name="presentableId" value="LOCAL‎01252" />
-      <updated>1604662313945</updated>
-    </task>
-    <task id="LOCAL‎01253" summary="handeling large csv - devide to subsets">
-      <created>1604676612394</created>
-      <option name="number" value="LOCAL‎01253" />
-      <option name="presentableId" value="LOCAL‎01253" />
-      <updated>1604676612394</updated>
-    </task>
-    <task id="LOCAL‎01254" summary="handeling large csv - devide to subsets">
-      <created>1604678894644</created>
-      <option name="number" value="LOCAL‎01254" />
-      <option name="presentableId" value="LOCAL‎01254" />
-      <updated>1604678894644</updated>
-    </task>
-    <task id="LOCAL‎01255" summary="handeling large csv - devide to subsets">
-      <created>1604679017128</created>
-      <option name="number" value="LOCAL‎01255" />
-      <option name="presentableId" value="LOCAL‎01255" />
-      <updated>1604679017128</updated>
-    </task>
-    <task id="LOCAL‎01256" summary="handeling large csv - devide to subsets">
-      <created>1604679688603</created>
-      <option name="number" value="LOCAL‎01256" />
-      <option name="presentableId" value="LOCAL‎01256" />
-      <updated>1604679688603</updated>
-    </task>
-    <task id="LOCAL‎01257" summary="handeling large csv - devide to subsets">
-      <created>1604685970052</created>
-      <option name="number" value="LOCAL‎01257" />
-      <option name="presentableId" value="LOCAL‎01257" />
-      <updated>1604685970052</updated>
-    </task>
-    <task id="LOCAL‎01258" summary="handeling large csv - devide to subsets">
-      <created>1604686102478</created>
-      <option name="number" value="LOCAL‎01258" />
-      <option name="presentableId" value="LOCAL‎01258" />
-      <updated>1604686102478</updated>
-    </task>
-    <task id="LOCAL‎01259" summary="-">
-      <created>1604686588225</created>
-      <option name="number" value="LOCAL‎01259" />
-      <option name="presentableId" value="LOCAL‎01259" />
-      <updated>1604686588225</updated>
-    </task>
-    <task id="LOCAL‎01260" summary="-">
-      <created>1604688045316</created>
-      <option name="number" value="LOCAL‎01260" />
-      <option name="presentableId" value="LOCAL‎01260" />
-      <updated>1604688045316</updated>
-    </task>
-    <task id="LOCAL‎01261" summary="-">
-      <created>1604688138904</created>
-      <option name="number" value="LOCAL‎01261" />
-      <option name="presentableId" value="LOCAL‎01261" />
-      <updated>1604688138904</updated>
-    </task>
-    <task id="LOCAL‎01262" summary="-">
-      <created>1604688331610</created>
-      <option name="number" value="LOCAL‎01262" />
-      <option name="presentableId" value="LOCAL‎01262" />
-      <updated>1604688331610</updated>
-    </task>
-    <task id="LOCAL‎01263" summary="-">
-      <created>1604689173153</created>
-      <option name="number" value="LOCAL‎01263" />
-      <option name="presentableId" value="LOCAL‎01263" />
-      <updated>1604689173153</updated>
-    </task>
-    <task id="LOCAL‎01264" summary="-">
-      <created>1604690220039</created>
-      <option name="number" value="LOCAL‎01264" />
-      <option name="presentableId" value="LOCAL‎01264" />
-      <updated>1604690220039</updated>
+      <workItem from="1604907237742" duration="35164000" />
+      <workItem from="1605167427799" duration="1724000" />
     </task>
     <task id="LOCAL‎01265" summary="-">
       <created>1604690719569</created>
@@ -797,7 +647,189 @@
       <option name="project" value="LOCAL" />
       <updated>1604920565912</updated>
     </task>
-    <option name="localTasksCounter" value="1287" />
+    <task id="LOCAL-01287" summary="run additional large datasets">
+      <created>1604920891881</created>
+      <option name="number" value="01287" />
+      <option name="presentableId" value="LOCAL-01287" />
+      <option name="project" value="LOCAL" />
+      <updated>1604920891881</updated>
+    </task>
+    <task id="LOCAL-01288" summary="-">
+      <created>1604921277155</created>
+      <option name="number" value="01288" />
+      <option name="presentableId" value="LOCAL-01288" />
+      <option name="project" value="LOCAL" />
+      <updated>1604921277155</updated>
+    </task>
+    <task id="LOCAL-01289" summary="run additional large datasets">
+      <created>1604921307140</created>
+      <option name="number" value="01289" />
+      <option name="presentableId" value="LOCAL-01289" />
+      <option name="project" value="LOCAL" />
+      <updated>1604921307140</updated>
+    </task>
+    <task id="LOCAL-01290" summary="run additional large datasets">
+      <created>1604923638619</created>
+      <option name="number" value="01290" />
+      <option name="presentableId" value="LOCAL-01290" />
+      <option name="project" value="LOCAL" />
+      <updated>1604923638619</updated>
+    </task>
+    <task id="LOCAL-01291" summary="run additional large datasets">
+      <created>1604924006278</created>
+      <option name="number" value="01291" />
+      <option name="presentableId" value="LOCAL-01291" />
+      <option name="project" value="LOCAL" />
+      <updated>1604924006278</updated>
+    </task>
+    <task id="LOCAL-01292" summary="run additional large datasets">
+      <created>1604929869192</created>
+      <option name="number" value="01292" />
+      <option name="presentableId" value="LOCAL-01292" />
+      <option name="project" value="LOCAL" />
+      <updated>1604929869192</updated>
+    </task>
+    <task id="LOCAL-01293" summary="run additional large datasets">
+      <created>1604930526807</created>
+      <option name="number" value="01293" />
+      <option name="presentableId" value="LOCAL-01293" />
+      <option name="project" value="LOCAL" />
+      <updated>1604930526807</updated>
+    </task>
+    <task id="LOCAL-01294" summary="run additional large datasets">
+      <created>1604930649595</created>
+      <option name="number" value="01294" />
+      <option name="presentableId" value="LOCAL-01294" />
+      <option name="project" value="LOCAL" />
+      <updated>1604930649595</updated>
+    </task>
+    <task id="LOCAL-01295" summary="run additional large datasets">
+      <created>1604930794215</created>
+      <option name="number" value="01295" />
+      <option name="presentableId" value="LOCAL-01295" />
+      <option name="project" value="LOCAL" />
+      <updated>1604930794215</updated>
+    </task>
+    <task id="LOCAL-01296" summary="run additional large datasets">
+      <created>1604933422184</created>
+      <option name="number" value="01296" />
+      <option name="presentableId" value="LOCAL-01296" />
+      <option name="project" value="LOCAL" />
+      <updated>1604933422184</updated>
+    </task>
+    <task id="LOCAL-01297" summary="run additional large datasets">
+      <created>1604937415163</created>
+      <option name="number" value="01297" />
+      <option name="presentableId" value="LOCAL-01297" />
+      <option name="project" value="LOCAL" />
+      <updated>1604937415163</updated>
+    </task>
+    <task id="LOCAL-01298" summary="run forward">
+      <created>1604937442340</created>
+      <option name="number" value="01298" />
+      <option name="presentableId" value="LOCAL-01298" />
+      <option name="project" value="LOCAL" />
+      <updated>1604937442340</updated>
+    </task>
+    <task id="LOCAL-01299" summary="run forward">
+      <created>1604937520601</created>
+      <option name="number" value="01299" />
+      <option name="presentableId" value="LOCAL-01299" />
+      <option name="project" value="LOCAL" />
+      <updated>1604937520601</updated>
+    </task>
+    <task id="LOCAL-01300" summary="run forward">
+      <created>1604937741849</created>
+      <option name="number" value="01300" />
+      <option name="presentableId" value="LOCAL-01300" />
+      <option name="project" value="LOCAL" />
+      <updated>1604937741849</updated>
+    </task>
+    <task id="LOCAL-01301" summary="run forward">
+      <created>1604943354993</created>
+      <option name="number" value="01301" />
+      <option name="presentableId" value="LOCAL-01301" />
+      <option name="project" value="LOCAL" />
+      <updated>1604943354993</updated>
+    </task>
+    <task id="LOCAL-01302" summary="run forward">
+      <created>1604944711831</created>
+      <option name="number" value="01302" />
+      <option name="presentableId" value="LOCAL-01302" />
+      <option name="project" value="LOCAL" />
+      <updated>1604944711831</updated>
+    </task>
+    <task id="LOCAL-01303" summary="run forward">
+      <created>1604944999518</created>
+      <option name="number" value="01303" />
+      <option name="presentableId" value="LOCAL-01303" />
+      <option name="project" value="LOCAL" />
+      <updated>1604944999518</updated>
+    </task>
+    <task id="LOCAL-01304" summary="run forward">
+      <created>1604945106542</created>
+      <option name="number" value="01304" />
+      <option name="presentableId" value="LOCAL-01304" />
+      <option name="project" value="LOCAL" />
+      <updated>1604945106542</updated>
+    </task>
+    <task id="LOCAL-01305" summary="run forward">
+      <created>1604945290997</created>
+      <option name="number" value="01305" />
+      <option name="presentableId" value="LOCAL-01305" />
+      <option name="project" value="LOCAL" />
+      <updated>1604945290997</updated>
+    </task>
+    <task id="LOCAL-01306" summary="run forward">
+      <created>1604945521120</created>
+      <option name="number" value="01306" />
+      <option name="presentableId" value="LOCAL-01306" />
+      <option name="project" value="LOCAL" />
+      <updated>1604945521120</updated>
+    </task>
+    <task id="LOCAL‎01307" summary="-">
+      <created>1604947900231</created>
+      <option name="number" value="LOCAL‎01307" />
+      <option name="presentableId" value="LOCAL‎01307" />
+      <updated>1604947900231</updated>
+    </task>
+    <task id="LOCAL‎01308" summary="-">
+      <created>1604948768732</created>
+      <option name="number" value="LOCAL‎01308" />
+      <option name="presentableId" value="LOCAL‎01308" />
+      <updated>1604948768732</updated>
+    </task>
+    <task id="LOCAL‎01309" summary="-">
+      <created>1604955338503</created>
+      <option name="number" value="LOCAL‎01309" />
+      <option name="presentableId" value="LOCAL‎01309" />
+      <updated>1604955338503</updated>
+    </task>
+    <task id="LOCAL‎01310" summary="-">
+      <created>1604997623491</created>
+      <option name="number" value="LOCAL‎01310" />
+      <option name="presentableId" value="LOCAL‎01310" />
+      <updated>1604997623491</updated>
+    </task>
+    <task id="LOCAL‎01311" summary="-">
+      <created>1605088049486</created>
+      <option name="number" value="LOCAL‎01311" />
+      <option name="presentableId" value="LOCAL‎01311" />
+      <updated>1605088049486</updated>
+    </task>
+    <task id="LOCAL‎01312" summary="-">
+      <created>1605088489493</created>
+      <option name="number" value="LOCAL‎01312" />
+      <option name="presentableId" value="LOCAL‎01312" />
+      <updated>1605088489493</updated>
+    </task>
+    <task id="LOCAL‎01313" summary="-">
+      <created>1605112566248</created>
+      <option name="number" value="LOCAL‎01313" />
+      <option name="presentableId" value="LOCAL‎01313" />
+      <updated>1605112566248</updated>
+    </task>
+    <option name="localTasksCounter" value="1314" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -819,7 +851,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="debug - unknown error of raxml-ng (try using relpath instead of full path)&#10;SOLVED by unrooting??" />
     <MESSAGE value="debug - unknown error of raxml-ng&#10;SOLVED !" />
     <MESSAGE value="working scripts" />
     <MESSAGE value="use pickle to save the trained model" />
@@ -841,24 +872,25 @@
     <MESSAGE value="temp for large dataset - create SPRs, without computing ll, first. from iprune 476 (subset2)" />
     <MESSAGE value="handeling large csv - devide to subsets" />
     <MESSAGE value="temp for large dataset" />
-    <MESSAGE value="-" />
     <MESSAGE value="run additional larfe datasets" />
     <MESSAGE value="run additional large datasets" />
-    <option name="LAST_COMMIT_MESSAGE" value="run additional large datasets" />
+    <MESSAGE value="run forward" />
+    <MESSAGE value="-" />
+    <option name="LAST_COMMIT_MESSAGE" value="-" />
   </component>
   <component name="WindowStateProjectService">
     <state x="2570" y="233" key="#Menus_and_Toolbars" timestamp="1596705437758">
       <screen x="1920" y="0" width="1680" height="1010" />
     </state>
     <state x="2570" y="233" key="#Menus_and_Toolbars/0.0.1280.680/1920.0.1680.1010@1920.0.1680.1010" timestamp="1596705437758" />
-    <state x="317" y="144" width="1092" height="527" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1604658773723">
-      <screen x="0" y="0" width="1280" height="680" />
+    <state x="282" y="220" width="1092" height="527" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1604944012106">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="349" y="-836" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.680/103.-1050.1680.1010@103.-1050.1680.1010" timestamp="1603200421525" />
     <state x="2134" y="270" width="1092" height="527" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.680/1920.0.1680.1010@1920.0.1680.1010" timestamp="1601567381002" />
     <state x="2102" y="294" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1601802496685" />
     <state x="317" y="144" width="838" height="526" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.680@0.0.1280.680" timestamp="1604658773723" />
-    <state x="282" y="220" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1604603419279" />
+    <state x="282" y="220" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1604944012106" />
     <state x="390" y="142" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1603014818257">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
@@ -869,11 +901,11 @@
     <state x="2297" y="2" key="CommitChangelistDialog2/0.0.1280.680/1920.0.1680.1010@1920.0.1680.1010" timestamp="1596711385765" />
     <state x="2351" y="2" key="CommitChangelistDialog2/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1596616667226" />
     <state x="287" y="1" width="688" height="661" key="CommitChangelistDialog2/0.0.1280.680@0.0.1280.680" timestamp="1596609832645" />
-    <state x="140" y="142" width="1643" height="758" key="DiffContextDialog" timestamp="1604920363056">
+    <state x="140" y="142" width="1643" height="758" key="DiffContextDialog" timestamp="1604931855130">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="93" y="93" width="1095" height="495" key="DiffContextDialog/0.0.1280.680@0.0.1280.680" timestamp="1601977119599" />
-    <state x="140" y="142" width="1643" height="758" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1604920363056" />
+    <state x="140" y="142" width="1643" height="758" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1604931855130" />
     <state x="740" y="291" key="FileChooserDialogImpl" timestamp="1603616131784">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -881,50 +913,54 @@
     <state x="2659" y="328" key="FileChooserDialogImpl/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1601399002874" />
     <state x="493" y="190" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1602350905561" />
     <state x="740" y="291" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1603616131784" />
-    <state width="1877" height="264" key="GridCell.Tab.0.bottom" timestamp="1604918911315">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1877" height="92" key="GridCell.Tab.0.bottom" timestamp="1605105736876">
+      <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="795" height="104" key="GridCell.Tab.0.bottom/0.0.1280.680/103.-1050.1680.1010@0.0.1280.680" timestamp="1602511895239" />
+    <state width="1877" height="92" key="GridCell.Tab.0.bottom/0.0.1280.680/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1605105736876" />
+    <state width="1237" height="137" key="GridCell.Tab.0.bottom/0.0.1280.680/103.-1050.1680.1010@0.0.1280.680" timestamp="1605013457892" />
     <state width="1637" height="69" key="GridCell.Tab.0.bottom/0.0.1280.680/103.-1050.1680.1010@103.-1050.1680.1010" timestamp="1603202649838" />
     <state width="1237" height="41" key="GridCell.Tab.0.bottom/0.0.1280.680/1920.0.1680.1010@0.0.1280.680" timestamp="1600756956095" />
     <state width="1637" height="110" key="GridCell.Tab.0.bottom/0.0.1280.680/1920.0.1680.1010@1920.0.1680.1010" timestamp="1601814955222" />
     <state width="1237" height="143" key="GridCell.Tab.0.bottom/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1599666538450" />
     <state width="1347" height="184" key="GridCell.Tab.0.bottom/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1602768642279" />
-    <state width="1237" height="116" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1604730984192" />
-    <state width="1877" height="264" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1604918911315" />
-    <state width="1877" height="264" key="GridCell.Tab.0.center" timestamp="1604918911315">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1237" height="107" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1605012142849" />
+    <state width="1877" height="173" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1604945492788" />
+    <state width="1877" height="92" key="GridCell.Tab.0.center" timestamp="1605105736875">
+      <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="795" height="104" key="GridCell.Tab.0.center/0.0.1280.680/103.-1050.1680.1010@0.0.1280.680" timestamp="1602511895239" />
+    <state width="1877" height="92" key="GridCell.Tab.0.center/0.0.1280.680/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1605105736875" />
+    <state width="1237" height="137" key="GridCell.Tab.0.center/0.0.1280.680/103.-1050.1680.1010@0.0.1280.680" timestamp="1605013457892" />
     <state width="1637" height="69" key="GridCell.Tab.0.center/0.0.1280.680/103.-1050.1680.1010@103.-1050.1680.1010" timestamp="1603202649837" />
     <state width="1237" height="41" key="GridCell.Tab.0.center/0.0.1280.680/1920.0.1680.1010@0.0.1280.680" timestamp="1600756956095" />
     <state width="1637" height="110" key="GridCell.Tab.0.center/0.0.1280.680/1920.0.1680.1010@1920.0.1680.1010" timestamp="1601814955222" />
     <state width="1237" height="143" key="GridCell.Tab.0.center/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1599666538449" />
     <state width="1347" height="184" key="GridCell.Tab.0.center/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1602768642279" />
-    <state width="1237" height="116" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1604730984191" />
-    <state width="1877" height="264" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1604918911315" />
-    <state width="1877" height="264" key="GridCell.Tab.0.left" timestamp="1604918911314">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1237" height="107" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1605012142848" />
+    <state width="1877" height="173" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1604945492788" />
+    <state width="1877" height="92" key="GridCell.Tab.0.left" timestamp="1605105736874">
+      <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="795" height="104" key="GridCell.Tab.0.left/0.0.1280.680/103.-1050.1680.1010@0.0.1280.680" timestamp="1602511895238" />
+    <state width="1877" height="92" key="GridCell.Tab.0.left/0.0.1280.680/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1605105736874" />
+    <state width="1237" height="137" key="GridCell.Tab.0.left/0.0.1280.680/103.-1050.1680.1010@0.0.1280.680" timestamp="1605013457892" />
     <state width="1637" height="69" key="GridCell.Tab.0.left/0.0.1280.680/103.-1050.1680.1010@103.-1050.1680.1010" timestamp="1603202649837" />
     <state width="1237" height="41" key="GridCell.Tab.0.left/0.0.1280.680/1920.0.1680.1010@0.0.1280.680" timestamp="1600756956094" />
     <state width="1637" height="110" key="GridCell.Tab.0.left/0.0.1280.680/1920.0.1680.1010@1920.0.1680.1010" timestamp="1601814955221" />
     <state width="1237" height="143" key="GridCell.Tab.0.left/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1599666538449" />
     <state width="1347" height="184" key="GridCell.Tab.0.left/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1602768642278" />
-    <state width="1237" height="116" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1604730984191" />
-    <state width="1877" height="264" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1604918911314" />
-    <state width="1877" height="264" key="GridCell.Tab.0.right" timestamp="1604918911315">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1237" height="107" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1605012142848" />
+    <state width="1877" height="173" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1604945492788" />
+    <state width="1877" height="92" key="GridCell.Tab.0.right" timestamp="1605105736875">
+      <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
-    <state width="795" height="104" key="GridCell.Tab.0.right/0.0.1280.680/103.-1050.1680.1010@0.0.1280.680" timestamp="1602511895239" />
+    <state width="1877" height="92" key="GridCell.Tab.0.right/0.0.1280.680/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1605105736875" />
+    <state width="1237" height="137" key="GridCell.Tab.0.right/0.0.1280.680/103.-1050.1680.1010@0.0.1280.680" timestamp="1605013457892" />
     <state width="1637" height="69" key="GridCell.Tab.0.right/0.0.1280.680/103.-1050.1680.1010@103.-1050.1680.1010" timestamp="1603202649838" />
     <state width="1237" height="41" key="GridCell.Tab.0.right/0.0.1280.680/1920.0.1680.1010@0.0.1280.680" timestamp="1600756956095" />
     <state width="1637" height="110" key="GridCell.Tab.0.right/0.0.1280.680/1920.0.1680.1010@1920.0.1680.1010" timestamp="1601814955222" />
     <state width="1237" height="143" key="GridCell.Tab.0.right/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1599666538450" />
     <state width="1347" height="184" key="GridCell.Tab.0.right/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1602768642279" />
-    <state width="1237" height="116" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1604730984192" />
-    <state width="1877" height="264" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1604918911315" />
+    <state width="1237" height="107" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1605012142848" />
+    <state width="1877" height="173" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1604945492788" />
     <state width="1877" height="348" key="GridCell.Tab.1.bottom" timestamp="1604341659437">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -962,26 +998,28 @@
     <state x="2381" y="164" key="SettingsEditor/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1596616610627" />
     <state x="204" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1602501651365" />
     <state x="306" y="0" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1603809972823" />
-    <state x="494" y="223" key="Vcs.Push.Dialog.v2" timestamp="1604920567612">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="-1426" y="184" key="Vcs.Push.Dialog.v2" timestamp="1605112569384">
+      <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
+    <state x="-1426" y="184" key="Vcs.Push.Dialog.v2/0.0.1280.680/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1605112569384" />
     <state x="329" y="146" key="Vcs.Push.Dialog.v2/0.0.1280.680/103.-1050.1680.1010@0.0.1280.680" timestamp="1602511685167" />
     <state x="535" y="-833" key="Vcs.Push.Dialog.v2/0.0.1280.680/103.-1050.1680.1010@103.-1050.1680.1010" timestamp="1603202310902" />
     <state x="2352" y="245" key="Vcs.Push.Dialog.v2/0.0.1280.680/1920.0.1680.1010@1920.0.1680.1010" timestamp="1601817418173" />
     <state x="329" y="146" key="Vcs.Push.Dialog.v2/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1599667287383" />
     <state x="2414" y="252" key="Vcs.Push.Dialog.v2/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1602764904349" />
-    <state x="329" y="120" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1604731154758" />
-    <state x="494" y="223" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1604920567612" />
-    <state x="-10" y="0" width="1932" height="1051" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1604918800594">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="329" y="120" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1604997624981" />
+    <state x="494" y="223" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1604945522498" />
+    <state x="-1930" y="0" width="1932" height="1051" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1605087178793">
+      <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
+    <state x="-1930" y="0" width="1932" height="1051" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1280.680/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1605087178793" />
     <state x="94" y="-1050" width="1691" height="1021" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1280.680/103.-1050.1680.1010@103.-1050.1680.1010" timestamp="1602512025473" />
     <state x="-7" y="0" width="1288" height="687" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1280.680/1920.0.1680.1010@0.0.1280.680" timestamp="1599463260416" />
     <state x="2001" y="89" width="1519" height="832" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1280.680/1920.0.1680.1010@1920.0.1680.1010" timestamp="1601816672298" />
     <state x="-7" y="0" width="1288" height="687" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1599667020638" />
     <state x="2012" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1601802497262" />
     <state x="-7" y="0" width="1288" height="687" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1280.680@0.0.1280.680" timestamp="1604690316213" />
-    <state x="-10" y="0" width="1932" height="1051" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1604918800594" />
+    <state x="-10" y="0" width="1932" height="1051" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1604931855130" />
     <state x="777" y="360" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1604341812141">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -1031,7 +1069,7 @@
     <SUITE FILE_PATH="coverage/code$trying_copy.coverage" NAME="trying_copy Coverage Results" MODIFIED="1604341625863" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/utils" />
     <SUITE FILE_PATH="coverage/code$MLworkshop.coverage" NAME="MLworkshop Coverage Results" MODIFIED="1603811525728" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/code$whore.coverage" NAME="whore Coverage Results" MODIFIED="1604225972883" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data_processing" />
-    <SUITE FILE_PATH="coverage/code$collect_SPR_features.coverage" NAME="collect_SPR_features Coverage Results" MODIFIED="1604583883458" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/summary" />
+    <SUITE FILE_PATH="coverage/code$collect_SPR_features.coverage" NAME="collect_SPR_features Coverage Results" MODIFIED="1605087355981" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/summary" />
     <SUITE FILE_PATH="coverage/code$get_ds.coverage" NAME="get_ds Coverage Results" MODIFIED="1600705717683" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data_processing" />
     <SUITE FILE_PATH="coverage/code$Phyml.coverage" NAME="Phyml Coverage Results" MODIFIED="1600262723563" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/execute_programs" />
     <SUITE FILE_PATH="coverage/code$SPR_move_one_parallel.coverage" NAME="SPR_move_one_parallel Coverage Results" MODIFIED="1601980731165" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/execute_programs" />
@@ -1041,10 +1079,10 @@
     <SUITE FILE_PATH="coverage/code$trying.coverage" NAME="trying Coverage Results" MODIFIED="1601886153379" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/code$run_times.coverage" NAME="run_times Coverage Results" MODIFIED="1604401415928" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/summary" />
     <SUITE FILE_PATH="coverage/code$saturation.coverage" NAME="saturation Coverage Results" MODIFIED="1601792009587" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/figures" />
-    <SUITE FILE_PATH="coverage/code$RF_learning.coverage" NAME="RF_learning Coverage Results" MODIFIED="1604332349148" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/execute_programs" />
-    <SUITE FILE_PATH="coverage/code$score_last_step.coverage" NAME="score_last_step Coverage Results" MODIFIED="1604913692050" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/summary" />
+    <SUITE FILE_PATH="coverage/code$RF_learning.coverage" NAME="RF_learning Coverage Results" MODIFIED="1605089319172" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/execute_programs" />
+    <SUITE FILE_PATH="coverage/code$score_last_step.coverage" NAME="score_last_step Coverage Results" MODIFIED="1604676981516" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/summary" />
     <SUITE FILE_PATH="coverage/code$RAxML_NG2.coverage" NAME="RAxML_NG Coverage Results" MODIFIED="1600783174535" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/execute_programs" />
-    <SUITE FILE_PATH="coverage/code$trying__1_.coverage" NAME="trying (1) Coverage Results" MODIFIED="1604918911297" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/utils" />
+    <SUITE FILE_PATH="coverage/code$trying__1_.coverage" NAME="trying (1) Coverage Results" MODIFIED="1604997060507" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/utils" />
     <SUITE FILE_PATH="coverage/code$parse_raxml_NG.coverage" NAME="parse_raxml_NG Coverage Results" MODIFIED="1604224170343" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/parsing" />
     <SUITE FILE_PATH="coverage/code$create_starting_trees.coverage" NAME="create_starting_trees Coverage Results" MODIFIED="1602269784750" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data_processing" />
     <SUITE FILE_PATH="coverage/code$trying_SPR.coverage" NAME="trying_SPR Coverage Results" MODIFIED="1600875524183" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/execute_programs" />
