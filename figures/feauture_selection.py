@@ -125,7 +125,7 @@ def scores_feature_selection(df):
 	# Add a table at the bottom of the axes
 	rows_text_nested_lst = []
 	for ind in range(1,21):
-		rows_text_nested_lst.append([1 for x in range(ind)] )
+		rows_text_nested_lst.append([1. for x in range(ind)] )
 
 	'''
 	the_table = plt.table(cellText=['+' for i in range(1,21)],
@@ -142,7 +142,7 @@ def scores_feature_selection(df):
 
 
 	fig = plt.figure()
-	ax1 = fig.add_subplot(121)
+	ax1 = fig.add_subplot(21)
 	# Bilinear interpolation - this will look blurry
 	ax1.imshow(rows_text_nested_lst, interpolation='bilinear', cmap=cm.Greys_r)
 
