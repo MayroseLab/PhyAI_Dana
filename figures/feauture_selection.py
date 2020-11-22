@@ -100,10 +100,10 @@ def concat_n_features(dirpath, max_n_features):
 	'''
 	pre-merge iterations results to one csv with "n_features" col
 	'''
-	df = pd.read_csv(dirpath + SCORES_PER_DS.format(str(max_n_features) + "_1"))
+	df = pd.read_csv(dirpath + SCORES_PER_DS.format(str(max_n_features) + "_1_ytransformed_exp"))
 	df[N_FEATURES_COL] = max_n_features
 	for i in range(max_n_features-1,0,-1):
-		csv = dirpath + SCORES_PER_DS.format(str(i) + "_1")
+		csv = dirpath + SCORES_PER_DS.format(str(i) + "_1_ytransformed_exp")
 		if not os.path.exists(csv):
 			break
 		df2 = pd.read_csv(csv)
