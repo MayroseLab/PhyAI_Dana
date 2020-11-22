@@ -1,158 +1,216 @@
-dirpath = r'C:\Users\ItayMNB3\Dropbox\courses\python_bio\2020\projects\Dana\submissions\\'
-
-#####################
-
-import pandas as pd
 import numpy as np
-import scipy
-import os
-import matplotlib.pyplot as plt
+import pandas as pd
+#import pandas_profiling as pp
 import seaborn as sns
-import sklearn
-from sklearn.decomposition import PCA
-from sklearn.linear_model import LinearRegression
-import math
-from scipy.spatial import distance_matrix
-from scipy import stats
-from scipy.stats import zscore
+import matplotlib
+import matplotlib.pyplot as plt
+import itertools
+
+from sklearn.model_selection import KFold, RandomizedSearchCV
+from sklearn.model_selection import train_test_split
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn import metrics
+
+from scipy.sparse import csr_matrix
+
+pd.set_option('display.max_columns', None)
+sns.set_style("white")
+palette = itertools.cycle(sns.color_palette('colorblind'))
+
+import warnings
+warnings.filterwarnings('ignore')
+
+DIRPATH = r'C:\Users\ItayMNB3\Desktop\Assignment_Microsoft\data\\'
+VARS_DICT = {'bdate': 'DateOfBirth', 'subj': 'SubjectId', 'name': 'Name', 'parent': 'ParentId', 'level': 'Level',
+             'ques':'QuestionId', 'user':'UserId', 'ans':'AnswerId', 'adate':'DateAnswered'}
 
 
-# Functions for script ##########################################################################
-# Z score function
-def feature_stn(table):
-    norm_table = table.apply(zscore)
-    return norm_table
+def print_val_type(dataframe, colname, nrows=100):
+    ''' get the type of list/list-like(str) values, as dtype will return obj (str) in any case '''
+    for l in dataframe.head(nrows)[colname]:
+        print("Type of col {} is:".format(colname), type(l))
+
+    # return the last occurance
+    return type(l)
 
 
-# Regression functions
-def reg(feature_vec, lipo_vec, cova):
-    df = pd.concat([feature_vec, lipo_vec, cova["Age"], cova["BMI"]], axis=1)
-    df.columns = ["feature_obs", "lipo_obs", "Age", "BMI"]
-    df = df.dropna(axis=0)
-    fit = LinearRegression().fit(df.loc[:, ["lipo_obs", "Age", "BMI"]], df["feature_obs"])
-    return fit.coef_[0]
+def return_sorted_lst(l, func):
+    '''
+    sort the elements of an IDsList by the tree structure (that shoud be provided as a dictionary to the input func)-
+    *for a single-path list (namely exactly 4 elements: return a copy of the sorted list
+    *for a path the stops in an internat node (namely subjectxx-other): return a copy of a list without the halting node (redundant information)
+    *for a not-single path (>4 elements): return only the root node (just because! time-limitated task & <10% of the samples..)
+    '''
+    l.sort(key=func)
+    treedeep = len(l)
+    new_l = l[:-1] if treedeep < 4 else l[:1] if treedeep > 4 else l[:]
+
+    return new_l
 
 
-def lp_connectivity_func(features, lipos, cova, groups_dict):
-    lp_dfs_dict = {}
-    for group_name, group in groups_dict.items():
-        group_features = features.loc[group, :]
-        group_lipos = lipos.loc[group, :]
-        group_cova = cova.loc[group, :]
-        lp_table = group_features.apply(
-            lambda fea_col: group_lipos.apply(lambda lipo_col: reg(fea_col, lipo_col, group_cova), axis=0), axis=0)
-        lp_dfs_dict[group_name] = lp_table
-    return lp_dfs_dict
+def remove_from_lst(lst_remove_from, lst_remove_these):
+    ''' remove specified list elements from a given list'''
+    for elem in lst_remove_these:
+        if elem in lst_remove_from:
+            lst_remove_from.remove(elem)
+
+    return lst_remove_from
 
 
-# Rotate x,y around xo,yo by theta (rad)
-def rotate(x, y, xo, yo, theta):
-    theta = theta * math.pi / 180
-    cen_x = (x.max() + x.min()) / 2
-    cen_y = (y.max() + y.min()) / 2
-    x = np.subtract(x, cen_x)
-    y = np.subtract(y, cen_y)
-    xr = -1 * (np.cos(theta) * np.subtract(x, xo) - np.sin(theta) * np.subtract(y, yo) + xo)
-    yr = np.sin(theta) * np.subtract(x, xo) + np.cos(theta) * np.subtract(y, yo) + yo
-    return pd.DataFrame({"PC1": xr, "PC2": yr})
+df_train = pd.read_csv(DIRPATH + r'train_data\train_task_1_2.csv')
+df_meta_student = pd.read_csv(DIRPATH + r'metadata\student_metadata_task_1_2.csv')
+df_meta_question = pd.read_csv(DIRPATH + r'metadata\question_metadata_task_1_2.csv')
+df_meta_subject = pd.read_csv(DIRPATH + r'metadata\subject_metadata.csv')
+df_meta_answer = pd.read_csv(DIRPATH + r'metadata\answer_metadata_task_1_2.csv')
 
 
-# Calculate tne angel of the feature in the cycle
-def calc_angel(pca_table):
-    pca_table.columns = ["PC1", "PC2"]
-    angel = np.arctan2(pca_table["PC2"], pca_table["PC1"]) * (180 / math.pi)
-    angel = angel.apply(lambda x: x + 360 if x < 0 else x)
-    return angel
+
+# print some information
+print(df_meta_question)
+type_sample1 = print_val_type(df_meta_question, VARS_DICT['subj'], nrows=1)
+
+# convert the value type to lists
+if not type_sample1 == list:
+    print("number of unique paths:",len(df_meta_question[VARS_DICT['subj']].unique()))
+    df_meta_question[VARS_DICT['subj']] = df_meta_question[VARS_DICT['subj']].apply(eval)
+    print("\nAfter converting-")
+    print_val_type(df_meta_question, VARS_DICT['subj'], nrows=1)
+
+    # validate that the proportion of the non-single-path lists is low, so I can make an "easy" (=quick) decision of how to handle it
+    df_question2subj_path4 = df_meta_question[df_meta_question[VARS_DICT['subj']].map(len) > 4]
+    print("\nThe percentages of samples that contain more than 4 features, namely more than one path, is:")
+    print(round((100*len(df_question2subj_path4)/len(df_meta_question)),2), "%")
 
 
-# Plot PCA graph for each group, all group are colored by the healthy females group
-# Save the plot in the path folder
-def pca_for_groups(lp_dfs_dict, females_pca_model):
-    pcas_dict = {}
-    for i, group in enumerate(lp_dfs_dict.keys()):
-        pca = pd.DataFrame(females_pca_model.transform(feature_stn(lp_dfs_dict[group]).T))
-        pca.columns = ["PC1", "PC2"]
-        pca.index = lp_dfs_dict[group].T.index
-        pca = rotate(pca["PC1"], pca["PC2"], 0, 0, 110)
-        pca["angel"] = calc_angel(pca)
-        pcas_dict[group] = pca
-    fig, axs = plt.subplots(1, 4, figsize=(28, 7))
-    for i, group in enumerate(pcas_dict.keys()):
-        axs[i].scatter(x="PC1", y="PC2", c=pcas_dict["fe_no_MetS_no_AT"]["angel"], cmap="hsv", data=pcas_dict[group])
-        axs[i].title.set_text(group)
-        axs[i].set_xlabel("PC1")
-        axs[i].set_ylabel("PC2")
-        axs[i].axhline(y=0, color="black")
-        axs[i].axvline(x=0, color="black")
-    plt.savefig(os.path.join(folder_path, "PCA_graphs.PNG"))
-    plt.show()
+
+### I can easily tell that the lists are NOT "sorted" by its level.
+### so I must go over each list and sort it (see ducumentation of 'return_sorted_lst' function above)
+
+d_subj2level = pd.Series(df_meta_subject[VARS_DICT['level']].values, index=df_meta_subject[VARS_DICT['subj']]).to_dict()
+def myFunc(e, d=d_subj2level):
+    return d[e]
+
+df_meta_question[VARS_DICT['subj']] = df_meta_question.apply(lambda x: return_sorted_lst(x[VARS_DICT['subj']], myFunc), axis=1)
 
 
-# Plot lp connectivity cluster maps for each group
-# Save the plot in the path folder
-def plot_cluster_maps(lp_dict):
-    for group_name, group in lp_dict.items():
-        g = sns.clustermap(lp_dict[group_name], figsize=(35, 18), cmap="bwr")
-        g.fig.suptitle(group_name + ' cluster map', fontsize="xx-large", y=0.9)
-        ax = g.ax_heatmap
-        ax.set_xlabel("Clinical features", fontsize="xx-large")
-        ax.set_ylabel("Lipoproteins", fontsize="xx-large")
-        plt.savefig(os.path.join(folder_path, group_name + "_cluster_map.PNG"))
-        plt.show()
+### expand to cols and index subj_ids in the proper SubjID_deep_x col
+
+res_df_questions = df_meta_question[VARS_DICT['subj']].apply(pd.Series).astype('category')
+res_df_questions.insert(0, VARS_DICT['ques'], df_meta_question[VARS_DICT['ques']])
+res_df_questions = res_df_questions.rename({i: 'SubjID_deep{}'.format(i) for i in range(4)}, axis='columns')
 
 
-# Use the function for analysis ##########################################################################
-
-# Change this path the load tables
-folder_path = dirpath
-
-# read tables
-lipoNorm = pd.read_csv(os.path.join(folder_path, "lipoNorm_fem.csv"), index_col=0)
-covaNorm = pd.read_csv(os.path.join(folder_path, "covaNorm_fem.csv"), index_col=0)
-factors = pd.read_csv(os.path.join(folder_path, "factors_fem.csv"), index_col=0)
-factorsNorm = pd.read_csv(os.path.join(folder_path, "FactorsNorm_fem.csv"), index_col=0)
-subjects_anott = pd.read_csv(os.path.join(folder_path, "subjects_anott_fem.csv"), index_col=0)
-
-subjects_anott["atherosclerosis"] = factors["Plaques aanwezig"]
-factorsNorm = factorsNorm.drop(["PWV_direct_def", "Numberofplaques"], axis=1)
-
-# AT = Atherosclerosis (Arterial stenosis)
-# MetS = Metabolic syndrome
-
-# Create a Index vector for each group subjects:
-# Females healthy,
-# Females without MetS with AT
-# Females with MetS without AT
-# Females with MetS with AT
-fem_groups_dict = {"fe_no_MetS_no_AT": subjects_anott[(subjects_anott["MetS-IDFcriteria"] == 0) &
-                                                      (subjects_anott["atherosclerosis"] == 0)].index,
-                   "fe_no_MetS_AT": subjects_anott[(subjects_anott["MetS-IDFcriteria"] == 0) &
-                                                   (subjects_anott["atherosclerosis"] == 1)].index,
-                   "fe_MetS_no_AT": subjects_anott[(subjects_anott["MetS-IDFcriteria"] == 1) &
-                                                   (subjects_anott["atherosclerosis"] == 0)].index,
-                   "fe_MetS_AT": subjects_anott[(subjects_anott["MetS-IDFcriteria"] == 1) &
-                                                (subjects_anott["atherosclerosis"] == 1)].index}
 
 
-# Use the regression function the calculate the lp connectivity of the clinical features in each group
-lp_connect_dict = lp_connectivity_func(factorsNorm, lipoNorm, covaNorm, fem_groups_dict)
+if VARS_DICT['bdate'] in df_meta_student.columns:            # namely if it is the first time I run this section
+    df_meta_student['temp'] = pd.to_datetime(df_meta_student[VARS_DICT['bdate']], dayfirst=True, errors='coerce')
+    df_meta_student['Byear'] = df_meta_student['temp'].dt.year
 
-# Use the regression function the calculate the lp connectivity of the lipoproteins of the healthy group
-lp_of_lps_healthy = lp_connectivity_func(lipoNorm, lipoNorm, covaNorm,
-                                          {"fe_no_MetS_no_AT": fem_groups_dict["fe_no_MetS_no_AT"]})
+    #filtering illegal values (according to the pdf: questions provided between 2018 to 2020. students roughly between 7 and 18 years old
+    df_meta_student.loc[df_meta_student['Byear'] < 2000] = None
+    df_meta_student.loc[df_meta_student['Byear'] > 2012] = None
 
-# Calculate a PCA model of the healthy subjects
-lps_pca_model_fem = PCA(n_components=2).fit(feature_stn(lp_of_lps_healthy["fe_no_MetS_no_AT"]).T)
+    df_meta_student['Bmonth'] = df_meta_student['temp'].dt.month.astype('category')
 
-pca_lipo_fem = pd.DataFrame(lps_pca_model_fem.transform(feature_stn(lp_of_lps_healthy["fe_no_MetS_no_AT"]).T))
-pca_lipo_fem.columns = ["PC1", "PC2"]
-pca_lipo_fem.index = lipoNorm.T.index
+    df_meta_student = df_meta_student.drop(['temp', VARS_DICT['bdate']], axis=1)
 
-pca_lipo_fem = rotate(pca_lipo_fem["PC1"], pca_lipo_fem["PC2"], 0, 0, 110)
-pca_lipo_fem["angel"] = calc_angel(pca_lipo_fem)
 
-# Use the plotting function the plot PCA for each group
-pca_for_groups(lp_connect_dict, lps_pca_model_fem)
 
-# Use the clustermap function the plot clustermap for each group
-plot_cluster_maps(lp_connect_dict)
+if VARS_DICT['adate'] in df_meta_answer.columns:            # namely if it is the first time I run this section
+    df_meta_answer['temp'] = pd.to_datetime(df_meta_answer[VARS_DICT['adate']])
+    df_meta_answer['Ayear'] = df_meta_answer['temp'].dt.year.astype('category')
+    df_meta_answer['Amonth'] = df_meta_answer['temp'].dt.month.astype('category')
+    df_meta_answer['Day'] = df_meta_answer['temp'].dt.dayofweek.astype('category')
+
+    ## making up (because of time limitation) a conversion dictionary to assign the 24hours to 4 time_period groups.
+    ## I am sure there are solutions that make much more sense than the following one:
+    DayTime_dict = {i:k for i,k in enumerate(np.concatenate((np.zeros(6), np.ones(6), np.full_like(np.arange(6, dtype=int), 2), np.full_like(np.arange(6, dtype=int), 3))))}
+    df_meta_answer['DayTime'] = df_meta_answer['temp'].dt.hour
+    ## the following line takes a while- I should replace it with more efficient implementation (map? np.where? read) if I have the time when I finish
+    df_meta_answer['DayTime'] = df_meta_answer.apply(lambda x: DayTime_dict[x['DayTime']], axis=1).astype('category')
+
+    df_meta_answer = df_meta_answer.drop(['temp', VARS_DICT['adate']], axis=1)
+
+
+
+train_data_len = len(df_train)
+complete_df = df_train.merge(df_meta_student, on=VARS_DICT['user'], how='left').merge(df_meta_answer, on=VARS_DICT['ans'], how='left').merge(res_df_questions,on=VARS_DICT['ques'], how='left')
+
+# I can add a feature: age_when_answering. return if I have more time
+
+
+assert(train_data_len == len(complete_df))
+
+# drop AnswerId because is unique and CorrectAnswer because..
+features_to_drop = ['AnswerId', 'CorrectAnswer']
+if features_to_drop[0] in complete_df.columns:
+    complete_df = complete_df.drop(features_to_drop, axis=1)
+
+
+# Actually all features but 'Confidence' are categorical. So convert thier type (in any case I will one-hot encode them):
+cols_lst = list(complete_df)
+for e in cols_lst:
+    if e == 'Confidence':
+        continue
+    complete_df[e] = complete_df[e].astype('category')
+
+
+
+special_cols = ['QuestionId', 'UserId', 'IsCorrect']
+cols_high_card = ['GroupId','QuizId','SchemeOfWorkId','SubjID_deep2','SubjID_deep3']
+label = special_cols[-1]
+pivot_cols = special_cols[:-1]
+
+# deal with features with extreme cardinality
+#for col in cols_high_card:
+#    print(col, len(complete_df[col].unique()))
+########################### removing features with high card - TEMP! ###########################
+## After implementing a base model: expand each of these to few most common values, and 'others'.
+if cols_high_card[0] in complete_df.columns:
+    complete_df = complete_df.drop(cols_high_card, axis=1)
+################################################################################################
+
+features_withCat = remove_from_lst(list(complete_df), special_cols)
+complete_df_encoded = pd.get_dummies(complete_df, columns=features_withCat, prefix=features_withCat, sparse=True).fillna(0)
+features = remove_from_lst(list(complete_df_encoded), special_cols)
+
+
+
+
+## check memory usage after action
+#complete_df_encoded.info(memory_usage='deep')
+
+########## cause memory error - int overflow #########
+df_transformed_X = complete_df_encoded.head(1000).pivot(
+    index=pivot_cols[1],
+    columns=pivot_cols[0],
+    values=features)#.fillna(0)
+
+df_transformed_Y = complete_df_encoded.head(1000).pivot(
+    index=pivot_cols[1],
+    columns=pivot_cols[0],
+    values=[label])#.fillna(0)
+####################################################
+
+
+########## additional attempts #########
+#df_transformed_x = complete_df_encoded.head(100).groupby([pivot_cols[1], pivot_cols[0]])[features].max().unstack()
+#df_transformed_Y = complete_df_encoded.head(100).groupby([pivot_cols[1], pivot_cols[0]])[label].max().unstack()
+
+#chunk_size = 1000
+#chunks = [x for x in range(0, complete_df_encoded.shape[0], chunk_size)]
+#df_transformed_X = pd.concat([complete_df_encoded.iloc[ chunks[i]:chunks[i + 1] - 1 ].pivot(
+#    index=pivot_cols[1], columns=pivot_cols[0], values=features) for i in range(0, len(chunks) - 1)])
+#df_transformed_Y = pd.concat([complete_df_encoded.iloc[ chunks[i]:chunks[i + 1] - 1 ].pivot(
+#    index=pivot_cols[1], columns=pivot_cols[0], values=[label]) for i in range(0, len(chunks) - 1)])
+########################################
+
+
+# convert using the more efficient method of scipy sparse matrix
+X_mat = csr_matrix(df_transformed_X.values)
+Y_mat = csr_matrix(df_transformed_Y.values)
+
+
+# Split dataset into training, test, and validation sets (80%, 10%, 10%)
+X_train, X_test, y_train, y_test = train_test_split(df_transformed_X, df_transformed_Y, test_size=0.2, random_state=1)
+X_train, X_val, y_train, y_val = train_test_split(X_train, y_train, test_size=0.125, random_state=1) # 0.125 x 0.8 = 0.1
