@@ -81,9 +81,9 @@ def plot_main_results2(df):
 
 
 def scores_feature_selection(df):
-	fig, axarr = plt.subplots(2, 2)
-	axarrs_locs = [(0, 0), (0, 1), (1, 0), (1, 1)]
-	ylims = [(0.5, 1), (1, 30), (1, 30), (0, 40)]
+	fig, axarr = plt.subplots(2, 1)
+	axarrs_locs = [(0, 0), (0, 1), (1, 0)]
+	ylims = [(0.5, 1), (1, 30), (1, 30)]
 	for i,loc in enumerate(axarrs_locs):
 		color = next(palette)
 		ax = axarr[axarrs_locs[i]]
