@@ -118,17 +118,18 @@ def concat_n_features(dirpath, max_n_features):
 
 if __name__ == '__main__':
 	dirpath = SUMMARY_FILES_DIR if platform.system() == 'Linux' else DATA_PATH
-	#df = concat_n_features(dirpath, max_n_features=28)
-	#scores_feature_selection(df)
+	dirpath += 'results_feature_selection/'
+	df = concat_n_features(dirpath, max_n_features=20)
+	scores_feature_selection(df)
 	
 	#df = pd.read_csv(dirpath + SCORES_PER_DS.format("28_1_ytransformed_exp"))
 	#df = pd.read_csv(dirpath + SCORES_PER_DS.format("26_2_ytransformed_exp"))
 	#df = pd.read_csv(dirpath + SCORES_PER_DS.format("26_1st_on_2nd_ytransformed_exp"))
 
 	#df = pd.read_csv(dirpath + SCORES_PER_DS.format("28_1_ytransformed_exp_minus"))
-	df = pd.read_csv(dirpath + SCORES_PER_DS.format("20_1_3700_ytransformed_exp"))
+	##df = pd.read_csv(dirpath + SCORES_PER_DS.format("20_1_3700_ytransformed_exp"))
 	#df = pd.read_csv(dirpath + SCORES_PER_DS.format("26_1_validation_set_ytransformed_exp"))
-	plot_main_results2(df)
+	##plot_main_results2(df)
 	
 	
 	'''
