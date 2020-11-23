@@ -12,6 +12,8 @@ sns.set_style("white")
 palette = itertools.cycle(sns.color_palette('colorblind'))
 
 import matplotlib.gridspec as gridspec
+from matplotlib.pyplot import cm
+from matplotlib import colors
 
 
 def plot_main_results(df):
@@ -80,7 +82,56 @@ def plot_main_results2(df):
 
 
 
+removed_featured_dict = {20: 'Sum of branches between regrafting and pruning',
+		   16: 'Number of branches between regrafting and pruning',
+		   19: 'The estimated total branch lengths of the resulting tree',
+		   17: 'The length of the branch that was being pruned',
+		   18: 'The longest branch in the subtree in Fig. 1b',
+		   15: 'The sum of branches in the starting tree',
+		   12: 'The sum of branches in the subtree in Fig. 1b',
+		   10: 'The sum of branches in the subtree in Fig. 1c',
+		   8: 'The length of the branch that was being regrafted',
+		   13: 'The longest branch in the starting tree',
+		   14: 'The length of the branch formed due to regrafting',
+		   9: 'Thelongest branch in the subtree in Fig. 1c',
+		   6: 'The sum of branches in the subtree in Fig. 1c2',
+		   5: 'The longest branch in the subtree in Fig. 1c2',
+		   11: 'The longest branch in the subtree in Fig. 1c1',
+		   4: 'The sum of branches in the subtree in Fig. 1c1',
+		   7: 'The number of leaves in the subtree in Fig. 1c',
+		   3: 'The number of leaves in the subtree in Fig. 1b',
+		   2: 'The number of leaves in the subtree in Fig. 1c2',
+		   1: 'The number of leaves in the subtree Fig. 1c1'}
+
+
 def scores_feature_selection(df):
+	fig = plt.figure(figsize=(14, 12))
+	colors_list = cm.YlGnBu(np.linspace(0, 0.8, 20))
+	sns.boxplot(x=N_FEATURES_COL, y=SCORES_LST[0], data=df, showfliers=False, saturation=0.6, linewidth=0.6, palette=colors_list)
+	plt.xlabel('')
+	plt.ylabel('Spearman correlation ({})'.format(r'$\rho$'), size=18)
+
+	rows_text_nested_lst, colors_nested_lst = [], []
+	for ind in range(1,21):
+		rows_text_nested_lst.append(['+' if ind<=x else '' for x in range(1,21)])
+		colors_nested_lst.append([colors_list[x-1] if ind<=x else 'whitesmoke' for x in range(1,21)])
+
+	plt.table(cellText=rows_text_nested_lst, rowLoc='left',
+			  rowLabels=[removed_featured_dict[21-i] for i in range(1,21)],
+			  colLabels=['' for i in range(1,21)],
+			  colLoc='center',cellLoc = 'center', cellColours=colors_nested_lst,
+			  loc='bottom')#, edges='vertical')
+
+	plt.xticks([])
+	fig.subplots_adjust(left=0.2 ,bottom=0.15)
+	plt.text(7, -0.47, 'Features in the model', size=18)
+
+	plt.tight_layout()
+	#plt.ylim(0,1)
+	plt.savefig(dirpath + "feature_selection_with_matrix.tif", dpi=300)
+	plt.show()
+
+
 	'''
 	fig, axarr = plt.subplots(2, 2)
 	axarrs_locs = [(0, 0), (0, 1), (1, 0)]
@@ -92,68 +143,9 @@ def scores_feature_selection(df):
 		sns.boxplot(x=N_FEATURES_COL, y=SCORES_LST[i], data=df, ax=ax, color=color, showfliers=False)
 		ax.set_xticklabels(ax.get_xticklabels(), rotation=30)
 	'''
-	removed_featured_dict = {20: 'The full set of features',
-			   16: 'The number of branches in the path between the regrafting and the pruning branches',
-			   19: 'The estimated total branch lengths of the resulting tree',
-			   17: 'The length of the branch that was being pruned',
-			   18: 'The length of the longest branch in the subtree in Fig. 1b',
-			   15: 'The sum of branches in the starting tree',
-			   12: 'The sum of branches in the subtree in Fig. 1b',
-			   10: 'The sum of branches in the subtree in Fig. 1c',
-			   8: 'The length of the branch that was being regrafted',
-			   13: 'The length of the longest branch in the starting tree',
-			   14: 'The approximated length of the newly formed branch formed due to regrafting',
-			   9: 'The length of the longest branch in the subtree in Fig. 1c',
-			   6: 'The sum of branches in the subtree in Fig. 1c2',
-			   5: 'The length of the longest branch in the subtree in Fig. 1c2',
-			   11: 'The length of the longest branch in the subtree in Fig. 1c1',
-			   4: 'The sum of branches in the subtree in Fig. 1c1',
-			   7: 'The number of leaves in the subtree in Fig. 1c',
-			   3: 'The number of leaves in the subtree in Fig. 1b',
-			   2: 'The number of leaves in the subtree in Fig. 1c2',
-		       1: 'The number of leaves in the subtree Fig. 1c1'}
 
 
 
-	fig, axarr = plt.subplots()
-	sns.boxplot(x=N_FEATURES_COL, y=SCORES_LST[0], data=df, showfliers=False, saturation=0.6, linewidth=0.6)
-	#plt.xlabel('Number of features in the model')
-	plt.xlabel('')
-	plt.ylabel('Spearman correlation ({})'.format(r'$\rho$'))
-
-	#axarr.set_xticklabels([removed_featured_dict[i] + " ({})".format(i) for i in range(1,21)], rotation=90)
-	# Add a table at the bottom of the axes
-	rows_text_nested_lst = []
-	for ind in range(1,21):
-		rows_text_nested_lst.append([1. for x in range(ind)] )
-
-	'''
-	the_table = plt.table(cellText=['+' for i in range(1,21)],
-						  rowLabels=[removed_featured_dict[i] for i in range(1,21)],
-						  #rowColours=colors,
-						  colLabels=[str(i) for i in range(1,21)],
-						  loc='bottom')
-
-	# Adjust layout to make room for the table:
-	#plt.subplots_adjust(left=0.2, bottom=0.2)
-	'''
-
-	import matplotlib.cm as cm
-
-
-	fig = plt.figure()
-	ax1 = fig.add_subplot(21)
-	# Bilinear interpolation - this will look blurry
-	ax1.imshow(rows_text_nested_lst, interpolation='bilinear', cmap=cm.Greys_r)
-
-	#ax2 = fig.add_subplot(122)
-	# 'nearest' interpolation - faithful but blocky
-	#ax2.imshow(rows_text_nested_lst, interpolation='nearest', cmap=cm.Greys_r)
-
-	plt.tight_layout()
-	#fig.set_size_inches(7, 4, forward=True)
-	#plt.savefig(dirpath + "feature_selection_with_names.tif", dpi=300)
-	plt.show()
 
 
 def concat_n_features(dirpath, max_n_features):
@@ -179,8 +171,9 @@ def concat_n_features(dirpath, max_n_features):
 if __name__ == '__main__':
 	dirpath = SUMMARY_FILES_DIR if platform.system() == 'Linux' else DATA_PATH
 	dirpath += 'results_feature_selection/'
-	df = concat_n_features(dirpath, max_n_features=20)
-	scores_feature_selection(df)
+	#df = concat_n_features(dirpath, max_n_features=20)
+	#df.to_csv(dirpath + 'temp.csv')
+	scores_feature_selection(pd.read_csv('temp.csv'))
 	
 	#df = pd.read_csv(dirpath + SCORES_PER_DS.format("28_1_ytransformed_exp"))
 	#df = pd.read_csv(dirpath + SCORES_PER_DS.format("26_2_ytransformed_exp"))
