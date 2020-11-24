@@ -106,20 +106,20 @@ removed_featured_dict = {20: 'Sum of branches between regrafting and pruning',
 
 def scores_feature_selection(df):
 	fig = plt.figure(figsize=(14, 12))
-	colors_list = cm.YlGnBu(np.linspace(0, 0.8, 20))
-	sns.boxplot(x=N_FEATURES_COL, y=SCORES_LST[0], data=df, showfliers=False, saturation=0.6, linewidth=0.6, palette=colors_list)
+	colors_list = cm.YlGnBu(np.linspace(0, 0.8, 20))[::-1]
+	sns.boxplot(x=N_FEATURES_COL, y=SCORES_LST[0], data=df, order=[20-i for i in range(20)], showfliers=False, saturation=0.6, linewidth=0.6, palette=colors_list)
 	plt.xlabel('')
 	plt.ylabel('Spearman correlation ({})'.format(r'$\rho$'), size=18)
 
 	rows_text_nested_lst, colors_nested_lst = [], []
-	for ind in range(1,21):
-		rows_text_nested_lst.append(['+' if ind<=x else '' for x in range(1,21)])
-		colors_nested_lst.append([colors_list[x-1] if ind<=x else 'whitesmoke' for x in range(1,21)])
+	for ind in range(20,0,-1):
+		rows_text_nested_lst.append(['+' if ind>=x else '' for x in range(1,21)])
+		colors_nested_lst.append([colors_list[x-1] if ind>=x else 'black' for x in range(1,21)])
 
 	plt.table(cellText=rows_text_nested_lst, rowLoc='left',
-			  rowLabels=[removed_featured_dict[21-i] for i in range(1,21)],
-			  colLabels=['' for i in range(1,21)],
-			  colLoc='center',cellLoc = 'center', cellColours=colors_nested_lst,
+			  rowLabels=[removed_featured_dict[20-i] for i in range(20)],
+			  colLabels=[str(20-i) for i in range(20)],
+			  colLoc='center',cellLoc = 'center', cellColours=colors_nested_lst, # rowColours=['whitesmoke' for x in range(1,21)],
 			  loc='bottom')#, edges='vertical')
 
 	plt.xticks([])
@@ -173,7 +173,7 @@ if __name__ == '__main__':
 	dirpath += 'results_feature_selection/'
 	#df = concat_n_features(dirpath, max_n_features=20)
 	#df.to_csv(dirpath + 'temp.csv')
-	scores_feature_selection(pd.read_csv('temp.csv'))
+	scores_feature_selection(pd.read_csv(dirpath + 'temp.csv'))
 	
 	#df = pd.read_csv(dirpath + SCORES_PER_DS.format("28_1_ytransformed_exp"))
 	#df = pd.read_csv(dirpath + SCORES_PER_DS.format("26_2_ytransformed_exp"))

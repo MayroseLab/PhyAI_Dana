@@ -14,18 +14,20 @@ palette = itertools.cycle(sns.color_palette('colorblind'))
 
 
 def calc_empirical_features():
-	df = pd.read_csv(dirpath + CHOSEN_DATASETS_FILENAME).reset_index(drop=True)
-	df2 = pd.read_csv(dirpath + SCORES_PER_DS.format("28_1_ytransformed_exp")).reset_index(drop=True)
+	#df = pd.read_csv(dirpath + CHOSEN_DATASETS_FILENAME).reset_index(drop=True)
+	#df2 = pd.read_csv(dirpath + SCORES_PER_DS.format("20_1_4200_ytransformed_exp")).reset_index(drop=True)
+	df = pd.read_csv('/groups/itay_mayrose/danaazouri/PhyAI/validation_set2/summary_files/sampled_datasets.csv').reset_index(drop=True)
+	df2 = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/summary_files/results_saturation/scores_per_ds_20_1_validation_set_4200_ytransformed_exp_orig.csv").reset_index(drop=True)
 	for index, row in df2.iterrows():
 		path = row["path"]
 		sum_ds_df = SUMMARY_PER_DS.format(path, "prune", "br", "1")
 		if os.path.exists(sum_ds_df):
-			df2.ix[index, "ntaxa"] = df.loc[df["path"] == path, "ntaxa"].values[0]
-			df2.ix[index, "nchars"] = df.loc[df["path"] == path, "nchars"].values[0]
-			df2.ix[index, "tbl"] = get_total_branch_lengths(path + PHYML_TREE_FILENAME.format('bionj'))
-			df2.ix[index, "ll"] = pd.read_csv(sum_ds_df).loc[0, "orig_ds_ll"]
+			df2.loc[index, "ntaxa"] = df.loc[df["path"] == path, "ntaxa"].values[0]
+			df2.loc[index, "nchars"] = df.loc[df["path"] == path, "nchars"].values[0]
+			df2.loc[index, "tbl"] = get_total_branch_lengths(path + PHYML_TREE_FILENAME.format('bionj'))
+			df2.loc[index, "ll"] = pd.read_csv(sum_ds_df).loc[0, "orig_ds_ll"]
 		
-	df2.to_csv(SUMMARY_FILES_DIR + SCORES_PER_DS.format("28_1_ytransformed_exp_with_atts"))
+	df2.to_csv(SUMMARY_FILES_DIR + SCORES_PER_DS.format("validation_with_atts"))
 
 
 def plot_distributions(df):
@@ -81,18 +83,21 @@ def corr_plot(df):
 	ax1 = sns.jointplot(x="ntaxa", y=SCORES_LST[0], data=df, kind='reg', stat_func=pearsonr, line_kws={'color':'black'}, color=next(palette),xlim=(5, 70.3), ylim=(0,1))#, ax=ax1)
 	plt.xlabel('Number of taxa')
 	plt.ylabel('Spearman correlation ({})'.format(r'$\rho$'))
-	stats_patch = mpatches.Patch(color='white', label='$r^2$ = 0.0002;  $pval$ = 0.34')#, contains=False)
+	#stats_patch = mpatches.Patch(color='white', label='$r^2$ = 0.0002;  $pval$ = 0.34')#, contains=False)
+	stats_patch = mpatches.Patch(color='white', label='$r^2$ = 0.009;  $pval$ = $7.8x10^-$$^1$$^0$')#, contains=False)
 	plt.legend(handles=[stats_patch])
 	plt.text(0.11, 1.35, "a", fontsize=20, fontweight='bold', va='top', ha='right')
 	plt.tight_layout()
 	plt.show()
 
-	df = df[df["tbl"] < 13]
-	ax2 = sns.jointplot(x="tbl", y=SCORES_LST[0], data=df, kind='reg', stat_func=pearsonr, line_kws={'color':'black'}, color=next(palette),xlim=(-0.3, 14), ylim=(0,1))#, ax=ax2)
+	df = df[df["tbl"] < 30]
+	ax2 = sns.jointplot(x="tbl", y=SCORES_LST[0], data=df, kind='reg', stat_func=pearsonr, line_kws={'color':'black'}, color=next(palette),xlim=(-0.3, 31), ylim=(0,1))#, ax=ax2)
+
 	plt.xlabel('Total branch lengths')
 	plt.ylabel("")
 	# plt.xscale("log")
-	stats_patch = mpatches.Patch(color='white', label='$r^2$ = 0.007;  $pval$ = $1.1x10^-$$^8$')#, contains=False)
+	#stats_patch = mpatches.Patch(color='white', label='$r^2$ = 0.007;  $pval$ = $1.1x10^-$$^8$')#, contains=False)
+	stats_patch = mpatches.Patch(color='white', label='$r^2$ = 0.025;  $pval$ = $3.1x10^-$$^2$$^4$')  # , contains=False)
 	plt.legend(handles=[stats_patch])
 	plt.text(-0.9, 1.35, "b", fontsize=20, fontweight='bold', va='top', ha='right')
 	plt.tight_layout()
@@ -152,8 +157,8 @@ if __name__ == '__main__':
 	#calc_empirical_features()
 	
 	
-	#df = pd.read_csv(DIRPATH + "val_all_" + CHOSEN_DATASETS_FILENAME)
-	df = pd.read_csv(dirpath + SCORES_PER_DS.format("20_1_4300_ytransformed_exp_with_atts"))   # used only for corr so the vers soesn't really matter
+	df_val = pd.read_csv(dirpath + 'scores_per_ds_validation_with_atts.csv')
+	df_train = pd.read_csv(dirpath + 'scores_per_ds_20_1_ytransformed_exp_with_atts.csv')
 	#plot_distributions(df)
-	corr_plot(df)
+	corr_plot(df_train)
 	#binned_att_to_scores(df)

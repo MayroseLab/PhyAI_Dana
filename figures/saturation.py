@@ -63,17 +63,17 @@ def plot_scores2(df):
 def plot_corr(df):
 	sns.set_context("paper", font_scale=1.3)
 	corr_col = SCORES_LST[0]
-	df[corr_col] = df[corr_col].apply(np.sqrt)
+	#df[corr_col] = df[corr_col].apply(np.sqrt)
 	ax = sns.boxplot(x=N_DATASETS_COL, y=corr_col, data=df, showfliers=False, palette="husl", saturation=0.6, linewidth=0.6)
 	ax.set_ylim(0,1)
 
-	plt.ylabel('Spearman correlation ({})'.format(r'$\rho$'), size = 14)
-	plt.xlabel('Number of empirical datasets in training', size = 14)
+	plt.ylabel('Spearman correlation ({})'.format(r'$\rho$'), size = 12)
+	plt.xlabel('Number of empirical datasets in training', size = 12)
 	fig.tight_layout()
 	fig.set_size_inches(7, 4, forward=True)
 	#plt.savefig("C:\\Users\\ItayMNB3\\Dropbox\\PhyloAI\\PhyAI_writing\\figures\\" + "FigS3.tif", dpi=300)
-	plt.savefig(SUMMARY_FILES_DIR + "saturation.png")
-	#plt.show()
+	plt.savefig(dirpath + "saturation.tif", dpi=300)
+	plt.show()
 
 
 	#plt.savefig(dirpath + "saturation_plot.png")
@@ -106,27 +106,12 @@ if __name__ == '__main__':
 	ndots_older = [600, 840, 1310, 1790, 2260, 2670, 3210, 3870, 3860, 4670, 6060]
 	xticks_older = [600, 900, 1300, 1800, 2300,2700, 3200, 3700, 4000, 4700, 6000]
 	
-	ndots = ["1500_k2", 2200, 3000, 4000, 5000, 5850]
-	xticks = [1500, 2200, 3000, 4000, 5000, 6000]
-	dirpath = SUMMARY_FILES_DIR
+	ndots = ['1500_k2', 2200, 3000, 4000, 5000, 5850]
+	xticks = [1500, 2100, 3000, 4200, 5000, 6000]
+	dirpath += 'results_saturation/'
 	df = concat_n_features(dirpath, ndots, xticks)
 	#plot_scores2(df)
 	plot_corr(df)
-	
-	'''
-	a500 = df.loc[df[N_DATASETS_COL] == xticks[0],SCORES_LST[0]].values
-	a1000 = df.loc[df[N_DATASETS_COL] == xticks[1], SCORES_LST[0]].values
-	a1500 = df.loc[df[N_DATASETS_COL] == xticks[2], SCORES_LST[0]].values
-	a2000 = df.loc[df[N_DATASETS_COL] == xticks[3], SCORES_LST[0]].values
-	a3000 = df.loc[df[N_DATASETS_COL] == xticks[4], SCORES_LST[0]].values
-	a3700 = df.loc[df[N_DATASETS_COL] == xticks[5], SCORES_LST[0]].values
-	a4300 = df.loc[df[N_DATASETS_COL] == xticks[6], SCORES_LST[0]].values
-	a5000 = df.loc[df[N_DATASETS_COL] == xticks[7], SCORES_LST[0]].values
-	a6000 = df.loc[df[N_DATASETS_COL] == xticks[8], SCORES_LST[0]].values
-	
-	F,p = stats.f_oneway(a3700,a4300,a5000,a6000)
-	print(p)
-	'''
 
 
 	a1500 = df.loc[df[N_DATASETS_COL] == xticks[0], SCORES_LST[0]].dropna().values
@@ -136,5 +121,5 @@ if __name__ == '__main__':
 	a5000 = df.loc[df[N_DATASETS_COL] == xticks[4], SCORES_LST[0]].dropna().values
 	a6000 = df.loc[df[N_DATASETS_COL] == xticks[5], SCORES_LST[0]].dropna().values
 
-	F, p = stats.f_oneway(a5000, a6000)
+	F, p = stats.f_oneway(a3000, a6000)
 	print(p)
