@@ -11,11 +11,33 @@ from utils.tree_functions import *
 sns.set_style("white")
 #fig, axarr = plt.subplots(2, 2)
 palette = itertools.cycle(sns.color_palette('colorblind'))
+from scipy.stats import pearsonr
+from Bio import AlignIO
+
+
+def count_gaps_proportion(msa):
+	alignment = AlignIO.read(msa, PHYLIP_FORMAT)
+	avg_gappiness = []
+	for record in alignment:
+		avg_gappiness.append(record.seq.count("-"))
+	avg_gappiness_per_taxa = np.mean(avg_gappiness)
+	gappiness = round(100*avg_gappiness_per_taxa / alignment.get_alignment_length(), 2)
+
+	return gappiness
+
+
+def get_node_height(tree_path):
+	root_node = Tree(tree_path, format=1).get_tree_root()
+	heights = []
+	for i, leaf in enumerate(root_node.iter_leaves()):
+		heights.append(root_node.get_distance(leaf))
+	var = round(np.var(heights), 5)
+
+	return var
 
 
 def calc_empirical_features():
-	#df = pd.read_csv(dirpath + CHOSEN_DATASETS_FILENAME).reset_index(drop=True)
-	#df2 = pd.read_csv(dirpath + SCORES_PER_DS.format("20_1_4200_ytransformed_exp")).reset_index(drop=True)
+	'''
 	df = pd.read_csv('/groups/itay_mayrose/danaazouri/PhyAI/validation_set2/summary_files/sampled_datasets.csv').reset_index(drop=True)
 	df2 = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/summary_files/results_saturation/scores_per_ds_20_1_validation_set_4200_ytransformed_exp_orig.csv").reset_index(drop=True)
 	for index, row in df2.iterrows():
@@ -26,8 +48,16 @@ def calc_empirical_features():
 			df2.loc[index, "nchars"] = df.loc[df["path"] == path, "nchars"].values[0]
 			df2.loc[index, "tbl"] = get_total_branch_lengths(path + PHYML_TREE_FILENAME.format('bionj'))
 			df2.loc[index, "ll"] = pd.read_csv(sum_ds_df).loc[0, "orig_ds_ll"]
-		
+
 	df2.to_csv(SUMMARY_FILES_DIR + SCORES_PER_DS.format("validation_with_atts"))
+	'''
+	df2 = pd.read_csv(SUMMARY_FILES_DIR + SCORES_PER_DS.format("20_1_ytransformed_exp_with_atts"))
+	df2 = df2[df2["path"] != "/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/41157/"]
+	for index, row in df2.iterrows():
+		df2.loc[index, "gaps"] = count_gaps_proportion(row["path"] + MSA_PHYLIP_FILENAME)
+		df2.loc[index, "theight_var"] = get_node_height(row["path"] + PHYML_TREE_FILENAME.format('bionj'))
+	df2.to_csv(SUMMARY_FILES_DIR + SCORES_PER_DS.format("20_1_ytransformed_exp_with_more_atts"))
+
 
 
 def plot_distributions(df):
@@ -78,7 +108,7 @@ import matplotlib.patches as mpatches
 
 def corr_plot(df):
 	sns.set_context("paper", font_scale=1.5)
-	#fig, (ax1, ax2, ax3) = plt.subplots(1, 3)
+	palette = itertools.cycle(sns.color_palette('colorblind'))
 
 	ax1 = sns.jointplot(x="ntaxa", y=SCORES_LST[0], data=df, kind='reg', stat_func=pearsonr, line_kws={'color':'black'}, color=next(palette),xlim=(5, 70.3), ylim=(0,1))#, ax=ax1)
 	plt.xlabel('Number of taxa')
@@ -86,25 +116,44 @@ def corr_plot(df):
 	#stats_patch = mpatches.Patch(color='white', label='$r^2$ = 0.0002;  $pval$ = 0.34')#, contains=False)
 	stats_patch = mpatches.Patch(color='white', label='$r^2$ = 0.009;  $pval$ = $7.8x10^-$$^1$$^0$')#, contains=False)
 	plt.legend(handles=[stats_patch])
-	plt.text(0.11, 1.35, "a", fontsize=20, fontweight='bold', va='top', ha='right')
+	plt.text(1.4, 1.2, "a", fontsize=20, fontweight='bold', va='top', ha='right')
 	plt.tight_layout()
 	plt.show()
 
+	'''
 	df = df[df["tbl"] < 30]
 	ax2 = sns.jointplot(x="tbl", y=SCORES_LST[0], data=df, kind='reg', stat_func=pearsonr, line_kws={'color':'black'}, color=next(palette),xlim=(-0.3, 31), ylim=(0,1))#, ax=ax2)
-
 	plt.xlabel('Total branch lengths')
 	plt.ylabel("")
 	# plt.xscale("log")
 	#stats_patch = mpatches.Patch(color='white', label='$r^2$ = 0.007;  $pval$ = $1.1x10^-$$^8$')#, contains=False)
 	stats_patch = mpatches.Patch(color='white', label='$r^2$ = 0.025;  $pval$ = $3.1x10^-$$^2$$^4$')  # , contains=False)
 	plt.legend(handles=[stats_patch])
-	plt.text(-0.9, 1.35, "b", fontsize=20, fontweight='bold', va='top', ha='right')
+	plt.text(-1.9, 1.2, "b", fontsize=20, fontweight='bold', va='top', ha='right')
 	plt.tight_layout()
 	plt.show()
-	
-	df_val = pd.read_csv(dirpath + SCORES_PER_DS.format("20_1_validation_set_4200_ytransformed_exp"))
-	#df_val.replace([df_val["Database"] == "orthoMam"]["Database"], "OrthoMaM")
+	'''
+	f, axes = plt.subplots(3, 1, sharex=True, sharey=True)
+	palette = itertools.cycle(sns.color_palette('colorblind'))
+	df = df[df["tbl"] < 30]
+	df1, df2, df3 = df[df["ntaxa"] <= 27], df[(df["ntaxa"] > 27) & (df["ntaxa"] <= 48)], df[df["ntaxa"] > 48]
+	for i, df_i in enumerate([df1, df2, df3]):
+		sns.regplot(x="tbl", y=SCORES_LST[0], data=df_i, line_kws={'color': 'black'}, color=next(palette), ax=axes[i])
+		axes[i].yaxis.set_label_position("right")
+		ilow, ihigh = (7, 27) if i == 0 else ("# Taxa \n\n28", 48) if i == 1 else (49, 70)
+		axes[i].set_ylabel("{}-{}".format(ilow, ihigh), rotation=-90, labelpad=18) if i !=1 else axes[i].set_ylabel("{}-{}".format(ilow, ihigh), rotation=-90, labelpad=50)
+		axes[i].set_xlabel('Total branch lengths') if i == 2 else axes[i].set_xlabel('')
+		df_i = df_i[['tbl', SCORES_LST[0]]].dropna()
+		r,p = pearsonr(df_i['tbl'].values, df_i[SCORES_LST[0]].values)
+		stats_patch = mpatches.Patch(color='white',label='$r^2$ = {};  $pval$ = ${}x10^-$$^{}$$^{}$'.format((str(np.square(r)))[:5], str(p)[:4], str(p)[-2], str(p)[-1]))
+		axes[i].legend(handles=[stats_patch], loc='lower right')
+	axes[0].text(-1.4, 1.5, "b", fontsize=20, fontweight='bold', va='top', ha='right')
+	plt.xlim(-0.3, 31)
+	plt.ylim(0, 1)
+	plt.tight_layout()
+	plt.show()
+
+	df_val = pd.read_csv(dirpath + SCORES_PER_DS.format("20_1_validation_set_ytransformed_exp"))
 	df_val["Database"] = df_val["Database"].replace(["orthoMam"], "OrthoMaM")
 	df_val["Set"] = "validation"
 	df["Set"] = "training"
@@ -113,20 +162,18 @@ def corr_plot(df):
 	plt.ylim(0,1)
 	plt.ylabel("")
 	plt.setp(ax3.get_xticklabels(), rotation=20)
-	plt.text(-0.8, 1.09, "c", fontsize=20, fontweight='bold', va='top', ha='right')
+	plt.text(-0.7, 1.2, "c", fontsize=20, fontweight='bold', va='top', ha='right')
 	plt.tight_layout()
 	plt.show()
 
+	######################
 	gpd_df = df_inc_val.groupby('Database')
 	for i, df_db in gpd_df:
 		print(df_db['Database'].values[0])
 		print(df_db[SCORES_LST[0]].values.mean())
+	######################
 	
-	
-	
-	#plt.tight_layout()
-	#plt.show()
-	
+
 	
 	
 	'''
@@ -153,17 +200,19 @@ def corr_plot(df):
 	f.tight_layout()
 	plt.show()
 	'''
-	
+
+
+
+
 
 
 
 if __name__ == '__main__':
 	dirpath = SUMMARY_FILES_DIR if platform.system() == 'Linux' else DATA_PATH
-	#calc_empirical_features()
+	calc_empirical_features()
+	exit()
 	
-	
-	df_val = pd.read_csv(dirpath + 'scores_per_ds_validation_with_atts.csv')
-	df_train = pd.read_csv(dirpath + 'scores_per_ds_20_1_ytransformed_exp_with_atts.csv')
-	#plot_distributions(df)
+	df_val = pd.read_csv(dirpath + 'scores_per_ds_validation_with_more_atts.csv')
+	df_train = pd.read_csv(dirpath + 'scores_per_ds_20_1_ytransformed_exp_with_more_atts.csv')
 	corr_plot(df_train)
-	#binned_att_to_scores(df)
+	#plot_distributions(df)

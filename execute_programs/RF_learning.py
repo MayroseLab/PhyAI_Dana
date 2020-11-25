@@ -293,13 +293,8 @@ def fit_transformation(df, move_type, trans=False):
 	# scale to the abs value of the starting tree ll
 	df[LABEL.format(move_type)] /= -df["orig_ds_ll"]  # minus (abs) to preserve order. 'ascending' should be True in 'get_cumsun_preds' function
 
-	'''
-	all = len(df)
-	print(len(df[df[LABEL.format(move_type)] > 0])/all)
-	print(all)
-	'''
 
-	#'''
+	'''
 	if trans == 'rank':
 		groups_ids = df[FEATURES[GROUP_ID]].unique()
 		for group_id in groups_ids:
@@ -315,7 +310,7 @@ def fit_transformation(df, move_type, trans=False):
 		from scipy.special import exp10
 		df[LABEL.format(move_type)] = exp10(df[LABEL.format(move_type)] + 1)
 	
-	'''
+	#'''
 	f = plt.figure()
 	sns.set_context("paper", font_scale=1.2)
 	#from sklearn import preprocessing
@@ -343,7 +338,7 @@ def fit_transformation(df, move_type, trans=False):
 	# plt.savefig("C:\\Users\\ItayMNB3\\Dropbox\\PhyloAI\\PhyAI_writing\\to_submit\\" + "Fig2.tif", dpi=300)
 	plt.show()
 	exit()
-	'''
+	#'''
 
 	return df
 

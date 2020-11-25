@@ -4,7 +4,7 @@ sys.path.append("/groups/itay_mayrose/danaazouri/PhyAI/code/")
 
 from defs import *
 from utils.msa_functions import *
-from data_processing.traverse_data_dirs import traverse_data_dirs
+from data_processing.`traver`se_data_dirs import traverse_data_dirs
 from summary.collect_SPR_features import *
 from subprocess import Popen, PIPE, STDOUT
 from parsing.parse_raxml_NG import parse_raxmlNG_content

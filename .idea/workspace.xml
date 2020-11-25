@@ -23,7 +23,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="04f6d22b-03c8-46f3-ac77-b58c4e95d95d" name="Default Changelist" comment="-">
+      <change beforePath="$PROJECT_DIR$/.idea/code.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/code.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/deployment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deployment.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MLworkshop.py" beforeDir="false" afterPath="$PROJECT_DIR$/MLworkshop.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/execute_programs/RF_learning.py" beforeDir="false" afterPath="$PROJECT_DIR$/execute_programs/RF_learning.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/execute_programs/SPR_move.py" beforeDir="false" afterPath="$PROJECT_DIR$/execute_programs/SPR_move.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures/data_attributes.py" beforeDir="false" afterPath="$PROJECT_DIR$/figures/data_attributes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures/feauture_selection.py" beforeDir="false" afterPath="$PROJECT_DIR$/figures/feauture_selection.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trying.py" beforeDir="false" afterPath="$PROJECT_DIR$/trying.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,7 +100,7 @@
       <recent name="D:\Users\Administrator\Dropbox\PhyloAI\code\execute_programs" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.MLworkshop">
+  <component name="RunManager" selected="Python.data_attributes">
     <configuration name="MLworkshop" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="code" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -476,9 +485,9 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.data_attributes" />
         <item itemvalue="Python.MLworkshop" />
         <item itemvalue="Python.feauture_selection" />
-        <item itemvalue="Python.data_attributes" />
         <item itemvalue="Python.saturation" />
         <item itemvalue="Python.score_last_step" />
       </list>
@@ -536,13 +545,8 @@
       <workItem from="1606201250151" duration="11900000" />
       <workItem from="1606279913998" duration="997000" />
       <workItem from="1606280933113" duration="667000" />
-    </task>
-    <task id="LOCAL-01283" summary="run additional large datasets">
-      <created>1604919031083</created>
-      <option name="number" value="01283" />
-      <option name="presentableId" value="LOCAL-01283" />
-      <option name="project" value="LOCAL" />
-      <updated>1604919031083</updated>
+      <workItem from="1606287266804" duration="1186000" />
+      <workItem from="1606288474114" duration="23831000" />
     </task>
     <task id="LOCAL-01284" summary="run additional large datasets">
       <created>1604919106441</created>
@@ -869,7 +873,14 @@
       <option name="presentableId" value="LOCAL‎01331" />
       <updated>1606280622581</updated>
     </task>
-    <option name="localTasksCounter" value="1332" />
+    <task id="LOCAL-01332" summary="-">
+      <created>1606286509562</created>
+      <option name="number" value="01332" />
+      <option name="presentableId" value="LOCAL-01332" />
+      <option name="project" value="LOCAL" />
+      <updated>1606286509562</updated>
+    </task>
+    <option name="localTasksCounter" value="1333" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -928,12 +939,12 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="380" y="164" key="#Notifications/0.0.1280.680@0.0.1280.680" timestamp="1605190494933" />
-    <state x="275" y="0" key="#SSH_Configurations" timestamp="1606280746987">
-      <screen x="0" y="0" width="1280" height="680" />
+    <state x="413" y="0" key="#SSH_Configurations" timestamp="1606286608765">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="464" y="-1050" key="#SSH_Configurations/0.0.1280.680/103.-1050.1680.1010@103.-1050.1680.1010" timestamp="1606209016527" />
     <state x="275" y="0" key="#SSH_Configurations/0.0.1280.680@0.0.1280.680" timestamp="1606280746987" />
-    <state x="413" y="0" key="#SSH_Configurations/0.0.1920.1040@0.0.1920.1040" timestamp="1606051006881" />
+    <state x="413" y="0" key="#SSH_Configurations/0.0.1920.1040@0.0.1920.1040" timestamp="1606286608765" />
     <state x="282" y="220" width="1092" height="527" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1605176553290">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -951,13 +962,13 @@
     </state>
     <state x="93" y="93" width="1095" height="495" key="DiffContextDialog/0.0.1280.680@0.0.1280.680" timestamp="1601977119599" />
     <state x="140" y="142" width="1643" height="758" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1604931855130" />
-    <state x="740" y="291" key="FileChooserDialogImpl" timestamp="1606136540669">
+    <state x="740" y="291" key="FileChooserDialogImpl" timestamp="1606303912062">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="2659" y="328" key="FileChooserDialogImpl/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1601399002874" />
     <state x="493" y="190" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1602350905561" />
-    <state x="740" y="291" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1606136540669" />
-    <state width="1877" height="146" key="GridCell.Tab.0.bottom" timestamp="1606286474777">
+    <state x="740" y="291" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1606303912062" />
+    <state width="1877" height="259" key="GridCell.Tab.0.bottom" timestamp="1606318396654">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="92" key="GridCell.Tab.0.bottom/0.0.1280.680/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1605105736876" />
@@ -968,8 +979,8 @@
     <state width="1237" height="143" key="GridCell.Tab.0.bottom/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1599666538450" />
     <state width="1347" height="184" key="GridCell.Tab.0.bottom/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1602768642279" />
     <state width="1237" height="122" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1606282608816" />
-    <state width="1877" height="146" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1606286474777" />
-    <state width="1877" height="146" key="GridCell.Tab.0.center" timestamp="1606286474777">
+    <state width="1877" height="259" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1606318396654" />
+    <state width="1877" height="259" key="GridCell.Tab.0.center" timestamp="1606318396654">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="92" key="GridCell.Tab.0.center/0.0.1280.680/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1605105736875" />
@@ -980,8 +991,8 @@
     <state width="1237" height="143" key="GridCell.Tab.0.center/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1599666538449" />
     <state width="1347" height="184" key="GridCell.Tab.0.center/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1602768642279" />
     <state width="1237" height="122" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1606282608816" />
-    <state width="1877" height="146" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1606286474777" />
-    <state width="1877" height="146" key="GridCell.Tab.0.left" timestamp="1606286474777">
+    <state width="1877" height="259" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1606318396654" />
+    <state width="1877" height="259" key="GridCell.Tab.0.left" timestamp="1606318396654">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="92" key="GridCell.Tab.0.left/0.0.1280.680/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1605105736874" />
@@ -992,8 +1003,8 @@
     <state width="1237" height="143" key="GridCell.Tab.0.left/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1599666538449" />
     <state width="1347" height="184" key="GridCell.Tab.0.left/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1602768642278" />
     <state width="1237" height="122" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1606282608816" />
-    <state width="1877" height="146" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1606286474777" />
-    <state width="1877" height="146" key="GridCell.Tab.0.right" timestamp="1606286474777">
+    <state width="1877" height="259" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1606318396654" />
+    <state width="1877" height="259" key="GridCell.Tab.0.right" timestamp="1606318396654">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="92" key="GridCell.Tab.0.right/0.0.1280.680/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1605105736875" />
@@ -1004,7 +1015,7 @@
     <state width="1237" height="143" key="GridCell.Tab.0.right/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1599666538450" />
     <state width="1347" height="184" key="GridCell.Tab.0.right/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1602768642279" />
     <state width="1237" height="122" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1606282608816" />
-    <state width="1877" height="146" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1606286474777" />
+    <state width="1877" height="259" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1606318396654" />
     <state width="1877" height="348" key="GridCell.Tab.1.bottom" timestamp="1604341659437">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -1033,16 +1044,16 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="280" y="102" key="MultipleFileMergeDialog/0.0.1280.680@0.0.1280.680" timestamp="1604678952449" />
-    <state x="204" y="0" key="SettingsEditor" timestamp="1606280896486">
-      <screen x="0" y="0" width="1280" height="680" />
+    <state x="306" y="0" key="SettingsEditor" timestamp="1606288608597">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="371" y="-1050" key="SettingsEditor/0.0.1280.680/103.-1050.1680.1010@103.-1050.1680.1010" timestamp="1606209034305" />
     <state x="2323" y="159" key="SettingsEditor/0.0.1280.680/1920.0.1680.1010@1920.0.1680.1010" timestamp="1599391254553" />
     <state x="204" y="0" key="SettingsEditor/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1602757691674" />
     <state x="204" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1606280896486" />
-    <state x="306" y="0" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1606051358188" />
-    <state x="329" y="120" key="Vcs.Push.Dialog.v2" timestamp="1606280624382">
-      <screen x="0" y="0" width="1280" height="680" />
+    <state x="306" y="0" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1606288608597" />
+    <state x="494" y="223" key="Vcs.Push.Dialog.v2" timestamp="1606286525928">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="-1426" y="184" key="Vcs.Push.Dialog.v2/0.0.1280.680/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1605112569384" />
     <state x="329" y="146" key="Vcs.Push.Dialog.v2/0.0.1280.680/103.-1050.1680.1010@0.0.1280.680" timestamp="1602511685167" />
@@ -1051,7 +1062,7 @@
     <state x="329" y="146" key="Vcs.Push.Dialog.v2/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1599667287383" />
     <state x="2414" y="252" key="Vcs.Push.Dialog.v2/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1602764904349" />
     <state x="329" y="120" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1606280624382" />
-    <state x="494" y="223" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1606136182574" />
+    <state x="494" y="223" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1606286525928" />
     <state x="-1930" y="0" width="1932" height="1051" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1605087178793">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
@@ -1069,21 +1080,21 @@
     <state x="2600" y="350" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.680/1920.0.1680.1010@1920.0.1680.1010" timestamp="1600676497257" />
     <state x="518" y="235" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.680@0.0.1280.680" timestamp="1606280646164" />
     <state x="777" y="360" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1606136354972" />
-    <state x="411" y="145" key="com.jetbrains.plugins.remotesdk.ui.RemoteMappingsConfiguration" timestamp="1606280617039">
-      <screen x="0" y="0" width="1280" height="680" />
+    <state x="616" y="221" key="com.jetbrains.plugins.remotesdk.ui.RemoteMappingsConfiguration" timestamp="1606287898067">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="411" y="145" key="com.jetbrains.plugins.remotesdk.ui.RemoteMappingsConfiguration/0.0.1280.680@0.0.1280.680" timestamp="1606280617039" />
-    <state x="616" y="221" key="com.jetbrains.plugins.remotesdk.ui.RemoteMappingsConfiguration/0.0.1920.1040@0.0.1920.1040" timestamp="1606049898817" />
+    <state x="616" y="221" key="com.jetbrains.plugins.remotesdk.ui.RemoteMappingsConfiguration/0.0.1920.1040@0.0.1920.1040" timestamp="1606287898067" />
     <state x="184" y="0" width="1110" height="503" key="dock-window-1" timestamp="1600239292202">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="1920" y="0" width="1405" height="970" key="dock-window-1/0.0.1280.680/1920.0.1680.1010@1920.0.1680.1010" timestamp="1597658284185" />
     <state x="184" y="0" width="1110" height="503" key="dock-window-1/0.0.1280.680@0.0.1280.680" timestamp="1600239292202" />
-    <state x="461" y="56" width="439" height="540" key="ftp.server.browser" timestamp="1606201549754">
-      <screen x="0" y="0" width="1280" height="680" />
+    <state x="692" y="85" width="439" height="540" key="ftp.server.browser" timestamp="1606288585484">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="56" key="ftp.server.browser/0.0.1280.680@0.0.1280.680" timestamp="1606201549754" />
-    <state x="692" y="85" width="439" height="540" key="ftp.server.browser/0.0.1920.1040@0.0.1920.1040" timestamp="1606051312912" />
+    <state x="692" y="85" width="439" height="540" key="ftp.server.browser/0.0.1920.1040@0.0.1920.1040" timestamp="1606288585484" />
     <state x="2423" y="221" width="672" height="678" key="search.everywhere.popup" timestamp="1601816680235">
       <screen x="1920" y="0" width="1680" height="1010" />
     </state>
@@ -1116,10 +1127,10 @@
     <SUITE FILE_PATH="coverage/code$saturation.coverage" NAME="saturation Coverage Results" MODIFIED="1606142379688" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/figures" />
     <SUITE FILE_PATH="coverage/code$score_last_step.coverage" NAME="score_last_step Coverage Results" MODIFIED="1606047732842" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/summary" />
     <SUITE FILE_PATH="coverage/code$create_starting_trees.coverage" NAME="create_starting_trees Coverage Results" MODIFIED="1602269784750" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data_processing" />
-    <SUITE FILE_PATH="coverage/code$feauture_selection.coverage" NAME="feauture_selection Coverage Results" MODIFIED="1606141336878" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/figures" />
-    <SUITE FILE_PATH="coverage/code$data_attributes.coverage" NAME="data_attributes Coverage Results" MODIFIED="1606151102029" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/figures" />
+    <SUITE FILE_PATH="coverage/code$feauture_selection.coverage" NAME="feauture_selection Coverage Results" MODIFIED="1606293155321" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/figures" />
+    <SUITE FILE_PATH="coverage/code$data_attributes.coverage" NAME="data_attributes Coverage Results" MODIFIED="1606318396636" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/figures" />
     <SUITE FILE_PATH="coverage/code$RAxML_NG__1_.coverage" NAME="RAxML_NG (1) Coverage Results" MODIFIED="1600344774120" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/execute_programs" />
-    <SUITE FILE_PATH="coverage/code$MLworkshop.coverage" NAME="MLworkshop Coverage Results" MODIFIED="1606286474767" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/code$MLworkshop.coverage" NAME="MLworkshop Coverage Results" MODIFIED="1606314595899" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/code$collect_SPR_features.coverage" NAME="collect_SPR_features Coverage Results" MODIFIED="1605087355981" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/summary" />
     <SUITE FILE_PATH="coverage/code$Phyml.coverage" NAME="Phyml Coverage Results" MODIFIED="1600262723563" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/execute_programs" />
     <SUITE FILE_PATH="coverage/code$SPR_move_one_parallel.coverage" NAME="SPR_move_one_parallel Coverage Results" MODIFIED="1601980731165" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/execute_programs" />
@@ -1127,7 +1138,7 @@
     <SUITE FILE_PATH="coverage/code$temp_for_ML_workshop.coverage" NAME="temp_for_ML_workshop Coverage Results" MODIFIED="1602764084312" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data_processing" />
     <SUITE FILE_PATH="coverage/code$run_times.coverage" NAME="run_times Coverage Results" MODIFIED="1604401415928" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/summary" />
     <SUITE FILE_PATH="coverage/code$SVM_learning.coverage" NAME="SVM_learning Coverage Results" MODIFIED="1605183716042" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/execute_programs" />
-    <SUITE FILE_PATH="coverage/code$RF_learning.coverage" NAME="RF_learning Coverage Results" MODIFIED="1605185610120" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/execute_programs" />
+    <SUITE FILE_PATH="coverage/code$RF_learning.coverage" NAME="RF_learning Coverage Results" MODIFIED="1606302179395" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/execute_programs" />
     <SUITE FILE_PATH="coverage/code$course.coverage" NAME="course Coverage Results" MODIFIED="1605359576008" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/code$RAxML_NG2.coverage" NAME="RAxML_NG Coverage Results" MODIFIED="1600783174535" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/execute_programs" />
     <SUITE FILE_PATH="coverage/code$trying__1_.coverage" NAME="trying (1) Coverage Results" MODIFIED="1605456564063" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/utils" />
