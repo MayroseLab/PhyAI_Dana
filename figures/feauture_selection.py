@@ -74,9 +74,9 @@ def plot_main_results2(df):
 
 	f.tight_layout()
 	f.set_size_inches(7, 7, forward=True)
-	plt.savefig("C:\\Users\\ItayMNB3\\Dropbox\\PhyloAI\\PhyAI_writing\\to_submit\\" + "Fig2.tif", dpi=300)
-	#plt.savefig("C:\\Users\\ItayMNB3\\Dropbox\\PhyloAI\\PhyAI_writing\\figures\\" + "FigS1.tif", dpi=300)
-	#plt.show()
+	#plt.savefig(SUMMARY_FILES_DIR + "Fig2.tif", dpi=300)
+	plt.savefig(SUMMARY_FILES_DIR + "FigS1.tif", dpi=300)
+	plt.show()
 	
 	return
 
@@ -170,19 +170,15 @@ def concat_n_features(dirpath, max_n_features):
 
 if __name__ == '__main__':
 	dirpath = SUMMARY_FILES_DIR if platform.system() == 'Linux' else DATA_PATH
-	dirpath += 'results_feature_selection/'
-	#df = concat_n_features(dirpath, max_n_features=20)
-	#df.to_csv(dirpath + 'temp.csv')
-	scores_feature_selection(pd.read_csv(dirpath + 'temp.csv'))
-	
-	#df = pd.read_csv(dirpath + SCORES_PER_DS.format("28_1_ytransformed_exp"))
-	#df = pd.read_csv(dirpath + SCORES_PER_DS.format("26_2_ytransformed_exp"))
-	#df = pd.read_csv(dirpath + SCORES_PER_DS.format("26_1st_on_2nd_ytransformed_exp"))
+	#dirpath += 'results_feature_selection/'
+	##df = concat_n_features(dirpath, max_n_features=20)
+	##df.to_csv(dirpath + 'temp.csv')
+	#scores_feature_selection(pd.read_csv(dirpath + 'temp.csv'))
 
-	#df = pd.read_csv(dirpath + SCORES_PER_DS.format("28_1_ytransformed_exp_minus"))
-	##df = pd.read_csv(dirpath + SCORES_PER_DS.format("20_1_3700_ytransformed_exp"))
-	#df = pd.read_csv(dirpath + SCORES_PER_DS.format("26_1_validation_set_ytransformed_exp"))
-	##plot_main_results2(df)
+	#df = pd.read_csv(dirpath + SCORES_PER_DS.format("20_1_4200_ytransformed_exp"))
+	#df = pd.read_csv(dirpath + SCORES_PER_DS.format("20_1_validation_set_4200_ytransformed_exp"))
+	df = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/summary_files/results_saturation/scores_per_ds_20_1_validation_set_4200_ytransformed_exp10_cp.csv")
+	plot_main_results2(df)
 	
 	
 	'''

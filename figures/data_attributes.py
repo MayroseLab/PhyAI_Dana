@@ -103,7 +103,7 @@ def corr_plot(df):
 	plt.tight_layout()
 	plt.show()
 	
-	df_val = pd.read_csv(dirpath + SCORES_PER_DS.format("20_1_validation_set_ytransformed_exp"))
+	df_val = pd.read_csv(dirpath + SCORES_PER_DS.format("20_1_validation_set_4200_ytransformed_exp"))
 	#df_val.replace([df_val["Database"] == "orthoMam"]["Database"], "OrthoMaM")
 	df_val["Database"] = df_val["Database"].replace(["orthoMam"], "OrthoMaM")
 	df_val["Set"] = "validation"
@@ -116,6 +116,11 @@ def corr_plot(df):
 	plt.text(-0.8, 1.09, "c", fontsize=20, fontweight='bold', va='top', ha='right')
 	plt.tight_layout()
 	plt.show()
+
+	gpd_df = df_inc_val.groupby('Database')
+	for i, df_db in gpd_df:
+		print(df_db['Database'].values[0])
+		print(df_db[SCORES_LST[0]].values.mean())
 	
 	
 	
