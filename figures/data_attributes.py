@@ -37,9 +37,9 @@ def get_node_height(tree_path):
 
 
 def calc_empirical_features():
-	'''
 	df = pd.read_csv('/groups/itay_mayrose/danaazouri/PhyAI/validation_set2/summary_files/sampled_datasets.csv').reset_index(drop=True)
 	df2 = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/summary_files/results_saturation/scores_per_ds_20_1_validation_set_4200_ytransformed_exp_orig.csv").reset_index(drop=True)
+	df2 = df2[df2["path"] != "/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/41157/"]
 	for index, row in df2.iterrows():
 		path = row["path"]
 		sum_ds_df = SUMMARY_PER_DS.format(path, "prune", "br", "1")
@@ -48,15 +48,10 @@ def calc_empirical_features():
 			df2.loc[index, "nchars"] = df.loc[df["path"] == path, "nchars"].values[0]
 			df2.loc[index, "tbl"] = get_total_branch_lengths(path + PHYML_TREE_FILENAME.format('bionj'))
 			df2.loc[index, "ll"] = pd.read_csv(sum_ds_df).loc[0, "orig_ds_ll"]
+			df2.loc[index, "gaps"] = count_gaps_proportion(row["path"] + MSA_PHYLIP_FILENAME)
+			df2.loc[index, "theight_var"] = get_node_height(row["path"] + PHYML_TREE_FILENAME.format('bionj'))
 
 	df2.to_csv(SUMMARY_FILES_DIR + SCORES_PER_DS.format("validation_with_atts"))
-	'''
-	df2 = pd.read_csv(SUMMARY_FILES_DIR + SCORES_PER_DS.format("20_1_ytransformed_exp_with_atts"))
-	df2 = df2[df2["path"] != "/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/41157/"]
-	for index, row in df2.iterrows():
-		df2.loc[index, "gaps"] = count_gaps_proportion(row["path"] + MSA_PHYLIP_FILENAME)
-		df2.loc[index, "theight_var"] = get_node_height(row["path"] + PHYML_TREE_FILENAME.format('bionj'))
-	df2.to_csv(SUMMARY_FILES_DIR + SCORES_PER_DS.format("20_1_ytransformed_exp_with_more_atts"))
 
 
 
@@ -209,8 +204,7 @@ def corr_plot(df):
 
 if __name__ == '__main__':
 	dirpath = SUMMARY_FILES_DIR if platform.system() == 'Linux' else DATA_PATH
-	calc_empirical_features()
-	exit()
+	#calc_empirical_features()
 	
 	df_val = pd.read_csv(dirpath + 'scores_per_ds_validation_with_more_atts.csv')
 	df_train = pd.read_csv(dirpath + 'scores_per_ds_20_1_ytransformed_exp_with_more_atts.csv')
