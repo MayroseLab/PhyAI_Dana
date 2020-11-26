@@ -161,43 +161,45 @@ def corr_plot(df):
 	plt.tight_layout()
 	plt.show()
 
-	######################
+
+	''''######################
 	gpd_df = df_inc_val.groupby('Database')
 	for i, df_db in gpd_df:
 		print(df_db['Database'].values[0])
 		print(df_db[SCORES_LST[0]].values.mean())
-	######################
-	
+	######################'''
 
-	
-	
-	'''
-	gs0 = gridspec.GridSpec(2, 2)
-	gs00 = gridspec.GridSpecFromSubplotSpec(1, 1, subplot_spec=gs0[0, :])
-	gs01 = gridspec.GridSpecFromSubplotSpec(1, 2, subplot_spec=gs0[1, :])
-	
-	ax1, ax2, ax3 = f.add_subplot(gs00[:]), f.add_subplot(gs01[:, :1]), f.add_subplot(gs01[:, 1:2])
-	
-	df_inc_val = pd.concat([df, pd.read_csv(dirpath + SCORES_PER_DS.format("26_1_validation_set_ytransformed_exp"))])
 
-	#sns.catplot(x="Database", y=SCORES_LST[0], data=df, ax=ax1, order=[DBS[0],DBS[2],DBS[3],DBS[1]], kind='swarm)
-	sns.boxplot(x="Database", y=SCORES_LST[0], data=df_inc_val, ax=ax1, showfliers=False, order=["protDBs", "PANDIT", "ploiDB", "orthoMam", "TreeBASE", "selectome"])
-	ax1.legend(loc='best', frameon=True)
-	
-	sns.jointplot(x='ntaxa', y =SCORES_LST[0], data = df, kind ='reg', stat_func=pearsonr, color=next(palette), ax=ax2)
-	#sns.regplot(x="ntaxa", y=SCORES_LST[0], data=df, ax=ax2, color=next(palette))
-	sns.regplot(x="tbl", y=SCORES_LST[0], data=df, ax=ax3, color=next(palette))
-	ax3.set_xlim(0,10)
-	
-	#ax1.set(xlabel='Spearman correlation ({})'.format(r'$\rho$'), ylabel="% empirical datasets", title='score 1',
-	#       yticklabels=yperc1, xlim=(0, 1))
-	
-	f.tight_layout()
+
+
+def corr_plot_more_atts(df):
+	sns.set_context("paper", font_scale=1.5)
+	palette = itertools.cycle(sns.color_palette('colorblind'))
+	next(palette)
+	next(palette)
+	next(palette)
+	next(palette)
+
+	ax1 = sns.jointplot(x="gaps", y=SCORES_LST[0], data=df, kind='reg', stat_func=pearsonr, line_kws={'color':'black'}, color=next(palette), xlim=(0,81), ylim=(0,1))#, ax=ax1)
+	plt.xlabel('Average gaps (%)')
+	plt.ylabel('Spearman correlation ({})'.format(r'$\rho$'))
+	stats_patch = mpatches.Patch(color='white', label='$r^2$ = 0.001;  $pval$ = $1.1x10^-$$^1$$^8$')#, contains=False)
+	plt.legend(handles=[stats_patch])
+	plt.text(-3.4, 1.2, "d", fontsize=20, fontweight='bold', va='top', ha='right')
+	plt.tight_layout()
 	plt.show()
-	'''
 
-
-
+	next(palette)
+	next(palette)
+	df = df[df["theight_var"] <= 15]
+	ax2 = sns.jointplot(x="theight_var", y=SCORES_LST[0], data=df, kind='reg', stat_func=pearsonr, line_kws={'color':'black'}, color=next(palette), xlim=(0,13), ylim=(0,1))#, ax=ax2)
+	plt.xlabel('Deviation from ulrametricity')
+	plt.ylabel("")
+	stats_patch = mpatches.Patch(color='white', label='$r^2$ = 0.001;  $pval$ = $4.9x10^-$$^1$$^6$')  # , contains=False)
+	plt.legend(handles=[stats_patch])
+	plt.text(-0.65, 1.2, "e", fontsize=20, fontweight='bold', va='top', ha='right')
+	plt.tight_layout()
+	plt.show()
 
 
 
@@ -205,8 +207,12 @@ def corr_plot(df):
 if __name__ == '__main__':
 	dirpath = SUMMARY_FILES_DIR if platform.system() == 'Linux' else DATA_PATH
 	#calc_empirical_features()
-	
+	a1 = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+	a2 = [1,1,1,1,1,1,1,1,1,1,1,1,1,2,1]
+	print(pearsonr(a1,a2))
+	exit()
 	df_val = pd.read_csv(dirpath + 'scores_per_ds_validation_with_more_atts.csv')
 	df_train = pd.read_csv(dirpath + 'scores_per_ds_20_1_ytransformed_exp_with_more_atts.csv')
-	corr_plot(df_train)
+	#corr_plot(df_val)
+	corr_plot_more_atts(df_val)
 	#plot_distributions(df)
