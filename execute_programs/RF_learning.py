@@ -34,7 +34,7 @@ FIRST_ON_SEC = False           # temp for running 1 on 2
 FEATURE_SELECTION = False       # temp for running feature selection
 SATURATION = True             # temp to asses saturation
 
-N_DATASETS = 4200    # [1500,5858]
+N_DATASETS = 3000    # [1500,5858]
 
 
 def score_rank(df_by_ds, sortby, locatein, random, scale_score):
@@ -189,7 +189,7 @@ def apply_RFR(df_test, df_train, move_type, features, cv=True):
 			joblib.dump(regressor, open(model_path, 'wb'))
 		model = joblib.load(model_path)
 	else:
-		model = RandomForestRegressor(n_estimators=N_ESTIMATORS, max_features=0.33, oob_score=True).fit(X_train, y_train)
+		model = RandomForestRegressor(n_estimators=N_ESTIMATORS, max_features=0.33, oob_score=True, n_jobs=-1).fit(X_train, y_train)
 
 	y_pred = model.predict(X_test)
 	
