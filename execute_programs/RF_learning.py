@@ -7,15 +7,15 @@ from defs import *
 
 from utils.tree_functions import get_total_branch_lengths
 from sklearn.ensemble import RandomForestRegressor, RandomForestClassifier
-from sklearn.preprocessing import *
+#from sklearn.preprocessing import *
 from statistics import mean, median#from sklearn.metrics import *
 #from sklearn.model_selection import train_test_split
 #from sklearn.model_selection import cross_val_score
 from figures.violin_for_grant import *
-from figures.confidence_interval_dts import plot_pred_true
-from figures.accXsize_boxplot import accXsize_boxplot
-from itertools import combinations
-import pickle
+#from figures.confidence_interval_dts import plot_pred_true
+#from figures.accXsize_boxplot import accXsize_boxplot
+#from itertools import combinations
+#import pickle
 import joblib
 
 pd.set_option('display.max_columns', 40)
@@ -32,7 +32,7 @@ FIGURES = False
 FIRST_ON_RAND = False
 FIRST_ON_SEC = False           # temp for running 1 on 2
 FEATURE_SELECTION = False       # temp for running feature selection
-SATURATION = False             # temp to asses saturation
+SATURATION = True             # temp to asses saturation
 
 N_DATASETS = 4200    # [1500,5858]
 
@@ -182,7 +182,7 @@ def apply_RFR(df_test, df_train, move_type, features, cv=True):
 	X_test, y_test = split_features_label(df_test, move_type, features)
 
 	if not FEATURE_SELECTION:
-		model_path = SUMMARY_FILES_DIR + 'finalized_model_joblib.sav'
+		model_path = SUMMARY_FILES_DIR + 'finalized_model_joblib_19.sav'
 		if not os.path.exists(model_path) and not cv:
 			regressor = RandomForestRegressor(n_estimators=N_ESTIMATORS, max_features=0.33,  oob_score=True).fit(X_train, y_train) # 0.33=nfeatures/3. this is like in R (instead of default=n_features)
 			# save the model to disk

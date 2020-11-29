@@ -83,10 +83,11 @@ FEATURES = OrderedDict([("bl", "edge_length"), ("longest", "longest_branch") ,
 						#("pars_p","parsimony_pruned"),("pars_r","parsimony_remaining"),
                         ("longest_p","longest_pruned"),("longest_r","longest_remaining"),
 						("top_dist","topology_dist_between"), ("bl_dist","tbl_dist_between"),   # only for rgft
-						("res_tbl", "res_tree_tbl"), ("res_bl", "res_tree_edge_length"),        # only for rgft
+						#("res_tbl", "res_tree_tbl"), 											# only for rgft
+						("res_bl", "res_tree_edge_length"),       							    # only for rgft
 						("group_id", "orig_ds_id"), ("group_tbl","orig_ds_tbl")])
 
-FEATURES_RGFT_ONLY = ["top_dist", "bl_dist", "res_bl", "res_tbl"]
+FEATURES_RGFT_ONLY = ["top_dist", "bl_dist", "res_bl"] #, "res_tbl"]
 FEATURES_RGFT = [feature for key, feature in FEATURES.items()]
 FEATURES_PRUNE = [feature for key, feature in FEATURES.items()]
 [FEATURES_PRUNE.remove(FEATURES[f]) for f in FEATURES_RGFT_ONLY]
