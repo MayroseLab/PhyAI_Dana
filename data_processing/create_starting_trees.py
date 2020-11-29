@@ -74,9 +74,7 @@ if __name__ == '__main__':
 
 	from Bio.AlignIO import convert
 	msa_path = "/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/example3782/3782.phy"
-	#convert(in_file=msa_path, in_format='phylip', out_file=msa_path+ "new.phy", out_format=PHYLIP_FORMAT)
-	from utils.msa_functions import rewrite_in_phylip
-	rewrite_in_phylip(msa_path)
+	convert(in_file=msa_path, in_format='phylip', out_file=msa_path+ "new.phy", out_format=PHYLIP_FORMAT)
 	exit()
 
 	datapath = args.dataset_path
