@@ -202,19 +202,21 @@ if __name__ == '__main__':
 	DATAPATH = "/groups/itay_mayrose/danaazouri/PhyAI/ML_workshop/reinforcement_data/"
 	df = pd.read_csv(DATAPATH + "data/sampled_datasets.csv")
 	curr_path = DATAPATH + df.loc[0, "path"]
-	#tree_path = curr_path + MSA_PHYLIP_FILENAME + "_phyml_tree_bionj.txt"
-	tree_path = "(((((((Sp016:1e-08,((Sp015:0.00136863,Sp006:1e-08)N16:4e-08,Sp007:1e-08)N14:4e-08)N12:4e-08,Sp017:1e-08)N10:0.00142335,((((Sp019:0.00408431,Sp001:0.00137406)N17:0.00556276,(Sp013:5e-08,Sp010:0.00981096)N18:0.00555217)N15:0.00275402,Sp012:0.00415541)N13:0.00562323,Sp011:0.00137446)N11:0.00131965)N8:0.0044673,Sp014:0.00691201)N5:0.0892694,Sp003:2.63092)N3:4.08e-06,((Sp018:0.00830014,(Sp000:0.00418924,Sp002:0.00445427)N9:0.00445427)N6:5e-08,(Sp008:0.00354982,Sp009:0.00341529)N7:0.00549799)N4:0.034069)N2:0.0285976,Sp005:0.0356245,Sp004:0.00462621);"
-	tree_path = "(((((((Sp016:1e-08,((Sp015:0.00136863,Sp006:1e-08)N16:4e-08,Sp007:1e-08)N14:4e-08)N12:4e-08,Sp017:1e-08)N10:0.00142335,((((Sp019:0.00408431,Sp001:0.00137406)N17:0.00556276,(Sp013:5e-08,Sp010:0.00981096)N18:0.00555217)N15:0.00275402,Sp012:0.00415541)N13:0.00562323,Sp011:0.00137446)N11:0.00131965)N8:0.0044673,Sp014:0.00691201)N5:0.0892694,Sp003:2.63092)N3:4.08e-06,((Sp018:0.00830014,Sp002:0.00890854)N6:5e-08,(Sp008:0.00354982,Sp009:0.00341529)N7:0.00549799)N4:0.034069)N2:0.0285976,Sp004:0.00462622,(Sp000:0.00418924,Sp005:0.0178123)N9:0.0178123);"
-	tree_path = "/groups/itay_mayrose/danaazouri/PhyAI/ML_workshop/Reinforcement_model/test_Dana.txt"
+	tree_path = curr_path + MSA_PHYLIP_FILENAME + "_phyml_tree_bionj.txt"
+	#tree_path = "(((((Sp013:0.00935092,Sp004:0.007683)N17:0.007683,Sp006:0.0233859)N5:0.0224483,(((((Sp019:0.00133828,Sp018:0)N16:0.019261,Sp012:0.0315228)N13:0.0114042,(Sp011:0,Sp010:0)N14:0.0165666)N11:0.00239063,(((Sp009:5e-08,(Sp007:0,Sp008:0.000672625)N7:0.000672625)N18:0.00646578,Sp003:0.0139717)N15:0.0423708,(Sp016:0,Sp000:0.0188053)N4:0.0188053)N12:0.00446107)N9:0.0180496,(Sp015:0.0024543,Sp014:0.00126834)N10:0.017892)N6:0.00593268)N3:3.7e-07,(Sp005:0,Sp017:0)N8:0.0267204)N2:0.073978,Sp002:0.00130518,Sp001:0);"
+	tree_path = "(((((Sp013:0.00935092,Sp004:0.007683)N17:0.007683,Sp006:0.0233859)N5:0.0224483,(((((Sp019:0.00133828,Sp018:0)N16:0.019261,Sp012:0.0315228)N13:0.0114042,(Sp011:0,Sp010:0)N14:0.0165666)N11:0.00239063,((((Sp007:0,Sp008:0.000672625)N7:0.000672625,(Sp001:0,Sp009:2.5e-08):2.5e-08)N18:0.00646578,Sp003:0.0139717)N15:0.0423708,(Sp016:0,Sp000:0.0188053)N4:0.0188053)N12:0.00446107)N9:0.0180496,(Sp015:0.0024543,Sp014:0.00126834)N10:0.017892)N6:0.00593268)N3:3.7e-07,(Sp005:0,Sp017:0)N8:0.0267204)N2:0.073978,Sp002:0.00130518);"
+	tree_path = "(Sp002:0.00130518,(((Sp013:0.00935092,Sp004:0.007683)N17:0.007683,Sp006:0.0233859)N5:0.0224483,(((((Sp019:0.00133828,Sp018:0)N16:0.019261,Sp012:0.0315228)N13:0.0114042,(Sp011:0,Sp010:0)N14:0.0165666)N11:0.00239063,((((Sp007:0,Sp008:0.000672625)N7:0.000672625,(Sp001:0,Sp009:2.5e-08):2.5e-08)N18:0.00646578,Sp003:0.0139717)N15:0.0423708,Sp016:0.0188053)N12:0.00446107)N9:0.0180496,(Sp015:0.0024543,Sp014:0.00126834)N10:0.017892)N6:0.00593268)N3:3.7e-07,(Sp017:0,(Sp000:0.0188053,Sp005:0)N4:0)N8:0.0267204);"
 	t_orig = Tree(newick=tree_path, format=1)    # ETEtree
-	t_orig.get_tree_root().name = "ROOT_LIKE"    # ETEtree
+	t_orig.unroot()
+	#t_orig.get_tree_root().name = "ROOT_LIKE"    # ETEtree
 	print(t_orig.get_ascii(show_internal=True))
-	exit()
+	print(len(t_orig.get_descendants()))
+
 
 	######## only for pre-processing ########
-	ETEtree_with_internal_names, new_tree_path = add_internal_names(tree_path, t_orig)
+	#ETEtree_with_internal_names, new_tree_path = add_internal_names(tree_path, t_orig)
 	#########################################
-	#ETEtree_with_internal_names = t_orig
+	ETEtree_with_internal_names = t_orig
 
 	# a possible pair could NOT be something ELSE than all pair-combinations between [Sp000, ... , Sp0019] and [N1, ... , N18].  You can't know in advance which of THESE do exist (topology-dependant)
 	neighbor_tree_str = SPR_by_edge_names(ETEtree_with_internal_names, 'Sp000', 'Sp005')

@@ -72,6 +72,13 @@ if __name__ == '__main__':
 	parser.add_argument('--nline_to_run', '-nlines', default=False)
 	args = parser.parse_args()
 
+	from Bio.AlignIO import convert
+	msa_path = "/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/example3782/3782.phy"
+	#convert(in_file=msa_path, in_format='phylip', out_file=msa_path+ "new.phy", out_format=PHYLIP_FORMAT)
+	from utils.msa_functions import rewrite_in_phylip
+	rewrite_in_phylip(msa_path)
+	exit()
+
 	datapath = args.dataset_path
 	if datapath:
 		generate_starting_trees(datapath, args.tree_type)
