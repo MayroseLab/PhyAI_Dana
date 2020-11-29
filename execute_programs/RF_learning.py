@@ -32,7 +32,7 @@ FIGURES = False
 FIRST_ON_RAND = False
 FIRST_ON_SEC = False           # temp for running 1 on 2
 FEATURE_SELECTION = False       # temp for running feature selection
-SATURATION = False             # temp to asses saturation
+SATURATION = True             # temp to asses saturation
 
 N_DATASETS = 4200    # [1500,5858]
 
