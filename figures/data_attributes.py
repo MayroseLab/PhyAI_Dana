@@ -207,10 +207,7 @@ def corr_plot_more_atts(df):
 if __name__ == '__main__':
 	dirpath = SUMMARY_FILES_DIR if platform.system() == 'Linux' else DATA_PATH
 	#calc_empirical_features()
-	a1 = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
-	a2 = [1,1,1,1,1,1,1,1,1,1,1,1,1,2,1]
-	print(pearsonr(a1,a2))
-	exit()
+
 	df_val = pd.read_csv(dirpath + 'scores_per_ds_validation_with_more_atts.csv')
 	df_train = pd.read_csv(dirpath + 'scores_per_ds_20_1_ytransformed_exp_with_more_atts.csv')
 	#corr_plot(df_val)

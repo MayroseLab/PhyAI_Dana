@@ -32,9 +32,9 @@ FIGURES = False
 FIRST_ON_RAND = False
 FIRST_ON_SEC = False           # temp for running 1 on 2
 FEATURE_SELECTION = False       # temp for running feature selection
-SATURATION = True             # temp to asses saturation
+SATURATION = False             # temp to asses saturation
 
-N_DATASETS = 1500    # [1500,5858]
+N_DATASETS = 4200    # [1500,5858]
 
 
 def score_rank(df_by_ds, sortby, locatein, random, scale_score):
@@ -294,7 +294,7 @@ def fit_transformation(df, move_type, trans=False):
 	df[LABEL.format(move_type)] /= -df["orig_ds_ll"]  # minus (abs) to preserve order. 'ascending' should be True in 'get_cumsun_preds' function
 
 
-	'''
+	#'''
 	if trans == 'rank':
 		groups_ids = df[FEATURES[GROUP_ID]].unique()
 		for group_id in groups_ids:
@@ -310,7 +310,7 @@ def fit_transformation(df, move_type, trans=False):
 		from scipy.special import exp10
 		df[LABEL.format(move_type)] = exp10(df[LABEL.format(move_type)] + 1)
 	
-	#'''
+	'''
 	f = plt.figure()
 	sns.set_context("paper", font_scale=1.2)
 	#from sklearn import preprocessing
@@ -338,7 +338,7 @@ def fit_transformation(df, move_type, trans=False):
 	# plt.savefig("C:\\Users\\ItayMNB3\\Dropbox\\PhyloAI\\PhyAI_writing\\to_submit\\" + "Fig2.tif", dpi=300)
 	plt.show()
 	exit()
-	#'''
+	'''
 
 	return df
 
