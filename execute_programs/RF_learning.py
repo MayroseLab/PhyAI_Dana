@@ -32,9 +32,9 @@ FIGURES = False
 FIRST_ON_RAND = False
 FIRST_ON_SEC = False           # temp for running 1 on 2
 FEATURE_SELECTION = False       # temp for running feature selection
-SATURATION = True             # temp to asses saturation
+SATURATION = False             # temp to asses saturation
 
-N_DATASETS = 1500    # [1500,5858]
+N_DATASETS = 4200    # [1500,5858]
 
 
 def score_rank(df_by_ds, sortby, locatein, random, scale_score):
@@ -182,9 +182,9 @@ def apply_RFR(df_test, df_train, move_type, features, cv=True):
 	X_test, y_test = split_features_label(df_test, move_type, features)
 
 	if not FEATURE_SELECTION and not SATURATION and not cv:
-		model_path = SUMMARY_FILES_DIR + 'finalized_model_joblib_19.sav'
+		model_path = SUMMARY_FILES_DIR + 'finalized_model_joblib.sav'
 		if not os.path.exists(model_path):
-			regressor = RandomForestRegressor(n_estimators=N_ESTIMATORS, max_features=0.33,  oob_score=True).fit(X_train, y_train) # 0.33=nfeatures/3. this is like in R (instead of default=n_features)
+			regressor = RandomForestRegressor(n_estimators=N_ESTIMATORS, max_features=0.33,  oob_score=True, n_jobs=-1).fit(X_train, y_train) # 0.33=nfeatures/3. this is like in R (instead of default=n_features)
 			# save the model to disk
 			joblib.dump(regressor, open(model_path, 'wb'))
 		model = joblib.load(model_path)
@@ -206,7 +206,6 @@ def truncate(df):
 	groups_ids = df[FEATURES[GROUP_ID]].unique()
 	#'''
 	if DBSET == "2":
-		#selected_groups_ids = np.random.choice(groups_ids, 2000, replace=False)
 		n_other_dbs = 541
 		selected_groups_ids = np.concatenate((np.random.choice(groups_ids[:-n_other_dbs], N_DATASETS-n_other_dbs, replace=False), groups_ids[-n_other_dbs:]))
 		df = df[df[FEATURES[GROUP_ID]].isin(selected_groups_ids)]
@@ -262,7 +261,8 @@ def cross_validation_RF(df, move_type, features, trans=False, validation_set=Non
 		elif FIRST_ON_RAND:
 			df_test = pd.read_csv(dirpath + LEARNING_DATA.format("all_moves", "1_random_starting"))
 		else:   # a reg validation set
-			df_test = pd.read_csv(dirpath + "model_testing_{}.csv".format(validation_set))
+			#df_test = pd.read_csv(dirpath + "model_testing_{}.csv".format(validation_set))
+			df_test = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/summary_files/learning_all_moves_step1.csv")
 
 		df_test = fit_transformation(df_test, move_type, trans)  #.dropna()
 		y_pred, all_DTs_pred, oob, f_imp = apply_RFR(df_test, df_train, move_type, features, cv=False)
@@ -293,8 +293,6 @@ def fit_transformation(df, move_type, trans=False):
 	# scale to the abs value of the starting tree ll
 	df[LABEL.format(move_type)] /= -df["orig_ds_ll"]  # minus (abs) to preserve order. 'ascending' should be True in 'get_cumsun_preds' function
 
-
-	#'''
 	if trans == 'rank':
 		groups_ids = df[FEATURES[GROUP_ID]].unique()
 		for group_id in groups_ids:
@@ -309,36 +307,6 @@ def fit_transformation(df, move_type, trans=False):
 	if trans == 'exp10':
 		from scipy.special import exp10
 		df[LABEL.format(move_type)] = exp10(df[LABEL.format(move_type)] + 1)
-	
-	'''
-	f = plt.figure()
-	sns.set_context("paper", font_scale=1.2)
-	#from sklearn import preprocessing
-	#scaler = StandardScaler()
-	df["No transformation on target value"] = (df[LABEL.format(move_type)].values.reshape(-1, 1))
-	df["No transformation on target value"].plot.kde(by=FEATURES[GROUP_ID])
-	#plt.show()
-
-	df["exp2 (2^) transformation on target value"] = (np.exp2(df[LABEL.format(move_type)]+1).values.reshape(-1, 1))-2
-	df["exp2 (2^) transformation on target value"].plot.kde(by=FEATURES[GROUP_ID])
-	from scipy.special import exp10
-	df["10^ (exp10)"] = (exp10(df[LABEL.format(move_type)] + 1).values.reshape(-1, 1))-10
-	df["10^ (exp10)"].plot.kde(by=FEATURES[GROUP_ID])
-	#df["expe (e^) transformation on target value"] = (np.exp(df[LABEL.format(move_type)] + 1).values.reshape(-1,1)) - np.e
-	#df["expe (e^) transformation on target value"].plot.kde(by=FEATURES[GROUP_ID])
-
-	plt.xlim(-0.2,0.01)
-	plt.xlabel("Target value")
-	plt.xticks(np.arange(-0.2, 0.025, step=0.02))
-	plt.axvline(0, 0, 45, color='grey')
-	plt.legend()
-
-	f.tight_layout()
-	f.set_size_inches(7, 7, forward=True)
-	# plt.savefig("C:\\Users\\ItayMNB3\\Dropbox\\PhyloAI\\PhyAI_writing\\to_submit\\" + "Fig2.tif", dpi=300)
-	plt.show()
-	exit()
-	'''
 
 	return df
 
@@ -393,26 +361,17 @@ def parse_relevant_summaries_for_learning(df_orig, step_number, tree_type='bionj
 
 
 
-def plot_cumulative_importance(f_list, importances, move_type, sscore):
+def plot_cumulative_importance(f_list, importances, move_type):
 	plt.figure()
-	# List of tuples with variable and importance
 	feature_importances = [(feature, round(importance, 4)) for feature, importance in zip(f_list, importances)]
-	# Sort the feature importances by most important first
 	feature_importances = sorted(feature_importances, key=lambda x: x[1], reverse=True)
-	# list of x locations for plotting
 	x_values = list(range(len(importances.tolist())))
-	# List of features sorted from most to least important
 	sorted_importances = [importance[1] for importance in feature_importances]
 	sorted_features = [importance[0] for importance in feature_importances]
-	# Cumulative importances
 	cumulative_importances = np.cumsum(sorted_importances)
-	# Make a line graph
 	plt.plot(x_values, cumulative_importances, 'g-')
-	# Draw line at 95% of importance retained
 	plt.hlines(y=0.95, xmin=0, xmax=len(sorted_importances), color='r', linestyles='dashed')
-	# Format x ticks and labels
 	plt.xticks(x_values, sorted_features, rotation='vertical')
-	# Axis labels and title
 	plt.xlabel('Variable')
 	plt.ylabel('Cumulative Importance')
 	plt.title('Cumulative Importances')
@@ -420,13 +379,9 @@ def plot_cumulative_importance(f_list, importances, move_type, sscore):
 	plt.tight_layout()
 	plt.savefig(dirpath + "cumulative_importance_{}_{}.png".format(move_type, len(sorted_importances)))
 
-	# Find number of features for cumulative importance of 95%
-	# Add 1 because Python is zero-indexed
-	#print('Number of features for 95% importance:', np.where(cumulative_importances > 0.95)[0][0] + 1)
-
 	
 	
-def print_and_index_results(df_datasets, res_dict, move_type, sscore, features):
+def print_and_index_results(df_datasets, res_dict, move_type, features):
 	
 	#### score 1 ####
 	spearman_corrs = res_dict['spearman_corr']
@@ -437,9 +392,6 @@ def print_and_index_results(df_datasets, res_dict, move_type, sscore, features):
 	#### score 2 + 3 ####
 	res_vec1 = np.asarray(list(res_dict['rank_first_pred'].values())) if type(res_dict['rank_first_pred']) is dict else res_dict['rank_first_pred']
 	res_vec2 = np.asarray(list(res_dict['rank_first_true'].values()))  if type(res_dict['rank_first_true']) is dict else res_dict['rank_first_true']
-	#scores_range = (1, 100)   # for MinMaxScaler
-	#res_vec1_scaled = ((res_vec1 - res_vec1.min(axis=0)) / (res_vec1.max(axis=0) - res_vec1.min(axis=0))) * (scores_range[1] - scores_range[0]) + scores_range[0]
-	#res_vec2_scaled = ((res_vec2 - res_vec2.min(axis=0)) / (res_vec2.max(axis=0) - res_vec2.min(axis=0))) * (scores_range[1] - scores_range[0]) + scores_range[0]
 	res_vec1_scaled = res_vec1
 	res_vec2_scaled = res_vec2
 	df_datasets['best_predicted_ranking'] = res_vec1_scaled
@@ -458,13 +410,12 @@ def print_and_index_results(df_datasets, res_dict, move_type, sscore, features):
 		colname = "imp_" + f
 		df_datasets.loc[0, colname] = mean_importances[i]
 	#print("\nmean f importance:\n", np.column_stack((features, mean_importances)))
-	plot_cumulative_importance(features, mean_importances, move_type, sscore)
+	plot_cumulative_importance(features, mean_importances, move_type)
 	#'''
 	#### additional information ####
 	df_datasets.loc[0, 'oob'] = res_dict['oob']   # index in first row only (score foreach run and not foreach dataset)
 	print("oob:", res_dict['oob'])
 	print("ndatasets: ", len(res_vec1))
-	
 	
 	print("##########################")
 	return df_datasets
@@ -551,7 +502,7 @@ if __name__ == '__main__':
 		else:
 			df_datasets = pd.read_csv(csv_with_scores)
 			res_dict = extract_scores_dict({}, df_datasets)
-		df_datasets = print_and_index_results(df_datasets, res_dict, move_type, args.scale_score, features)
+		df_datasets = print_and_index_results(df_datasets, res_dict, move_type, features)
 		df_datasets.to_csv(csv_with_scores)
 		
 		if not FEATURE_SELECTION:
