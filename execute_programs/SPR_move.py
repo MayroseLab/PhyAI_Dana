@@ -185,6 +185,8 @@ def all_SPR(ds_path, outpath, tree=None, rewrite_phylip=False):
 		freq, rates, pinv, alpha = [params_dict["fA"], params_dict["fC"], params_dict["fG"], params_dict["fT"]], [params_dict["subAC"], params_dict["subAG"], params_dict["subAT"], params_dict["subCG"],params_dict["subCT"], params_dict["subGT"]], params_dict["pInv"], params_dict["gamma"]
 		df = pd.DataFrame()
 		for i, prune_node in enumerate(t_orig.iter_descendants("levelorder")):
+			if i%100 != 0:
+				continue
 			prune_name = prune_node.name
 			nname, subtree1, subtree2 = prune_branch(t_orig, prune_name) # subtree1 is the pruned subtree. subtree2 is the remaining subtree
 			with open(OUTPUT_TREES_FILE, "a", newline='') as fpa:
