@@ -82,22 +82,21 @@ def plot_main_results2(df):
 
 
 
-removed_featured_dict = {20: 'Sum of branches between regrafting and pruning',
-		   16: 'Number of branches between regrafting and pruning',
-		   19: 'The estimated total branch lengths of the resulting tree',
-		   17: 'The length of the branch that was being pruned',
-		   18: 'The longest branch in the subtree in Fig. 1b',
-		   15: 'The sum of branches in the starting tree',
-		   12: 'The sum of branches in the subtree in Fig. 1b',
-		   10: 'The sum of branches in the subtree in Fig. 1c',
+removed_featured_dict = {19: 'Sum of branches between regrafting and pruning',
+		   17: 'Number of branches between regrafting and pruning',
+		   16: 'The length of the branch that was being pruned',
+		   15: 'The longest branch in the subtree in Fig. 1b',
+		   18: 'The sum of branches in the starting tree',
+		   13: 'The sum of branches in the subtree in Fig. 1b',
+		   11: 'The sum of branches in the subtree in Fig. 1c',
 		   8: 'The length of the branch that was being regrafted',
-		   13: 'The longest branch in the starting tree',
-		   14: 'The length of the branch formed due to regrafting',
-		   9: 'Thelongest branch in the subtree in Fig. 1c',
+		   12: 'The longest branch in the starting tree',
+		   14: 'The length of the branch formed due to pruning',
+		   9: 'The longest branch in the subtree in Fig. 1c',
 		   6: 'The sum of branches in the subtree in Fig. 1c2',
-		   5: 'The longest branch in the subtree in Fig. 1c2',
-		   11: 'The longest branch in the subtree in Fig. 1c1',
-		   4: 'The sum of branches in the subtree in Fig. 1c1',
+		   4: 'The longest branch in the subtree in Fig. 1c2',
+		   10: 'The longest branch in the subtree in Fig. 1c1',
+		   5: 'The sum of branches in the subtree in Fig. 1c1',
 		   7: 'The number of leaves in the subtree in Fig. 1c',
 		   3: 'The number of leaves in the subtree in Fig. 1b',
 		   2: 'The number of leaves in the subtree in Fig. 1c2',
@@ -106,19 +105,19 @@ removed_featured_dict = {20: 'Sum of branches between regrafting and pruning',
 
 def scores_feature_selection(df):
 	fig = plt.figure(figsize=(14, 12))
-	colors_list = cm.YlGnBu(np.linspace(0, 0.8, 20))[::-1]
-	sns.boxplot(x=N_FEATURES_COL, y=SCORES_LST[0], data=df, order=[20-i for i in range(20)], showfliers=False, saturation=0.6, linewidth=0.6, palette=colors_list)
+	colors_list = cm.YlGnBu(np.linspace(0, 0.8, 19))[::-1]
+	sns.boxplot(x=N_FEATURES_COL, y=SCORES_LST[0], data=df, order=[19-i for i in range(19)], showfliers=False, saturation=0.6, linewidth=0.6, palette=colors_list)
 	plt.xlabel('')
 	plt.ylabel('Spearman correlation ({})'.format(r'$\rho$'), size=18)
 
 	rows_text_nested_lst, colors_nested_lst = [], []
-	for ind in range(20,0,-1):
-		rows_text_nested_lst.append(['+' if ind>=x else '' for x in range(1,21)])
-		colors_nested_lst.append([colors_list[x-1] if ind>=x else 'black' for x in range(1,21)])
+	for ind in range(19,0,-1):
+		rows_text_nested_lst.append(['+' if ind>=x else '' for x in range(1,20)])
+		colors_nested_lst.append([colors_list[x-1] if ind>=x else 'black' for x in range(1,20)])
 
 	plt.table(cellText=rows_text_nested_lst, rowLoc='left',
-			  rowLabels=[removed_featured_dict[20-i] for i in range(20)],
-			  colLabels=[str(20-i) for i in range(20)],
+			  rowLabels=[removed_featured_dict[19-i] for i in range(19)],
+			  colLabels=[str(19-i) for i in range(19)],
 			  colLoc='center',cellLoc = 'center', cellColours=colors_nested_lst, # rowColours=['whitesmoke' for x in range(1,21)],
 			  loc='bottom')#, edges='vertical')
 
@@ -128,7 +127,7 @@ def scores_feature_selection(df):
 
 	plt.tight_layout()
 	#plt.ylim(0,1)
-	plt.savefig(dirpath + "feature_selection_with_matrix.tif", dpi=300)
+	plt.savefig(dirpath + "feature_selection_with_matrix_v5.tif", dpi=300)
 	plt.show()
 
 
@@ -170,10 +169,32 @@ def concat_n_features(dirpath, max_n_features):
 
 if __name__ == '__main__':
 	dirpath = SUMMARY_FILES_DIR if platform.system() == 'Linux' else DATA_PATH
-	#dirpath += 'results_feature_selection/'
-	##df = concat_n_features(dirpath, max_n_features=20)
-	##df.to_csv(dirpath + 'temp.csv')
+	##dirpath += 'results_feature_selection/'
+	#df = concat_n_features(dirpath, max_n_features=19)
+	#df.to_csv(dirpath + 'temp.csv')
 	#scores_feature_selection(pd.read_csv(dirpath + 'temp.csv'))
+
+	df = pd.read_csv(dirpath + 'temp.csv')
+	a14 = df.loc[df[N_FEATURES_COL] == 14, SCORES_LST[0]].dropna().values
+	a15 = df.loc[df[N_FEATURES_COL] == 15, SCORES_LST[0]].dropna().values
+	a16 = df.loc[df[N_FEATURES_COL] == 16, SCORES_LST[0]].dropna().values
+	a17 = df.loc[df[N_FEATURES_COL] == 17, SCORES_LST[0]].dropna().values
+	a18 = df.loc[df[N_FEATURES_COL] == 18, SCORES_LST[0]].dropna().values
+	a19 = df.loc[df[N_FEATURES_COL] == 19, SCORES_LST[0]].dropna().values
+	import scipy.stats as stats
+
+	F, p = stats.f_oneway(a19, a18)
+	print(p)
+	F, p = stats.f_oneway(a19, a17)
+	print(p)
+	F, p = stats.f_oneway(a19, a16)
+	print(p)
+	F, p = stats.f_oneway(a19, a15)
+	print(p)
+	exit()
+	F, p = stats.f_oneway(a19, a17)
+	print(p)
+
 
 	#df = pd.read_csv(dirpath + SCORES_PER_DS.format("20_1_4200_ytransformed_exp"))
 	df = pd.read_csv(dirpath + SCORES_PER_DS.format("20_1_validation_set_ytransformed_exp"))
