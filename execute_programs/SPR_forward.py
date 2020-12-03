@@ -119,26 +119,26 @@ if __name__ == '__main__':
 	dataset_path = args.dataset_path
 	relpath = args.tree_relpath
 	dataset_name = dataset_path.split(SEP)[-2]
+	analysis_st = int(relpath.split("_")[-1][2:]) + 1
 	outpath = SUMMARY_PER_DS.format(dataset_path, "{}", "br", relpath)
 
-	with open(dataset_path + relpath + '.txt', 'r') as fp:
-		tree_str_not_opt = fp.read().strip()
+	if not os.path.exists(SUMMARY_FILES_DIR + "model_testing_{}_st{}.csv".format(dataset_name, analysis_st)):
+		with open(dataset_path + relpath + '.txt', 'r') as fp:
+			tree_str_not_opt = fp.read().strip()
 
-	# update to string after bl optimization
-	stats_filepath = dataset_path + PHYML_STATS_FILENAME.format("bionj")
-	params_dict = (parse_phyml_stats_output(None,stats_filepath))
-	freq, rates, pinv, alpha = [params_dict["fA"], params_dict["fC"], params_dict["fG"], params_dict["fT"]], [params_dict["subAC"], params_dict["subAG"], params_dict["subAT"], params_dict["subCG"], params_dict["subCT"],params_dict["subGT"]], params_dict["pInv"], params_dict["gamma"]
-	new_orig_ll, tree_str = get_raxml_optimized_bl(tree_str_not_opt, dataset_path+MSA_PHYLIP_FILENAME, rates, pinv, alpha, freq)
+		# update to string after bl optimization
+		stats_filepath = dataset_path + PHYML_STATS_FILENAME.format("bionj")
+		params_dict = (parse_phyml_stats_output(None,stats_filepath))
+		freq, rates, pinv, alpha = [params_dict["fA"], params_dict["fC"], params_dict["fG"], params_dict["fT"]], [params_dict["subAC"], params_dict["subAG"], params_dict["subAT"], params_dict["subCG"], params_dict["subCT"],params_dict["subGT"]], params_dict["pInv"], params_dict["gamma"]
+		new_orig_ll, tree_str = get_raxml_optimized_bl(tree_str_not_opt, dataset_path+MSA_PHYLIP_FILENAME, rates, pinv, alpha, freq)
 
-	end1 = SPR_generator_forward(dataset_path, outpath, tree_str, new_orig_ll)
-	end2 = collect_features(dataset_path, relpath, outpath.format("prune"), outpath.format("rgft"))
-	
-	end3 = os.system("python {}execute_programs/RF_learning.py -st {}_{} -mt merged -sscore".format(CODE_PATH, dataset_name, relpath))
-	analysis_st = int(relpath.split("_")[-1][2:]) + 1
-	end4 = os.rename(SUMMARY_FILES_DIR + "learning_all_moves_step{}_{}.csv".format(dataset_name, relpath), SUMMARY_FILES_DIR + "model_testing_{}_st{}.csv".format(dataset_name, analysis_st))
-	end5 = os.system('python {}execute_programs/RF_learning.py -st 1 -trans exp -mt merged -sscore -val best_pred_st{}'.format(CODE_PATH, analysis_st))
+		end1 = SPR_generator_forward(dataset_path, outpath, tree_str, new_orig_ll)
+		end2 = collect_features(dataset_path, relpath, outpath.format("prune"), outpath.format("rgft"))
 
-	analysis_st = int(relpath.split("_")[-1][2:]) + 1
+		end3 = os.system("python {}execute_programs/RF_learning.py -st {}_{} -mt merged -sscore".format(CODE_PATH, dataset_name, relpath))
+		end4 = os.rename(SUMMARY_FILES_DIR + "learning_all_moves_step{}_{}.csv".format(dataset_name, relpath), SUMMARY_FILES_DIR + "model_testing_{}_st{}.csv".format(dataset_name, analysis_st))
+	if not os.path.exists(SUMMARY_FILES_DIR + DATA_WITH_PREDS.format('19_1_{}_st{}_ytransformed_exp'.format(dataset_name, analysis_st))):
+		end5 = os.system('python {}execute_programs/RF_learning.py -st 1 -trans exp -mt merged -sscore -val {}_st{}'.format(CODE_PATH, dataset_name, analysis_st))
 
 	df_with_preds = pd.read_csv(SUMMARY_FILES_DIR + DATA_WITH_PREDS.format('19_1_{}_st{}_ytransformed_exp'.format(dataset_name, analysis_st)))
 	temp_df = df_with_preds.sort_values(by='pred', ascending=False).reset_index()
