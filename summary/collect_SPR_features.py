@@ -84,9 +84,6 @@ def collect_features(ds_path, step_number, outpath_prune, outpath_rgft, tree_typ
 			df_prune = index_shared_features(df_prune, ind, row["prune_name"], "prune",  features_prune_dicts_dict)
 			df_rgft = index_shared_features(df_rgft, ind, row["rgft_name"], "rgft", features_rgft_dicts_dict)
 			df_rgft = index_additional_rgft_features(df_rgft, ind, row["prune_name"], row["rgft_name"], features_restree_dict, features_prune_dicts_dict)   # also prune dict because for 2 features i didn't want to comp dict within each rgft iteration (needed to compute on the starting tree)
-			
-			df_rgft.loc[ind, FEATURES["res_bl"]] = features_restree_dict['res_bl']
-			df_rgft.loc[ind, FEATURES["res_tbl"]] = features_restree_dict['res_tbl']
 		
 
 	df_prune = df_prune[(df_prune["prune_name"] != ROOTLIKE_NAME) & (df_prune["rgft_name"] != ROOTLIKE_NAME)]  #.dropna()
