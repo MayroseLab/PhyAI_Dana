@@ -166,7 +166,7 @@ def all_SPR(ds_path, outpath, tree=None, rewrite_phylip=False):
 		t_orig.get_tree_root().name = ROOTLIKE_NAME if not tree else ROOTLIKE_NAME + "_2"
 
 
-	st = "1" if not tree else 'best_pred_st' + outpath.split("_")[-1][2:]
+	st = "1" if not tree else 'best_pred_st' + outpath.split("_")[-1][2:-4]
 	OUTPUT_TREES_FILE = TREES_PER_DS.format(ds_path, st)
 	with open(OUTPUT_TREES_FILE, "w", newline='') as fpw:
 		csvwriter = csv.writer(fpw)
