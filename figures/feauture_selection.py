@@ -189,6 +189,8 @@ if __name__ == '__main__':
 	a19 = df.loc[df[N_FEATURES_COL] == 19, SCORES_LST[0]].dropna().values
 	import scipy.stats as stats
 
+	F, p = stats.f_oneway(a19, a15)
+	print(p)
 	F, p = stats.f_oneway(a19, a14)
 	print(p)
 	F, p = stats.f_oneway(a19, a13)
