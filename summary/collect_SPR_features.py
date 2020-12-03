@@ -20,7 +20,7 @@ def index_additional_rgft_features(df_rgft, ind, prune_name, rgft_name, features
 	df_rgft.loc[ind, FEATURES["top_dist"]] = features_dict_prune['top_dist'][prune_name][rgft_name]
 	df_rgft.loc[ind, FEATURES["bl_dist"]] = features_dict_prune['bl_dist'][prune_name][rgft_name]
 	df_rgft.loc[ind, FEATURES["res_bl"]] = features_restree_dict['res_bl']
-	df_rgft.loc[ind, FEATURES["res_tbl"]] = features_restree_dict['res_tbl']
+	#df_rgft.loc[ind, FEATURES["res_tbl"]] = features_restree_dict['res_tbl']
 
 	return df_rgft
 
@@ -63,7 +63,6 @@ def index_shared_features(dff, ind, edge, move_type, features_dicts_dict):
 
 def collect_features(ds_path, step_number, outpath_prune, outpath_rgft, tree_type='bionj'):
 	dfr = pd.read_csv(TREES_PER_DS.format(ds_path, step_number), index_col=0)
-	orig_ds_msa_file = ds_path + MSA_PHYLIP_FILENAME
 	df_prune = pd.read_csv(outpath_prune, index_col=0)
 	df_rgft = pd.read_csv(outpath_rgft, index_col=0)
 

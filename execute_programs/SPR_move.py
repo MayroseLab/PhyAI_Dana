@@ -71,13 +71,15 @@ def get_tree(ds_path, msa_file, rewrite_phylip, software=ML_SOFTWARE_STARTING_TR
 	if rewrite_phylip:
 		rewrite_in_phylip(msa_file)     # for one-time use on new ds
 
-	tree_file_cp_no_internal = ds_path + PHYML_TREE_FILENAME.format(suf + "_no_internal") if software == 'phyml' else ds_path + RAXML_TREE_FILENAME + "_no_internal"
-	if not os.path.exists(tree_file_cp_no_internal):
-		t_orig = PhyloTree(newick=tree_file, alignment=msa_file, alg_format="iphylip", format=1)
-		add_internal_names(tree_file, tree_file_cp_no_internal, t_orig)
+		# !!!! TEMP !!!! i idented the following lines to relate to -phy flag temporarly
+		tree_file_cp_no_internal = ds_path + PHYML_TREE_FILENAME.format(suf + "_no_internal") if software == 'phyml' else ds_path + RAXML_TREE_FILENAME + "_no_internal"
+		if not os.path.exists(tree_file_cp_no_internal):
+			t_orig = PhyloTree(newick=tree_file, alignment=msa_file, alg_format="iphylip", format=1)
+			add_internal_names(tree_file, tree_file_cp_no_internal, t_orig)
+		else:
+			t_orig = PhyloTree(newick=tree_file, alignment=msa_file, alg_format="iphylip", format=3)
 	else:
-		t_orig = PhyloTree(newick=tree_file, alignment=msa_file, alg_format="iphylip", format=3)
-	#t_orig = PhyloTree(newick=tree_file, alignment=msa_file, alg_format="iphylip", format=1)
+		t_orig = PhyloTree(newick=tree_file, alignment=msa_file, alg_format="iphylip", format=1)
 
 	return t_orig
 
@@ -164,7 +166,7 @@ def all_SPR(ds_path, outpath, tree=None, rewrite_phylip=False):
 		t_orig.get_tree_root().name = ROOTLIKE_NAME if not tree else ROOTLIKE_NAME + "_2"
 
 
-	st = "1" if not tree else 'best_pred_st' + outpath[-5]
+	st = "1" if not tree else 'best_pred_st' + outpath.split("_")[-1][2:]
 	OUTPUT_TREES_FILE = TREES_PER_DS.format(ds_path, st)
 	with open(OUTPUT_TREES_FILE, "w", newline='') as fpw:
 		csvwriter = csv.writer(fpw)
