@@ -175,6 +175,12 @@ if __name__ == '__main__':
 	#scores_feature_selection(pd.read_csv(dirpath + 'temp.csv'))
 
 	df = pd.read_csv(dirpath + 'temp.csv')
+	a8 = df.loc[df[N_FEATURES_COL] == 8, SCORES_LST[0]].dropna().values
+	a9 = df.loc[df[N_FEATURES_COL] == 9, SCORES_LST[0]].dropna().values
+	a10 = df.loc[df[N_FEATURES_COL] == 10, SCORES_LST[0]].dropna().values
+	a11 = df.loc[df[N_FEATURES_COL] == 11, SCORES_LST[0]].dropna().values
+	a12 = df.loc[df[N_FEATURES_COL] == 12, SCORES_LST[0]].dropna().values
+	a13 = df.loc[df[N_FEATURES_COL] == 13, SCORES_LST[0]].dropna().values
 	a14 = df.loc[df[N_FEATURES_COL] == 14, SCORES_LST[0]].dropna().values
 	a15 = df.loc[df[N_FEATURES_COL] == 15, SCORES_LST[0]].dropna().values
 	a16 = df.loc[df[N_FEATURES_COL] == 16, SCORES_LST[0]].dropna().values
@@ -183,18 +189,21 @@ if __name__ == '__main__':
 	a19 = df.loc[df[N_FEATURES_COL] == 19, SCORES_LST[0]].dropna().values
 	import scipy.stats as stats
 
-	F, p = stats.f_oneway(a19, a18)
+	F, p = stats.f_oneway(a19, a14)
 	print(p)
-	F, p = stats.f_oneway(a19, a17)
+	F, p = stats.f_oneway(a19, a13)
 	print(p)
-	F, p = stats.f_oneway(a19, a16)
+	F, p = stats.f_oneway(a19, a12)
 	print(p)
-	F, p = stats.f_oneway(a19, a15)
+	F, p = stats.f_oneway(a19, a11)
+	print(p)
+	F, p = stats.f_oneway(a19, a10)
+	print(p)
+	F, p = stats.f_oneway(a19, a9)
+	print(p)
+	F, p = stats.f_oneway(a19, a8)
 	print(p)
 	exit()
-	F, p = stats.f_oneway(a19, a17)
-	print(p)
-
 
 	#df = pd.read_csv(dirpath + SCORES_PER_DS.format("20_1_4200_ytransformed_exp"))
 	df = pd.read_csv(dirpath + SCORES_PER_DS.format("20_1_validation_set_ytransformed_exp"))
