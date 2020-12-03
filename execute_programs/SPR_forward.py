@@ -65,7 +65,7 @@ if __name__ == '__main__':
 	end2 = collect_features(dataset_path, relpath, outpath.format("prune"), outpath.format("rgft"))
 	'''
 	#end3 = os.system("python /groups/itay_mayrose/danaazouri/PhyAI/code/execute_programs/RF_learning.py -st exampleSphaero_{} -mt merged -sscore".format(relpath))
-	os.rename(SUMMARY_FILES_DIR + "learning_all_moves_stepeexampleSphaero_{}.csv".format(relpath), SUMMARY_FILES_DIR + "model_testing_exampleSphaero_st{}.csv".format(int(relpath.split("_")[-1][2:])))
+	os.rename(SUMMARY_FILES_DIR + "learning_all_moves_stepexampleSphaero_{}.csv".format(relpath), SUMMARY_FILES_DIR + "model_testing_exampleSphaero_st{}.csv".format(int(relpath.split("_")[-1][2:])))
 	#learning_all_moves_stepexampleSphaero_best_pred_st1.csv
 	# todo: run RF and save the best tree among the top 5 best predictions + its respective d_ll (to a file named relpath + '.txt')
 	# todo: rerun this script with new tree + new orig ll
