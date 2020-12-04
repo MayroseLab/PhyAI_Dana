@@ -122,16 +122,16 @@ if __name__ == '__main__':
 	analysis_st = int(relpath.split("_")[-1][2:]) + 1
 	outpath = SUMMARY_PER_DS.format(dataset_path, "{}", "br", relpath)
 
+
+	with open(dataset_path + relpath + '.txt', 'r') as fp:
+		tree_str_not_opt = fp.read().strip()
+
+	# update to string after bl optimization
+	stats_filepath = dataset_path + PHYML_STATS_FILENAME.format("bionj")
+	params_dict = (parse_phyml_stats_output(None,stats_filepath))
+	freq, rates, pinv, alpha = [params_dict["fA"], params_dict["fC"], params_dict["fG"], params_dict["fT"]], [params_dict["subAC"], params_dict["subAG"], params_dict["subAT"], params_dict["subCG"], params_dict["subCT"],params_dict["subGT"]], params_dict["pInv"], params_dict["gamma"]
+	new_orig_ll, tree_str = get_raxml_optimized_bl(tree_str_not_opt, dataset_path+MSA_PHYLIP_FILENAME, rates, pinv, alpha, freq)
 	if not os.path.exists(SUMMARY_FILES_DIR + "model_testing_{}_st{}.csv".format(dataset_name, analysis_st)):
-		with open(dataset_path + relpath + '.txt', 'r') as fp:
-			tree_str_not_opt = fp.read().strip()
-
-		# update to string after bl optimization
-		stats_filepath = dataset_path + PHYML_STATS_FILENAME.format("bionj")
-		params_dict = (parse_phyml_stats_output(None,stats_filepath))
-		freq, rates, pinv, alpha = [params_dict["fA"], params_dict["fC"], params_dict["fG"], params_dict["fT"]], [params_dict["subAC"], params_dict["subAG"], params_dict["subAT"], params_dict["subCG"], params_dict["subCT"],params_dict["subGT"]], params_dict["pInv"], params_dict["gamma"]
-		new_orig_ll, tree_str = get_raxml_optimized_bl(tree_str_not_opt, dataset_path+MSA_PHYLIP_FILENAME, rates, pinv, alpha, freq)
-
 		end1 = SPR_generator_forward(dataset_path, outpath, tree_str, new_orig_ll)
 		end2 = collect_features(dataset_path, relpath, outpath.format("prune"), outpath.format("rgft"))
 
@@ -143,7 +143,7 @@ if __name__ == '__main__':
 	df_with_preds = pd.read_csv(SUMMARY_FILES_DIR + DATA_WITH_PREDS.format('19_1_{}_st{}_ytransformed_exp'.format(dataset_name, analysis_st)))
 	temp_df = df_with_preds.sort_values(by='pred', ascending=False).reset_index()
 	dll, rank, prune, rgft = 0, None, None, None
-	for i, row in df_with_preds.head(25).iterrows():
+	for i, row in df_with_preds.head(125).iterrows():
 		true_dll = row[LABEL.format('prune')]
 		if true_dll > dll:
 			dll = true_dll
@@ -153,8 +153,9 @@ if __name__ == '__main__':
 
 	if not prune:
 		print("The top predictions did not achieve likelihood improvement :(")
+		print("log-lokelihood of the resulting final tree (best from previous step, bl-optimized): is: {}".format(new_orig_ll))
 	else:
-		print("dll in step {} folowing the #{} top prediction is: {}".format(analysis_st, rank, dll))
+		print("step{}:\ndll folowing the #{} top prediction is: {}".format(analysis_st, rank, dll))
 		# locate this best tree in the respective dfr and save it to a file named relpath + '.txt'
 		dfr = pd.read_csv(dataset_path + "newicks_step{}.csv".format(relpath))
 		next_tree_str = dfr[(dfr["prune_name"] == prune) & (dfr["rgft_name"] == rgft)]["newick"].values[0]
