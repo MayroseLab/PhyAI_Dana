@@ -150,12 +150,14 @@ if __name__ == '__main__':
 			prune = row["prune_name"]
 			rgft = row["rgft_name"]
 			rank = i + 1
+			ll = row["ll"]
 
 	if not prune:
 		print("The top predictions did not achieve likelihood improvement :(")
 		print("log-lokelihood of the resulting final tree (best from previous step, bl-optimized): is: {}".format(new_orig_ll))
 	else:
 		print("step{}:\ndll folowing the #{} top prediction is: {}".format(analysis_st, rank, dll))
+		print("(log-lokelihood: {})".format(ll))
 		# locate this best tree in the respective dfr and save it to a file named relpath + '.txt'
 		dfr = pd.read_csv(dataset_path + "newicks_step{}.csv".format(relpath))
 		next_tree_str = dfr[(dfr["prune_name"] == prune) & (dfr["rgft_name"] == rgft)]["newick"].values[0]
