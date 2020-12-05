@@ -143,7 +143,7 @@ if __name__ == '__main__':
 	df_with_preds = pd.read_csv(SUMMARY_FILES_DIR + DATA_WITH_PREDS.format('19_1_{}_st{}_ytransformed_exp'.format(dataset_name, analysis_st)))
 	temp_df = df_with_preds.sort_values(by='pred', ascending=False).reset_index()
 	dll, rank, prune, rgft = 0, None, None, None
-	for i, row in df_with_preds.head(250).iterrows():
+	for i, row in temp_df.head(250).iterrows():
 		true_dll = row[LABEL.format('prune')]
 		if true_dll > dll:
 			dll = true_dll
@@ -153,7 +153,7 @@ if __name__ == '__main__':
 			ll = row["ll"]
 
 	if not prune:
-		print("step{}:\nThe top predictions did not achieve likelihood improvement :(")
+		print("step{}:\nThe top predictions did not achieve likelihood improvement :(".format(analysis_st))
 		print("log-lokelihood of the resulting final tree (best from previous step, bl-optimized): is: {}".format(new_orig_ll))
 	else:
 		print("step{}:\ndll folowing the #{} top prediction is: {}".format(analysis_st, rank, dll))
@@ -166,4 +166,4 @@ if __name__ == '__main__':
 			fp.write(next_tree_str)
 
 		# rerun this script for the next step
-		os.system("python {}execute_programs/SPR_forward.py -ds {} -trp best_pred_st{}".format(CODE_PATH, dataset_path, analysis_st))
+		#os.system("python {}execute_programs/SPR_forward.py -ds {} -trp best_pred_st{}".format(CODE_PATH, dataset_path, analysis_st))
