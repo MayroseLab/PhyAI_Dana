@@ -166,4 +166,4 @@ if __name__ == '__main__':
 			fp.write(next_tree_str)
 
 		# rerun this script for the next step
-		#os.system("python {}execute_programs/SPR_forward.py -ds {} -trp best_pred_st{}".format(CODE_PATH, dataset_path, analysis_st))
+		os.system("python {}execute_programs/SPR_forward.py -ds {} -trp best_pred_st{}".format(CODE_PATH, dataset_path, analysis_st))
