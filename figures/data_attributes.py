@@ -201,6 +201,16 @@ def corr_plot_more_atts(df):
 	plt.tight_layout()
 	plt.show()
 
+	next(palette)
+	ax1 = sns.jointplot(x="nchars", y=SCORES_LST[0], data=df, kind='reg', stat_func=pearsonr, line_kws={'color':'black'}, color=next(palette), ylim=(0,1))#, ax=ax1)
+	plt.xlabel('Alignment length')
+	plt.ylabel('Spearman correlation ({})'.format(r'$\rho$'))
+	stats_patch = mpatches.Patch(color='white', label='$r^2$ = 0.01;  $pval$ = $5.2x10^-$$^1$$^1$')#, contains=False)
+	plt.legend(handles=[stats_patch])
+	plt.text(-3.4, 1.2, "d", fontsize=20, fontweight='bold', va='top', ha='right')
+	plt.tight_layout()
+	plt.show()
+
 
 
 
@@ -208,9 +218,6 @@ if __name__ == '__main__':
 	dirpath = SUMMARY_FILES_DIR if platform.system() == 'Linux' else DATA_PATH
 	#calc_empirical_features()
 
-	df_preds = pd.read_csv(dirpath + "with_preds_merged_19_1_4200_ytransformed_exp_1cpu.csv")
-	print(len(df_preds))
-	exit()
 
 	df_val = pd.read_csv(dirpath + 'scores_per_ds_validation_with_more_atts.csv')
 	df_train = pd.read_csv(dirpath + 'scores_per_ds_20_1_ytransformed_exp_with_more_atts.csv')
