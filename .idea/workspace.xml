@@ -23,8 +23,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="04f6d22b-03c8-46f3-ac77-b58c4e95d95d" name="Default Changelist" comment="-">
+      <change beforePath="$PROJECT_DIR$/.idea/code.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/code.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/defs.py" beforeDir="false" afterPath="$PROJECT_DIR$/defs.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/figures/data_attributes.py" beforeDir="false" afterPath="$PROJECT_DIR$/figures/data_attributes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/trying.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/trying.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,7 +56,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="JupyterTrust" id="30840489-2f35-4947-990d-a173e9790e9e" />
+  <component name="JupyterTrust" id="10670ef2-f5b1-421d-a855-149e6613b62f" />
   <component name="ProjectId" id="1fa0BNFFj7wVf4iLrRaPR2E5kO8" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -63,7 +67,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="SearchEverywhereHistoryKey" value="100_ds&#9;null&#9;null&#10;TODO&#9;FILE&#9;file://C:/Program Files/Anaconda3/pkgs/sphinx-1.4.6-py35_0/Lib/site-packages/Sphinx-1.4.6-py3.5.egg/sphinx/ext/todo.py&#10;&quot;Sp&#9;null&#9;null&#10;lear&#9;FILE&#9;file://D:/Users/Administrator/Dropbox/PhyloAI/code/execute_programs/learning_by_prune.py&#10;ntaxa&#9;null&#9;null" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../PhyAI_writing/second/figures/Figs2_tobe" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../PhyAI_writing/second/figures/Figs2_tobe/FigS2a_val.png" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.tslint" value="project" />
@@ -92,29 +96,7 @@
       <recent name="D:\Users\Administrator\Dropbox\PhyloAI\code\execute_programs" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.data_attributes">
-    <configuration name="MLworkshop" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="code" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/MLworkshop.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Python.trying (1)">
     <configuration name="RAxML_NG" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="code" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -379,6 +361,28 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="trying (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="code" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/utils" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/utils/trying.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="trying" type="PythonConfigurationType" factoryName="Python">
       <module name="code" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -469,19 +473,19 @@
       <item itemvalue="Python.learning_by_move_type" />
       <item itemvalue="Python.run_times" />
       <item itemvalue="Python.trying" />
-      <item itemvalue="Python.MLworkshop" />
       <item itemvalue="Python.SPR_forward" />
       <item itemvalue="Python.data_attributes" />
       <item itemvalue="Python.feauture_selection" />
       <item itemvalue="Python.score_last_step" />
+      <item itemvalue="Python.trying (1)" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.trying (1)" />
         <item itemvalue="Python.data_attributes" />
         <item itemvalue="Python.score_last_step" />
         <item itemvalue="Python.SPR_forward" />
         <item itemvalue="Python.feauture_selection" />
-        <item itemvalue="Python.MLworkshop" />
       </list>
     </recent_temporary>
   </component>
@@ -542,12 +546,9 @@
       <workItem from="1606319341504" duration="3712000" />
       <workItem from="1606404993285" duration="3157000" />
       <workItem from="1606898990138" duration="12258000" />
-    </task>
-    <task id="LOCAL‎01310" summary="-">
-      <created>1604997623491</created>
-      <option name="number" value="LOCAL‎01310" />
-      <option name="presentableId" value="LOCAL‎01310" />
-      <updated>1604997623491</updated>
+      <workItem from="1607357900099" duration="6133000" />
+      <workItem from="1607419243594" duration="4718000" />
+      <workItem from="1607529204642" duration="327000" />
     </task>
     <task id="LOCAL‎01311" summary="-">
       <created>1605088049486</created>
@@ -869,7 +870,14 @@
       <option name="project" value="LOCAL" />
       <updated>1607350193374</updated>
     </task>
-    <option name="localTasksCounter" value="1359" />
+    <task id="LOCAL-01359" summary="-">
+      <created>1607352615516</created>
+      <option name="number" value="01359" />
+      <option name="presentableId" value="LOCAL-01359" />
+      <option name="project" value="LOCAL" />
+      <updated>1607352615516</updated>
+    </task>
+    <option name="localTasksCounter" value="1360" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -951,13 +959,13 @@
     </state>
     <state x="93" y="93" width="1095" height="495" key="DiffContextDialog/0.0.1280.680@0.0.1280.680" timestamp="1601977119599" />
     <state x="140" y="142" width="1643" height="758" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1604931855130" />
-    <state x="740" y="291" key="FileChooserDialogImpl" timestamp="1607350114984">
+    <state x="740" y="291" key="FileChooserDialogImpl" timestamp="1607363833955">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="2659" y="328" key="FileChooserDialogImpl/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1601399002874" />
     <state x="493" y="190" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1602350905561" />
-    <state x="740" y="291" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1607350114984" />
-    <state width="1475" height="198" key="GridCell.Tab.0.bottom" timestamp="1607351285047">
+    <state x="740" y="291" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1607363833955" />
+    <state width="1474" height="204" key="GridCell.Tab.0.bottom" timestamp="1607364068778">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="92" key="GridCell.Tab.0.bottom/0.0.1280.680/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1605105736876" />
@@ -968,8 +976,8 @@
     <state width="1237" height="143" key="GridCell.Tab.0.bottom/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1599666538450" />
     <state width="1347" height="184" key="GridCell.Tab.0.bottom/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1602768642279" />
     <state width="1237" height="156" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1607243246986" />
-    <state width="1475" height="198" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1607351285047" />
-    <state width="1475" height="198" key="GridCell.Tab.0.center" timestamp="1607351285047">
+    <state width="1474" height="204" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1607364068778" />
+    <state width="1474" height="204" key="GridCell.Tab.0.center" timestamp="1607364068777">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="92" key="GridCell.Tab.0.center/0.0.1280.680/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1605105736875" />
@@ -980,8 +988,8 @@
     <state width="1237" height="143" key="GridCell.Tab.0.center/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1599666538449" />
     <state width="1347" height="184" key="GridCell.Tab.0.center/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1602768642279" />
     <state width="1237" height="156" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1607243246986" />
-    <state width="1475" height="198" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1607351285047" />
-    <state width="1475" height="198" key="GridCell.Tab.0.left" timestamp="1607351285047">
+    <state width="1474" height="204" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1607364068777" />
+    <state width="1474" height="204" key="GridCell.Tab.0.left" timestamp="1607364068777">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="92" key="GridCell.Tab.0.left/0.0.1280.680/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1605105736874" />
@@ -992,8 +1000,8 @@
     <state width="1237" height="143" key="GridCell.Tab.0.left/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1599666538449" />
     <state width="1347" height="184" key="GridCell.Tab.0.left/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1602768642278" />
     <state width="1237" height="156" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1607243246986" />
-    <state width="1475" height="198" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1607351285047" />
-    <state width="1475" height="198" key="GridCell.Tab.0.right" timestamp="1607351285047">
+    <state width="1474" height="204" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1607364068777" />
+    <state width="1474" height="204" key="GridCell.Tab.0.right" timestamp="1607364068777">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="92" key="GridCell.Tab.0.right/0.0.1280.680/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1605105736875" />
@@ -1004,7 +1012,7 @@
     <state width="1237" height="143" key="GridCell.Tab.0.right/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1599666538450" />
     <state width="1347" height="184" key="GridCell.Tab.0.right/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1602768642279" />
     <state width="1237" height="156" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1607243246986" />
-    <state width="1475" height="198" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1607351285047" />
+    <state width="1474" height="204" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1607364068777" />
     <state width="938" height="348" key="GridCell.Tab.1.bottom" timestamp="1607023830903">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -1029,19 +1037,19 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="280" y="102" key="MultipleFileMergeDialog/0.0.1280.680@0.0.1280.680" timestamp="1604678952449" />
-    <state x="306" y="0" key="SettingsEditor" timestamp="1607006380326">
+    <state x="306" y="0" key="SettingsEditor" timestamp="1607354738921">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="371" y="-1050" key="SettingsEditor/0.0.1280.680/103.-1050.1680.1010@103.-1050.1680.1010" timestamp="1606209034305" />
     <state x="2323" y="159" key="SettingsEditor/0.0.1280.680/1920.0.1680.1010@1920.0.1680.1010" timestamp="1599391254553" />
     <state x="204" y="0" key="SettingsEditor/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1602757691674" />
     <state x="204" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1606405617974" />
-    <state x="306" y="0" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1607006380326" />
+    <state x="306" y="0" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1607354738921" />
     <state width="498" height="446" key="SwitcherDM" timestamp="1607003826282">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="498" height="446" key="SwitcherDM/0.0.1920.1040@0.0.1920.1040" timestamp="1607003826282" />
-    <state x="494" y="223" key="Vcs.Push.Dialog.v2" timestamp="1607350200965">
+    <state x="494" y="223" key="Vcs.Push.Dialog.v2" timestamp="1607352617031">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="-1426" y="184" key="Vcs.Push.Dialog.v2/0.0.1280.680/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1605112569384" />
@@ -1051,7 +1059,7 @@
     <state x="329" y="146" key="Vcs.Push.Dialog.v2/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1599667287383" />
     <state x="2414" y="252" key="Vcs.Push.Dialog.v2/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1602764904349" />
     <state x="329" y="120" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1607263241349" />
-    <state x="494" y="223" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1607350200965" />
+    <state x="494" y="223" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1607352617031" />
     <state x="-1930" y="0" width="1932" height="1051" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1605087178793">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
@@ -1113,34 +1121,34 @@
     </watches-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/code$parse_raxml_ng.coverage" NAME="parse_raxmlNG Coverage Results" MODIFIED="1600272038375" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/parsing" />
-    <SUITE FILE_PATH="coverage/code$RAxML_NG.coverage" NAME="RAxML_NG Coverage Results" MODIFIED="1600782833994" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/execute_programs" />
-    <SUITE FILE_PATH="coverage/code$trying_copy.coverage" NAME="trying_copy Coverage Results" MODIFIED="1604341625863" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/utils" />
-    <SUITE FILE_PATH="coverage/code$whore.coverage" NAME="whore Coverage Results" MODIFIED="1604225972883" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data_processing" />
-    <SUITE FILE_PATH="coverage/code$get_ds.coverage" NAME="get_ds Coverage Results" MODIFIED="1600705717683" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data_processing" />
     <SUITE FILE_PATH="coverage/code$parse_raxmlNG__1_.coverage" NAME="parse_raxmlNG Coverage Results" MODIFIED="1600278107052" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/parsing" />
     <SUITE FILE_PATH="coverage/code$trying.coverage" NAME="trying Coverage Results" MODIFIED="1605376760791" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/code$saturation.coverage" NAME="saturation Coverage Results" MODIFIED="1606142379688" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/figures" />
-    <SUITE FILE_PATH="coverage/code$score_last_step.coverage" NAME="score_last_step Coverage Results" MODIFIED="1606047732842" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/summary" />
-    <SUITE FILE_PATH="coverage/code$create_starting_trees.coverage" NAME="create_starting_trees Coverage Results" MODIFIED="1606667099084" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data_processing" />
-    <SUITE FILE_PATH="coverage/code$feauture_selection.coverage" NAME="feauture_selection Coverage Results" MODIFIED="1607021882475" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/figures" />
-    <SUITE FILE_PATH="coverage/code$data_attributes.coverage" NAME="data_attributes Coverage Results" MODIFIED="1607349960735" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/figures" />
-    <SUITE FILE_PATH="coverage/code$RAxML_NG__1_.coverage" NAME="RAxML_NG (1) Coverage Results" MODIFIED="1600344774120" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/execute_programs" />
-    <SUITE FILE_PATH="coverage/code$SPR_forward.coverage" NAME="SPR_forward Coverage Results" MODIFIED="1607018483492" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/execute_programs" />
-    <SUITE FILE_PATH="coverage/code$MLworkshop.coverage" NAME="MLworkshop Coverage Results" MODIFIED="1606751243256" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/code$collect_SPR_features.coverage" NAME="collect_SPR_features Coverage Results" MODIFIED="1607011549796" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/summary" />
-    <SUITE FILE_PATH="coverage/code$Phyml.coverage" NAME="Phyml Coverage Results" MODIFIED="1600262723563" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/execute_programs" />
-    <SUITE FILE_PATH="coverage/code$SPR_move_one_parallel.coverage" NAME="SPR_move_one_parallel Coverage Results" MODIFIED="1601980731165" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/execute_programs" />
-    <SUITE FILE_PATH="coverage/code$temp_for_ML_workshop.coverage" NAME="temp_for_ML_workshop Coverage Results" MODIFIED="1602764084312" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data_processing" />
-    <SUITE FILE_PATH="coverage/code$SPR_move.coverage" NAME="SPR_move Coverage Results" MODIFIED="1607351285022" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/execute_programs" />
-    <SUITE FILE_PATH="coverage/code$run_times.coverage" NAME="run_times Coverage Results" MODIFIED="1604401415928" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/summary" />
-    <SUITE FILE_PATH="coverage/code$SVM_learning.coverage" NAME="SVM_learning Coverage Results" MODIFIED="1605183716042" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/execute_programs" />
-    <SUITE FILE_PATH="coverage/code$RF_learning.coverage" NAME="RF_learning Coverage Results" MODIFIED="1606302179395" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/execute_programs" />
     <SUITE FILE_PATH="coverage/code$course.coverage" NAME="course Coverage Results" MODIFIED="1605359576008" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/code$RF_learning.coverage" NAME="RF_learning Coverage Results" MODIFIED="1606302179395" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/execute_programs" />
+    <SUITE FILE_PATH="coverage/code$trying_copy.coverage" NAME="trying_copy Coverage Results" MODIFIED="1604341625863" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/utils" />
+    <SUITE FILE_PATH="coverage/code$MLworkshop.coverage" NAME="MLworkshop Coverage Results" MODIFIED="1606751243256" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/code$RAxML_NG2.coverage" NAME="RAxML_NG Coverage Results" MODIFIED="1600783174535" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/execute_programs" />
-    <SUITE FILE_PATH="coverage/code$trying__1_.coverage" NAME="trying (1) Coverage Results" MODIFIED="1605456564063" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/utils" />
+    <SUITE FILE_PATH="coverage/code$feauture_selection.coverage" NAME="feauture_selection Coverage Results" MODIFIED="1607021882475" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/figures" />
+    <SUITE FILE_PATH="coverage/code$run_times.coverage" NAME="run_times Coverage Results" MODIFIED="1604401415928" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/summary" />
+    <SUITE FILE_PATH="coverage/code$SPR_move.coverage" NAME="SPR_move Coverage Results" MODIFIED="1607351285022" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/execute_programs" />
+    <SUITE FILE_PATH="coverage/code$whore.coverage" NAME="whore Coverage Results" MODIFIED="1604225972883" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data_processing" />
+    <SUITE FILE_PATH="coverage/code$data_attributes.coverage" NAME="data_attributes Coverage Results" MODIFIED="1607363328970" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/figures" />
+    <SUITE FILE_PATH="coverage/code$Phyml.coverage" NAME="Phyml Coverage Results" MODIFIED="1600262723563" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/execute_programs" />
     <SUITE FILE_PATH="coverage/code$parse_raxml_NG.coverage" NAME="parse_raxml_NG Coverage Results" MODIFIED="1604224170343" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/parsing" />
+    <SUITE FILE_PATH="coverage/code$saturation.coverage" NAME="saturation Coverage Results" MODIFIED="1606142379688" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/figures" />
+    <SUITE FILE_PATH="coverage/code$parse_raxml_ng.coverage" NAME="parse_raxmlNG Coverage Results" MODIFIED="1600272038375" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/parsing" />
+    <SUITE FILE_PATH="coverage/code$temp_for_ML_workshop.coverage" NAME="temp_for_ML_workshop Coverage Results" MODIFIED="1602764084312" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data_processing" />
+    <SUITE FILE_PATH="coverage/code$trying__1_.coverage" NAME="trying (1) Coverage Results" MODIFIED="1607529442831" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/utils" />
+    <SUITE FILE_PATH="coverage/code$create_starting_trees.coverage" NAME="create_starting_trees Coverage Results" MODIFIED="1606667099084" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data_processing" />
+    <SUITE FILE_PATH="coverage/code$SPR_move_one_parallel.coverage" NAME="SPR_move_one_parallel Coverage Results" MODIFIED="1601980731165" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/execute_programs" />
+    <SUITE FILE_PATH="coverage/code$SPR_forward.coverage" NAME="SPR_forward Coverage Results" MODIFIED="1607018483492" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/execute_programs" />
+    <SUITE FILE_PATH="coverage/code$score_last_step.coverage" NAME="score_last_step Coverage Results" MODIFIED="1606047732842" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/summary" />
+    <SUITE FILE_PATH="coverage/code$RAxML_NG.coverage" NAME="RAxML_NG Coverage Results" MODIFIED="1600782833994" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/execute_programs" />
     <SUITE FILE_PATH="coverage/code$trying_SPR.coverage" NAME="trying_SPR Coverage Results" MODIFIED="1600875524183" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/execute_programs" />
+    <SUITE FILE_PATH="coverage/code$get_ds.coverage" NAME="get_ds Coverage Results" MODIFIED="1600705717683" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data_processing" />
+    <SUITE FILE_PATH="coverage/code$collect_SPR_features.coverage" NAME="collect_SPR_features Coverage Results" MODIFIED="1607011549796" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/summary" />
+    <SUITE FILE_PATH="coverage/code$SVM_learning.coverage" NAME="SVM_learning Coverage Results" MODIFIED="1605183716042" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/execute_programs" />
+    <SUITE FILE_PATH="coverage/code$RAxML_NG__1_.coverage" NAME="RAxML_NG (1) Coverage Results" MODIFIED="1600344774120" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/execute_programs" />
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="watch">

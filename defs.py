@@ -20,8 +20,8 @@ if platform.system() == 'Linux':
 	DIRPATH = "/groups/itay_mayrose/danaazouri/PhyAI/"
 	#DATA_PATH = SEP.join([DIRPATH+ "data", "training_datasets", ""])
 else :
-	if os.path.exists(r"D:\Users\Administrator\Dropbox"):	    # in lab
-		DIRPATH = r"D:\Users\Administrator\Dropbox\PhyloAI\\"
+	if os.path.exists(r"C:\Users\ItayM3\Dropbox"):	    # in lab
+		DIRPATH = r"C:\Users\ItayM3\Dropbox\PhyloAI\\"
 	elif os.path.exists(r"C:\Users\ItayMNB3\Dropbox"):	    # laptop
 		#DIRPATH = r"C:\Users\ItayMNB3\Dropbox\PhyloAI\\"
 		DIRPATH = "/groups/itay_mayrose/danaazouri/PhyAI/"    # changed when starting using PyCharm prof
