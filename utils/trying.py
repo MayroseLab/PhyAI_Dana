@@ -26,7 +26,7 @@ def run_raxml_mem_partitioned(tree_str, msa_tmpfile, log_filepath):
 			fpw.write(tree_str)
 
 		p = Popen([RAXML_NG_SCRIPT, '--evaluate','--opt-branches', 'on',
-				   '--opt-model', 'off', '--msa', msa_tmpfile, '--threads', '2', '--model', log_filepath, '--nofiles', '--redo', '--tree', tree_rampath],
+				   '--opt-model', 'off', '--msa', msa_tmpfile, '--threads', '4', '--model', log_filepath, '--nofiles', '--redo', '--tree', tree_rampath],
 				  stdout=PIPE, stdin=PIPE, stderr=STDOUT)
 		raxml_stdout = p.communicate()[0]
 		raxml_output = raxml_stdout.decode()
@@ -51,7 +51,7 @@ def index_ll_and_features(ds_path, outpath_prune, outpath_rgft, istart, nlines, 
 	skp_lst = [i for i in range(1, istart)] if not istart == 0 else []
 	skp_lst2 = [i for i in range(istart+nlines, int(NROWS)+10)]
 	skp_lst.extend(skp_lst2)
-	dfr = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/{}newicks_step1.csv".format(EXAMPLE_DIRNAME), index_col=0, skiprows=skp_lst)
+	dfr = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/{}newicks_step1.csv".format(EXAMPLE_DIRNAME),engine='python', index_col=0, skiprows=skp_lst)
 
 	orig_ds_msa_file = ds_path + MSA_PHYLIP_FILENAME
 	if not '59' in EXAMPLE_DIRNAME:
@@ -158,7 +158,7 @@ if __name__ == '__main__':
 		NROWS = len(df)
 		group_ids_full = df["group_id"]
 		group_ids = group_ids_full.unique()
-		for group in group_ids[:4]:
+		for group in group_ids[3:4]:
 			s = df.index[df["group_id"] == group].tolist()
 			submit_job_ll(s[0], len(s), NROWS)
 
