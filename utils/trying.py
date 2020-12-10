@@ -105,12 +105,13 @@ def index_ll_and_features(ds_path, outpath_prune, outpath_rgft, istart, nlines, 
 
 def submit_job_ll(istart, nlines, NROWS):
 	print("**************************************   ", str(istart), str(nlines))
-	job_name = "index_ll_large_dataset.sh"
+	job_name = "ll_large_dataset.sh"
 	cmd = "python " + CODE_PATH + "utils/trying.py -istart " + str(istart) + " -nlines " + str(nlines) + " -nrows_total " + str(NROWS)
 
 	qsub_cmd = get_job_qsub_command(job_name=job_name,
 									command=cmd,
-									error_files_path=DATA_PATH + EXAMPLE_DIRNAME +"error_files/")
+									error_files_path=DATA_PATH + EXAMPLE_DIRNAME +"error_files/",
+									additional_params="-l pmem=10gb")
 	os.system(qsub_cmd)
 
 
@@ -152,7 +153,7 @@ if __name__ == '__main__':
 		df.to_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/{}newicks_step1_with_ids.csv".format(EXAMPLE_DIRNAME))
 		exit()
 		'''
-		df = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/{}newicks_step1_with_ids.csv".format(EXAMPLE_DIRNAME)) #,index_col=0)
+		df = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/{}newicks_step1_with_ids.csv".format(EXAMPLE_DIRNAME)).dropna() #,index_col=0)
 
 		NROWS = len(df)
 		group_ids_full = df["group_id"]
