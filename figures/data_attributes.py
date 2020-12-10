@@ -6,13 +6,13 @@ import itertools
 import seaborn as sns
 
 from defs import *
-from utils.tree_functions import *
+#from utils.tree_functions import *
 
 sns.set_style("white")
 #fig, axarr = plt.subplots(2, 2)
 palette = itertools.cycle(sns.color_palette('colorblind'))
 from scipy.stats import pearsonr
-from Bio import AlignIO
+#from Bio import AlignIO
 
 
 def count_gaps_proportion(msa):
@@ -108,8 +108,8 @@ def corr_plot(df):
 	ax1 = sns.jointplot(x="ntaxa", y=SCORES_LST[0], data=df, kind='reg', stat_func=pearsonr, line_kws={'color':'black'}, color=next(palette),xlim=(5, 70.3), ylim=(0,1))#, ax=ax1)
 	plt.xlabel('Number of taxa')
 	plt.ylabel('Spearman correlation ({})'.format(r'$\rho$'))
-	#stats_patch = mpatches.Patch(color='white', label='$r^2$ = 0.0002;  $pval$ = 0.34')#, contains=False)
-	stats_patch = mpatches.Patch(color='white', label='$r^2$ = 0.009;  $pval$ = $7.8x10^-$$^1$$^0$')#, contains=False)
+	#stats_patch = mpatches.Patch(color='white', label='$r^2$ = 0.009;  $pval$ = $7.8x10^-$$^1$$^0$')#, contains=False)
+	stats_patch = mpatches.Patch(color='white', label='$r^2$ = 0.0002;  $pval$ = 0.34')  # , contains=False)
 	plt.legend(handles=[stats_patch])
 	plt.text(1.4, 1.2, "a", fontsize=20, fontweight='bold', va='top', ha='right')
 	plt.tight_layout()
@@ -142,7 +142,7 @@ def corr_plot(df):
 		r,p = pearsonr(df_i['tbl'].values, df_i[SCORES_LST[0]].values)
 		stats_patch = mpatches.Patch(color='white',label='$r^2$ = {};  $pval$ = ${}x10^-$$^{}$$^{}$'.format((str(np.square(r)))[:5], str(p)[:4], str(p)[-2], str(p)[-1]))
 		axes[i].legend(handles=[stats_patch], loc='lower right')
-	axes[0].text(-1.4, 1.5, "b", fontsize=20, fontweight='bold', va='top', ha='right')
+	axes[0].text(-1.4, 1.5, "d", fontsize=20, fontweight='bold', va='top', ha='right')
 	plt.xlim(-0.3, 31)
 	plt.ylim(0, 1)
 	plt.tight_layout()
@@ -157,7 +157,7 @@ def corr_plot(df):
 	plt.ylim(0,1)
 	plt.ylabel("")
 	plt.setp(ax3.get_xticklabels(), rotation=20)
-	plt.text(-0.7, 1.2, "c", fontsize=20, fontweight='bold', va='top', ha='right')
+	plt.text(-0.7, 1.2, "f", fontsize=20, fontweight='bold', va='top', ha='right')
 	plt.tight_layout()
 	plt.show()
 
@@ -177,12 +177,13 @@ def corr_plot_more_atts(df):
 	palette = itertools.cycle(sns.color_palette('colorblind'))
 	next(palette)
 
-	ax1 = sns.jointplot(x="nchars", y=SCORES_LST[0], data=df, kind='reg', stat_func=pearsonr, line_kws={'color':'black'}, color=next(palette), ylim=(0,1))#, ax=ax1)
+	ax1 = sns.jointplot(x="nchars", y=SCORES_LST[0], data=df, kind='reg', stat_func=pearsonr, line_kws={'color':'black'}, color=next(palette), xlim=(0,5000), ylim=(0,1))#, ax=ax1)
 	plt.xlabel('Alignment length')
 	plt.ylabel('Spearman correlation ({})'.format(r'$\rho$'))
 	stats_patch = mpatches.Patch(color='white', label='$r^2$ = 0.01;  $pval$ = $5.2x10^-$$^1$$^1$')#, contains=False)
+	#stats_patch = mpatches.Patch(color='white', label='$r^2$ = 0.05;  $pval$ = $2.8x10^-$$^1$$^4$')  # , contains=False)
 	plt.legend(handles=[stats_patch])
-	plt.text(-3.4, 1.2, "d", fontsize=20, fontweight='bold', va='top', ha='right')
+	plt.text(-250, 1.2, "b", fontsize=20, fontweight='bold', va='top', ha='right')
 	plt.tight_layout()
 	plt.show()
 
@@ -190,18 +191,20 @@ def corr_plot_more_atts(df):
 	plt.xlabel('Average gaps (%)')
 	plt.ylabel('Spearman correlation ({})'.format(r'$\rho$'))
 	stats_patch = mpatches.Patch(color='white', label='$r^2$ = 0.001;  $pval$ = $1.1x10^-$$^1$$^8$')#, contains=False)
+	#stats_patch = mpatches.Patch(color='white',label='$r^2$ = 0.11;  $pval$ = $1.3x10^-$$^2$$^8$')  # , contains=False)
 	plt.legend(handles=[stats_patch])
-	plt.text(-3.4, 1.2, "d", fontsize=20, fontweight='bold', va='top', ha='right')
+	plt.text(-3.4, 1.2, "c", fontsize=20, fontweight='bold', va='top', ha='right')
 	plt.tight_layout()
 	plt.show()
 
 	next(palette)
-	next(palette)
+	#next(palette)
 	df = df[df["theight_var"] <= 15]
 	ax2 = sns.jointplot(x="theight_var", y=SCORES_LST[0], data=df, kind='reg', stat_func=pearsonr, line_kws={'color':'black'}, color=next(palette), xlim=(0,13), ylim=(0,1))#, ax=ax2)
 	plt.xlabel('Deviation from ulrametricity')
 	plt.ylabel("")
 	stats_patch = mpatches.Patch(color='white', label='$r^2$ = 0.001;  $pval$ = $4.9x10^-$$^1$$^6$')  # , contains=False)
+	#stats_patch = mpatches.Patch(color='white', label='$r^2$ = 0.003;  $pval$ = $2.4x10^-$$^0$$^9$')  # , contains=False)
 	plt.legend(handles=[stats_patch])
 	plt.text(-0.65, 1.2, "e", fontsize=20, fontweight='bold', va='top', ha='right')
 	plt.tight_layout()
@@ -211,14 +214,13 @@ def corr_plot_more_atts(df):
 
 
 
-
 if __name__ == '__main__':
 	dirpath = SUMMARY_FILES_DIR if platform.system() == 'Linux' else DATA_PATH
+	#dirpath = r"D:\ItayM3\Desktop\\"
 	#calc_empirical_features()
-
 
 	df_val = pd.read_csv(dirpath + 'scores_per_ds_validation_with_more_atts.csv')
 	df_train = pd.read_csv(dirpath + 'scores_per_ds_20_1_ytransformed_exp_with_more_atts.csv')
-	#corr_plot(df_val)
-	corr_plot_more_atts(df_train)
+	corr_plot(df_val)
+	#corr_plot_more_atts(df_train)
 	#plot_distributions(df)
