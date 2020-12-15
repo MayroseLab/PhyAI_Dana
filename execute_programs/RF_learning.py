@@ -34,7 +34,7 @@ FIRST_ON_SEC = False           # temp for running 1 on 2
 FEATURE_SELECTION = False       # temp for running feature selection
 SATURATION = True             # temp to asses saturation
 
-N_DATASETS = 2500    # [1500,5858]
+N_DATASETS = 3500    # [1500,5858]
 
 
 def score_rank(df_by_ds, sortby, locatein, random, scale_score):
