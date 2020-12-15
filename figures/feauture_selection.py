@@ -104,7 +104,7 @@ removed_featured_dict = {19: 'Sum of branches between regrafting and pruning',
 
 
 def scores_feature_selection(df):
-	fig = plt.figure(figsize=(14, 12))
+	fig = plt.figure(figsize=(18, 16))
 	colors_list = cm.YlGnBu(np.linspace(0, 0.8, 19))[::-1]
 	sns.boxplot(x=N_FEATURES_COL, y=SCORES_LST[0], data=df, order=[19-i for i in range(19)], showfliers=False, saturation=0.6, linewidth=0.6, palette=colors_list)
 	plt.xlabel('')
@@ -115,33 +115,24 @@ def scores_feature_selection(df):
 		rows_text_nested_lst.append(['+' if ind>=x else '' for x in range(1,20)])
 		colors_nested_lst.append([colors_list[x-1] if ind>=x else 'black' for x in range(1,20)])
 
-	plt.table(cellText=rows_text_nested_lst, rowLoc='left',
-			  rowLabels=[removed_featured_dict[19-i] for i in range(19)],
-			  colLabels=[str(19-i) for i in range(19)],
-			  colLoc='center',cellLoc = 'center', cellColours=colors_nested_lst, # rowColours=['whitesmoke' for x in range(1,21)],
-			  loc='bottom')#, edges='vertical')
+	the_table = plt.table(cellText=rows_text_nested_lst, rowLoc='left',
+						  rowLabels=[removed_featured_dict[19-i] for i in range(19)],
+						  colLabels=[str(19-i) for i in range(19)],
+						  colLoc='center',cellLoc = 'center', cellColours=colors_nested_lst, # rowColours=['whitesmoke' for x in range(1,21)],
+						  loc='bottom')
+
+	#the_table.auto_set_font_size(False)
+	the_table.set_fontsize(18)
+	the_table.scale(1.05, 1.05)
 
 	plt.xticks([])
 	fig.subplots_adjust(left=0.2 ,bottom=0.15)
 	plt.text(7, -0.47, 'Features in the model', size=18)
 
 	plt.tight_layout()
-	#plt.ylim(0,1)
-	plt.savefig(dirpath + "feature_selection_with_matrix_v5.tif", dpi=300)
+	#plt.savefig(dirpath + "feature_selection_larger_mat.tif", dpi=300)
 	plt.show()
 
-
-	'''
-	fig, axarr = plt.subplots(2, 2)
-	axarrs_locs = [(0, 0), (0, 1), (1, 0)]
-	ylims = [(0.0, 1), (1, 100), (1, 100)]
-	for i,loc in enumerate(axarrs_locs):
-		color = next(palette)
-		ax = axarr[axarrs_locs[i]]
-		ax.set_ylim(ylims[i])
-		sns.boxplot(x=N_FEATURES_COL, y=SCORES_LST[i], data=df, ax=ax, color=color, showfliers=False)
-		ax.set_xticklabels(ax.get_xticklabels(), rotation=30)
-	'''
 
 
 
@@ -172,8 +163,10 @@ if __name__ == '__main__':
 	##dirpath += 'results_feature_selection/'
 	#df = concat_n_features(dirpath, max_n_features=19)
 	#df.to_csv(dirpath + 'temp.csv')
-	#scores_feature_selection(pd.read_csv(dirpath + 'temp.csv'))
-
+	print("dskfhglsduthg;rsi")
+	exit()
+	scores_feature_selection(pd.read_csv(dirpath + 'temp.csv'))
+	exit()
 	df = pd.read_csv(dirpath + 'temp.csv')
 	a8 = df.loc[df[N_FEATURES_COL] == 8, SCORES_LST[0]].dropna().values
 	a9 = df.loc[df[N_FEATURES_COL] == 9, SCORES_LST[0]].dropna().values
