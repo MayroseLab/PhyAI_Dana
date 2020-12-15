@@ -8,7 +8,8 @@ from defs import *
 from utils.tree_functions import get_total_branch_lengths
 from sklearn.ensemble import RandomForestRegressor, RandomForestClassifier
 #from sklearn.preprocessing import *
-from statistics import mean, median#from sklearn.metrics import *
+from statistics import mean, median
+#from sklearn.metrics import *
 #from sklearn.model_selection import train_test_split
 #from sklearn.model_selection import cross_val_score
 from figures.violin_for_grant import *
@@ -34,7 +35,7 @@ FIRST_ON_SEC = False           # temp for running 1 on 2
 FEATURE_SELECTION = False       # temp for running feature selection
 SATURATION = True             # temp to asses saturation
 
-N_DATASETS = 5500    # [1500,5858]
+N_DATASETS = 4200    # [1500,5858]
 
 
 def score_rank(df_by_ds, sortby, locatein, random, scale_score):
@@ -207,7 +208,7 @@ def truncate(df):
 	groups_ids = df[FEATURES[GROUP_ID]].unique()
 	#'''
 	if DBSET == "2":
-		n_other_dbs = 1
+		n_other_dbs = 541
 		selected_groups_ids = np.concatenate((np.random.choice(groups_ids[:-n_other_dbs], N_DATASETS-n_other_dbs, replace=False), groups_ids[-n_other_dbs:]))
 		df = df[df[FEATURES[GROUP_ID]].isin(selected_groups_ids)]
 		groups_ids = df[FEATURES[GROUP_ID]].unique()
