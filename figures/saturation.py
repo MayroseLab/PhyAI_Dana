@@ -107,7 +107,7 @@ if __name__ == '__main__':
 	xticks_older = [600, 900, 1300, 1800, 2300,2700, 3200, 3700, 4000, 4700, 6000]
 	
 	ndots = ['1500_k2', 2200, 3000, 4000, 5000, 5850]
-	xticks = [1500, 2100, 3000, 4200, 5000, 6000]
+	xticks = [1500, 2000, 3000, 4000, 5000, 6000]
 	dirpath += 'results_saturation/'
 	df = concat_n_features(dirpath, ndots, xticks)
 	#plot_scores2(df)
