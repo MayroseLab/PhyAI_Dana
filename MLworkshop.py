@@ -203,21 +203,24 @@ if __name__ == '__main__':
 	df = pd.read_csv(DATAPATH + "data/sampled_datasets.csv")
 	curr_path = DATAPATH + df.loc[0, "path"]
 	tree_path = curr_path + MSA_PHYLIP_FILENAME + "_phyml_tree_bionj.txt"
-	#tree_path = "(((((Sp013:0.00935092,Sp004:0.007683)N17:0.007683,Sp006:0.0233859)N5:0.0224483,(((((Sp019:0.00133828,Sp018:0)N16:0.019261,Sp012:0.0315228)N13:0.0114042,(Sp011:0,Sp010:0)N14:0.0165666)N11:0.00239063,(((Sp009:5e-08,(Sp007:0,Sp008:0.000672625)N7:0.000672625)N18:0.00646578,Sp003:0.0139717)N15:0.0423708,(Sp016:0,Sp000:0.0188053)N4:0.0188053)N12:0.00446107)N9:0.0180496,(Sp015:0.0024543,Sp014:0.00126834)N10:0.017892)N6:0.00593268)N3:3.7e-07,(Sp005:0,Sp017:0)N8:0.0267204)N2:0.073978,Sp002:0.00130518,Sp001:0);"
-	#tree_path = "(((((Sp013:0.00935092,Sp004:0.007683)N17:0.007683,Sp006:0.0233859)N5:0.0224483,(((((Sp019:0.00133828,Sp018:0)N16:0.019261,Sp012:0.0315228)N13:0.0114042,(Sp011:0,Sp010:0)N14:0.0165666)N11:0.00239063,((((Sp007:0,Sp008:0.000672625)N7:0.000672625,(Sp001:0,Sp009:2.5e-08):2.5e-08)N18:0.00646578,Sp003:0.0139717)N15:0.0423708,(Sp016:0,Sp000:0.0188053)N4:0.0188053)N12:0.00446107)N9:0.0180496,(Sp015:0.0024543,Sp014:0.00126834)N10:0.017892)N6:0.00593268)N3:3.7e-07,(Sp005:0,Sp017:0)N8:0.0267204)N2:0.073978,Sp002:0.00130518);"
-	#tree_path = "(Sp002:0.00130518,(((Sp013:0.00935092,Sp004:0.007683)N17:0.007683,Sp006:0.0233859)N5:0.0224483,(((((Sp019:0.00133828,Sp018:0)N16:0.019261,Sp012:0.0315228)N13:0.0114042,(Sp011:0,Sp010:0)N14:0.0165666)N11:0.00239063,((((Sp007:0,Sp008:0.000672625)N7:0.000672625,(Sp001:0,Sp009:2.5e-08):2.5e-08)N18:0.00646578,Sp003:0.0139717)N15:0.0423708,Sp016:0.0188053)N12:0.00446107)N9:0.0180496,(Sp015:0.0024543,Sp014:0.00126834)N10:0.017892)N6:0.00593268)N3:3.7e-07,(Sp017:0,(Sp000:0.0188053,Sp005:0)N4:0)N8:0.0267204);"
-	tree_path = "(Sp012:0.0192469,((Sp000:0.655199,(Sp003:0.0299269,(Sp009:0.00065657,Sp008:0.00633465)N16:0.00633465)N12:0.0299269)N6:0.0176921,((((((Sp006:0.00382926,((Sp014:0.0125907,Sp005:0.0128883)N9:0.0128883,(Sp017:0.00405298,(Sp001:0.0836157,Sp016:0.0048701)N8:0.0048701)N17:0.00405298)N13:0.0257765)N14:0.051553,(Sp015:0.135534,Sp011:0.00983235)N5:0.0283353)N3:0.00131314,Sp018:0.00522786)N18:8.2e-07,(Sp019:0.0400573,Sp002:0.0855764)N10:0.102756)N15:0.0184165,Sp007:0.122261)N11:0.0136892,Sp004:0.193494)N7:0.0353907)N4:0.0657318,(Sp010:2.4e-07,Sp013:0.000607515)N2:0.00182255);"
+	tree_path = "((Sp013:2.5e-09)1:7.5e-09,Sp014:1e-08,((((((Sp000:0.00119635,((Sp011:1.5e-08,(Sp006:0.00030492,(Sp017:4e-08,Sp003:2.5e-09)1:2.5e-09)1:0.00030492)1:3e-08,Sp004:1e-08)1:1e-07)1:0.00059262,(Sp002:1e-08,(Sp012:1e-08,Sp001:5e-09)1:5e-09)1:4e-08)1:0.00060152,(Sp016:1e-08,Sp008:5e-09)1:5.5e-08)1:4e-08,Sp010:1e-08)1:0.00736324,(Sp019:4e-08,(Sp009:6e-08,(Sp015:0.00030634,Sp005:2.5e-09)1:2.5e-09)1:5e-09)1:4e-08)1:0.00061291,(Sp007:0.00030635,Sp018:5e-09)1:5e-09)1:7e-08);"
 	t_orig = Tree(newick=tree_path, format=1)    # ETEtree
 	#t_orig.unroot()
-	#t_orig.get_tree_root().name = "ROOT_LIKE"    # ETEtree
+	#t_orig.get_tree_root().name = "ROOT_LIKE"   # ETEtree
+	print(t_orig.get_ascii(show_internal=True))
+	print(len(t_orig.get_descendants()))
+	t_orig.prune(["Sp" + (str(n)).zfill(3) for n in range(20)], preserve_branch_length=True)
+	t_orig.prune(["Sp" + (str(n)).zfill(3) for n in range(20)], preserve_branch_length=True)
+	print("##################")
 	print(t_orig.get_ascii(show_internal=True))
 	print(len(t_orig.get_descendants()))
 
+	exit()
 
 	######## only for pre-processing ########
-	ETEtree_with_internal_names, new_tree_path = add_internal_names(tree_path, t_orig)
+	#ETEtree_with_internal_names, new_tree_path = add_internal_names(tree_path, t_orig)
 	#########################################
-	#ETEtree_with_internal_names = t_orig
+	ETEtree_with_internal_names = t_orig
 
 	# a possible pair could NOT be something ELSE than all pair-combinations between [Sp000, ... , Sp0019] and [N1, ... , N18].  You can't know in advance which of THESE do exist (topology-dependant)
 	neighbor_tree_str = SPR_by_edge_names(ETEtree_with_internal_names, 'Sp012', 'Sp008')
