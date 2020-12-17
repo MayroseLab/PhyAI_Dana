@@ -72,7 +72,7 @@ def plot_corr(df):
 	fig.tight_layout()
 	fig.set_size_inches(7, 4, forward=True)
 	#plt.savefig("C:\\Users\\ItayMNB3\\Dropbox\\PhyloAI\\PhyAI_writing\\figures\\" + "FigS3.tif", dpi=300)
-	plt.savefig(dirpath + "saturation.tif", dpi=300)
+	#plt.savefig(dirpath + "saturation.tif", dpi=300)
 	plt.show()
 
 
@@ -83,11 +83,12 @@ def concat_n_features(dirpath, ndots, xticks):
 	'''
 	pre-merge iterations results to one csv with "n_datasets" col
 	'''
-	df = pd.read_csv(dirpath + SCORES_PER_DS.format("20_1_{}_ytransformed_exp".format(ndots[0])))
+	df = pd.read_csv(dirpath + SCORES_PER_DS.format("19_1_{}_ytransformed_exp".format(ndots[0])))
 	df[N_DATASETS_COL] = xticks[0]
 	for i,n in enumerate(ndots[1:]):
-		csv = dirpath + SCORES_PER_DS.format("20_1_{}_ytransformed_exp".format(n))
-		df2 = pd.read_csv(csv)
+		csv20 = dirpath + SCORES_PER_DS.format("20_1_{}_ytransformed_exp".format(n))
+		csv19 = dirpath + SCORES_PER_DS.format("19_1_{}_ytransformed_exp".format(n))
+		df2 = pd.read_csv(csv20) if os.path.exists(csv20) else pd.read_csv(csv19)
 		df2[N_DATASETS_COL] = xticks[i+1]
 		df = pd.concat([df, df2])
 	
@@ -103,23 +104,22 @@ if __name__ == '__main__':
 	#df = pd.read_csv(dirpath + "results_summary.csv")   # _by_ntaxa   , _sr
 	#plot_scores
 	
-	ndots_older = [600, 840, 1310, 1790, 2260, 2670, 3210, 3870, 3860, 4670, 6060]
-	xticks_older = [600, 900, 1300, 1800, 2300,2700, 3200, 3700, 4000, 4700, 6000]
-	
-	ndots = ['1500_k2', 2200, 3000, 4000, 5000, 5850]
-	xticks = [1500, 2000, 3000, 4000, 5000, 6000]
+	ndots = [100, 500, 1000, 1500, 2200, 2500, 3000, 3500, 4000, 4500, 4500, 5000, 5500, 5850]
+	xticks = [100, 500, 1000, 1500, 2000, 2500, 3000, 3500, 4000, 4200, 4500, 5000, 5500, 6000]
 	dirpath += 'results_saturation/'
 	df = concat_n_features(dirpath, ndots, xticks)
 	#plot_scores2(df)
 	plot_corr(df)
 
 
-	a1500 = df.loc[df[N_DATASETS_COL] == xticks[0], SCORES_LST[0]].dropna().values
-	a2200 = df.loc[df[N_DATASETS_COL] == xticks[1], SCORES_LST[0]].dropna().values
-	a3000 = df.loc[df[N_DATASETS_COL] == xticks[2], SCORES_LST[0]].dropna().values
-	a4000 = df.loc[df[N_DATASETS_COL] == xticks[3], SCORES_LST[0]].dropna().values
-	a5000 = df.loc[df[N_DATASETS_COL] == xticks[4], SCORES_LST[0]].dropna().values
-	a6000 = df.loc[df[N_DATASETS_COL] == xticks[5], SCORES_LST[0]].dropna().values
+	a1500 = df.loc[df[N_DATASETS_COL] == xticks[3], SCORES_LST[0]].dropna().values
+	a2000 = df.loc[df[N_DATASETS_COL] == xticks[4], SCORES_LST[0]].dropna().values
+	a3000 = df.loc[df[N_DATASETS_COL] == xticks[6], SCORES_LST[0]].dropna().values
+	a3500 = df.loc[df[N_DATASETS_COL] == xticks[7], SCORES_LST[0]].dropna().values
+	a4000 = df.loc[df[N_DATASETS_COL] == xticks[8], SCORES_LST[0]].dropna().values
+	a4200 = df.loc[df[N_DATASETS_COL] == xticks[9], SCORES_LST[0]].dropna().values
+	a5000 = df.loc[df[N_DATASETS_COL] == xticks[11], SCORES_LST[0]].dropna().values
+	a6000 = df.loc[df[N_DATASETS_COL] == xticks[13], SCORES_LST[0]].dropna().values
 
-	F, p = stats.f_oneway(a3000, a6000)
+	F, p = stats.f_oneway(a4200, a6000)
 	print(p)

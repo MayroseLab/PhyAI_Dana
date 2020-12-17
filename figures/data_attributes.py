@@ -147,7 +147,7 @@ def corr_plot(df):
 	plt.ylim(0, 1)
 	plt.tight_layout()
 	plt.show()
-
+	'''
 	df_val = pd.read_csv(dirpath + SCORES_PER_DS.format("20_1_validation_set_ytransformed_exp"))
 	df_val["Database"] = df_val["Database"].replace(["orthoMam"], "OrthoMaM")
 	df_val["Set"] = "validation"
@@ -160,7 +160,16 @@ def corr_plot(df):
 	plt.text(-0.7, 1.2, "f", fontsize=20, fontweight='bold', va='top', ha='right')
 	plt.tight_layout()
 	plt.show()
-
+	'''
+	#df_val = pd.read_csv(dirpath + SCORES_PER_DS.format("20_1_validation_set_ytransformed_exp"))
+	df["Database"] = df["Database"].replace(["orthoMam"], "OrthoMaM")
+	ax3 = sns.boxplot(x="Database", y=SCORES_LST[0], data=df, showfliers=False,order=["OrthoMaM", "PANDIT"], color="lightgrey")#, ax=ax3) ["ploiDB","protDBs", "selectome", "TreeBASE",
+	plt.ylim(0,1)
+	plt.ylabel("")
+	plt.setp(ax3.get_xticklabels(), rotation=20)
+	plt.text(-0.6, 1.2, "f", fontsize=20, fontweight='bold', va='top', ha='right')
+	plt.tight_layout()
+	plt.show()
 
 	''''######################
 	gpd_df = df_inc_val.groupby('Database')

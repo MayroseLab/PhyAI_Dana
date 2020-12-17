@@ -104,7 +104,7 @@ removed_featured_dict = {19: 'Sum of branches between regrafting and pruning',
 
 
 def scores_feature_selection(df):
-	fig = plt.figure(figsize=(18, 16))
+	fig = plt.figure(figsize=(14, 10))
 	colors_list = cm.YlGnBu(np.linspace(0, 0.8, 19))[::-1]
 	sns.boxplot(x=N_FEATURES_COL, y=SCORES_LST[0], data=df, order=[19-i for i in range(19)], showfliers=False, saturation=0.6, linewidth=0.6, palette=colors_list)
 	plt.xlabel('')
@@ -121,17 +121,17 @@ def scores_feature_selection(df):
 						  colLoc='center',cellLoc = 'center', cellColours=colors_nested_lst, # rowColours=['whitesmoke' for x in range(1,21)],
 						  loc='bottom')
 
-	#the_table.auto_set_font_size(False)
-	the_table.set_fontsize(18)
-	the_table.scale(1.05, 1.05)
+	the_table.auto_set_font_size(False)
+	the_table.set_fontsize(14)
+	the_table.scale(1., 1.7)
 
 	plt.xticks([])
-	fig.subplots_adjust(left=0.2 ,bottom=0.15)
+	fig.subplots_adjust(left=0.2 ,bottom=0.32)
 	plt.text(7, -0.47, 'Features in the model', size=18)
 
 	plt.tight_layout()
-	#plt.savefig(dirpath + "feature_selection_larger_mat.tif", dpi=300)
-	plt.show()
+	plt.savefig(dirpath + "feature_selection_larger_mat.tif", dpi=300)
+	#plt.show()
 
 
 
@@ -163,8 +163,6 @@ if __name__ == '__main__':
 	##dirpath += 'results_feature_selection/'
 	#df = concat_n_features(dirpath, max_n_features=19)
 	#df.to_csv(dirpath + 'temp.csv')
-	print("dskfhglsduthg;rsi")
-	exit()
 	scores_feature_selection(pd.read_csv(dirpath + 'temp.csv'))
 	exit()
 	df = pd.read_csv(dirpath + 'temp.csv')
