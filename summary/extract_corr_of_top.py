@@ -18,9 +18,8 @@ def ds_scores(df, p, move_type='merged'):
     sp_corrs = []
     grouped_df_by_ds = df.groupby(FEATURES[GROUP_ID], sort=False)
     for i, (group_id, df_by_ds) in enumerate(grouped_df_by_ds):
-        temp_df = temp_df.sort_values(by=label, ascending=False).reset_index()
-        temp_df.head(int(len(temp_df)*p))
-        temp_df = df_by_ds[[label, "pred"]]
+        temp_df = df_by_ds.sort_values(by=label, ascending=False).reset_index().head(int(len(temp_df)*p))
+        temp_df = temp_df[[label, "pred"]]
 
         sp_corr = temp_df.corr(method='spearman').iloc[1, 0]
         if sp_corr:
