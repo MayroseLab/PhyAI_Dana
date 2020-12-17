@@ -38,7 +38,7 @@ def print_and_index_results(df_datasets, sp_corrs_lst):
     #### score 1 ####
     spearman_corrs = sp_corrs_lst
     df_datasets['corr_p'] = spearman_corrs
-    print("\nsapearman corr top xx%:\n" + "mean:", mean([e for e in spearman_corrs if not math.isnan(e)]), ", median:",median(spearman_corrs))
+    #print("\nsapearman corr top xx%:\n" + "mean:", mean([e for e in spearman_corrs if not math.isnan(e)]), ", median:",median(spearman_corrs))
     print("##########################")
 
     return df_datasets
