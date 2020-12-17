@@ -18,9 +18,9 @@ def ds_scores(df, p, move_type='merged'):
     sp_corrs = []
     grouped_df_by_ds = df.groupby(FEATURES[GROUP_ID], sort=False)
     for i, (group_id, df_by_ds) in enumerate(grouped_df_by_ds):
-        temp_df = df_by_ds[[label, "pred"]]
         temp_df = temp_df.sort_values(by=label, ascending=False).reset_index()
         temp_df.head(int(len(temp_df)*p))
+        temp_df = df_by_ds[[label, "pred"]]
 
         sp_corr = temp_df.corr(method='spearman').iloc[1, 0]
         if sp_corr:
@@ -54,7 +54,7 @@ if __name__ == '__main__':
     #df_datasets = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/summary_files/scores_per_ds_19_1_4200_ytransformed_exp_1cpu.csv")
     df_datasets = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/summary_files/results_saturation/scores_per_ds_19_1_4500_ytransformed_exp.csv")
 
-    for p in [0.1, 0.25, 1.5, 0.75]:
+    for p in [0.1, 0.25, 0.5, 0.75, 1]:
         sp_corrs_lst = ds_scores(df_with_preds, p)
         df_datasets = print_and_index_results(df_datasets, sp_corrs_lst)
         df_datasets.to_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/summary_files/scores_per_ds_19_1_4200_top_{}%.csv".format(p*100))
