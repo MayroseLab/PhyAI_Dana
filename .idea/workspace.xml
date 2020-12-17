@@ -25,7 +25,6 @@
     <list default="true" id="04f6d22b-03c8-46f3-ac77-b58c4e95d95d" name="Default Changelist" comment="-">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/summary/extract_corr_of_top.py" beforeDir="false" afterPath="$PROJECT_DIR$/summary/extract_corr_of_top.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/trying.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/trying.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -552,19 +551,7 @@
       <workItem from="1607781366838" duration="2550000" />
       <workItem from="1607844588396" duration="17630000" />
       <workItem from="1608097195109" duration="9417000" />
-      <workItem from="1608190836661" duration="8718000" />
-    </task>
-    <task id="LOCAL‎01329" summary="-">
-      <created>1606208712250</created>
-      <option name="number" value="LOCAL‎01329" />
-      <option name="presentableId" value="LOCAL‎01329" />
-      <updated>1606208712250</updated>
-    </task>
-    <task id="LOCAL‎01330" summary="-">
-      <created>1606280208967</created>
-      <option name="number" value="LOCAL‎01330" />
-      <option name="presentableId" value="LOCAL‎01330" />
-      <updated>1606280208968</updated>
+      <workItem from="1608190836661" duration="9322000" />
     </task>
     <task id="LOCAL‎01331" summary="-">
       <created>1606280622581</created>
@@ -877,7 +864,21 @@
       <option name="project" value="LOCAL" />
       <updated>1608197929766</updated>
     </task>
-    <option name="localTasksCounter" value="1378" />
+    <task id="LOCAL-01378" summary="-">
+      <created>1608200049075</created>
+      <option name="number" value="01378" />
+      <option name="presentableId" value="LOCAL-01378" />
+      <option name="project" value="LOCAL" />
+      <updated>1608200049075</updated>
+    </task>
+    <task id="LOCAL-01379" summary="-">
+      <created>1608200346356</created>
+      <option name="number" value="01379" />
+      <option name="presentableId" value="LOCAL-01379" />
+      <option name="project" value="LOCAL" />
+      <updated>1608200346356</updated>
+    </task>
+    <option name="localTasksCounter" value="1380" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1048,7 +1049,7 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="498" height="446" key="SwitcherDM/0.0.1920.1040@0.0.1920.1040" timestamp="1607003826282" />
-    <state x="494" y="223" key="Vcs.Push.Dialog.v2" timestamp="1608197931529">
+    <state x="494" y="223" key="Vcs.Push.Dialog.v2" timestamp="1608200433306">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="-1426" y="184" key="Vcs.Push.Dialog.v2/0.0.1280.680/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1605112569384" />
@@ -1058,7 +1059,7 @@
     <state x="329" y="146" key="Vcs.Push.Dialog.v2/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1599667287383" />
     <state x="2414" y="252" key="Vcs.Push.Dialog.v2/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1602764904349" />
     <state x="329" y="120" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1607631273671" />
-    <state x="494" y="223" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1608197931529" />
+    <state x="494" y="223" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1608200433306" />
     <state x="-1930" y="0" width="1932" height="1051" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1605087178793">
       <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
