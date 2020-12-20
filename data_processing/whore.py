@@ -28,6 +28,33 @@ def rearrange_dirs_for_rerun(datapath):
 	return
 
 
+def copy_datasets(df_set, main_dir):
+	for i, row in df_set.iterrows():
+		path = row["path"]
+		msa_orig = path + MSA_PHYLIP_FILENAME
+		dest_dir = main_dir + path.split("/")[-2] + "/"
+
+		if os.path.exists(msa_orig):
+			if not os.path.exists(dest_dir):
+				os.mkdir(dest_dir)
+				shutil.copyfile(msa_orig, dest_dir + MSA_PHYLIP_FILENAME_NOT_MASKED)
+		else:
+			print(msa_orig, "does not exist !")
+	return
+
+
+def arrange_submission_data():
+	df_all = pd.read_csv(SUMMARY_FILES_DIR + CHOSEN_DATASETS_FILENAME)
+	df_4200 = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/summary_files/scores_per_ds_19_1_4200_ytransformed_exp_1cpu.csv")
+	df_additional = df_all[~df_all["path"].isin(df_4200["path"].values)]
+	dirpath = "/groups/itay_mayrose/danaazouri/PhyAI/submission_data/"
+
+	copy_datasets(df_4200, dirpath + 'training_data/')
+	copy_datasets(df_additional, dirpath + 'additional_training_data/')
+
+	return
+
+
 def delete_err_dirpath(datapath):
 	err_dirpath = datapath + "error_files/"
 	shutil.rmtree(err_dirpath, ignore_errors=True)
@@ -89,7 +116,8 @@ def do_something(datapath):
 	#delete_err_dirpath(datapath)
 	#rearrange_dirs_for_rerun(datapath)
 	#missing_results()
-	create_data_dirs()
+	#create_data_dirs()
+	arrange_submission_data()
 
 	'''
 	df = pd.read_csv(SUMMARY_FILES_DIR + LEARNING_DATA.format("all_moves", "1"))

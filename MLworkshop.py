@@ -199,23 +199,27 @@ def add_internal_names(tree_file, t_orig, newfile_suffix="_with_internal.txt"):
 
 if __name__ == '__main__':
 	# test on 1 dataset only
+
 	DATAPATH = "/groups/itay_mayrose/danaazouri/PhyAI/ML_workshop/reinforcement_data/"
 	df = pd.read_csv(DATAPATH + "data/sampled_datasets.csv")
 	curr_path = DATAPATH + df.loc[0, "path"]
 	tree_path = curr_path + MSA_PHYLIP_FILENAME + "_phyml_tree_bionj.txt"
-	tree_path = "((Sp013:2.5e-09)1:7.5e-09,Sp014:1e-08,((((((Sp000:0.00119635,((Sp011:1.5e-08,(Sp006:0.00030492,(Sp017:4e-08,Sp003:2.5e-09)1:2.5e-09)1:0.00030492)1:3e-08,Sp004:1e-08)1:1e-07)1:0.00059262,(Sp002:1e-08,(Sp012:1e-08,Sp001:5e-09)1:5e-09)1:4e-08)1:0.00060152,(Sp016:1e-08,Sp008:5e-09)1:5.5e-08)1:4e-08,Sp010:1e-08)1:0.00736324,(Sp019:4e-08,(Sp009:6e-08,(Sp015:0.00030634,Sp005:2.5e-09)1:2.5e-09)1:5e-09)1:4e-08)1:0.00061291,(Sp007:0.00030635,Sp018:5e-09)1:5e-09)1:7e-08);"
+	#tree_path = "((Sp013:2.5e-09)1:7.5e-09,Sp014:1e-08,((((((Sp000:0.00119635,((Sp011:1.5e-08,(Sp006:0.00030492,(Sp017:4e-08,Sp003:2.5e-09)1:2.5e-09)1:0.00030492)1:3e-08,Sp004:1e-08)1:1e-07)1:0.00059262,(Sp002:1e-08,(Sp012:1e-08,Sp001:5e-09)1:5e-09)1:4e-08)1:0.00060152,(Sp016:1e-08,Sp008:5e-09)1:5.5e-08)1:4e-08,Sp010:1e-08)1:0.00736324,(Sp019:4e-08,(Sp009:6e-08,(Sp015:0.00030634,Sp005:2.5e-09)1:2.5e-09)1:5e-09)1:4e-08)1:0.00061291,(Sp007:0.00030635,Sp018:5e-09)1:5e-09)1:7e-08);"
+	#tree_path_probl = "((Sp001:0.000672875,(Sp011:0.00163504,(Sp017:0.000229541,(Sp005:0.0191379,Sp010:6.25e-10)1:6.25e-10)1:0.000229541)1:0.00163504)1:0.000672875,(((((Sp013:2.5e-09)1:7.5e-09,(Sp015:0.00570496,Sp002:0.00384333)1:0.00384333)1:7.5e-09,(Sp007:6.25e-10,Sp019:0.053859)1:0.053859)1:0.0181283,Sp009:0.111016)1:0.0139388,(((Sp004:0.0119493,(Sp018:0.00390795,Sp003:0.00470372)1:1.25e-09)1:0.0119493,(Sp006:0.0197554,Sp016:0.00480443)1:0.0057226)1:0.0238986,Sp012:0.0268928)1:0.00934537)1:0.00781152,(Sp008:0.0211609,(Sp000:1e-08,Sp014:0.00404707)1:0.00404707)1:0.00809415);"
+	#tree_path = "(((((((Sp005:0.0191379,Sp013:2.5e-09):7.5e-09,(Sp015:0.00570496,Sp002:0.00384333)N6:0.00384333)N14:7.5e-09,(Sp007:6.25e-10,Sp019:0.053859)N3:0.053859)N16:0.0181283,Sp009:0.111016)N9:0.0139388,(((Sp004:0.0119493,(Sp018:0.00390795,Sp003:0.00470372)N15:1.25e-09)N12:0.0119493,(Sp006:0.0197554,Sp016:0.00480443)N5:0.0057226)N13:0.0238986,Sp012:0.0268928)N10:0.00934537)N8:0.00781152,(Sp008:0.0211609,(Sp000:1e-08,Sp014:0.00404707)N18:0.00404707):0.00809415)N7:0.0246591,(Sp001:0.000672875,(Sp011:0.00163504,(Sp010:1.25e-09,Sp017:0.000229541):0.000229541)N4:0.00163504)N17:0.000672875);"
+	tree_path = "((Sp001:0.000672875,(Sp011:0.00163504,(Sp010:1.25e-09,Sp017:0.000229541):0.000229541)N4:0.00163504)N17:0.000672875,(((((Sp005:0.0191379,Sp013:2.5e-09):7.5e-09,(Sp015:0.00570496,Sp002:0.00384333)N6:0.00384333)N14:7.5e-09,(Sp007:6.25e-10,Sp019:0.053859)N3:0.053859)N16:0.0181283,Sp009:0.111016)N9:0.0139388,(((Sp004:0.0119493,(Sp018:0.00390795,Sp003:0.00470372)N15:1.25e-09)N12:0.0119493,(Sp006:0.0197554,Sp016:0.00480443)N5:0.0057226)N13:0.0238986,Sp012:0.0268928)N10:0.00934537)N8:0.00781152,(Sp008:0.0211609,(Sp000:1e-08,Sp014:0.00404707)N18:0.00404707):0.00809415);"
+	#tree_path = "(((((((Sp005:0.0191379,Sp013:2.5e-09):7.5e-09,(Sp015:0.00570496,Sp002:0.00384333)N6:0.00384333)N14:7.5e-09,(Sp007:6.25e-10,Sp019:0.053859)N3:0.053859)N16:0.0181283,Sp009:0.111016)N9:0.0139388,(((Sp004:0.0119493,(Sp018:0.00390795,Sp003:0.00470372)N15:1.25e-09)N12:0.0119493,(Sp006:0.0197554,Sp016:0.00480443)N5:0.0057226)N13:0.0238986,Sp012:0.0268928)N10:0.00934537)N8:0.00781152,(Sp008:0.0211609,(Sp000:1e-08,Sp014:0.00404707)N18:0.00404707):0.00809415)N7:0.0246591,Sp010:1.25e-09,(Sp001:0.000672875,(Sp017:0.000459082,Sp011:0.00163504)N4:0.00163504)N17:0.000672875);"
+	#tree_path = "((((((Sp001:1e-08,Sp015:5e-09)N18:5e-09,(Sp004:1.5e-08,Sp009:8.75e-09)N13:8.75e-09)N11:1e-08,((Sp018:0.000424275,(Sp003:0.00085598,(Sp002:1e-08,Sp005:2.5e-09)N17:2.5e-09)N15:0.00085598)N6:0.000424275,(Sp014:1.25e-09,Sp008:0.000213684)N16:1.25e-09)N8:7.5e-09)N7:0.00175456,(Sp000:0.0042615,Sp011:0.000213689)N9:0.00127078)N4:0.00559982,(Sp019:0.0148094,Sp017:3.75e-09)N14:0.00935779)N3:0.00232685,(Sp007:3e-08,(Sp006:1e-08,Sp013:0.00042423):0.00042423)N5:3e-08,((Sp012:2.5e-09,(Sp016:6.25e-10,Sp010:2.5e-09)N10:2.5e-09):2.5e-09)N12:0.0148094);"
 	t_orig = Tree(newick=tree_path, format=1)    # ETEtree
+	print(t_orig.get_ascii(show_internal=True))
+	print(len(t_orig.get_descendants()))
+	#nodes_to_preserve_lst = ["Sp" + (str(n)).zfill(3) for n in range(20)]
+	#nodes_to_preserve_lst.extend(["N" + str(i) for i in range(1,19)])
+	#t_orig.prune(nodes_to_preserve_lst, preserve_branch_length=True)
 	#t_orig.unroot()
-	#t_orig.get_tree_root().name = "ROOT_LIKE"   # ETEtree
-	print(t_orig.get_ascii(show_internal=True))
-	print(len(t_orig.get_descendants()))
-	t_orig.prune(["Sp" + (str(n)).zfill(3) for n in range(20)], preserve_branch_length=True)
-	t_orig.prune(["Sp" + (str(n)).zfill(3) for n in range(20)], preserve_branch_length=True)
-	print("##################")
-	print(t_orig.get_ascii(show_internal=True))
-	print(len(t_orig.get_descendants()))
+	t_orig.set_outgroup(t_orig&"Sp001")
 
-	exit()
+	#exit()
 
 	######## only for pre-processing ########
 	#ETEtree_with_internal_names, new_tree_path = add_internal_names(tree_path, t_orig)
@@ -223,7 +227,7 @@ if __name__ == '__main__':
 	ETEtree_with_internal_names = t_orig
 
 	# a possible pair could NOT be something ELSE than all pair-combinations between [Sp000, ... , Sp0019] and [N1, ... , N18].  You can't know in advance which of THESE do exist (topology-dependant)
-	neighbor_tree_str = SPR_by_edge_names(ETEtree_with_internal_names, 'Sp012', 'Sp008')
+	neighbor_tree_str = SPR_by_edge_names(ETEtree_with_internal_names, 'N4', 'Sp014')
 	print(neighbor_tree_str)
 	# extract model params from the starting tree, to fix when calculating the likelihood of all neighbors
 	starting_tree_path = curr_path + MSA_PHYLIP_FILENAME + "_phyml_stats_bionj.txt"
@@ -233,3 +237,7 @@ if __name__ == '__main__':
 	# run raxml-ng for likelihood computation
 	ll_rearr = return_likelihood(neighbor_tree_str, curr_path + MSA_PHYLIP_FILENAME, rates, pinv, alpha, freq)
 	print(ll_rearr)
+	t = Tree(neighbor_tree_str, format=1)
+	print(t.get_ascii(show_internal=True))
+	print(len(t.get_descendants()))
+	print("##################")
