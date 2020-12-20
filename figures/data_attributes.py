@@ -208,7 +208,7 @@ def corr_plot_more_atts(df):
 	plt.legend(handles=[stats_patch])
 	plt.text(-250, 1.2, "b", fontsize=20, fontweight='bold', va='top', ha='right')
 	plt.tight_layout()
-	plt.show()
+	#plt.show()
 
 	ax1 = sns.jointplot(x="gaps", y=SCORES_LST[0], data=df, kind='reg', stat_func=pearsonr, line_kws={'color':'black'}, color=next(palette), xlim=(0,81), ylim=(0,1))#, ax=ax1)
 	plt.xlabel('Average gaps (%)')
@@ -218,20 +218,20 @@ def corr_plot_more_atts(df):
 	plt.legend(handles=[stats_patch])
 	plt.text(-3.4, 1.2, "c", fontsize=20, fontweight='bold', va='top', ha='right')
 	plt.tight_layout()
-	plt.show()
+	#plt.show()
 
 	next(palette)
 	#next(palette)
-	df = df[df["theight_var"] <= 15]
-	ax2 = sns.jointplot(x="theight_var", y=SCORES_LST[0], data=df, kind='reg', stat_func=pearsonr, line_kws={'color':'black'}, color=next(palette), xlim=(0,13), ylim=(0,1))#, ax=ax2)
+	#df = df[df["dev_ult"] <= 15]
+	ax2 = sns.jointplot(x="dev_ult", y=SCORES_LST[0], data=df, kind='reg', stat_func=pearsonr, line_kws={'color':'black'}, color=next(palette), xlim=(0,0.9), ylim=(0,1))#, ax=ax2)
 	plt.xlabel('Deviation from ulrametricity')
 	plt.ylabel("")
-	stats_patch = mpatches.Patch(color='white', label='$r^2$ = 0.001;  $pval$ = $4.9x10^-$$^1$$^6$')  # , contains=False)
-	#stats_patch = mpatches.Patch(color='white', label='$r^2$ = 0.003;  $pval$ = $2.4x10^-$$^0$$^9$')  # , contains=False)
+	stats_patch = mpatches.Patch(color='white', label='$r^2$ = 0.01;  $pval$ = $6.1x10^-$$^2$$^0$')  # , contains=False)
 	plt.legend(handles=[stats_patch])
 	plt.text(-0.65, 1.2, "e", fontsize=20, fontweight='bold', va='top', ha='right')
 	plt.tight_layout()
-	plt.show()
+	#plt.show()
+	plt.savefig(SUMMARY_FILES_DIR + "xx.png")
 
 
 
@@ -240,11 +240,11 @@ def corr_plot_more_atts(df):
 if __name__ == '__main__':
 	dirpath = SUMMARY_FILES_DIR if platform.system() == 'Linux' else DATA_PATH
 	#dirpath = r"D:\ItayM3\Desktop\\"
-	calc_empirical_features()
+	##calc_empirical_features()
 
-	##df_val = pd.read_csv(dirpath + 'scores_per_ds_validation_with_more_atts.csv')
-	##df_train = pd.read_csv(dirpath + 'scores_per_ds_20_1_ytransformed_exp_with_more_atts.csv')
+	df_val = pd.read_csv(dirpath + 'scores_per_ds_validation_with_updated_atts.csv')
+	df_train = pd.read_csv(dirpath + 'scores_per_ds_20_1_ytransformed_exp_with_updated_atts.csv')
 	##corr_plot(df_val)
-	##corr_plot_more_atts(df_train)
+	corr_plot_more_atts(df_train)
 
 	#plot_distributions(df)

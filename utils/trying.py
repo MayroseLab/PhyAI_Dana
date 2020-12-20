@@ -92,7 +92,7 @@ def index_ll_and_features(ds_path, outpath_prune, outpath_rgft, istart, nlines, 
 			df_rgft = index_additional_rgft_features(df_rgft, ind, row["prune_name"], row["rgft_name"], features_restree_dict, features_prune_dicts_dict)  # also prune dict because for 2 features i didn't want to comp dict within each rgft iteration (needed to compute on the starting tree)
 
 			df_rgft.loc[ind, FEATURES["res_bl"]] = features_restree_dict['res_bl']
-			df_rgft.loc[ind, FEATURES["res_tbl"]] = features_restree_dict['res_tbl']
+			#df_rgft.loc[ind, FEATURES["res_tbl"]] = features_restree_dict['res_tbl']
 
 
 	df_prune = df_prune[(df_prune["prune_name"] != ROOTLIKE_NAME) & (df_prune["rgft_name"] != ROOTLIKE_NAME)]  # .dropna()
