@@ -26,7 +26,7 @@ module load python/python-anaconda3.7-itaym
 
 #module load python/anaconda_python-3.5
 
-QUEUE = "itaymaa"     # "itaymr@power9"
+QUEUE = "itaymr"     # "itaymr@power9"
 SH_FILE = "job.sh"
 DIRECTORY = "run_{}"
 PERMISSION_CMD = "chmod -R 777 ."
