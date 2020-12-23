@@ -5,7 +5,7 @@ warnings.filterwarnings("ignore")			# TEMP
 
 from defs import *
 
-from utils.tree_functions import get_total_branch_lengths
+from my_utils.tree_functions import get_total_branch_lengths
 from sklearn.ensemble import RandomForestRegressor, RandomForestClassifier
 #from sklearn.preprocessing import *
 from statistics import mean, median

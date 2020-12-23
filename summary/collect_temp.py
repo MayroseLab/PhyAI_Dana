@@ -4,13 +4,13 @@ sys.path.append("/groups/itay_mayrose/danaazouri/PhyAI/code/")
 
 from defs import *
 from parsing.parse_phyml import parse_phyml_stats_output
-from utils.tree_functions import *
+from my_utils.tree_functions import *
 from data_processing.traverse_data_dirs import traverse_data_dirs
 
 import warnings
 
 warnings.filterwarnings("ignore", category=DeprecationWarning)
-from utils.tree_functions import *
+from my_utils.tree_functions import *
 from execute_programs.SPR_move import *
 
 OPT_TYPE = "br"

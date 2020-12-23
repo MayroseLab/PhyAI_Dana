@@ -4,7 +4,7 @@ sys.path.append("/groups/itay_mayrose/danaazouri/PhyAI/code/")
 
 
 from defs import *
-from utils.create_job_file import get_job_qsub_command
+from my_utils.create_job_file import get_job_qsub_command
 from summary.collect_SPR_features import *
 from execute_programs.SPR_move import call_raxml_mem
 from subprocess import Popen, PIPE, STDOUT
@@ -106,7 +106,7 @@ def index_ll_and_features(ds_path, outpath_prune, outpath_rgft, istart, nlines, 
 def submit_job_ll(istart, nlines, NROWS):
 	print("**************************************   ", str(istart), str(nlines))
 	job_name = "ll_large_dataset.sh"
-	cmd = "python " + CODE_PATH + "utils/trying.py -istart " + str(istart) + " -nlines " + str(nlines) + " -nrows_total " + str(NROWS)
+	cmd = "python " + CODE_PATH + "my_utils/trying.py -istart " + str(istart) + " -nlines " + str(nlines) + " -nrows_total " + str(NROWS)
 
 	qsub_cmd = get_job_qsub_command(job_name=job_name,
 									command=cmd,

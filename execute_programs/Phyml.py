@@ -1,7 +1,7 @@
 import sys
 sys.path.append("/groups/itay_mayrose/danaazouri/PhyAI/code/")
 
-from utils.general_utils import change_path_permissions_to_777
+from my_utils.general_utils import change_path_permissions_to_777
 from defs import *
 from parsing.parse_phyml import parse_phyml_stats_output
 

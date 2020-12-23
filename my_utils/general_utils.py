@@ -2,7 +2,7 @@ import csv
 import sys, logging
 from Bio import AlignIO, Alphabet
 from defs import *
-from utils.msa_functions import get_msa_properties
+from my_utils.msa_functions import get_msa_properties
 
 
 def change_path_permissions_to_777(path):

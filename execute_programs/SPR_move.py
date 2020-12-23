@@ -3,13 +3,13 @@ import sys
 sys.path.append("/groups/itay_mayrose/danaazouri/PhyAI/code/")
 
 from defs import *
-from utils.msa_functions import *
+from my_utils.msa_functions import *
 from data_processing.traverse_data_dirs import traverse_data_dirs
 from summary.collect_SPR_features import *
 from subprocess import Popen, PIPE, STDOUT
 from parsing.parse_raxml_NG import parse_raxmlNG_content
 from execute_programs.RAxML_NG import extract_model_params
-from utils.create_job_file import get_job_qsub_command
+from my_utils.create_job_file import get_job_qsub_command
 import csv
 from execute_programs import Phyml
 

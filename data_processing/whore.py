@@ -2,7 +2,7 @@ import sys, os
 sys.path.append("/groups/itay_mayrose/danaazouri/PhyAI/code/")
 
 from defs import *
-from utils.tree_functions import *
+from my_utils.tree_functions import *
 from data_processing.traverse_data_dirs import traverse_data_dirs
 from execute_programs.SPR_move import *
 

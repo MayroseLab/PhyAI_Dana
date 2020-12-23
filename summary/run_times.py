@@ -2,7 +2,7 @@ import sys
 sys.path.append("/groups/itay_mayrose/danaazouri/PhyAI/code/")
 
 # from defs import *
-from utils.tree_functions import calc_leaves_features
+from my_utils.tree_functions import calc_leaves_features
 
 
 

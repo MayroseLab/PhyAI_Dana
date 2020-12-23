@@ -3,7 +3,7 @@ sys.path.append("/groups/itay_mayrose/danaazouri/PhyAI/code/")
 
 #from defs import *
 from itertools import combinations
-#from utils.msa_functions import *
+#from my_utils.msa_functions import *
 from itertools import combinations
 
 from os.path import exists

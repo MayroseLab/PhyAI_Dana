@@ -2,7 +2,7 @@ import sys
 sys.path.append("/groups/itay_mayrose/danaazouri/PhyAI/code/")
 
 from defs import *
-from utils.create_job_file import get_job_qsub_command
+from my_utils.create_job_file import get_job_qsub_command
 
 GROUP_ID = 'group_id'
 

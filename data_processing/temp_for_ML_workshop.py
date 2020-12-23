@@ -4,7 +4,7 @@ import warnings
 warnings.filterwarnings("ignore")			# TEMP
 
 from defs import *
-from utils.msa_functions import *
+from my_utils.msa_functions import *
 from data_processing.create_starting_trees import *
 from Bio import AlignIO
 from Bio.Align import MultipleSeqAlignment

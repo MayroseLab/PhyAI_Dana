@@ -4,7 +4,7 @@ sys.path.append("/groups/itay_mayrose/danaazouri/PhyAI/code/")
 from defs import *
 from parsing.parse_phyml import parse_phyml_stats_output
 from parsing.parse_raxml_NG import parse_raxmlNG_output
-from utils.tree_functions import *
+from my_utils.tree_functions import *
 from data_processing.traverse_data_dirs import traverse_data_dirs
 
 import warnings

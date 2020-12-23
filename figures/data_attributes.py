@@ -6,7 +6,7 @@ import itertools
 import seaborn as sns
 
 from defs import *
-#from utils.tree_functions import *
+#from my_utils.tree_functions import *
 
 sns.set_style("white")
 #fig, axarr = plt.subplots(2, 2)

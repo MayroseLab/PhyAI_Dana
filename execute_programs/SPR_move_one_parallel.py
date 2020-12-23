@@ -5,7 +5,7 @@ from defs import *
 from ete3 import Tree, PhyloTree
 from execute_programs.Phyml import run_phyml
 from parsing.parse_phyml import parse_phyml_stats_output
-from utils.msa_functions import *
+from my_utils.msa_functions import *
 from data_processing.traverse_data_dirs import traverse_data_dirs
 from summary.collect_SPR_features import *
 

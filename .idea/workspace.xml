@@ -22,9 +22,32 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="04f6d22b-03c8-46f3-ac77-b58c4e95d95d" name="Default Changelist" comment="-">
+    <list default="true" id="04f6d22b-03c8-46f3-ac77-b58c4e95d95d" name="Default Changelist" comment="??">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_processing/create_starting_trees.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_processing/create_starting_trees.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_processing/temp_for_ML_workshop.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_processing/temp_for_ML_workshop.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data_processing/whore.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_processing/whore.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/defs.py" beforeDir="false" afterPath="$PROJECT_DIR$/defs.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/execute_programs/Phyml.py" beforeDir="false" afterPath="$PROJECT_DIR$/execute_programs/Phyml.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/execute_programs/RAxML_NG.py" beforeDir="false" afterPath="$PROJECT_DIR$/execute_programs/RAxML_NG.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/execute_programs/RF_learning.py" beforeDir="false" afterPath="$PROJECT_DIR$/execute_programs/RF_learning.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/execute_programs/SPR_move.py" beforeDir="false" afterPath="$PROJECT_DIR$/execute_programs/SPR_move.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/execute_programs/SPR_move_one_parallel.py" beforeDir="false" afterPath="$PROJECT_DIR$/execute_programs/SPR_move_one_parallel.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/execute_programs/SVM_learning.py" beforeDir="false" afterPath="$PROJECT_DIR$/execute_programs/SVM_learning.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/execute_programs/compose_learners.py" beforeDir="false" afterPath="$PROJECT_DIR$/execute_programs/compose_learners.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/figures/data_attributes.py" beforeDir="false" afterPath="$PROJECT_DIR$/figures/data_attributes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/parsing/parse_phyml.py" beforeDir="false" afterPath="$PROJECT_DIR$/parsing/parse_phyml.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/parsing/parse_raxml_NG.py" beforeDir="false" afterPath="$PROJECT_DIR$/parsing/parse_raxml_NG.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/summary/collect_SPR_features.py" beforeDir="false" afterPath="$PROJECT_DIR$/summary/collect_SPR_features.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/summary/collect_temp.py" beforeDir="false" afterPath="$PROJECT_DIR$/summary/collect_temp.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/summary/run_times.py" beforeDir="false" afterPath="$PROJECT_DIR$/summary/run_times.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/summary/score_last_step.py" beforeDir="false" afterPath="$PROJECT_DIR$/summary/score_last_step.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_utils/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/create_job_file.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_utils/create_job_file.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/general_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_utils/general_utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/msa_functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_utils/msa_functions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/tree_functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_utils/tree_functions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/trying.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_utils/trying.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,7 +115,7 @@
       <recent name="C:\Users\ItayMNB3\Dropbox\PhyloAI\code" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.MLworkshop">
+  <component name="RunManager" selected="Python.SPR_move">
     <configuration name="MLworkshop" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="code" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -577,13 +600,6 @@
       <workItem from="1608190836661" duration="22748000" />
       <workItem from="1608447432424" duration="36914000" />
     </task>
-    <task id="LOCAL-01341" summary="in progress - &#10;automate the running forward algo">
-      <created>1607011155199</created>
-      <option name="number" value="01341" />
-      <option name="presentableId" value="LOCAL-01341" />
-      <option name="project" value="LOCAL" />
-      <updated>1607011155199</updated>
-    </task>
     <task id="LOCAL-01342" summary="in progress - &#10;automate the running forward algo">
       <created>1607011456404</created>
       <option name="number" value="01342" />
@@ -902,7 +918,13 @@
       <option name="presentableId" value="LOCAL‎01389" />
       <updated>1608718288011</updated>
     </task>
-    <option name="localTasksCounter" value="1390" />
+    <task id="LOCAL‎01390" summary="??">
+      <created>1608718509476</created>
+      <option name="number" value="LOCAL‎01390" />
+      <option name="presentableId" value="LOCAL‎01390" />
+      <updated>1608718509476</updated>
+    </task>
+    <option name="localTasksCounter" value="1391" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -924,7 +946,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="temp for large dataset - create SPRs + features, without computing ll, first." />
     <MESSAGE value="REVERT" />
     <MESSAGE value="temp for large dataset - create SPRs, without computing ll, first. from iprune 476 (subset2)" />
     <MESSAGE value="handeling large csv - devide to subsets" />
@@ -949,7 +970,8 @@
     <MESSAGE value="large dataset" />
     <MESSAGE value="submission" />
     <MESSAGE value="-" />
-    <option name="LAST_COMMIT_MESSAGE" value="-" />
+    <MESSAGE value="??" />
+    <option name="LAST_COMMIT_MESSAGE" value="??" />
   </component>
   <component name="WindowStateProjectService">
     <state x="450" y="-1037" key="#Deployment" timestamp="1606209009882">
@@ -991,10 +1013,11 @@
     <state x="2659" y="328" key="FileChooserDialogImpl/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1601399002874" />
     <state x="493" y="160" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1608111385632" />
     <state x="740" y="291" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1608193586023" />
-    <state width="938" height="348" key="GridCell.Tab.0.bottom" timestamp="1608654263165">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1877" height="160" key="GridCell.Tab.0.bottom" timestamp="1608718758418">
+      <screen x="0" y="-1080" width="1920" height="1040" />
     </state>
     <state width="1877" height="92" key="GridCell.Tab.0.bottom/0.0.1280.680/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1605105736876" />
+    <state width="1877" height="160" key="GridCell.Tab.0.bottom/0.0.1280.680/0.-1080.1920.1040@0.-1080.1920.1040" timestamp="1608718758418" />
     <state width="1237" height="137" key="GridCell.Tab.0.bottom/0.0.1280.680/103.-1050.1680.1010@0.0.1280.680" timestamp="1605013457892" />
     <state width="1637" height="122" key="GridCell.Tab.0.bottom/0.0.1280.680/103.-1050.1680.1010@103.-1050.1680.1010" timestamp="1606235450112" />
     <state width="1237" height="41" key="GridCell.Tab.0.bottom/0.0.1280.680/1920.0.1680.1010@0.0.1280.680" timestamp="1600756956095" />
@@ -1002,10 +1025,11 @@
     <state width="1347" height="184" key="GridCell.Tab.0.bottom/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1602768642279" />
     <state width="1237" height="51" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1608110688232" />
     <state width="938" height="348" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1608654263165" />
-    <state width="938" height="348" key="GridCell.Tab.0.center" timestamp="1608654263165">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1877" height="160" key="GridCell.Tab.0.center" timestamp="1608718758418">
+      <screen x="0" y="-1080" width="1920" height="1040" />
     </state>
     <state width="1877" height="92" key="GridCell.Tab.0.center/0.0.1280.680/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1605105736875" />
+    <state width="1877" height="160" key="GridCell.Tab.0.center/0.0.1280.680/0.-1080.1920.1040@0.-1080.1920.1040" timestamp="1608718758418" />
     <state width="1237" height="137" key="GridCell.Tab.0.center/0.0.1280.680/103.-1050.1680.1010@0.0.1280.680" timestamp="1605013457892" />
     <state width="1637" height="122" key="GridCell.Tab.0.center/0.0.1280.680/103.-1050.1680.1010@103.-1050.1680.1010" timestamp="1606235450112" />
     <state width="1237" height="41" key="GridCell.Tab.0.center/0.0.1280.680/1920.0.1680.1010@0.0.1280.680" timestamp="1600756956095" />
@@ -1013,10 +1037,11 @@
     <state width="1347" height="184" key="GridCell.Tab.0.center/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1602768642279" />
     <state width="1237" height="51" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1608110688232" />
     <state width="938" height="348" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1608654263165" />
-    <state width="938" height="348" key="GridCell.Tab.0.left" timestamp="1608654263165">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1877" height="160" key="GridCell.Tab.0.left" timestamp="1608718758418">
+      <screen x="0" y="-1080" width="1920" height="1040" />
     </state>
     <state width="1877" height="92" key="GridCell.Tab.0.left/0.0.1280.680/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1605105736874" />
+    <state width="1877" height="160" key="GridCell.Tab.0.left/0.0.1280.680/0.-1080.1920.1040@0.-1080.1920.1040" timestamp="1608718758418" />
     <state width="1237" height="137" key="GridCell.Tab.0.left/0.0.1280.680/103.-1050.1680.1010@0.0.1280.680" timestamp="1605013457892" />
     <state width="1637" height="122" key="GridCell.Tab.0.left/0.0.1280.680/103.-1050.1680.1010@103.-1050.1680.1010" timestamp="1606235450112" />
     <state width="1237" height="41" key="GridCell.Tab.0.left/0.0.1280.680/1920.0.1680.1010@0.0.1280.680" timestamp="1600756956094" />
@@ -1024,10 +1049,11 @@
     <state width="1347" height="184" key="GridCell.Tab.0.left/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1602768642278" />
     <state width="1237" height="51" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1608110688232" />
     <state width="938" height="348" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1608654263165" />
-    <state width="938" height="348" key="GridCell.Tab.0.right" timestamp="1608654263165">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1877" height="160" key="GridCell.Tab.0.right" timestamp="1608718758418">
+      <screen x="0" y="-1080" width="1920" height="1040" />
     </state>
     <state width="1877" height="92" key="GridCell.Tab.0.right/0.0.1280.680/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1605105736875" />
+    <state width="1877" height="160" key="GridCell.Tab.0.right/0.0.1280.680/0.-1080.1920.1040@0.-1080.1920.1040" timestamp="1608718758418" />
     <state width="1237" height="137" key="GridCell.Tab.0.right/0.0.1280.680/103.-1050.1680.1010@0.0.1280.680" timestamp="1605013457892" />
     <state width="1637" height="122" key="GridCell.Tab.0.right/0.0.1280.680/103.-1050.1680.1010@103.-1050.1680.1010" timestamp="1606235450112" />
     <state width="1237" height="41" key="GridCell.Tab.0.right/0.0.1280.680/1920.0.1680.1010@0.0.1280.680" timestamp="1600756956095" />
@@ -1070,11 +1096,11 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="498" height="446" key="SwitcherDM/0.0.1920.1040@0.0.1920.1040" timestamp="1607003826282" />
-    <state x="494" y="-857" key="Vcs.Push.Dialog.v2" timestamp="1608718306632">
+    <state x="494" y="-857" key="Vcs.Push.Dialog.v2" timestamp="1608718511279">
       <screen x="0" y="-1080" width="1920" height="1040" />
     </state>
     <state x="-1426" y="184" key="Vcs.Push.Dialog.v2/0.0.1280.680/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1605112569384" />
-    <state x="494" y="-857" key="Vcs.Push.Dialog.v2/0.0.1280.680/0.-1080.1920.1040@0.-1080.1920.1040" timestamp="1608718306632" />
+    <state x="494" y="-857" key="Vcs.Push.Dialog.v2/0.0.1280.680/0.-1080.1920.1040@0.-1080.1920.1040" timestamp="1608718511279" />
     <state x="329" y="146" key="Vcs.Push.Dialog.v2/0.0.1280.680/103.-1050.1680.1010@0.0.1280.680" timestamp="1602511685167" />
     <state x="535" y="-833" key="Vcs.Push.Dialog.v2/0.0.1280.680/103.-1050.1680.1010@103.-1050.1680.1010" timestamp="1607595824536" />
     <state x="2352" y="245" key="Vcs.Push.Dialog.v2/0.0.1280.680/1920.0.1680.1010@1920.0.1680.1010" timestamp="1601817418173" />
@@ -1151,7 +1177,7 @@
     <SUITE FILE_PATH="coverage/code$RAxML_NG2.coverage" NAME="RAxML_NG Coverage Results" MODIFIED="1600783174535" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/execute_programs" />
     <SUITE FILE_PATH="coverage/code$feauture_selection.coverage" NAME="feauture_selection Coverage Results" MODIFIED="1608106309265" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/figures" />
     <SUITE FILE_PATH="coverage/code$run_times.coverage" NAME="run_times Coverage Results" MODIFIED="1604401415928" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/summary" />
-    <SUITE FILE_PATH="coverage/code$SPR_move.coverage" NAME="SPR_move Coverage Results" MODIFIED="1607351285022" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/execute_programs" />
+    <SUITE FILE_PATH="coverage/code$SPR_move.coverage" NAME="SPR_move Coverage Results" MODIFIED="1608718565845" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/execute_programs" />
     <SUITE FILE_PATH="coverage/code$whore.coverage" NAME="whore Coverage Results" MODIFIED="1604225972883" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data_processing" />
     <SUITE FILE_PATH="coverage/code$data_attributes.coverage" NAME="data_attributes Coverage Results" MODIFIED="1608110688205" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/figures" />
     <SUITE FILE_PATH="coverage/code$Phyml.coverage" NAME="Phyml Coverage Results" MODIFIED="1600262723563" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/execute_programs" />

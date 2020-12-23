@@ -2,7 +2,7 @@ import sys
 sys.path.append("/groups/itay_mayrose/danaazouri/PhyAI/code/")
 
 from defs import *
-from utils import msa_functions
+from my_utils import msa_functions
 
 
 def parse_phyml_stats_output(msa_filepath, stats_filepath):

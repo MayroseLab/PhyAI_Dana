@@ -4,7 +4,7 @@ from subprocess import call
 sys.path.append(os.path.dirname(sys.path[0]))
 
 from defs import *
-#from utils import change_path_permissions_to_777
+#from my_utils import change_path_permissions_to_777
 
 # qsub command and arguments
 QSUB_ARGS = \
