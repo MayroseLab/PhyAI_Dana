@@ -1,6 +1,6 @@
 #########################################################################
 ##                 Copyright (C). All Rights Reserved.                   ##
-##      "Harnessing machine-learning to boost heuristic strategies       ##
+##      "Machine learning potentially boosts heuristic strategies        ##
 ##                                      for phylogenetic-tree search"    ##
 ##                                                                       ##
 ## by Dana Azouri, Shiran Abadi, Yishay Mansour, Itay Mayrose, Tal Pupko ##
@@ -61,13 +61,6 @@ def get_total_branch_lengths(tree):
 	return sum(branches)
 
 
-def estimate_lengths(t, rgft_node):
-	res_tbl = get_total_branch_lengths(t)  # tbl after naive bl estimations (like in RAxML) in both the pruning and the rgft locations. before uptimization!
-	res_bl = rgft_node.dist				   # which is half of the orig rgft branch length
-	
-	return res_tbl, res_bl
-
-
 def prune_branch(t_orig, prune_name): # the same function from 'SPR_and_lls' script
 	'''
 	get (a copy of) both subtrees after pruning
@@ -101,41 +94,107 @@ def dist_between_nodes(t, node1):
 	return nleaves_between, tbl_between
 
 
+def init_recursive_features(t):
+	assert isinstance(t, Tree)
+	for node in t.traverse("postorder"):
+		if node.is_leaf():
+			node.add_feature("cumBL", 0)
+			node.add_feature("maxBL", 0)
+			node.add_feature("ntaxa", 1)
+		else:
+			#since it's postorder, we must have already went over its children leaves
+			left, right = node.children
+			node.add_feature("cumBL", left.cumBL + right.cumBL + left.dist + right.dist)
+			node.add_feature("maxBL", max(left.maxBL, right.maxBL, left.dist, right.dist))
+			node.add_feature("ntaxa", left.ntaxa + right.ntaxa)
 
-def calc_leaves_features(tree_str, move_type, rgft_node_name=None):
-	if not move_type == "res":
-		t = Tree(newick=tree_str, format=1)
-		name2bl, name2pdist_pruned, name2pdist_remaining, name2tbl_pruned, name2tbl_remaining, name2longest_pruned, name2longest_remaining, name2ntaxa, name2ntaxa_pruned, name2ntaxa_remaining, name2pars_pruned, name2parse_remaining, names2topology_dist, names2bl_dist = {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}
-		
-		for node in t.get_descendants("levelorder")[::-1]:
-			nname = node.name
-			namex, subtree1, subtree2 = prune_branch(t, nname)
 
-			name2bl[nname] = node.dist
-			name2tbl_pruned[nname] = get_total_branch_lengths(subtree1)
-			name2tbl_remaining[nname] = get_total_branch_lengths(subtree2)
-			name2longest_pruned[nname] = max(get_branch_lengths(subtree1))
-			name2longest_remaining[nname] = max(get_branch_lengths(subtree2))
-			name2ntaxa_pruned[nname] = len(subtree1.get_tree_root())
-			name2ntaxa_remaining[nname] = len(subtree2.get_tree_root())
-			
-			res_dists = ["unrelevant", "unrelevant"] if move_type == "rgft" else dist_between_nodes(t, node)
-			names2topology_dist[nname] = res_dists[0]  # res_dists is a dict
-			names2bl_dist[nname] = res_dists[1]  # res_dists is a dict
-		
-		d = OrderedDict([("bl", name2bl), ("longest", max(get_branch_lengths(t))),
-		                 ("ntaxa_p", name2ntaxa_pruned), ("ntaxa_r", name2ntaxa_remaining),
-		                 ("tbl_p", name2tbl_pruned), ("tbl_r", name2tbl_remaining),
-		                 ("longest_p", name2longest_pruned), ("longest_r", name2longest_remaining),
-		                 ("top_dist", names2topology_dist), ("bl_dist", names2bl_dist)])
-	
-	else:
-		t = Tree(newick=tree_str, format=1)  # res tree before optimization. replaced from des_gas
-		rgft_node = t & rgft_node_name
-		res_tbl, res_bl = estimate_lengths(t, rgft_node)
-		d = OrderedDict([("res_tbl", res_tbl), ("res_bl", res_bl)])
-	
+def update_node_features(subtree):
+	"""
+	:param subtree: a node that needs update. might be None or a leaf
+	:return: None
+	"""
+	left, right = subtree.children
+	subtree.cumBL = left.cumBL + right.cumBL + left.dist + right.dist
+	subtree.maxBL = max(left.maxBL, right.maxBL, left.dist, right.dist)
+	subtree.ntaxa = left.ntaxa + right.ntaxa
+
+
+def calc_leaves_features(tree_str, move_type):
+	t = Tree(newick=tree_str, format=1)
+	if move_type != 'prune' and move_type != 'rgft':   # namely move_type in the prune_name to return for the res_tree
+		return (t&move_type).dist
+
+	ntaxa = len(t)
+	tbl = get_total_branch_lengths(tree_str)
+
+	name2bl, name2pdist_pruned, name2pdist_remaining, name2tbl_pruned, name2tbl_remaining, name2longest_pruned, name2longest_remaining, name2ntaxa, name2ntaxa_pruned, name2ntaxa_remaining, name2pars_pruned, name2parse_remaining = {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}
+	names2bl_dist, names2topology_dist = {}, {}
+
+
+	nodes_order = []
+	first_node = t.get_leaves()[0]
+	t.set_outgroup(first_node)
+
+	# We want to traverse the tree by pooling the parent of the remaining tree and moving it to the outgroup -
+	# so we do it in a preorder manner
+	for node in t.traverse("preorder"):
+		nodes_order.append(node)
+	nodes_order.pop(0)  # this is t, first_node's nonsense parent
+
+	# initialize tree features in here, and afterwards only rotate tree and update them
+	init_recursive_features(t)  # compute features for primary tree
+
+	for node in nodes_order:
+		# root the tree with current node's parent
+		# when rotating a tree in a preorder manner - the parent's parent (grandparent) becomes the parent's son.
+		# so we need to update both of them (if exist)
+		nodes_to_update = [node.up]
+		while nodes_to_update[-1]:
+			nodes_to_update.append(nodes_to_update[-1].up)
+		nodes_to_update.pop(-1)  # None
+		nodes_to_update.pop(-1)  # the nonesense root
+
+		t.set_outgroup(node)
+		for up_node in nodes_to_update[::-1]:
+			update_node_features(up_node)
+
+		nname = node.name
+		subtree1, subtree2 = t.children
+		if nname == '':
+			continue
+
+		bl = node.dist * 2 if "Sp" in nname else node.children[1].dist
+		name2bl[nname] = bl
+
+		tbl_r = subtree2.cumBL if "Sp" in nname else node.children[1].cumBL  # without the branch that is being pruned
+		name2tbl_remaining[nname] = tbl_r
+		name2tbl_pruned[nname] = tbl - tbl_r							 	 # with the branch that is being pruned
+
+		longest_p = max(subtree1.maxBL, bl)
+		longest_r = subtree2.maxBL if "Sp" in nname else node.children[1].maxBL
+		name2longest_pruned[nname] = longest_p
+		name2longest_remaining[nname] = longest_r
+
+		ntaxa_p = subtree1.ntaxa if "Sp" in nname else subtree2.ntaxa + 1
+		name2ntaxa_pruned[nname] = ntaxa_p
+		name2ntaxa_remaining[nname] = ntaxa - ntaxa_p
+		##################
+
+		res_dists = dist_between_nodes(t, node) if move_type == "prune" else ["unrelevant", "unrelevant"]
+		names2topology_dist[nname] = res_dists[0]  # res_dists is a dict
+		names2bl_dist[nname] = res_dists[1]  # res_dists is a dict
+
+
+	d = OrderedDict([("bl", name2bl), ("longest", max(longest_p, longest_r)),
+					 ("ntaxa_p", name2ntaxa_pruned), ("ntaxa_r", name2ntaxa_remaining),
+					 ("tbl_p", name2tbl_pruned), ("tbl_r", name2tbl_remaining),
+					 ("top_dist", names2topology_dist), ("bl_dist", names2bl_dist),
+					 ("longest_p", name2longest_pruned), ("longest_r", name2longest_remaining)])
+
 	return d
+
+
 
 ################################################################################################
 ############################# end of 'features extraction' section #############################
@@ -144,11 +203,11 @@ def calc_leaves_features(tree_str, move_type, rgft_node_name=None):
 ##################### begining of 'organizing features in csv' section #########################
 ################################################################################################
 
-def index_additional_rgft_features(df_rgft, ind, prune_name, rgft_name, features_restree_dict, features_dict_prune):
+
+def index_additional_rgft_features(df_rgft, ind, prune_name, rgft_name, res_bl, features_dict_prune):
 	df_rgft.ix[ind, FEATURES["top_dist"]] = features_dict_prune['top_dist'][prune_name][rgft_name]
 	df_rgft.ix[ind, FEATURES["bl_dist"]] = features_dict_prune['bl_dist'][prune_name][rgft_name]
-	df_rgft.ix[ind, FEATURES["res_bl"]] = features_restree_dict['res_bl']
-	df_rgft.ix[ind, FEATURES["res_tbl"]] = features_restree_dict['res_tbl']
+	df_rgft.ix[ind, FEATURES["res_bl"]] = res_bl
 
 	return df_rgft
 
@@ -184,18 +243,12 @@ def collect_features(ds_path, step_number, outpath_prune, outpath_rgft, tree_typ
 		tree = row["newick"]
 		if row["rgft_name"] == SUBTREE2:	# namely the remaining subtree
 			features_rgft_dicts_dict = calc_leaves_features(tree, "rgft")  # msa will be truncated within the function
-		if not "subtree" in row["rgft_name"] and not ROOTLIKE_NAME in row["rgft_name"] and not ROOTLIKE_NAME in row["prune_name"]:
-			features_restree_dict = calc_leaves_features(tree, "res", rgft_node_name=row["rgft_name"])  # res tree before optimization!
+		if not "subtree" in row["rgft_name"]:
+			res_bl = calc_leaves_features(tree, row["prune_name"])   # res tree is before bl optimization
 			df_prune = index_shared_features(df_prune, ind, row["prune_name"], "prune",  features_prune_dicts_dict)
 			df_rgft = index_shared_features(df_rgft, ind, row["rgft_name"], "rgft", features_rgft_dicts_dict)
-			df_rgft = index_additional_rgft_features(df_rgft, ind, row["prune_name"], row["rgft_name"], features_restree_dict, features_prune_dicts_dict)   # also prune dict because for 2 features i didn't want to comp dict within each rgft iteration (needed to compute on the starting tree)
-			
-			df_rgft.ix[ind, FEATURES["res_bl"]] = features_restree_dict['res_bl']
-			df_rgft.ix[ind, FEATURES["res_tbl"]] = features_restree_dict['res_tbl']
+			df_rgft = index_additional_rgft_features(df_rgft, ind, row["prune_name"], row["rgft_name"], res_bl, features_prune_dicts_dict)   # also prune dict because for 2 features i didn't want to comp dict within each rgft iteration (needed to compute on the starting tree)
 
-
-	df_prune = df_prune[(df_prune["prune_name"] != ROOTLIKE_NAME) & (df_prune["rgft_name"] != ROOTLIKE_NAME)].dropna()
-	df_rgft = df_rgft[(df_rgft["prune_name"] != ROOTLIKE_NAME) & (df_rgft["rgft_name"] != ROOTLIKE_NAME)].dropna()
 	df_prune.to_csv(outpath_prune)  # runover existing one (with lls only) to fill in all features
 	df_rgft.to_csv(outpath_rgft)    # runover existing one (with lls only) to fill in all features
 	

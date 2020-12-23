@@ -1,6 +1,6 @@
 #########################################################################
 ##                 Copyright (C). All Rights Reserved.                   ##
-##      "Harnessing machine-learning to boost heuristic strategies       ##
+##      "Machine learning potentially boosts heuristic strategies        ##
 ##                                      for phylogenetic-tree search"    ##
 ##                                                                       ##
 ## by Dana Azouri, Shiran Abadi, Yishay Mansour, Itay Mayrose, Tal Pupko ##

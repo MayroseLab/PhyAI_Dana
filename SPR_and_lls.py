@@ -1,6 +1,6 @@
 #########################################################################
 ##                 Copyright (C). All Rights Reserved.                   ##
-##      "Harnessing machine-learning to boost heuristic strategies       ##
+##      "Machine learning potentially boosta heuristic strategies        ##
 ##                                      for phylogenetic-tree search"    ##
 ##                                                                       ##
 ## by Dana Azouri, Shiran Abadi, Yishay Mansour, Itay Mayrose, Tal Pupko ##
@@ -14,6 +14,7 @@
 #########################################################################
 
 from defs_PhyAI import *
+RAXML_NG_SCRIPT = "raxml-ng"
 
 ################################################################################################
 ############### begining of 'parsing rearrangements and PhyML outputs' section #################
@@ -90,10 +91,10 @@ def parse_phyml_stats_output(msa_filepath, stats_filepath):
 	:return: dictionary with the attributes - string typed. if parameter was not estimated, empty string
 	"""
 	res_dict = dict.fromkeys(["ntaxa", "nchars", "ll",
-	                          "fA", "fC", "fG", "fT",
-	                          "subAC", "subAG", "subAT", "subCG", "subCT", "subGT",
-	                          "pInv", "gamma",
-	                          "path"], "")
+							  "fA", "fC", "fG", "fT",
+							  "subAC", "subAG", "subAT", "subCG", "subCT", "subGT",
+							  "pInv", "gamma",
+							  "path"], "")
 	
 	if msa_filepath:
 		res_dict['ntaxa'], res_dict['nchars'] = (str(x) for x in get_msa_properties(get_msa_from_file(msa_filepath)))
@@ -144,51 +145,6 @@ def return_ll(tree_dirpath, msa_file, filename, br_mode):
 	return ll_rearr
 
 
-def parse_neighbors_dirs(ds_path, outpath_prune, outpath_rgft, step_number, cp_internal=False, tree_type="bionj"):
-	'''
-	this function is used only when re-running SPR. otherwise, I need to parse the 'newick.csv'
-	'''
-	print("**** ", ds_path)
-
-	msa_file = ds_path + MSA_PHYLIP_FILENAME
-	all_trees = ds_path + REARRANGEMENTS_NAME + "s/"
-	outpath_trees = TREES_PER_DS.format(ds_path, step_number)
-
-	res_dict_orig_tree = parse_phyml_stats_output(msa_file, ds_path + PHYML_STATS_FILENAME.format(tree_type))
-	ll_orig_tree = float(res_dict_orig_tree["ll"])
-
-	df = pd.DataFrame(index=np.arange(0))
-	df2 = pd.DataFrame(index=np.arange(0))
-	for i, prune_name in enumerate(os.listdir(all_trees)):
-		prune_dirpath = SEP.join([all_trees, prune_name, ""])
-
-		for j, rgft_name in enumerate(os.listdir(prune_dirpath)):
-			ind = str(i) + "," +str(j)
-			tree_dirpath = SEP.join([all_trees, prune_name, rgft_name, ""])
-			treename = SUBTREE1 if j == 0 else SUBTREE2 if j == 1 else REARRANGEMENTS_NAME
-			tree_path = SEP.join([tree_dirpath, "{}.txt".format(treename)])
-			# save all rearrangements on one file per ds (before deleting all)
-			df2.ix[ind, "prune_name"], df2.ix[ind, "rgft_name"] = prune_name, rgft_name
-			df2.ix[ind, "newick"] = get_newick_tree(tree_path)
-
-			if not "subtree" in rgft_name:  # subtrees are dealt separately ~10 lines above
-				if cp_internal:
-					treepath_with_internal = SEP.join([tree_dirpath, REARRANGEMENTS_NAME + ".txt"])
-					rearr_tree_path = SEP.join([tree_dirpath, "{}_phyml_{}_{}.txt".format(MSA_PHYLIP_FILENAME, "tree", "br")])
-					cp_internal_names(rearr_tree_path, treepath_with_internal)
-				ll_rearr = return_ll(tree_dirpath, msa_file, MSA_PHYLIP_FILENAME, "br")
-
-				df.ix[ind, "prune_name"], df.ix[ind, "rgft_name"] = prune_name, rgft_name
-				df.ix[ind, "orig_ds_ll"], df.ix[ind, "ll"] = ll_orig_tree, ll_rearr
-
-	df.to_csv(outpath_prune)
-	df.to_csv(outpath_rgft)
-	df2.to_csv(outpath_trees)
-
-	# to reduce inodes number- delete subdirs after copying important content to 2 csvs:
-	shutil.rmtree(all_trees, ignore_errors=True)
-
-	return
 
 ################################################################################################
 ################## end of 'parsing rearrangements and PhyML outputs' section ###################
@@ -265,39 +221,149 @@ def save_rearr_file(trees_dirpath, rearrtree, filename, runover=False):
 	return tree_path
 
 
-def call_phyml(tree_dirpath, file_name, msa_file, runover, job_priority, br_mode, cpmsa=False):
-	tree_path = tree_dirpath + file_name + ".txt"
-	job_name = "phyml_" + "_".join([re.search("{}/*(.+?)/".format(DATA_PATH), tree_dirpath).group(1), tree_dirpath.split(SEP)[-3], file_name, br_mode])
-	cmd = "python " + PHYML_SCRIPT_PATH + " -f " + msa_file \
-		  + " -br " + br_mode + " -t " + tree_path
-	if runover:
-		cmd += " -r "
-	if cpmsa:
-		cmd += " -cp "
+def parse_raxmlNG_content(content):
+	"""
+	:return: dictionary with the attributes - string typed. if parameter was not estimated, empty string
+	"""
+	res_dict = dict.fromkeys(["ll", "pInv", "gamma",
+							  "fA", "fC", "fG", "fT",
+							  "subAC", "subAG", "subAT", "subCG", "subCT", "subGT",
+							  "time"], "")
 
-	os.system(cmd)
+	# likelihood
+	ll_re = re.search("Final LogLikelihood:\s+(.*)", content)
+	if ll_re:
+		res_dict["ll"] = ll_re.group(1).strip()
+	elif re.search("BL opt converged to a worse likelihood score by", content) or re.search("failed", content):   # temp, till next version is available
+		ll_ini = re.search("initial LogLikelihood:\s+(.*)", content)
+		if ll_ini:
+			res_dict["ll"] = ll_ini.group(1).strip()
+	else:
+		res_dict["ll"] = 'unknown raxml-ng error, check "parse_raxmlNG_content" function'
 
 
-def all_SPR(ds_path, tree=None, runover=False, job_priority=-1):
+	# gamma (alpha parameter) and proportion of invariant sites
+	gamma_regex = re.search("alpha:\s+(\d+\.?\d*)\s+", content)
+	pinv_regex = re.search("P-inv.*:\s+(\d+\.?\d*)", content)
+	if gamma_regex:
+		res_dict['gamma'] = gamma_regex.group(1).strip()
+	if pinv_regex:
+		res_dict['pInv'] = pinv_regex.group(1).strip()
+
+	# Nucleotides frequencies
+	nucs_freq = re.search("Base frequencies.*?:\s+(\d+\.?\d*)\s+(\d+\.?\d*)\s+(\d+\.?\d*)\s+(\d+\.?\d*)", content)
+	if nucs_freq:
+		for i,nuc in enumerate("ACGT"):
+			res_dict["f" + nuc] = nucs_freq.group(i+1).strip()
+
+	# substitution frequencies
+	subs_freq = re.search("Substitution rates.*:\s+(\d+\.?\d*)\s+(\d+\.?\d*)\s+(\d+\.?\d*)\s+(\d+\.?\d*)\s+(\d+\.?\d*)\s+(\d+\.?\d*)", content)
+	if subs_freq:
+		for i,nuc_pair in enumerate(["AC", "AG", "AT", "CG", "CT", "GT"]):  # todo: make sure order
+			res_dict["sub" + nuc_pair] = subs_freq.group(i+1).strip()
+
+	# Elapsed time of raxml-ng optimization
+	rtime = re.search("Elapsed time:\s+(\d+\.?\d*)\s+seconds", content)
+	if rtime:
+		res_dict["time"] = rtime.group(1).strip()
+	else:
+		res_dict["time"] = 'no ll opt_no time'
+
+	return res_dict
+
+
+def call_raxml_mem(tree_str, msa_tmpfile, rates, pinv, alpha, freq):
+	model_line_params = 'GTR{rates}+I{pinv}+G{alpha}+F{freq}'.format(rates="{{{0}}}".format("/".join(rates)),
+									 pinv="{{{0}}}".format(pinv), alpha="{{{0}}}".format(alpha),
+									 freq="{{{0}}}".format("/".join(freq)))
+
+	# create tree file in memory and not in the storage:
+	tree_rampath = "/dev/shm/" + str(random.random())  + str(random.random()) + "tree"  # the var is the str: tmp{dir_suffix}
+
+	try:
+		with open(tree_rampath, "w") as fpw:
+			fpw.write(tree_str)
+
+		p = Popen([RAXML_NG_SCRIPT, '--evaluate', '--msa', msa_tmpfile,'--threads', '2', '--opt-branches', 'on', '--opt-model', 'off', '--model', model_line_params, '--nofiles', '--tree', tree_rampath], stdout=PIPE, stdin=PIPE, stderr=STDOUT)
+		raxml_stdout = p.communicate()[0]
+		raxml_output = raxml_stdout.decode()
+
+		res_dict = parse_raxmlNG_content(raxml_output)
+		ll = res_dict['ll']
+		rtime = res_dict['time']
+
+	except Exception as e:
+		print(msa_tmpfile.split(SEP)[-1][3:])
+		print(e)
+		exit()
+	finally:
+		os.remove(tree_rampath)
+
+	return ll, rtime
+
+
+def all_SPR(ds_path, outpath):
 	orig_msa_file = ds_path + MSA_PHYLIP_FILENAME
-	t_orig = get_tree(ds_path, orig_msa_file) if not tree else PhyloTree(newick=tree, alignment=orig_msa_file, alg_format="iphylip", format=1)
-	t_orig.get_tree_root().name = ROOTLIKE_NAME if not tree else ROOTLIKE_NAME+"_2"
-	for i, prune_node in enumerate(t_orig.iter_descendants("levelorder")):
-		prune_name = prune_node.nam
-		nname, subtree1, subtree2 = prune_branch(t_orig, prune_name) # subtree1 is the pruned subtree. subtree2 is the remaining subtree
-		subtrees_dirpath = SEP.join([ds_path, REARRANGEMENTS_NAME+"s", prune_name, "{}", ""])
+	stats_filepath = ds_path + PHYML_STATS_FILENAME.format('bionj')
+	t_orig = get_tree(ds_path, orig_msa_file)
+	t_orig.get_tree_root().name = ROOTLIKE_NAME
 
-		for j, rgft_node in enumerate(subtree2.iter_descendants("levelorder")):
-			rgft_name = rgft_node.name
-			if nname == rgft_name: # if the rgrft node is the one that was pruned
-				continue
+	OUTPUT_TREES_FILE = TREES_PER_DS.format(ds_path, '1')
+	with open(OUTPUT_TREES_FILE, "w", newline='') as fpw:
+		csvwriter = csv.writer(fpw)
+		csvwriter.writerow(['', 'prune_name', 'rgft_name', 'newick'])
 
-			full_tree_dirpath = subtrees_dirpath.format(rgft_name)
-			if runover or not os.path.exists(full_tree_dirpath + REARRANGEMENTS_NAME + ".txt"):
-				full_tree = regraft_branch(subtree2, rgft_node, subtree1, rgft_name, nname)
-				save_rearr_file(full_tree_dirpath, full_tree, filename=REARRANGEMENTS_NAME, runover=runover)
-				call_phyml(full_tree_dirpath, REARRANGEMENTS_NAME, orig_msa_file, runover, job_priority, "br", cpmsa=True)
+	# first, copy msa file to memory and save it:
+	msa_rampath = "/dev/shm/tmp" + ds_path.split(SEP)[-2] #  to be on the safe side (even though other processes shouldn't be able to access it)
+	with open(orig_msa_file) as fpr:
+		msa_str = fpr.read()
+	try:
+		with open(msa_rampath, "w") as fpw:
+			fpw.write(msa_str)  # don't write the msa string to a variable (or write and release it)
+		msa_str = ''
+
+		params_dict = (parse_phyml_stats_output(None, stats_filepath))
+		freq, rates, pinv, alpha = [params_dict["fA"], params_dict["fC"], params_dict["fG"], params_dict["fT"]], [params_dict["subAC"], params_dict["subAG"], params_dict["subAT"], params_dict["subCG"],params_dict["subCT"], params_dict["subGT"]], params_dict["pInv"], params_dict["gamma"]
+		df = pd.DataFrame()
+		for i, prune_node in enumerate(t_orig.iter_descendants("levelorder")):
+			prune_name = prune_node.name
+			nname, subtree1, subtree2 = prune_branch(t_orig, prune_name) # subtree1 is the pruned subtree. subtree2 is the remaining subtree
+			with open(OUTPUT_TREES_FILE, "a", newline='') as fpa:
+				csvwriter = csv.writer(fpa)
+				csvwriter.writerow([str(i)+",0", prune_name, SUBTREE1, subtree1.write(format=1)])
+				csvwriter.writerow([str(i)+",1", prune_name, SUBTREE2, subtree2.write(format=1)])
+
+			for j, rgft_node in enumerate(subtree2.iter_descendants("levelorder")):
+				ind = str(i) + "," + str(j)
+				rgft_name = rgft_node.name
+				if nname == rgft_name: # if the rgrft node is the one that was pruned
+					continue
+				rearr_tree_str = regraft_branch(subtree2, rgft_node, subtree1, rgft_name, nname).write(format=1)
+
+				### save tree to file by using "append"
+				with open(OUTPUT_TREES_FILE, "a", newline='') as fpa:
+					csvwriter = csv.writer(fpa)
+					csvwriter.writerow([ind, prune_name, rgft_name, rearr_tree_str])
+
+				ll_rearr, rtime = call_raxml_mem(rearr_tree_str, msa_rampath, rates, pinv, alpha, freq)
+
+				df.loc[ind, "prune_name"], df.loc[ind, "rgft_name"] = prune_name, rgft_name
+				df.loc[ind, "prune_name"], df.loc[ind, "rgft_name"] = prune_name, rgft_name
+				df.loc[ind, "time"] = rtime
+				df.loc[ind, "ll"] = ll_rearr
+
+		df["orig_ds_ll"] = float(params_dict["ll"])
+		df.to_csv(outpath.format("prune"))
+		df.to_csv(outpath.format("rgft"))
+
+	except Exception as e:
+		print('could not complete the all_SPR function on dataset:', dataset_path, '\nError message:')
+		print(e)
+		exit()
+	finally:
+		os.remove(msa_rampath)
 	return
+
 
 ################################################################################################
 ########################### end of 'generate SPR neigbors' section #############################
@@ -313,5 +379,4 @@ if __name__ == '__main__':
 	outpath_rgft = SUMMARY_PER_DS.format(dataset_path, "rgft", "br", step_number="1")
 	
 	if not os.path.exists(outpath_rgft) or not os.path.exists(outpath_prune):
-		all_SPR(dataset_path, tree=None, runover=False)
-		parse_neighbors_dirs(dataset_path, outpath_prune, outpath_rgft, step_number="1", cp_internal=True, tree_type='bionj')
+		all_SPR(dataset_path)
