@@ -187,6 +187,8 @@ def all_SPR(ds_path, outpath, tree=None, rewrite_phylip=False):
 		freq, rates, pinv, alpha = [params_dict["fA"], params_dict["fC"], params_dict["fG"], params_dict["fT"]], [params_dict["subAC"], params_dict["subAG"], params_dict["subAT"], params_dict["subCG"],params_dict["subCT"], params_dict["subGT"]], params_dict["pInv"], params_dict["gamma"]
 		df = pd.DataFrame()
 		for i, prune_node in enumerate(t_orig.iter_descendants("levelorder")):
+			if i % 10 != 0:
+				continue
 			prune_name = prune_node.name
 			nname, subtree1, subtree2 = prune_branch(t_orig, prune_name) # subtree1 is the pruned subtree. subtree2 is the remaining subtree
 			with open(OUTPUT_TREES_FILE, "a", newline='') as fpa:
@@ -195,6 +197,8 @@ def all_SPR(ds_path, outpath, tree=None, rewrite_phylip=False):
 				csvwriter.writerow([str(i)+",1", prune_name, SUBTREE2, subtree2.write(format=1)])
 
 			for j, rgft_node in enumerate(subtree2.iter_descendants("levelorder")):
+				if j % 10 != 0:
+					continue
 				ind = str(i) + "," + str(j)
 				rgft_name = rgft_node.name
 				if nname == rgft_name: # if the rgrft node is the one that was pruned
@@ -206,12 +210,13 @@ def all_SPR(ds_path, outpath, tree=None, rewrite_phylip=False):
 					csvwriter = csv.writer(fpa)
 					csvwriter.writerow([ind, prune_name, rgft_name, rearr_tree_str])
 
-				ll_rearr, rtime = call_raxml_mem(rearr_tree_str, msa_rampath, rates, pinv, alpha, freq)
+				#ll_rearr, rtime = call_raxml_mem(rearr_tree_str, msa_rampath, rates, pinv, alpha, freq)
 
+				df.loc[ind, "group_id"] == i
 				df.loc[ind, "prune_name"], df.loc[ind, "rgft_name"] = prune_name, rgft_name
 				df.loc[ind, "prune_name"], df.loc[ind, "rgft_name"] = prune_name, rgft_name
-				df.loc[ind, "time"] = rtime
-				df.loc[ind, "ll"] = ll_rearr
+				#df.loc[ind, "time"] = rtime
+				#df.loc[ind, "ll"] = ll_rearr
 
 
 		df["orig_ds_ll"] = float(params_dict["ll"])

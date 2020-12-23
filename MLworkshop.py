@@ -147,8 +147,14 @@ def prune_branch(t_orig, prune_name):
 	nname = prune_node_cp.up.name
 	prune_loc = prune_node_cp
 	prune_loc.detach()  # pruning: prune_node_cp is now the subtree we detached. t_cp_p is the one that was left behind
-	t_cp_p.search_nodes(name=nname)[0].delete(preserve_branch_length=True)  # delete the specific node (without its childs) since after pruning this branch should not be divided
-
+	if nname == t_cp_p.get_tree_root().name:
+		for n in t_cp_p.children:
+			if n.name != prune_name:
+				n.set_outgroup(n.children[0])    # doesn't matter if internal or leaf node
+				break
+		t_cp_p = n
+	else:
+		t_cp_p.search_nodes(name=nname)[0].delete(preserve_branch_length=True)  # delete the specific node (without its childs) since after pruning this branch should not be divided
 	return nname, prune_node_cp, t_cp_p
 
 
@@ -176,7 +182,7 @@ def regraft_branch(t_cp_p, prune_node_cp, rgft_name, nname):
 
 def SPR_by_edge_names(ETEtree, cut_name, paste_name):
 	nname, subtree1, subtree2 = prune_branch(ETEtree, cut_name)  # subtree1 is the pruned subtree. subtree2 is the remaining subtree
-	rearr_tree_str = regraft_branch(subtree2, subtree1, paste_name, nname).write(format=1)   # .write() is how you convert an ETEtree to newick string. now you can convert it back (if needed) using Tree(), or convert it to BIOtree
+	rearr_tree_str = regraft_branch(subtree2, subtree1, paste_name, nname).write(format=1, format_root_node=True)   # .write() is how you convert an ETEtree to newick string. now you can convert it back (if needed) using Tree(), or convert it to BIOtree
 
 	return rearr_tree_str
 
@@ -184,13 +190,13 @@ def SPR_by_edge_names(ETEtree, cut_name, paste_name):
 
 def add_internal_names(tree_file, t_orig, newfile_suffix="_with_internal.txt"):
 	# todo oz: I know you defined 'newfile_suffix' diferently (just None to runover?)
-	N_lst = ["N{}".format(i) for i in range(1,19)]   # for tree with ntaxa=20 there are 2n-3 nodes --> n-3=17 internal nodes. plus one ROOT_LIKE node ==> always 18 internal nodes.
+	N_lst = ["N{}".format(i) for i in range(1,20)]   # for tree with ntaxa=20 there are 2n-3 nodes --> n-3=17 internal nodes. plus one ROOT_LIKE node ==> always 18 internal nodes.
 	i = 0
 	for node in t_orig.traverse():
 		if not node.is_leaf():
 			node.name = N_lst[i]
 			i += 1
-	t_orig.write(format=3, outfile=tree_file+newfile_suffix)
+	#t_orig.write(format=3, outfile=tree_file+newfile_suffix)
 
 	return t_orig, tree_file+newfile_suffix
 
@@ -202,32 +208,23 @@ if __name__ == '__main__':
 
 	DATAPATH = "/groups/itay_mayrose/danaazouri/PhyAI/ML_workshop/reinforcement_data/"
 	df = pd.read_csv(DATAPATH + "data/sampled_datasets.csv")
-	curr_path = DATAPATH + df.loc[0, "path"]
+	curr_path = DATAPATH + df.loc[200, "path"]
 	tree_path = curr_path + MSA_PHYLIP_FILENAME + "_phyml_tree_bionj.txt"
-	#tree_path = "((Sp013:2.5e-09)1:7.5e-09,Sp014:1e-08,((((((Sp000:0.00119635,((Sp011:1.5e-08,(Sp006:0.00030492,(Sp017:4e-08,Sp003:2.5e-09)1:2.5e-09)1:0.00030492)1:3e-08,Sp004:1e-08)1:1e-07)1:0.00059262,(Sp002:1e-08,(Sp012:1e-08,Sp001:5e-09)1:5e-09)1:4e-08)1:0.00060152,(Sp016:1e-08,Sp008:5e-09)1:5.5e-08)1:4e-08,Sp010:1e-08)1:0.00736324,(Sp019:4e-08,(Sp009:6e-08,(Sp015:0.00030634,Sp005:2.5e-09)1:2.5e-09)1:5e-09)1:4e-08)1:0.00061291,(Sp007:0.00030635,Sp018:5e-09)1:5e-09)1:7e-08);"
-	#tree_path_probl = "((Sp001:0.000672875,(Sp011:0.00163504,(Sp017:0.000229541,(Sp005:0.0191379,Sp010:6.25e-10)1:6.25e-10)1:0.000229541)1:0.00163504)1:0.000672875,(((((Sp013:2.5e-09)1:7.5e-09,(Sp015:0.00570496,Sp002:0.00384333)1:0.00384333)1:7.5e-09,(Sp007:6.25e-10,Sp019:0.053859)1:0.053859)1:0.0181283,Sp009:0.111016)1:0.0139388,(((Sp004:0.0119493,(Sp018:0.00390795,Sp003:0.00470372)1:1.25e-09)1:0.0119493,(Sp006:0.0197554,Sp016:0.00480443)1:0.0057226)1:0.0238986,Sp012:0.0268928)1:0.00934537)1:0.00781152,(Sp008:0.0211609,(Sp000:1e-08,Sp014:0.00404707)1:0.00404707)1:0.00809415);"
-	#tree_path = "(((((((Sp005:0.0191379,Sp013:2.5e-09):7.5e-09,(Sp015:0.00570496,Sp002:0.00384333)N6:0.00384333)N14:7.5e-09,(Sp007:6.25e-10,Sp019:0.053859)N3:0.053859)N16:0.0181283,Sp009:0.111016)N9:0.0139388,(((Sp004:0.0119493,(Sp018:0.00390795,Sp003:0.00470372)N15:1.25e-09)N12:0.0119493,(Sp006:0.0197554,Sp016:0.00480443)N5:0.0057226)N13:0.0238986,Sp012:0.0268928)N10:0.00934537)N8:0.00781152,(Sp008:0.0211609,(Sp000:1e-08,Sp014:0.00404707)N18:0.00404707):0.00809415)N7:0.0246591,(Sp001:0.000672875,(Sp011:0.00163504,(Sp010:1.25e-09,Sp017:0.000229541):0.000229541)N4:0.00163504)N17:0.000672875);"
-	tree_path = "((Sp001:0.000672875,(Sp011:0.00163504,(Sp010:1.25e-09,Sp017:0.000229541):0.000229541)N4:0.00163504)N17:0.000672875,(((((Sp005:0.0191379,Sp013:2.5e-09):7.5e-09,(Sp015:0.00570496,Sp002:0.00384333)N6:0.00384333)N14:7.5e-09,(Sp007:6.25e-10,Sp019:0.053859)N3:0.053859)N16:0.0181283,Sp009:0.111016)N9:0.0139388,(((Sp004:0.0119493,(Sp018:0.00390795,Sp003:0.00470372)N15:1.25e-09)N12:0.0119493,(Sp006:0.0197554,Sp016:0.00480443)N5:0.0057226)N13:0.0238986,Sp012:0.0268928)N10:0.00934537)N8:0.00781152,(Sp008:0.0211609,(Sp000:1e-08,Sp014:0.00404707)N18:0.00404707):0.00809415);"
-	#tree_path = "(((((((Sp005:0.0191379,Sp013:2.5e-09):7.5e-09,(Sp015:0.00570496,Sp002:0.00384333)N6:0.00384333)N14:7.5e-09,(Sp007:6.25e-10,Sp019:0.053859)N3:0.053859)N16:0.0181283,Sp009:0.111016)N9:0.0139388,(((Sp004:0.0119493,(Sp018:0.00390795,Sp003:0.00470372)N15:1.25e-09)N12:0.0119493,(Sp006:0.0197554,Sp016:0.00480443)N5:0.0057226)N13:0.0238986,Sp012:0.0268928)N10:0.00934537)N8:0.00781152,(Sp008:0.0211609,(Sp000:1e-08,Sp014:0.00404707)N18:0.00404707):0.00809415)N7:0.0246591,Sp010:1.25e-09,(Sp001:0.000672875,(Sp017:0.000459082,Sp011:0.00163504)N4:0.00163504)N17:0.000672875);"
-	#tree_path = "((((((Sp001:1e-08,Sp015:5e-09)N18:5e-09,(Sp004:1.5e-08,Sp009:8.75e-09)N13:8.75e-09)N11:1e-08,((Sp018:0.000424275,(Sp003:0.00085598,(Sp002:1e-08,Sp005:2.5e-09)N17:2.5e-09)N15:0.00085598)N6:0.000424275,(Sp014:1.25e-09,Sp008:0.000213684)N16:1.25e-09)N8:7.5e-09)N7:0.00175456,(Sp000:0.0042615,Sp011:0.000213689)N9:0.00127078)N4:0.00559982,(Sp019:0.0148094,Sp017:3.75e-09)N14:0.00935779)N3:0.00232685,(Sp007:3e-08,(Sp006:1e-08,Sp013:0.00042423):0.00042423)N5:3e-08,((Sp012:2.5e-09,(Sp016:6.25e-10,Sp010:2.5e-09)N10:2.5e-09):2.5e-09)N12:0.0148094);"
+	tree_path = "((((Sp001:0.0616146,(Sp014:3.4e-07,Sp000:0.0347215)N15:0.104165)N11:0.138798,Sp016:0.238572)N4:0.122921,(((Sp008:0.0136277,((Sp011:0.00813955,(((Sp018:0.225762,Sp002:0.0386809)N2:0.0386809,((Sp004:0.108826,Sp009:0.000745165)N10:0.000745165,Sp010:0.0537234)N18:0.004471)N19:0.00596135,((Sp019:0.0041489,Sp017:0.0110042)N7:0.0110042,(Sp013:0.0791795,(Sp005:0.030218,Sp006:0.00596045)N13:0.00596045)N5:0.0791795)N6:0.158359)N16:0.0082978)N12:0.00813955,Sp003:0.0351788)N8:0.0162791)N17:0.0408832,Sp015:0.135701)N14:0.0191898,Sp012:0.191148)N9:0.30064)N3:1.0153,Sp007:0.0765074)N1:0;"
 	t_orig = Tree(newick=tree_path, format=1)    # ETEtree
-	print(t_orig.get_ascii(show_internal=True))
-	print(len(t_orig.get_descendants()))
-	#nodes_to_preserve_lst = ["Sp" + (str(n)).zfill(3) for n in range(20)]
-	#nodes_to_preserve_lst.extend(["N" + str(i) for i in range(1,19)])
-	#t_orig.prune(nodes_to_preserve_lst, preserve_branch_length=True)
-	#t_orig.unroot()
-	t_orig.set_outgroup(t_orig&"Sp001")
-
-	#exit()
+	t_orig.resolve_polytomy(recursive=False)
+	#print(t_orig.get_ascii(show_internal=True))
+	#print(len(t_orig.get_descendants()))
 
 	######## only for pre-processing ########
-	#ETEtree_with_internal_names, new_tree_path = add_internal_names(tree_path, t_orig)
+	ETEtree_with_internal_names, new_tree_path = add_internal_names(tree_path, t_orig)
 	#########################################
-	ETEtree_with_internal_names = t_orig
+	print(ETEtree_with_internal_names.get_ascii(show_internal=True))
+	print(len(ETEtree_with_internal_names.get_descendants()))
 
 	# a possible pair could NOT be something ELSE than all pair-combinations between [Sp000, ... , Sp0019] and [N1, ... , N18].  You can't know in advance which of THESE do exist (topology-dependant)
-	neighbor_tree_str = SPR_by_edge_names(ETEtree_with_internal_names, 'N4', 'Sp014')
+	assert (ETEtree_with_internal_names&'N2').up.name != (ETEtree_with_internal_names&'Sp007').up.name
+	neighbor_tree_str = SPR_by_edge_names(ETEtree_with_internal_names, 'N2', 'Sp007')
 	print(neighbor_tree_str)
 	# extract model params from the starting tree, to fix when calculating the likelihood of all neighbors
 	starting_tree_path = curr_path + MSA_PHYLIP_FILENAME + "_phyml_stats_bionj.txt"
@@ -235,9 +232,10 @@ if __name__ == '__main__':
 	freq, rates, pinv, alpha = [params_dict["fA"], params_dict["fC"], params_dict["fG"], params_dict["fT"]], [params_dict["subAC"], params_dict["subAG"], params_dict["subAT"], params_dict["subCG"], params_dict["subCT"],params_dict["subGT"]], params_dict["pInv"], params_dict["gamma"]
 
 	# run raxml-ng for likelihood computation
-	ll_rearr = return_likelihood(neighbor_tree_str, curr_path + MSA_PHYLIP_FILENAME, rates, pinv, alpha, freq)
-	print(ll_rearr)
+	#ll_rearr = return_likelihood(neighbor_tree_str, curr_path + MSA_PHYLIP_FILENAME, rates, pinv, alpha, freq)
+	#print(ll_rearr)
 	t = Tree(neighbor_tree_str, format=1)
 	print(t.get_ascii(show_internal=True))
+	print(t.get_tree_root().name)
 	print(len(t.get_descendants()))
 	print("##################")
