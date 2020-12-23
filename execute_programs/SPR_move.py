@@ -170,21 +170,21 @@ def all_SPR(ds_path, outpath, tree=None, rewrite_phylip=False):
 	OUTPUT_TREES_FILE = TREES_PER_DS.format(ds_path, st)
 	with open(OUTPUT_TREES_FILE, "w", newline='') as fpw:
 		csvwriter = csv.writer(fpw)
-		csvwriter.writerow(['', 'prune_name', 'rgft_name', 'newick'])
+		csvwriter.writerow(['', 'group_id', 'prune_name', 'rgft_name', 'newick'])
 
 	# first, copy msa file to memory and save it:
-	msa_rampath = "/dev/shm/tmp" + ds_path.split(SEP)[-2] #  to be on the safe side (even though other processes shouldn't be able to access it)
 
-	with open(orig_msa_file) as fpr:
-		msa_str = fpr.read()
+	###msa_rampath = "/dev/shm/tmp" + ds_path.split(SEP)[-2] #  to be on the safe side (even though other processes shouldn't be able to access it)
+	###with open(orig_msa_file) as fpr:
+	###	msa_str = fpr.read()
 
 	try:
-		with open(msa_rampath, "w") as fpw:
-			fpw.write(msa_str)  # don't write the msa string to a variable (or write and release it)
-		msa_str = ''
+		###with open(msa_rampath, "w") as fpw:
+		###	fpw.write(msa_str)  # don't write the msa string to a variable (or write and release it)
+		###msa_str = ''
 
 		params_dict = (parse_phyml_stats_output(None, stats_filepath)) if ML_SOFTWARE_STARTING_TREE == 'phyml' else parse_raxmlNG_output(stats_filepath)
-		freq, rates, pinv, alpha = [params_dict["fA"], params_dict["fC"], params_dict["fG"], params_dict["fT"]], [params_dict["subAC"], params_dict["subAG"], params_dict["subAT"], params_dict["subCG"],params_dict["subCT"], params_dict["subGT"]], params_dict["pInv"], params_dict["gamma"]
+		###freq, rates, pinv, alpha = [params_dict["fA"], params_dict["fC"], params_dict["fG"], params_dict["fT"]], [params_dict["subAC"], params_dict["subAG"], params_dict["subAT"], params_dict["subCG"],params_dict["subCT"], params_dict["subGT"]], params_dict["pInv"], params_dict["gamma"]
 		df = pd.DataFrame()
 		for i, prune_node in enumerate(t_orig.iter_descendants("levelorder")):
 			if i % 10 != 0:
@@ -193,8 +193,8 @@ def all_SPR(ds_path, outpath, tree=None, rewrite_phylip=False):
 			nname, subtree1, subtree2 = prune_branch(t_orig, prune_name) # subtree1 is the pruned subtree. subtree2 is the remaining subtree
 			with open(OUTPUT_TREES_FILE, "a", newline='') as fpa:
 				csvwriter = csv.writer(fpa)
-				csvwriter.writerow([str(i)+",0", prune_name, SUBTREE1, subtree1.write(format=1)])
-				csvwriter.writerow([str(i)+",1", prune_name, SUBTREE2, subtree2.write(format=1)])
+				csvwriter.writerow([str(i)+",0", i, prune_name, SUBTREE1, subtree1.write(format=1)])
+				csvwriter.writerow([str(i)+",1", i, prune_name, SUBTREE2, subtree2.write(format=1)])
 
 			for j, rgft_node in enumerate(subtree2.iter_descendants("levelorder")):
 				if j % 10 != 0:
@@ -208,16 +208,14 @@ def all_SPR(ds_path, outpath, tree=None, rewrite_phylip=False):
 				### save tree to file by using "append"
 				with open(OUTPUT_TREES_FILE, "a", newline='') as fpa:
 					csvwriter = csv.writer(fpa)
-					csvwriter.writerow([ind, prune_name, rgft_name, rearr_tree_str])
+					csvwriter.writerow([ind, i, prune_name, rgft_name, rearr_tree_str])
 
 				#ll_rearr, rtime = call_raxml_mem(rearr_tree_str, msa_rampath, rates, pinv, alpha, freq)
 
-				df.loc[ind, "group_id"] == i
 				df.loc[ind, "prune_name"], df.loc[ind, "rgft_name"] = prune_name, rgft_name
 				df.loc[ind, "prune_name"], df.loc[ind, "rgft_name"] = prune_name, rgft_name
 				#df.loc[ind, "time"] = rtime
 				#df.loc[ind, "ll"] = ll_rearr
-
 
 		df["orig_ds_ll"] = float(params_dict["ll"])
 		df.to_csv(outpath.format("prune"))
@@ -228,7 +226,8 @@ def all_SPR(ds_path, outpath, tree=None, rewrite_phylip=False):
 		print(e)
 		exit()
 	finally:
-		os.remove(msa_rampath)
+		pass
+		###os.remove(msa_rampath)
 	return
 
 
