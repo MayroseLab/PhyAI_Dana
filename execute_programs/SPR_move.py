@@ -3,13 +3,13 @@ import sys
 sys.path.append("/groups/itay_mayrose/danaazouri/PhyAI/code/")
 
 from defs import *
-from utils.msa_functions import *
+from my_utils.msa_functions import *
 from data_processing.traverse_data_dirs import traverse_data_dirs
 from summary.collect_SPR_features import *
 from subprocess import Popen, PIPE, STDOUT
 from parsing.parse_raxml_NG import parse_raxmlNG_content
 from execute_programs.RAxML_NG import extract_model_params
-from utils.create_job_file import get_job_qsub_command
+from my_utils.create_job_file import get_job_qsub_command
 import csv
 from execute_programs import Phyml
 
@@ -72,12 +72,12 @@ def get_tree(ds_path, msa_file, rewrite_phylip, software=ML_SOFTWARE_STARTING_TR
 		rewrite_in_phylip(msa_file)     # for one-time use on new ds
 
 		# !!!! TEMP !!!! i idented the following lines to relate to -phy flag temporarly
-		tree_file_cp_no_internal = ds_path + PHYML_TREE_FILENAME.format(suf + "_no_internal") if software == 'phyml' else ds_path + RAXML_TREE_FILENAME + "_no_internal"
-		if not os.path.exists(tree_file_cp_no_internal):
-			t_orig = PhyloTree(newick=tree_file, alignment=msa_file, alg_format="iphylip", format=1)
-			add_internal_names(tree_file, tree_file_cp_no_internal, t_orig)
-		else:
-			t_orig = PhyloTree(newick=tree_file, alignment=msa_file, alg_format="iphylip", format=3)
+	tree_file_cp_no_internal = ds_path + PHYML_TREE_FILENAME.format(suf + "_no_internal") if software == 'phyml' else ds_path + RAXML_TREE_FILENAME + "_no_internal"
+	if not os.path.exists(tree_file_cp_no_internal):
+		t_orig = PhyloTree(newick=tree_file, alignment=msa_file, alg_format="iphylip", format=1)
+		add_internal_names(tree_file, tree_file_cp_no_internal, t_orig)
+		#else:
+		#	t_orig = PhyloTree(newick=tree_file, alignment=msa_file, alg_format="iphylip", format=3)
 	else:
 		t_orig = PhyloTree(newick=tree_file, alignment=msa_file, alg_format="iphylip", format=1)
 
@@ -100,9 +100,12 @@ def call_phyml_storage(tree_dirpath, file_name, msa_file, runover, job_priority,
 
 
 def call_raxml_mem(tree_str, msa_tmpfile, rates, pinv, alpha, freq):
-	model_line_params = 'GTR{rates}+I{pinv}+G{alpha}+F{freq}'.format(rates="{{{0}}}".format("/".join(rates)),
-									 pinv="{{{0}}}".format(pinv), alpha="{{{0}}}".format(alpha),
-									 freq="{{{0}}}".format("/".join(freq)))
+	if rates:
+		model_line_params = 'GTR{rates}+I{pinv}+G{alpha}+F{freq}'.format(rates="{{{0}}}".format("/".join(rates)),
+										 pinv="{{{0}}}".format(pinv), alpha="{{{0}}}".format(alpha),
+										 freq="{{{0}}}".format("/".join(freq)))
+	else:
+		model_line_params = 'JC'
 
 	# create tree file in memory and not in the storage:
 	tree_rampath = "/dev/shm/" + str(random.random())  + str(random.random()) + "tree"  # the var is the str: tmp{dir_suffix}
@@ -149,7 +152,7 @@ def create_SPR_job(dataset_path, step_number, tree_type, rewrite_phy, runover):
 
 
 
-def all_SPR(ds_path, outpath, tree=None, rewrite_phylip=False):
+def all_SPR(ds_path, outpath, tree=None, rewrite_phylip=False, JC=False):
 	orig_msa_file = ds_path + MSA_PHYLIP_FILENAME
 	suf = "bionj" if not RANDOM_TREE_DIRNAME in ds_path else "br"
 	stats_filepath = ds_path + PHYML_STATS_FILENAME.format(suf) if ML_SOFTWARE_STARTING_TREE == 'phyml' else ds_path + RAXML_STATS_FILENAME
@@ -184,7 +187,11 @@ def all_SPR(ds_path, outpath, tree=None, rewrite_phylip=False):
 		msa_str = ''
 
 		params_dict = (parse_phyml_stats_output(None, stats_filepath)) if ML_SOFTWARE_STARTING_TREE == 'phyml' else parse_raxmlNG_output(stats_filepath)
-		freq, rates, pinv, alpha = [params_dict["fA"], params_dict["fC"], params_dict["fG"], params_dict["fT"]], [params_dict["subAC"], params_dict["subAG"], params_dict["subAT"], params_dict["subCG"],params_dict["subCT"], params_dict["subGT"]], params_dict["pInv"], params_dict["gamma"]
+		if not JC:
+			freq, rates, pinv, alpha = [params_dict["fA"], params_dict["fC"], params_dict["fG"], params_dict["fT"]], [params_dict["subAC"], params_dict["subAG"], params_dict["subAT"], params_dict["subCG"],params_dict["subCT"], params_dict["subGT"]], params_dict["pInv"], params_dict["gamma"]
+		else:
+			freq, rates, pinv, alpha = False, False, False, False
+
 		df = pd.DataFrame()
 		for i, prune_node in enumerate(t_orig.iter_descendants("levelorder")):
 			prune_name = prune_node.name
@@ -206,7 +213,8 @@ def all_SPR(ds_path, outpath, tree=None, rewrite_phylip=False):
 					csvwriter = csv.writer(fpa)
 					csvwriter.writerow([ind, prune_name, rgft_name, rearr_tree_str])
 
-				ll_rearr, rtime = call_raxml_mem(rearr_tree_str, msa_rampath, rates, pinv, alpha, freq)
+				if not JC:
+					ll_rearr, rtime = call_raxml_mem(rearr_tree_str, msa_rampath, rates, pinv, alpha, freq)
 
 				df.loc[ind, "prune_name"], df.loc[ind, "rgft_name"] = prune_name, rgft_name
 				df.loc[ind, "prune_name"], df.loc[ind, "rgft_name"] = prune_name, rgft_name
