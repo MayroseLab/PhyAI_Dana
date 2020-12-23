@@ -22,15 +22,8 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="04f6d22b-03c8-46f3-ac77-b58c4e95d95d" name="Default Changelist" comment="-">
-      <change beforePath="$PROJECT_DIR$/.idea/code.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/code.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="04f6d22b-03c8-46f3-ac77-b58c4e95d95d" name="Default Changelist" comment="submission">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MLworkshop.py" beforeDir="false" afterPath="$PROJECT_DIR$/MLworkshop.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SPR_and_lls.py" beforeDir="false" afterPath="$PROJECT_DIR$/SPR_and_lls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/collect_features.py" beforeDir="false" afterPath="$PROJECT_DIR$/collect_features.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/defs_PhyAI.py" beforeDir="false" afterPath="$PROJECT_DIR$/defs_PhyAI.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/execute_Phyml.py" beforeDir="false" afterPath="$PROJECT_DIR$/Phyml_BIONJ_startingTrees.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/execute_programs/SPR_move.py" beforeDir="false" afterPath="$PROJECT_DIR$/execute_programs/SPR_move.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -584,20 +577,6 @@
       <workItem from="1608190836661" duration="22748000" />
       <workItem from="1608447432424" duration="36914000" />
     </task>
-    <task id="LOCAL-01338" summary="in progress - &#10;automate the running forward algo">
-      <created>1607005947347</created>
-      <option name="number" value="01338" />
-      <option name="presentableId" value="LOCAL-01338" />
-      <option name="project" value="LOCAL" />
-      <updated>1607005947348</updated>
-    </task>
-    <task id="LOCAL-01339" summary="-">
-      <created>1607006159416</created>
-      <option name="number" value="01339" />
-      <option name="presentableId" value="LOCAL-01339" />
-      <option name="project" value="LOCAL" />
-      <updated>1607006159416</updated>
-    </task>
     <task id="LOCAL-01340" summary="in progress - &#10;automate the running forward algo">
       <created>1607006814143</created>
       <option name="number" value="01340" />
@@ -912,7 +891,19 @@
       <option name="project" value="LOCAL" />
       <updated>1608468926940</updated>
     </task>
-    <option name="localTasksCounter" value="1387" />
+    <task id="LOCAL‎01387" summary="large dataset">
+      <created>1608717214924</created>
+      <option name="number" value="LOCAL‎01387" />
+      <option name="presentableId" value="LOCAL‎01387" />
+      <updated>1608717214925</updated>
+    </task>
+    <task id="LOCAL‎01388" summary="submission">
+      <created>1608717240342</created>
+      <option name="number" value="LOCAL‎01388" />
+      <option name="presentableId" value="LOCAL‎01388" />
+      <updated>1608717240342</updated>
+    </task>
+    <option name="localTasksCounter" value="1389" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -934,8 +925,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="exp10" />
-    <MESSAGE value="debugging key error for st2_new" />
     <MESSAGE value="temp for large dataset - create SPRs + features, without computing ll, first." />
     <MESSAGE value="REVERT" />
     <MESSAGE value="temp for large dataset - create SPRs, without computing ll, first. from iprune 476 (subset2)" />
@@ -959,7 +948,9 @@
     <MESSAGE value="run forward analysis - results &amp; figure" />
     <MESSAGE value="saturation" />
     <MESSAGE value="-" />
-    <option name="LAST_COMMIT_MESSAGE" value="-" />
+    <MESSAGE value="large dataset" />
+    <MESSAGE value="submission" />
+    <option name="LAST_COMMIT_MESSAGE" value="submission" />
   </component>
   <component name="WindowStateProjectService">
     <state x="450" y="-1037" key="#Deployment" timestamp="1606209009882">
@@ -1080,10 +1071,11 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="498" height="446" key="SwitcherDM/0.0.1920.1040@0.0.1920.1040" timestamp="1607003826282" />
-    <state x="494" y="223" key="Vcs.Push.Dialog.v2" timestamp="1608468928090">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="494" y="-857" key="Vcs.Push.Dialog.v2" timestamp="1608717249483">
+      <screen x="0" y="-1080" width="1920" height="1040" />
     </state>
     <state x="-1426" y="184" key="Vcs.Push.Dialog.v2/0.0.1280.680/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1605112569384" />
+    <state x="494" y="-857" key="Vcs.Push.Dialog.v2/0.0.1280.680/0.-1080.1920.1040@0.-1080.1920.1040" timestamp="1608717249483" />
     <state x="329" y="146" key="Vcs.Push.Dialog.v2/0.0.1280.680/103.-1050.1680.1010@0.0.1280.680" timestamp="1602511685167" />
     <state x="535" y="-833" key="Vcs.Push.Dialog.v2/0.0.1280.680/103.-1050.1680.1010@103.-1050.1680.1010" timestamp="1607595824536" />
     <state x="2352" y="245" key="Vcs.Push.Dialog.v2/0.0.1280.680/1920.0.1680.1010@1920.0.1680.1010" timestamp="1601817418173" />
