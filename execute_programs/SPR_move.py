@@ -9,7 +9,7 @@ from summary.collect_SPR_features import *
 from subprocess import Popen, PIPE, STDOUT
 from parsing.parse_raxml_NG import parse_raxmlNG_content
 from execute_programs.RAxML_NG import extract_model_params
-#from utils.create_job_file import get_job_qsub_command
+from utils.create_job_file import get_job_qsub_command
 import csv
 from execute_programs import Phyml
 
