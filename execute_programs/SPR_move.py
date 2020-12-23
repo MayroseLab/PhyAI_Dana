@@ -197,8 +197,8 @@ def all_SPR(ds_path, outpath, tree=None, rewrite_phylip=False):
 				csvwriter.writerow([str(i)+",1", i, prune_name, SUBTREE2, ''])
 
 			for j, rgft_node in enumerate(subtree2.iter_descendants("levelorder")):
-				if j % 10 != 0:
-					continue
+				#if j % 10 != 0:
+				#	continue
 				ind = str(i) + "," + str(j)
 				rgft_name = rgft_node.name
 				if nname == rgft_name: # if the rgrft node is the one that was pruned
