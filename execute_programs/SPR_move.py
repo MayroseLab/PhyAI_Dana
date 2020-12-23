@@ -193,8 +193,8 @@ def all_SPR(ds_path, outpath, tree=None, rewrite_phylip=False):
 			nname, subtree1, subtree2 = prune_branch(t_orig, prune_name) # subtree1 is the pruned subtree. subtree2 is the remaining subtree
 			with open(OUTPUT_TREES_FILE, "a", newline='') as fpa:
 				csvwriter = csv.writer(fpa)
-				csvwriter.writerow([str(i)+",0", i, prune_name, SUBTREE1, subtree1.write(format=1)])
-				csvwriter.writerow([str(i)+",1", i, prune_name, SUBTREE2, subtree2.write(format=1)])
+				csvwriter.writerow([str(i)+",0", i, prune_name, SUBTREE1, ''])
+				csvwriter.writerow([str(i)+",1", i, prune_name, SUBTREE2, ''])
 
 			for j, rgft_node in enumerate(subtree2.iter_descendants("levelorder")):
 				if j % 10 != 0:
