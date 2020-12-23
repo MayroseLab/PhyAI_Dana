@@ -123,6 +123,25 @@ if __name__ == '__main__':
 	parser.add_argument('--nrows_total_in_csv', '-nrows_total', default=False)
 	args = parser.parse_args()
 
+	if not args.index_to_start_run:
+		df = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/{}newicks_step1.csv".format(EXAMPLE_DIRNAME)).dropna() #,index_col=0)
+
+		NROWS = len(df)
+		group_ids_full = df["group_id"]
+		group_ids = group_ids_full.unique()
+		for group in group_ids[28:]:
+			s = df.index[df["group_id"] == group].tolist()
+			submit_job_ll(s[0], len(s), NROWS)
+
+	else:
+		dataset_path = DATA_PATH + EXAMPLE_DIRNAME
+		outpath_prune = SUMMARY_PER_DS.format(dataset_path + 'results_by_susbsets/', "prune", 'br', '1_subs_{}_{}'.format(args.index_to_start_run, args.nline_to_run))
+		outpath_rgft = SUMMARY_PER_DS.format(dataset_path + 'results_by_susbsets/', "rgft", 'br', '1_subs_{}_{}'.format(args.index_to_start_run, args.nline_to_run))
+
+		print(args.index_to_start_run, args.nline_to_run)
+		index_ll_and_features(dataset_path, outpath_prune, outpath_rgft, args.index_to_start_run, args.nline_to_run, args.nrows_total_in_csv)
+
+
 	'''
 	dataset_path = DATA_PATH + EXAMPLE_DIRNAME
 	df = pd.read_csv(dataset_path + "newicks_step1_with_ids.csv")  # -, index_col=1)
@@ -141,31 +160,3 @@ if __name__ == '__main__':
 	df_merged_rgft.to_csv(SUMMARY_PER_DS.format(dataset_path, "rgft", 'br', '1'))
 	exit()
 	#'''
-	if not args.index_to_start_run:
-		'''
-		df = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/{}newicks_step1.csv".format(EXAMPLE_DIRNAME),index_col=0, nrows=200000)
-
-		for i, row in df.iterrows():
-			ind = row.name
-			g_id = ind.split(",")[0]
-			print(ind, ":", g_id)
-			df.loc[ind, "group_id"] = g_id
-		df.to_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/{}newicks_step1_with_ids.csv".format(EXAMPLE_DIRNAME))
-		exit()
-		'''
-		df = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/{}newicks_step1.csv".format(EXAMPLE_DIRNAME), nrows=20000).dropna() #,index_col=0)
-
-		NROWS = len(df)
-		group_ids_full = df["group_id"]
-		group_ids = group_ids_full.unique()
-		for group in group_ids[:-1]:
-			s = df.index[df["group_id"] == group].tolist()
-			submit_job_ll(s[0], len(s), NROWS)
-
-	else:
-		dataset_path = DATA_PATH + EXAMPLE_DIRNAME
-		outpath_prune = SUMMARY_PER_DS.format(dataset_path + 'results_by_susbsets/', "prune", 'br', '1_subs_{}_{}'.format(args.index_to_start_run, args.nline_to_run))
-		outpath_rgft = SUMMARY_PER_DS.format(dataset_path + 'results_by_susbsets/', "rgft", 'br', '1_subs_{}_{}'.format(args.index_to_start_run, args.nline_to_run))
-
-		print(args.index_to_start_run, args.nline_to_run)
-		index_ll_and_features(dataset_path, outpath_prune, outpath_rgft, args.index_to_start_run, args.nline_to_run, args.nrows_total_in_csv)
