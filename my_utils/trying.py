@@ -124,12 +124,12 @@ if __name__ == '__main__':
 	args = parser.parse_args()
 
 	if not args.index_to_start_run:
-		df = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/{}newicks_step1.csv".format(EXAMPLE_DIRNAME)).dropna() #,index_col=0)
+		df = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/{}newicks_step1.csv".format(EXAMPLE_DIRNAME), nrows=).dropna() #,index_col=0)
 
 		NROWS = len(df)
 		group_ids_full = df["group_id"]
 		group_ids = group_ids_full.unique()
-		for group in group_ids[:2]:  #[4:]:
+		for group in group_ids[4:700]:
 			s = df.index[df["group_id"] == group].tolist()
 			submit_job_ll(s[0], len(s), NROWS)
 
