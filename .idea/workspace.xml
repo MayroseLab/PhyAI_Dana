@@ -22,32 +22,13 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="04f6d22b-03c8-46f3-ac77-b58c4e95d95d" name="Default Changelist" comment="??">
+    <list default="true" id="04f6d22b-03c8-46f3-ac77-b58c4e95d95d" name="Default Changelist" comment="TEMP">
+      <change beforePath="$PROJECT_DIR$/.idea/code.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/code.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_processing/create_starting_trees.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_processing/create_starting_trees.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_processing/temp_for_ML_workshop.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_processing/temp_for_ML_workshop.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data_processing/whore.py" beforeDir="false" afterPath="$PROJECT_DIR$/data_processing/whore.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/defs.py" beforeDir="false" afterPath="$PROJECT_DIR$/defs.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/execute_programs/Phyml.py" beforeDir="false" afterPath="$PROJECT_DIR$/execute_programs/Phyml.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/execute_programs/RAxML_NG.py" beforeDir="false" afterPath="$PROJECT_DIR$/execute_programs/RAxML_NG.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/execute_programs/RF_learning.py" beforeDir="false" afterPath="$PROJECT_DIR$/execute_programs/RF_learning.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/execute_programs/SPR_move.py" beforeDir="false" afterPath="$PROJECT_DIR$/execute_programs/SPR_move.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/execute_programs/SPR_move_one_parallel.py" beforeDir="false" afterPath="$PROJECT_DIR$/execute_programs/SPR_move_one_parallel.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/execute_programs/SVM_learning.py" beforeDir="false" afterPath="$PROJECT_DIR$/execute_programs/SVM_learning.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/execute_programs/compose_learners.py" beforeDir="false" afterPath="$PROJECT_DIR$/execute_programs/compose_learners.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/figures/data_attributes.py" beforeDir="false" afterPath="$PROJECT_DIR$/figures/data_attributes.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/parsing/parse_phyml.py" beforeDir="false" afterPath="$PROJECT_DIR$/parsing/parse_phyml.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/parsing/parse_raxml_NG.py" beforeDir="false" afterPath="$PROJECT_DIR$/parsing/parse_raxml_NG.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/summary/collect_SPR_features.py" beforeDir="false" afterPath="$PROJECT_DIR$/summary/collect_SPR_features.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/summary/collect_temp.py" beforeDir="false" afterPath="$PROJECT_DIR$/summary/collect_temp.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/summary/run_times.py" beforeDir="false" afterPath="$PROJECT_DIR$/summary/run_times.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/summary/score_last_step.py" beforeDir="false" afterPath="$PROJECT_DIR$/summary/score_last_step.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_utils/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/create_job_file.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_utils/create_job_file.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/general_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_utils/general_utils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/msa_functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_utils/msa_functions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/tree_functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_utils/tree_functions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/trying.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_utils/trying.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my_utils/trying.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_utils/trying.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,7 +56,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="JupyterTrust" id="10670ef2-f5b1-421d-a855-149e6613b62f" />
+  <component name="JupyterTrust" id="30840489-2f35-4947-990d-a173e9790e9e" />
   <component name="ProjectId" id="1fa0BNFFj7wVf4iLrRaPR2E5kO8" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -131,6 +112,28 @@
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/MLworkshop.py" />
       <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Phyml" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="code" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/execute_programs" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/execute_programs/Phyml.py" />
+      <option name="PARAMETERS" value="-f &quot;/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data_test/real_msa2.phy&quot; -m JC" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -218,7 +221,7 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/execute_programs/SPR_move.py" />
-      <option name="PARAMETERS" value="-st 1 -r -ds /groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/example24354/" />
+      <option name="PARAMETERS" value="-st 1 -r -ds /groups/itay_mayrose/danaazouri/PhyAI/submission_data/data/training_datasets/24354/ -phy" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -358,28 +361,6 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="saturation" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="code" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/figures" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/figures/saturation.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="trying (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="code" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -394,6 +375,28 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/utils/trying.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="trying (2)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="code" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/my_utils" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/my_utils/trying.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -515,19 +518,20 @@
       <item itemvalue="Python.run_times" />
       <item itemvalue="Python.trying" />
       <item itemvalue="Python.whore" />
+      <item itemvalue="Python.Phyml" />
       <item itemvalue="Python.extract_corr_of_top" />
       <item itemvalue="Python.data_attributes" />
-      <item itemvalue="Python.saturation" />
       <item itemvalue="Python.trying (1)" />
       <item itemvalue="Python.MLworkshop" />
+      <item itemvalue="Python.trying (2)" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.trying (2)" />
         <item itemvalue="Python.MLworkshop" />
         <item itemvalue="Python.data_attributes" />
         <item itemvalue="Python.extract_corr_of_top" />
         <item itemvalue="Python.trying (1)" />
-        <item itemvalue="Python.saturation" />
       </list>
     </recent_temporary>
   </component>
@@ -599,85 +603,8 @@
       <workItem from="1608097195109" duration="9417000" />
       <workItem from="1608190836661" duration="22748000" />
       <workItem from="1608447432424" duration="36914000" />
-    </task>
-    <task id="LOCAL-01342" summary="in progress - &#10;automate the running forward algo">
-      <created>1607011456404</created>
-      <option name="number" value="01342" />
-      <option name="presentableId" value="LOCAL-01342" />
-      <option name="project" value="LOCAL" />
-      <updated>1607011456404</updated>
-    </task>
-    <task id="LOCAL-01343" summary="in progress - &#10;automate the running forward algo">
-      <created>1607012212434</created>
-      <option name="number" value="01343" />
-      <option name="presentableId" value="LOCAL-01343" />
-      <option name="project" value="LOCAL" />
-      <updated>1607012212434</updated>
-    </task>
-    <task id="LOCAL-01344" summary="in progress - &#10;automate the running forward algo">
-      <created>1607012527782</created>
-      <option name="number" value="01344" />
-      <option name="presentableId" value="LOCAL-01344" />
-      <option name="project" value="LOCAL" />
-      <updated>1607012527782</updated>
-    </task>
-    <task id="LOCAL-01345" summary="automate the running forward algo&#10;RUN">
-      <created>1607019248815</created>
-      <option name="number" value="01345" />
-      <option name="presentableId" value="LOCAL-01345" />
-      <option name="project" value="LOCAL" />
-      <updated>1607019248815</updated>
-    </task>
-    <task id="LOCAL-01346" summary="automate the running forward algo&#10;RUN">
-      <created>1607020289997</created>
-      <option name="number" value="01346" />
-      <option name="presentableId" value="LOCAL-01346" />
-      <option name="project" value="LOCAL" />
-      <updated>1607020289997</updated>
-    </task>
-    <task id="LOCAL-01347" summary="-">
-      <created>1607022515966</created>
-      <option name="number" value="01347" />
-      <option name="presentableId" value="LOCAL-01347" />
-      <option name="project" value="LOCAL" />
-      <updated>1607022515966</updated>
-    </task>
-    <task id="LOCAL-01348" summary="-">
-      <created>1607023724032</created>
-      <option name="number" value="01348" />
-      <option name="presentableId" value="LOCAL-01348" />
-      <option name="project" value="LOCAL" />
-      <updated>1607023724032</updated>
-    </task>
-    <task id="LOCAL‎01349" summary="-">
-      <created>1607102236404</created>
-      <option name="number" value="LOCAL‎01349" />
-      <option name="presentableId" value="LOCAL‎01349" />
-      <updated>1607102236404</updated>
-    </task>
-    <task id="LOCAL‎01350" summary="-">
-      <created>1607103686633</created>
-      <option name="number" value="LOCAL‎01350" />
-      <option name="presentableId" value="LOCAL‎01350" />
-      <updated>1607103686633</updated>
-    </task>
-    <task id="LOCAL‎01351" summary="run forward best out of top 10% predictions">
-      <created>1607108322457</created>
-      <option name="number" value="LOCAL‎01351" />
-      <option name="presentableId" value="LOCAL‎01351" />
-      <updated>1607108322457</updated>
-    </task>
-    <task id="LOCAL‎01352" summary="run forward best out of top 10% predictions">
-      <created>1607164988601</created>
-      <option name="number" value="LOCAL‎01352" />
-      <option name="presentableId" value="LOCAL‎01352" />
-      <updated>1607164988601</updated>
-    </task>
-    <task id="LOCAL‎01353" summary="run forward best out of top 10% predictions">
-      <created>1607165034917</created>
-      <option name="number" value="LOCAL‎01353" />
-      <option name="presentableId" value="LOCAL‎01353" />
-      <updated>1607165034917</updated>
+      <workItem from="1608725557613" duration="14613000" />
+      <workItem from="1608799582364" duration="1566000" />
     </task>
     <task id="LOCAL‎01354" summary="run forward best out of top 10% predictions">
       <created>1607235227088</created>
@@ -924,7 +851,79 @@
       <option name="presentableId" value="LOCAL‎01390" />
       <updated>1608718509476</updated>
     </task>
-    <option name="localTasksCounter" value="1391" />
+    <task id="LOCAL‎01391" summary="renamed utils dir to my_utils as it's suddenly making problems with utils dir in miniconda3/lib/python3.8/site-packages/utils/&#10;(new gym module for rl)">
+      <created>1608718875798</created>
+      <option name="number" value="LOCAL‎01391" />
+      <option name="presentableId" value="LOCAL‎01391" />
+      <updated>1608718875798</updated>
+    </task>
+    <task id="LOCAL‎01392" summary="-">
+      <created>1608719869431</created>
+      <option name="number" value="LOCAL‎01392" />
+      <option name="presentableId" value="LOCAL‎01392" />
+      <updated>1608719869432</updated>
+    </task>
+    <task id="LOCAL‎01393" summary="-">
+      <created>1608720382298</created>
+      <option name="number" value="LOCAL‎01393" />
+      <option name="presentableId" value="LOCAL‎01393" />
+      <updated>1608720382298</updated>
+    </task>
+    <task id="LOCAL‎01394" summary="-">
+      <created>1608720702276</created>
+      <option name="number" value="LOCAL‎01394" />
+      <option name="presentableId" value="LOCAL‎01394" />
+      <updated>1608720702276</updated>
+    </task>
+    <task id="LOCAL‎01395" summary="-">
+      <created>1608721053679</created>
+      <option name="number" value="LOCAL‎01395" />
+      <option name="presentableId" value="LOCAL‎01395" />
+      <updated>1608721053679</updated>
+    </task>
+    <task id="LOCAL‎01396" summary="-">
+      <created>1608736235689</created>
+      <option name="number" value="LOCAL‎01396" />
+      <option name="presentableId" value="LOCAL‎01396" />
+      <updated>1608736235690</updated>
+    </task>
+    <task id="LOCAL‎01397" summary="temp change Q">
+      <created>1608736303616</created>
+      <option name="number" value="LOCAL‎01397" />
+      <option name="presentableId" value="LOCAL‎01397" />
+      <updated>1608736303616</updated>
+    </task>
+    <task id="LOCAL‎01398" summary="revert">
+      <created>1608736890878</created>
+      <option name="number" value="LOCAL‎01398" />
+      <option name="presentableId" value="LOCAL‎01398" />
+      <updated>1608736890878</updated>
+    </task>
+    <task id="LOCAL‎01399" summary="TEMP">
+      <created>1608749665874</created>
+      <option name="number" value="LOCAL‎01399" />
+      <option name="presentableId" value="LOCAL‎01399" />
+      <updated>1608749665874</updated>
+    </task>
+    <task id="LOCAL‎01400" summary="TEMP">
+      <created>1608751203625</created>
+      <option name="number" value="LOCAL‎01400" />
+      <option name="presentableId" value="LOCAL‎01400" />
+      <updated>1608751203626</updated>
+    </task>
+    <task id="LOCAL‎01401" summary="TEMP">
+      <created>1608751262912</created>
+      <option name="number" value="LOCAL‎01401" />
+      <option name="presentableId" value="LOCAL‎01401" />
+      <updated>1608751262912</updated>
+    </task>
+    <task id="LOCAL‎01402" summary="TEMP">
+      <created>1608752943446</created>
+      <option name="number" value="LOCAL‎01402" />
+      <option name="presentableId" value="LOCAL‎01402" />
+      <updated>1608752943446</updated>
+    </task>
+    <option name="localTasksCounter" value="1403" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -946,9 +945,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="REVERT" />
-    <MESSAGE value="temp for large dataset - create SPRs, without computing ll, first. from iprune 476 (subset2)" />
-    <MESSAGE value="handeling large csv - devide to subsets" />
     <MESSAGE value="temp for large dataset" />
     <MESSAGE value="run additional larfe datasets" />
     <MESSAGE value="run additional large datasets" />
@@ -961,7 +957,6 @@
     <MESSAGE value="automate the running forward algo&#10;RUN" />
     <MESSAGE value="run forward best out of top 10% predictions" />
     <MESSAGE value="random-forest with oob==False to reduce the memory needed" />
-    <MESSAGE value="revert" />
     <MESSAGE value="vlarge dataset - prapare for running lls" />
     <MESSAGE value="vlarge dataset - run for lls" />
     <MESSAGE value="vlarge dataset - run for lls&#10;REQUIRE MORE MEMORY" />
@@ -969,9 +964,13 @@
     <MESSAGE value="saturation" />
     <MESSAGE value="large dataset" />
     <MESSAGE value="submission" />
-    <MESSAGE value="-" />
     <MESSAGE value="??" />
-    <option name="LAST_COMMIT_MESSAGE" value="??" />
+    <MESSAGE value="renamed utils dir to my_utils as it's suddenly making problems with utils dir in miniconda3/lib/python3.8/site-packages/utils/&#10;(new gym module for rl)" />
+    <MESSAGE value="-" />
+    <MESSAGE value="temp change Q" />
+    <MESSAGE value="revert" />
+    <MESSAGE value="TEMP" />
+    <option name="LAST_COMMIT_MESSAGE" value="TEMP" />
   </component>
   <component name="WindowStateProjectService">
     <state x="450" y="-1037" key="#Deployment" timestamp="1606209009882">
@@ -1001,65 +1000,65 @@
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="390" y="142" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1280.680@0.0.1280.680" timestamp="1603014818257" />
-    <state x="140" y="-938" width="1643" height="758" key="DiffContextDialog" timestamp="1608717113708">
-      <screen x="0" y="-1080" width="1920" height="1040" />
+    <state x="140" y="142" width="1643" height="758" key="DiffContextDialog" timestamp="1608804956866">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="140" y="-938" width="1643" height="758" key="DiffContextDialog/0.0.1280.680/0.-1080.1920.1040@0.-1080.1920.1040" timestamp="1608717113708" />
-    <state x="93" y="93" width="1095" height="495" key="DiffContextDialog/0.0.1280.680@0.0.1280.680" timestamp="1601977119599" />
-    <state x="140" y="142" width="1643" height="758" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1604931855130" />
+    <state x="140" y="-938" width="1643" height="758" key="DiffContextDialog/0.0.1280.680/0.-1080.1920.1040@0.-1080.1920.1040" timestamp="1608737115245" />
+    <state x="93" y="93" width="1095" height="495" key="DiffContextDialog/0.0.1280.680@0.0.1280.680" timestamp="1608750441218" />
+    <state x="140" y="142" width="1643" height="758" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1608804956866" />
     <state x="740" y="291" key="FileChooserDialogImpl" timestamp="1608193586023">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="2659" y="328" key="FileChooserDialogImpl/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1601399002874" />
     <state x="493" y="160" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1608111385632" />
     <state x="740" y="291" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1608193586023" />
-    <state width="1877" height="160" key="GridCell.Tab.0.bottom" timestamp="1608718758418">
-      <screen x="0" y="-1080" width="1920" height="1040" />
+    <state width="1237" height="55" key="GridCell.Tab.0.bottom" timestamp="1608753916288">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state width="1877" height="92" key="GridCell.Tab.0.bottom/0.0.1280.680/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1605105736876" />
-    <state width="1877" height="160" key="GridCell.Tab.0.bottom/0.0.1280.680/0.-1080.1920.1040@0.-1080.1920.1040" timestamp="1608718758418" />
+    <state width="1272" height="63" key="GridCell.Tab.0.bottom/0.0.1280.680/0.-1080.1920.1040@0.-1080.1920.1040" timestamp="1608737777219" />
     <state width="1237" height="137" key="GridCell.Tab.0.bottom/0.0.1280.680/103.-1050.1680.1010@0.0.1280.680" timestamp="1605013457892" />
     <state width="1637" height="122" key="GridCell.Tab.0.bottom/0.0.1280.680/103.-1050.1680.1010@103.-1050.1680.1010" timestamp="1606235450112" />
     <state width="1237" height="41" key="GridCell.Tab.0.bottom/0.0.1280.680/1920.0.1680.1010@0.0.1280.680" timestamp="1600756956095" />
     <state width="1637" height="110" key="GridCell.Tab.0.bottom/0.0.1280.680/1920.0.1680.1010@1920.0.1680.1010" timestamp="1601814955222" />
     <state width="1347" height="184" key="GridCell.Tab.0.bottom/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1602768642279" />
-    <state width="1237" height="51" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1608110688232" />
+    <state width="1237" height="55" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1608753916288" />
     <state width="938" height="348" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1608654263165" />
-    <state width="1877" height="160" key="GridCell.Tab.0.center" timestamp="1608718758418">
-      <screen x="0" y="-1080" width="1920" height="1040" />
+    <state width="1237" height="55" key="GridCell.Tab.0.center" timestamp="1608753916288">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state width="1877" height="92" key="GridCell.Tab.0.center/0.0.1280.680/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1605105736875" />
-    <state width="1877" height="160" key="GridCell.Tab.0.center/0.0.1280.680/0.-1080.1920.1040@0.-1080.1920.1040" timestamp="1608718758418" />
+    <state width="1272" height="63" key="GridCell.Tab.0.center/0.0.1280.680/0.-1080.1920.1040@0.-1080.1920.1040" timestamp="1608737777219" />
     <state width="1237" height="137" key="GridCell.Tab.0.center/0.0.1280.680/103.-1050.1680.1010@0.0.1280.680" timestamp="1605013457892" />
     <state width="1637" height="122" key="GridCell.Tab.0.center/0.0.1280.680/103.-1050.1680.1010@103.-1050.1680.1010" timestamp="1606235450112" />
     <state width="1237" height="41" key="GridCell.Tab.0.center/0.0.1280.680/1920.0.1680.1010@0.0.1280.680" timestamp="1600756956095" />
     <state width="1637" height="110" key="GridCell.Tab.0.center/0.0.1280.680/1920.0.1680.1010@1920.0.1680.1010" timestamp="1601814955222" />
     <state width="1347" height="184" key="GridCell.Tab.0.center/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1602768642279" />
-    <state width="1237" height="51" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1608110688232" />
+    <state width="1237" height="55" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1608753916288" />
     <state width="938" height="348" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1608654263165" />
-    <state width="1877" height="160" key="GridCell.Tab.0.left" timestamp="1608718758418">
-      <screen x="0" y="-1080" width="1920" height="1040" />
+    <state width="1237" height="55" key="GridCell.Tab.0.left" timestamp="1608753916288">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state width="1877" height="92" key="GridCell.Tab.0.left/0.0.1280.680/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1605105736874" />
-    <state width="1877" height="160" key="GridCell.Tab.0.left/0.0.1280.680/0.-1080.1920.1040@0.-1080.1920.1040" timestamp="1608718758418" />
+    <state width="1272" height="63" key="GridCell.Tab.0.left/0.0.1280.680/0.-1080.1920.1040@0.-1080.1920.1040" timestamp="1608737777219" />
     <state width="1237" height="137" key="GridCell.Tab.0.left/0.0.1280.680/103.-1050.1680.1010@0.0.1280.680" timestamp="1605013457892" />
     <state width="1637" height="122" key="GridCell.Tab.0.left/0.0.1280.680/103.-1050.1680.1010@103.-1050.1680.1010" timestamp="1606235450112" />
     <state width="1237" height="41" key="GridCell.Tab.0.left/0.0.1280.680/1920.0.1680.1010@0.0.1280.680" timestamp="1600756956094" />
     <state width="1637" height="110" key="GridCell.Tab.0.left/0.0.1280.680/1920.0.1680.1010@1920.0.1680.1010" timestamp="1601814955221" />
     <state width="1347" height="184" key="GridCell.Tab.0.left/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1602768642278" />
-    <state width="1237" height="51" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1608110688232" />
+    <state width="1237" height="55" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1608753916288" />
     <state width="938" height="348" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1608654263165" />
-    <state width="1877" height="160" key="GridCell.Tab.0.right" timestamp="1608718758418">
-      <screen x="0" y="-1080" width="1920" height="1040" />
+    <state width="1237" height="55" key="GridCell.Tab.0.right" timestamp="1608753916288">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state width="1877" height="92" key="GridCell.Tab.0.right/0.0.1280.680/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1605105736875" />
-    <state width="1877" height="160" key="GridCell.Tab.0.right/0.0.1280.680/0.-1080.1920.1040@0.-1080.1920.1040" timestamp="1608718758418" />
+    <state width="1272" height="63" key="GridCell.Tab.0.right/0.0.1280.680/0.-1080.1920.1040@0.-1080.1920.1040" timestamp="1608737777219" />
     <state width="1237" height="137" key="GridCell.Tab.0.right/0.0.1280.680/103.-1050.1680.1010@0.0.1280.680" timestamp="1605013457892" />
     <state width="1637" height="122" key="GridCell.Tab.0.right/0.0.1280.680/103.-1050.1680.1010@103.-1050.1680.1010" timestamp="1606235450112" />
     <state width="1237" height="41" key="GridCell.Tab.0.right/0.0.1280.680/1920.0.1680.1010@0.0.1280.680" timestamp="1600756956095" />
     <state width="1637" height="110" key="GridCell.Tab.0.right/0.0.1280.680/1920.0.1680.1010@1920.0.1680.1010" timestamp="1601814955222" />
     <state width="1347" height="184" key="GridCell.Tab.0.right/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1602768642279" />
-    <state width="1237" height="51" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1608110688232" />
+    <state width="1237" height="55" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1608753916288" />
     <state width="938" height="348" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1608654263165" />
     <state width="938" height="348" key="GridCell.Tab.1.bottom" timestamp="1608654263165">
       <screen x="0" y="0" width="1920" height="1040" />
@@ -1096,16 +1095,16 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="498" height="446" key="SwitcherDM/0.0.1920.1040@0.0.1920.1040" timestamp="1607003826282" />
-    <state x="494" y="-857" key="Vcs.Push.Dialog.v2" timestamp="1608718511279">
-      <screen x="0" y="-1080" width="1920" height="1040" />
+    <state x="329" y="120" key="Vcs.Push.Dialog.v2" timestamp="1608752945245">
+      <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="-1426" y="184" key="Vcs.Push.Dialog.v2/0.0.1280.680/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1605112569384" />
-    <state x="494" y="-857" key="Vcs.Push.Dialog.v2/0.0.1280.680/0.-1080.1920.1040@0.-1080.1920.1040" timestamp="1608718511279" />
+    <state x="494" y="-857" key="Vcs.Push.Dialog.v2/0.0.1280.680/0.-1080.1920.1040@0.-1080.1920.1040" timestamp="1608736892526" />
     <state x="329" y="146" key="Vcs.Push.Dialog.v2/0.0.1280.680/103.-1050.1680.1010@0.0.1280.680" timestamp="1602511685167" />
     <state x="535" y="-833" key="Vcs.Push.Dialog.v2/0.0.1280.680/103.-1050.1680.1010@103.-1050.1680.1010" timestamp="1607595824536" />
     <state x="2352" y="245" key="Vcs.Push.Dialog.v2/0.0.1280.680/1920.0.1680.1010@1920.0.1680.1010" timestamp="1601817418173" />
     <state x="2414" y="252" key="Vcs.Push.Dialog.v2/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1602764904349" />
-    <state x="329" y="120" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1607631273671" />
+    <state x="329" y="120" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1608752945245" />
     <state x="494" y="223" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1608468928090" />
     <state x="-10" y="-1080" width="1932" height="1051" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1608717113708">
       <screen x="0" y="-1080" width="1920" height="1040" />
@@ -1167,36 +1166,37 @@
     </watches-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/code$parse_raxml_ng.coverage" NAME="parse_raxmlNG Coverage Results" MODIFIED="1600272038375" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/parsing" />
+    <SUITE FILE_PATH="coverage/code$RAxML_NG.coverage" NAME="RAxML_NG Coverage Results" MODIFIED="1600782833994" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/execute_programs" />
+    <SUITE FILE_PATH="coverage/code$trying_copy.coverage" NAME="trying_copy Coverage Results" MODIFIED="1604341625863" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/utils" />
+    <SUITE FILE_PATH="coverage/code$whore.coverage" NAME="whore Coverage Results" MODIFIED="1604225972883" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data_processing" />
+    <SUITE FILE_PATH="coverage/code$get_ds.coverage" NAME="get_ds Coverage Results" MODIFIED="1600705717683" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data_processing" />
     <SUITE FILE_PATH="coverage/code$parse_raxmlNG__1_.coverage" NAME="parse_raxmlNG Coverage Results" MODIFIED="1600278107052" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/parsing" />
     <SUITE FILE_PATH="coverage/code$trying.coverage" NAME="trying Coverage Results" MODIFIED="1605376760791" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/code$course.coverage" NAME="course Coverage Results" MODIFIED="1605359576008" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/code$RF_learning.coverage" NAME="RF_learning Coverage Results" MODIFIED="1606302179395" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/execute_programs" />
-    <SUITE FILE_PATH="coverage/code$ll_RF_forward.coverage" NAME="ll_RF_forward Coverage Results" MODIFIED="1607630610118" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/figures" />
-    <SUITE FILE_PATH="coverage/code$trying_copy.coverage" NAME="trying_copy Coverage Results" MODIFIED="1604341625863" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/utils" />
-    <SUITE FILE_PATH="coverage/code$MLworkshop.coverage" NAME="MLworkshop Coverage Results" MODIFIED="1607965369504" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/code$RAxML_NG2.coverage" NAME="RAxML_NG Coverage Results" MODIFIED="1600783174535" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/execute_programs" />
-    <SUITE FILE_PATH="coverage/code$feauture_selection.coverage" NAME="feauture_selection Coverage Results" MODIFIED="1608106309265" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/figures" />
-    <SUITE FILE_PATH="coverage/code$run_times.coverage" NAME="run_times Coverage Results" MODIFIED="1604401415928" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/summary" />
-    <SUITE FILE_PATH="coverage/code$SPR_move.coverage" NAME="SPR_move Coverage Results" MODIFIED="1608718565845" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/execute_programs" />
-    <SUITE FILE_PATH="coverage/code$whore.coverage" NAME="whore Coverage Results" MODIFIED="1604225972883" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data_processing" />
-    <SUITE FILE_PATH="coverage/code$data_attributes.coverage" NAME="data_attributes Coverage Results" MODIFIED="1608110688205" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/figures" />
-    <SUITE FILE_PATH="coverage/code$Phyml.coverage" NAME="Phyml Coverage Results" MODIFIED="1600262723563" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/execute_programs" />
-    <SUITE FILE_PATH="coverage/code$parse_raxml_NG.coverage" NAME="parse_raxml_NG Coverage Results" MODIFIED="1604224170343" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/parsing" />
-    <SUITE FILE_PATH="coverage/code$saturation.coverage" NAME="saturation Coverage Results" MODIFIED="1606142379688" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/figures" />
-    <SUITE FILE_PATH="coverage/code$parse_raxml_ng.coverage" NAME="parse_raxmlNG Coverage Results" MODIFIED="1600272038375" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/parsing" />
-    <SUITE FILE_PATH="coverage/code$temp_for_ML_workshop.coverage" NAME="temp_for_ML_workshop Coverage Results" MODIFIED="1602764084312" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data_processing" />
     <SUITE FILE_PATH="coverage/code$extract_corr_of_top.coverage" NAME="extract_corr_of_top Coverage Results" MODIFIED="1608097673147" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/summary" />
-    <SUITE FILE_PATH="coverage/code$trying__1_.coverage" NAME="trying (1) Coverage Results" MODIFIED="1607788892672" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/utils" />
-    <SUITE FILE_PATH="coverage/code$create_starting_trees.coverage" NAME="create_starting_trees Coverage Results" MODIFIED="1606667099084" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data_processing" />
-    <SUITE FILE_PATH="coverage/code$SPR_move_one_parallel.coverage" NAME="SPR_move_one_parallel Coverage Results" MODIFIED="1601980731165" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/execute_programs" />
-    <SUITE FILE_PATH="coverage/code$SPR_forward.coverage" NAME="SPR_forward Coverage Results" MODIFIED="1607018483492" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/execute_programs" />
+    <SUITE FILE_PATH="coverage/code$trying__2_.coverage" NAME="trying (2) Coverage Results" MODIFIED="1608736093319" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/my_utils" />
+    <SUITE FILE_PATH="coverage/code$saturation.coverage" NAME="saturation Coverage Results" MODIFIED="1606142379688" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/figures" />
     <SUITE FILE_PATH="coverage/code$score_last_step.coverage" NAME="score_last_step Coverage Results" MODIFIED="1607623260550" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/summary" />
-    <SUITE FILE_PATH="coverage/code$RAxML_NG.coverage" NAME="RAxML_NG Coverage Results" MODIFIED="1600782833994" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/execute_programs" />
-    <SUITE FILE_PATH="coverage/code$trying_SPR.coverage" NAME="trying_SPR Coverage Results" MODIFIED="1600875524183" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/execute_programs" />
-    <SUITE FILE_PATH="coverage/code$get_ds.coverage" NAME="get_ds Coverage Results" MODIFIED="1600705717683" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data_processing" />
-    <SUITE FILE_PATH="coverage/code$collect_SPR_features.coverage" NAME="collect_SPR_features Coverage Results" MODIFIED="1607011549796" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/summary" />
-    <SUITE FILE_PATH="coverage/code$SVM_learning.coverage" NAME="SVM_learning Coverage Results" MODIFIED="1605183716042" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/execute_programs" />
+    <SUITE FILE_PATH="coverage/code$create_starting_trees.coverage" NAME="create_starting_trees Coverage Results" MODIFIED="1606667099084" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data_processing" />
+    <SUITE FILE_PATH="coverage/code$feauture_selection.coverage" NAME="feauture_selection Coverage Results" MODIFIED="1608106309265" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/figures" />
+    <SUITE FILE_PATH="coverage/code$data_attributes.coverage" NAME="data_attributes Coverage Results" MODIFIED="1608110688205" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/figures" />
+    <SUITE FILE_PATH="coverage/code$ll_RF_forward.coverage" NAME="ll_RF_forward Coverage Results" MODIFIED="1607630610118" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/figures" />
     <SUITE FILE_PATH="coverage/code$RAxML_NG__1_.coverage" NAME="RAxML_NG (1) Coverage Results" MODIFIED="1600344774120" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/execute_programs" />
+    <SUITE FILE_PATH="coverage/code$SPR_forward.coverage" NAME="SPR_forward Coverage Results" MODIFIED="1607018483492" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/execute_programs" />
+    <SUITE FILE_PATH="coverage/code$MLworkshop.coverage" NAME="MLworkshop Coverage Results" MODIFIED="1607965369504" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/code$collect_SPR_features.coverage" NAME="collect_SPR_features Coverage Results" MODIFIED="1607011549796" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/summary" />
+    <SUITE FILE_PATH="coverage/code$Phyml.coverage" NAME="Phyml Coverage Results" MODIFIED="1608746775554" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/execute_programs" />
+    <SUITE FILE_PATH="coverage/code$SPR_move_one_parallel.coverage" NAME="SPR_move_one_parallel Coverage Results" MODIFIED="1601980731165" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/execute_programs" />
+    <SUITE FILE_PATH="coverage/code$SPR_move.coverage" NAME="SPR_move Coverage Results" MODIFIED="1608752514809" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/execute_programs" />
+    <SUITE FILE_PATH="coverage/code$temp_for_ML_workshop.coverage" NAME="temp_for_ML_workshop Coverage Results" MODIFIED="1602764084312" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data_processing" />
+    <SUITE FILE_PATH="coverage/code$run_times.coverage" NAME="run_times Coverage Results" MODIFIED="1604401415928" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/summary" />
+    <SUITE FILE_PATH="coverage/code$SVM_learning.coverage" NAME="SVM_learning Coverage Results" MODIFIED="1605183716042" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/execute_programs" />
+    <SUITE FILE_PATH="coverage/code$RF_learning.coverage" NAME="RF_learning Coverage Results" MODIFIED="1606302179395" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/execute_programs" />
+    <SUITE FILE_PATH="coverage/code$course.coverage" NAME="course Coverage Results" MODIFIED="1605359576008" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/code$RAxML_NG2.coverage" NAME="RAxML_NG Coverage Results" MODIFIED="1600783174535" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/execute_programs" />
+    <SUITE FILE_PATH="coverage/code$trying__1_.coverage" NAME="trying (1) Coverage Results" MODIFIED="1607788892672" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/utils" />
+    <SUITE FILE_PATH="coverage/code$parse_raxml_NG.coverage" NAME="parse_raxml_NG Coverage Results" MODIFIED="1604224170343" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/parsing" />
+    <SUITE FILE_PATH="coverage/code$trying_SPR.coverage" NAME="trying_SPR Coverage Results" MODIFIED="1600875524183" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/execute_programs" />
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="watch">

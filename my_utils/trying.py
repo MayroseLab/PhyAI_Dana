@@ -129,7 +129,7 @@ if __name__ == '__main__':
 		NROWS = len(df)
 		group_ids_full = df["group_id"]
 		group_ids = group_ids_full.unique()
-		for group in group_ids[28:]:
+		for group in group_ids[:2]:  #[28:]:
 			s = df.index[df["group_id"] == group].tolist()
 			submit_job_ll(s[0], len(s), NROWS)
 
