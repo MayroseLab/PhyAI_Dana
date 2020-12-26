@@ -26,7 +26,7 @@ def run_raxml_mem_partitioned(tree_str, msa_tmpfile, log_filepath):
 			fpw.write(tree_str)
 
 		p = Popen([RAXML_NG_SCRIPT, '--evaluate','--opt-branches', 'on',
-				   '--opt-model', 'off', '--msa', msa_tmpfile, '--threads', '4', '--model', log_filepath, '--nofiles', '--redo', '--tree', tree_rampath],
+				   '--opt-model', 'off', '--msa', msa_tmpfile, '--threads', '8', '--model', log_filepath, '--nofiles', '--redo', '--tree', tree_rampath],
 				  stdout=PIPE, stdin=PIPE, stderr=STDOUT)
 		raxml_stdout = p.communicate()[0]
 		raxml_output = raxml_stdout.decode()
@@ -93,12 +93,14 @@ def index_ll_and_features(ds_path, outpath_prune, outpath_rgft, istart, nlines, 
 
 			df_rgft.loc[ind, FEATURES["res_bl"]] = features_restree_dict['res_bl']
 			#df_rgft.loc[ind, FEATURES["res_tbl"]] = features_restree_dict['res_tbl']
+			df_prune.to_csv(outpath_prune, mode='a', header=False)
+			df_rgft.to_csv(outpath_rgft, mode='a', header=False)
 
 
-	df_prune = df_prune[(df_prune["prune_name"] != ROOTLIKE_NAME) & (df_prune["rgft_name"] != ROOTLIKE_NAME)]  # .dropna()
-	df_rgft = df_rgft[(df_rgft["prune_name"] != ROOTLIKE_NAME) & (df_rgft["rgft_name"] != ROOTLIKE_NAME)]  # .dropna()
-	df_prune.to_csv(outpath_prune)  # runover existing one to fill in all features
-	df_rgft.to_csv(outpath_rgft)  # runover existing one to fill in all features
+	#df_prune = df_prune[(df_prune["prune_name"] != ROOTLIKE_NAME) & (df_prune["rgft_name"] != ROOTLIKE_NAME)]  # .dropna()
+	#df_rgft = df_rgft[(df_rgft["prune_name"] != ROOTLIKE_NAME) & (df_rgft["rgft_name"] != ROOTLIKE_NAME)]  # .dropna()
+	#df_prune.to_csv(outpath_prune)
+	#df_rgft.to_csv(outpath_rgft)
 
 	return
 
@@ -124,12 +126,14 @@ if __name__ == '__main__':
 	args = parser.parse_args()
 
 	if not args.index_to_start_run:
-		df = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/{}newicks_step1.csv".format(EXAMPLE_DIRNAME), nrows=100).dropna() #,index_col=0)
+		df = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/{}newicks_step1.csv".format(EXAMPLE_DIRNAME)).dropna() #,index_col=0)
 
 		NROWS = len(df)
+		print(NROWS)
+		print(df.tail())
 		group_ids_full = df["group_id"]
 		group_ids = group_ids_full.unique()
-		for group in group_ids[2:]:
+		for group in group_ids[1:]:
 			s = df.index[df["group_id"] == group].tolist()
 			submit_job_ll(s[0], len(s), NROWS)
 
