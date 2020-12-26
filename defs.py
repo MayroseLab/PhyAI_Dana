@@ -13,7 +13,7 @@ from my_utils import create_job_file
 from ete3 import *
 
 DBSET = "JC"
-DIR_PREFIX = "" if DBSET == "1" else "DBset2/" if DBSET == "2" else "validation_set/" if DBSET== "val1" else "validation_set2/" if DBSET == "val2" else "starting_trees_ml_minus1/"
+DIR_PREFIX = "" if DBSET == "1" else "DBset2/" if DBSET == "2" else "validation_set/" if DBSET== "val1" else "validation_set2/" if DBSET == "val2" else "submission_data/"
 SEP = "/"
 
 if platform.system() == 'Linux':
