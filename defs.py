@@ -12,7 +12,7 @@ import shutil
 from my_utils import create_job_file
 from ete3 import *
 
-DBSET = "2"
+DBSET = "JC"
 DIR_PREFIX = "" if DBSET == "1" else "DBset2/" if DBSET == "2" else "validation_set/" if DBSET== "val1" else "validation_set2/" if DBSET == "val2" else "starting_trees_ml_minus1/"
 SEP = "/"
 
@@ -36,7 +36,7 @@ FASTA_FORMAT = "fasta"
 PHYLIP_FORMAT = "phylip-relaxed"
 NEXUS_FORMAT = "nexus"
 MSA_PHYLIP_FILENAME_NOT_MASKED = "real_msa.phy"
-MSA_PHYLIP_FILENAME = "masked_species_" + MSA_PHYLIP_FILENAME_NOT_MASKED
+MSA_PHYLIP_FILENAME = MSA_PHYLIP_FILENAME_NOT_MASKED
 MSA_SUBTREE_FILENAME = "subtree_msa.phy"
 
 REARRANGEMENTS_NAME = "rearrangement"
