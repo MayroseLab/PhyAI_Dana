@@ -160,6 +160,7 @@ def concat_n_features(dirpath, max_n_features):
 
 if __name__ == '__main__':
 	dirpath = SUMMARY_FILES_DIR if platform.system() == 'Linux' else DATA_PATH
+	'''
 	##dirpath += 'results_feature_selection/'
 	#df = concat_n_features(dirpath, max_n_features=19)
 	#df.to_csv(dirpath + 'temp.csv')
@@ -197,12 +198,14 @@ if __name__ == '__main__':
 	F, p = stats.f_oneway(a19, a8)
 	print(p)
 	exit()
+	'''
 
 	#df = pd.read_csv(dirpath + SCORES_PER_DS.format("20_1_4200_ytransformed_exp"))
-	df = pd.read_csv(dirpath + SCORES_PER_DS.format("20_1_validation_set_ytransformed_exp"))
+	#df = pd.read_csv(dirpath + SCORES_PER_DS.format("20_1_validation_set_ytransformed_exp"))
 	#df = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/summary_files/results_saturation/scores_per_ds_20_1_validation_set_4200_ytransformed_exp10_cp.csv")
+	df = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/submission_data/summary_files/scores_per_ds_19_1_validation_set_ytransformed_exp.csv")
 	plot_main_results2(df)
-	
+
 	
 	'''
 	temp_dir = "C:\\Users\\ItayMNB3\\Desktop\\"
