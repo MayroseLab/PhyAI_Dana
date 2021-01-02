@@ -36,12 +36,13 @@ def plot_lines(lls_arr, RFs_arr):
 
 	ax2 = ax1.twinx()  # instantiate a second axes that shares the same x-axis
 	color = next(palette)
-	ax2.set_ylabel('-Log-likelihood estimate', color=color)  # we already handled the x-label with ax1
+	ax2.set_ylabel('Log-likelihood', color=color)  # we already handled the x-label with ax1
 	ax2.plot(moveN, lls_arr, color=color)
 	ax2.tick_params(axis='y', labelcolor=color)
 
 	plt.xticks(moveN)
 	fig.tight_layout()
+	plt.savefig("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/summary_files/" + "FigS5", dpi=300)
 	plt.show()
 
 

@@ -294,6 +294,7 @@ def fit_transformation(df, move_type, trans=False):
 	# scale to the abs value of the starting tree ll
 	df[LABEL.format(move_type)] /= -df["orig_ds_ll"]  # minus (abs) to preserve order. 'ascending' should be True in 'get_cumsun_preds' function
 
+	'''
 	if trans == 'rank':
 		groups_ids = df[FEATURES[GROUP_ID]].unique()
 		for group_id in groups_ids:
@@ -308,6 +309,36 @@ def fit_transformation(df, move_type, trans=False):
 	if trans == 'exp10':
 		from scipy.special import exp10
 		df[LABEL.format(move_type)] = exp10(df[LABEL.format(move_type)] + 1)
+	'''
+	#'''
+	f = plt.figure()
+	sns.set_context("paper", font_scale=1.2)
+	#from sklearn import preprocessing
+	#scaler = StandardScaler()
+	df["No transformation on target value"] = (df[LABEL.format(move_type)].values.reshape(-1, 1))
+	df["No transformation on target value"].plot.kde(by=FEATURES[GROUP_ID])
+	#plt.show()
+
+	df["exp2 (2^) transformation on target value"] = (np.exp2(df[LABEL.format(move_type)]+1).values.reshape(-1, 1))-2
+	df["exp2 (2^) transformation on target value"].plot.kde(by=FEATURES[GROUP_ID])
+	from scipy.special import exp10
+	#df["10^ (exp10)"] = (exp10(df[LABEL.format(move_type)] + 1).values.reshape(-1, 1))-10
+	#df["10^ (exp10)"].plot.kde(by=FEATURES[GROUP_ID])
+	#df["expe (e^) transformation on target value"] = (np.exp(df[LABEL.format(move_type)] + 1).values.reshape(-1,1)) - np.e
+	#df["expe (e^) transformation on target value"].plot.kde(by=FEATURES[GROUP_ID])
+
+	plt.xlim(-0.2,0.01)
+	plt.xlabel("Target value")
+	plt.xticks(np.arange(-0.2, 0.025, step=0.02))
+	#plt.axvline(0, 0, 45, color='grey')
+	plt.legend()
+
+	f.tight_layout()
+	f.set_size_inches(7, 7, forward=True)
+	#plt.savefig("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/summary_files/" + "FigS6.tif", dpi=300)
+	plt.show()
+	exit()
+	#'''
 
 	return df
 

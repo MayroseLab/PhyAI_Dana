@@ -109,7 +109,7 @@ if __name__ == '__main__':
 	dirpath += 'results_saturation/'
 	df = concat_n_features(dirpath, ndots, xticks)
 	#plot_scores2(df)
-	plot_corr(df)
+	#plot_corr(df)
 
 
 	a1500 = df.loc[df[N_DATASETS_COL] == xticks[3], SCORES_LST[0]].dropna().values
@@ -122,4 +122,6 @@ if __name__ == '__main__':
 	a6000 = df.loc[df[N_DATASETS_COL] == xticks[13], SCORES_LST[0]].dropna().values
 
 	F, p = stats.f_oneway(a4200, a6000)
+	print(p)
+	F, p = stats.f_oneway(a4200, a5000, a6000)
 	print(p)

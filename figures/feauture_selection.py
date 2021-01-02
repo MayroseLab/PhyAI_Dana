@@ -81,23 +81,57 @@ def plot_main_results2(df):
 	return
 
 
+def plot_main_results2_oneline(df):
+	f = plt.figure(figsize=(5,15))
+	sns.set_context("paper", font_scale=1.2)
+	ax1 = f.add_subplot(121)
+	ax2 = f.add_subplot(122)
+	ax3 = f.add_subplot(123)
+	axes = [ax1, ax2, ax3]
+	for i, ax in enumerate(axes):
+		sns.distplot(df[SCORES_LST[i]].values, ax=ax, color=next(palette), kde=False, label="big",
+					 bins=25)  # , norm_hist=True)
 
-removed_featured_dict = {19: 'Sum of branches between regrafting and pruning',
-		   17: 'Number of branches between regrafting and pruning',
-		   16: 'The length of the branch that was being pruned',
-		   15: 'The longest branch in the subtree in Fig. 1b',
-		   18: 'The sum of branches in the starting tree',
-		   13: 'The sum of branches in the subtree in Fig. 1b',
-		   11: 'The sum of branches in the subtree in Fig. 1c',
-		   8: 'The length of the branch that was being regrafted',
-		   12: 'The longest branch in the starting tree',
-		   14: 'The length of the branch formed due to pruning',
-		   9: 'The longest branch in the subtree in Fig. 1c',
-		   6: 'The sum of branches in the subtree in Fig. 1c2',
-		   4: 'The longest branch in the subtree in Fig. 1c2',
-		   10: 'The longest branch in the subtree in Fig. 1c1',
-		   5: 'The sum of branches in the subtree in Fig. 1c1',
-		   7: 'The number of leaves in the subtree in Fig. 1c',
+	yperc1 = [int(100 * y / len(df)) for y in ax1.get_yticks()]
+	#yperc2 = [int(100 * y / len(df)) for y in ax2.get_yticks()]
+	#yperc3 = [int(100 * y / len(df)) for y in ax3.get_yticks()]
+
+	ax1.set(xlabel='Spearman correlation ({})'.format(r'$\rho$'), ylabel="% Empirical datasets", yticklabels=yperc1,
+			xlim=(0, 1))
+	ax2.set(xlabel="Empirically best ranking percentile", xlim=(0, 100))
+	ax3.set(xlabel="Best predicted ranking percentile", xlim=(0, 100))
+	ax3.set_yticklabels(ax3.get_yticklabels(), size=30)
+
+	ax1.text(0, 1.15, "a", transform=ax1.transAxes, fontsize=18, fontweight='bold', va='top', ha='right')
+	ax2.text(0, 1.15, "b", transform=ax2.transAxes, fontsize=18, fontweight='bold', va='top', ha='right')
+	ax3.text(0, 1.15, "c", transform=ax3.transAxes, fontsize=18, fontweight='bold', va='top', ha='right')
+
+	f.tight_layout()
+	f.set_size_inches(7, 7, forward=True)
+	# plt.savefig(SUMMARY_FILES_DIR + "Fig2.tif", dpi=300)
+	# plt.savefig(SUMMARY_FILES_DIR + "FigS1.tif", dpi=300)
+	plt.show()
+
+	return
+
+
+
+removed_featured_dict = {19: 'Sum of branches between pruning and regrafting',
+		   18: 'Number of branches between pruning and regrafting',
+		   16: 'The length of the pruned branch',
+		   15: 'The longest branch of the subtree in Fig. 1b',
+		   17: 'The sum of branches in the starting tree',
+		   14: 'The sum of branches of the subtree in Fig. 1b',
+		   12: 'The sum of branches of the subtree in Fig. 1c',
+		   9: 'The length of the regrafted branch',
+		   13: 'The longest branch in the starting tree',
+		   11: 'The length of the branch formed due to pruning',
+		   8: 'The longest branch of the subtree in Fig. 1c',
+		   7: 'The sum of branches of the subtree in Fig. 1c2',
+		   4: 'The longest branch of the subtree in Fig. 1c2',
+		   10: 'The longest branch of the subtree in Fig. 1c1',
+		   5: 'The sum of branches of the subtree in Fig. 1c1',
+		   6: 'The number of leaves in the subtree in Fig. 1c',
 		   3: 'The number of leaves in the subtree in Fig. 1b',
 		   2: 'The number of leaves in the subtree in Fig. 1c2',
 		   1: 'The number of leaves in the subtree Fig. 1c1'}
@@ -165,7 +199,7 @@ if __name__ == '__main__':
 	#df = concat_n_features(dirpath, max_n_features=19)
 	#df.to_csv(dirpath + 'temp.csv')
 	scores_feature_selection(pd.read_csv(dirpath + 'temp.csv'))
-	exit()
+	#exit()
 	df = pd.read_csv(dirpath + 'temp.csv')
 	a8 = df.loc[df[N_FEATURES_COL] == 8, SCORES_LST[0]].dropna().values
 	a9 = df.loc[df[N_FEATURES_COL] == 9, SCORES_LST[0]].dropna().values
@@ -181,7 +215,9 @@ if __name__ == '__main__':
 	a19 = df.loc[df[N_FEATURES_COL] == 19, SCORES_LST[0]].dropna().values
 	import scipy.stats as stats
 
-	F, p = stats.f_oneway(a19, a15)
+	F, p = stats.f_oneway(a19,a18,a17,a16, a15)
+	print(p)
+	F, p = stats.f_oneway(a19, a14, a13, a12, a11, a10, a9, a8)
 	print(p)
 	F, p = stats.f_oneway(a19, a14)
 	print(p)
@@ -198,13 +234,13 @@ if __name__ == '__main__':
 	F, p = stats.f_oneway(a19, a8)
 	print(p)
 	exit()
-	'''
+	#'''
 
-	#df = pd.read_csv(dirpath + SCORES_PER_DS.format("20_1_4200_ytransformed_exp"))
-	#df = pd.read_csv(dirpath + SCORES_PER_DS.format("20_1_validation_set_ytransformed_exp"))
+	df = pd.read_csv(dirpath + 'v4_20features/' + SCORES_PER_DS.format("20_1_4200_ytransformed_exp"))
 	#df = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/summary_files/results_saturation/scores_per_ds_20_1_validation_set_4200_ytransformed_exp10_cp.csv")
-	df = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/submission_data/summary_files/scores_per_ds_19_1_validation_set_ytransformed_exp.csv")
-	plot_main_results2(df)
+	#df = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/submission_data/summary_files/scores_per_ds_19_1_validation_set_ytransformed_exp.csv")
+	plot_main_results2_oneline(df)
+	#plot_main_results2(df)
 
 	
 	'''
