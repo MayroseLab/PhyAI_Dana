@@ -1,7 +1,7 @@
 #########################################################################
 ##                 Copyright (C). All Rights Reserved.                   ##
-##      "Machine learning potentially boosta heuristic strategies        ##
-##                                      for phylogenetic-tree search"    ##
+##      "Harnessing machine learning to guide                            ##
+##                              phylogenetic-tree search algorithms"     ##
 ##                                                                       ##
 ## by Dana Azouri, Shiran Abadi, Yishay Mansour, Itay Mayrose, Tal Pupko ##
 ##                                                                       ##
@@ -165,13 +165,11 @@ def prune_branch(t_orig, prune_name):
 	prune_loc = prune_node_cp
 	prune_loc.detach()  # pruning: prune_node_cp is now the subtree we detached. t_cp_p is the one that was left behind
 	t_cp_p.search_nodes(name=nname)[0].delete(preserve_branch_length=True)  # delete the specific node (without its childs) since after pruning this branch should not be divided
-	if not nname:
-		nname = "Nnew_p"
 
 	return nname, prune_node_cp, t_cp_p
 
 
-def regraft_branch(t_cp_p, rgft_node, prune_node_cp, rgft_name, nname):
+def regraft_branch(t_cp_p, rgft_node, prune_node_cp, rgft_name, nname, preserve=False):
 	'''
 	get a tree with the 2 concatenated subtrees
 	'''
@@ -187,8 +185,11 @@ def regraft_branch(t_cp_p, rgft_node, prune_node_cp, rgft_name, nname):
 	t_temp.add_child(rgft_node_cp, dist=new_branch_length)
 	t_temp.name = nname
 	rgft_loc.add_child(t_temp, dist=new_branch_length)  # regrafting
+	if nname == "ROOT_LIKE":  # (4)
+		t_temp.delete()
+		preserve = True  # preserve the name of the root node, as this is a REAL node in this case
 
-	return t_curr
+	return t_curr, preserve
 
 
 def add_internal_names(tree_file, tree_file_cp_no_internal, t_orig):
@@ -325,6 +326,15 @@ def all_SPR(ds_path, outpath):
 		params_dict = (parse_phyml_stats_output(None, stats_filepath))
 		freq, rates, pinv, alpha = [params_dict["fA"], params_dict["fC"], params_dict["fG"], params_dict["fT"]], [params_dict["subAC"], params_dict["subAG"], params_dict["subAT"], params_dict["subCG"],params_dict["subCT"], params_dict["subGT"]], params_dict["pInv"], params_dict["gamma"]
 		df = pd.DataFrame()
+		
+		############## generate all SPRs and copute it likelihoods #############
+		## (1) avoid moves to a branch in the pruned subtree
+		## (2) avoid moves to the branch of a sibiling (retaining the same topology)
+		## (3) avoid moves to the branch leading to the parent of the (retaining the same topology)
+		## (4) handle the automatic "ROOTLIKE" node of ETE trees -
+		##     if the PRUNE location is around the rootlike --> delete the "ROOT_LIKE" subnode when pasting in dest,
+		##     and preserve the name of the REAL rootnode when converting back to newick
+		########################################################################
 		for i, prune_node in enumerate(t_orig.iter_descendants("levelorder")):
 			prune_name = prune_node.name
 			nname, subtree1, subtree2 = prune_branch(t_orig, prune_name) # subtree1 is the pruned subtree. subtree2 is the remaining subtree
@@ -333,19 +343,23 @@ def all_SPR(ds_path, outpath):
 				csvwriter.writerow([str(i)+",0", prune_name, SUBTREE1, subtree1.write(format=1)])
 				csvwriter.writerow([str(i)+",1", prune_name, SUBTREE2, subtree2.write(format=1)])
 
-			for j, rgft_node in enumerate(subtree2.iter_descendants("levelorder")):
+			for j, rgft_node in enumerate(subtree2.iter_descendants("levelorder")): # traversing over subtree2 captures cases (1) and (3)
 				ind = str(i) + "," + str(j)
 				rgft_name = rgft_node.name
-				if nname == rgft_name: # if the rgrft node is the one that was pruned
+				if nname == rgft_name: # captures case (2)
 					continue
-				rearr_tree_str = regraft_branch(subtree2, rgft_node, subtree1, rgft_name, nname).write(format=1)
-
+				rearr_tree, preserve = regraft_branch(subtree2, rgft_node, subtree1, rgft_name, nname)
+				if preserve:  # namely, (4) is True
+					neighbor_tree_str = rearr_tree.write(format=1, format_root_node=True)
+				else:
+					neighbor_tree_str = rearr_tree.write(format=1)
+					
 				### save tree to file by using "append"
 				with open(OUTPUT_TREES_FILE, "a", newline='') as fpa:
 					csvwriter = csv.writer(fpa)
-					csvwriter.writerow([ind, prune_name, rgft_name, rearr_tree_str])
+					csvwriter.writerow([ind, prune_name, rgft_name, neighbor_tree_str])
 
-				ll_rearr, rtime = call_raxml_mem(rearr_tree_str, msa_rampath, rates, pinv, alpha, freq)
+				ll_rearr, rtime = call_raxml_mem(neighbor_tree_str, msa_rampath, rates, pinv, alpha, freq)
 
 				df.loc[ind, "prune_name"], df.loc[ind, "rgft_name"] = prune_name, rgft_name
 				df.loc[ind, "prune_name"], df.loc[ind, "rgft_name"] = prune_name, rgft_name

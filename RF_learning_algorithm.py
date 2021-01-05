@@ -1,7 +1,7 @@
 #########################################################################
 ##                 Copyright (C). All Rights Reserved.                   ##
-##      "Harnessing machine-learning to boost heuristic strategies       ##
-##                                      for phylogenetic-tree search"    ##
+##      "Harnessing machine learning to guide                            ##
+##                              phylogenetic-tree search algorithms"     ##
 ##                                                                       ##
 ## by Dana Azouri, Shiran Abadi, Yishay Mansour, Itay Mayrose, Tal Pupko ##
 ##                                                                       ##
@@ -12,7 +12,6 @@
 ## If you use the code, please cite the paper                            ##
 ##                                                                       ##
 #########################################################################
-
 from defs_PhyAI import *
 from sklearn.ensemble import RandomForestRegressor
 from statistics import mean, median
