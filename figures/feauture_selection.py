@@ -82,11 +82,8 @@ def plot_main_results2(df):
 
 
 def plot_main_results2_oneline(df):
-	f = plt.figure(figsize=(5,15))
 	sns.set_context("paper", font_scale=1.2)
-	ax1 = f.add_subplot(121)
-	ax2 = f.add_subplot(122)
-	ax3 = f.add_subplot(123)
+	f, (ax1, ax2, ax3) = plt.subplots(1,3, figsize=(15,5))
 	axes = [ax1, ax2, ax3]
 	for i, ax in enumerate(axes):
 		sns.distplot(df[SCORES_LST[i]].values, ax=ax, color=next(palette), kde=False, label="big",
@@ -96,20 +93,18 @@ def plot_main_results2_oneline(df):
 	#yperc2 = [int(100 * y / len(df)) for y in ax2.get_yticks()]
 	#yperc3 = [int(100 * y / len(df)) for y in ax3.get_yticks()]
 
-	ax1.set(xlabel='Spearman correlation ({})'.format(r'$\rho$'), ylabel="% Empirical datasets", yticklabels=yperc1,
-			xlim=(0, 1))
+	ax1.set(xlabel='Spearman correlation ({})'.format(r'$\rho$'), ylabel="% Empirical datasets", yticklabels=yperc1, xlim=(0, 1))
 	ax2.set(xlabel="Empirically best ranking percentile", xlim=(0, 100))
 	ax3.set(xlabel="Best predicted ranking percentile", xlim=(0, 100))
+	ax2.set_yticklabels(ax2.get_yticklabels(), size=30)
 	ax3.set_yticklabels(ax3.get_yticklabels(), size=30)
 
-	ax1.text(0, 1.15, "a", transform=ax1.transAxes, fontsize=18, fontweight='bold', va='top', ha='right')
-	ax2.text(0, 1.15, "b", transform=ax2.transAxes, fontsize=18, fontweight='bold', va='top', ha='right')
-	ax3.text(0, 1.15, "c", transform=ax3.transAxes, fontsize=18, fontweight='bold', va='top', ha='right')
+	ax1.text(0, 1.08, "a", transform=ax1.transAxes, fontsize=18, fontweight='bold', va='top', ha='right')
+	ax2.text(0, 1.08, "b", transform=ax2.transAxes, fontsize=18, fontweight='bold', va='top', ha='right')
+	ax3.text(0, 1.08, "c", transform=ax3.transAxes, fontsize=18, fontweight='bold', va='top', ha='right')
 
 	f.tight_layout()
-	f.set_size_inches(7, 7, forward=True)
-	# plt.savefig(SUMMARY_FILES_DIR + "Fig2.tif", dpi=300)
-	# plt.savefig(SUMMARY_FILES_DIR + "FigS1.tif", dpi=300)
+	plt.savefig(SUMMARY_FILES_DIR + "FigS4.tif", dpi=300)
 	plt.show()
 
 	return
@@ -236,9 +231,9 @@ if __name__ == '__main__':
 	exit()
 	#'''
 
-	df = pd.read_csv(dirpath + 'v4_20features/' + SCORES_PER_DS.format("20_1_4200_ytransformed_exp"))
+	#df = pd.read_csv(dirpath + 'v4_20features/' + SCORES_PER_DS.format("20_1_4200_ytransformed_exp"))
 	#df = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/summary_files/results_saturation/scores_per_ds_20_1_validation_set_4200_ytransformed_exp10_cp.csv")
-	#df = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/submission_data/summary_files/scores_per_ds_19_1_validation_set_ytransformed_exp.csv")
+	df = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/submission_data/summary_files/scores_per_ds_19_1_validation_set_ytransformed_exp.csv")
 	plot_main_results2_oneline(df)
 	#plot_main_results2(df)
 
