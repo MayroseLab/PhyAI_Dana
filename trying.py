@@ -58,8 +58,8 @@ def SPR_generator(t):
 	    and preserve the name of the REAL rootnode when converting back to newick
 	'''
 	
-	prune_name = "Sp004"
-	rgft_name = "Sp005"
+	prune_name = "N8"
+	rgft_name = "N4"
 	all_nodes_names = [n.name for n in t.get_descendants()]
 	
 	# perform pruning
@@ -75,7 +75,7 @@ def SPR_generator(t):
 		else:
 			neighbor_tree_str = neighbor_tree.write(format=1)
 		print(neighbor_tree_str)
-		#print(Tree(newick=neighbor_tree_str, format=1).get_ascii(show_internal=True))
+		print(Tree(newick=neighbor_tree_str, format=1).get_ascii(show_internal=True))
 	else:
 		print("Forbidden move: {} --> {} for this tree !".format(prune_name, rgft_name))
 		#continue
