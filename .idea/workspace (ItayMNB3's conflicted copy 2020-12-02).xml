@@ -23,17 +23,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="04f6d22b-03c8-46f3-ac77-b58c4e95d95d" name="Default Changelist" comment="-">
-      <change afterPath="$PROJECT_DIR$/.idea/remote-mappings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace (ItayM3's conflicted copy 2020-12-06).xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace (ItayMNB3's conflicted copy 2020-10-26).xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace (ItayMNB3's conflicted copy 2020-11-05).xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace (ItayMNB3's conflicted copy 2020-12-02).xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace (ItayMNB3's conflicted copy 2020-12-25).xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/code.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/code.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/deployment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deployment.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/trying.py" beforeDir="false" afterPath="$PROJECT_DIR$/trying.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MLworkshop.py" beforeDir="false" afterPath="$PROJECT_DIR$/MLworkshop.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,7 +63,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="SearchEverywhereHistoryKey" value="100_ds&#9;null&#9;null&#10;TODO&#9;FILE&#9;file://C:/Program Files/Anaconda3/pkgs/sphinx-1.4.6-py35_0/Lib/site-packages/Sphinx-1.4.6-py3.5.egg/sphinx/ext/todo.py&#10;&quot;Sp&#9;null&#9;null&#10;lear&#9;FILE&#9;file://D:/Users/Administrator/Dropbox/PhyloAI/code/execute_programs/learning_by_prune.py&#10;ntaxa&#9;null&#9;null" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../code2" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../PhyAI_writing/second/figures" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.tslint" value="project" />
@@ -94,15 +85,15 @@
       <recent name="D:\Users\Administrator\Dropbox\PhyloAI\code\execute_programs" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\ItayMNB3\Dropbox\PhyloAI\code\figures" />
-      <recent name="C:\Users\ItayM3\Dropbox\PhyloAI\code\execute_programs" />
       <recent name="C:\Users\ItayM3\Dropbox\PhyloAI\code\utils" />
       <recent name="C:\Users\ItayMNB3\Dropbox\PhyloAI\code\execute_programs" />
       <recent name="C:\Users\ItayMNB3\Dropbox\PhyloAI\code" />
+      <recent name="C:\Users\ItayMNB3\Dropbox\PhyloAI\code\data_processing" />
+      <recent name="D:\Users\Administrator\Dropbox\PhyloAI\code\execute_programs" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.trying">
-    <configuration name="Phyml" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+  <component name="RunManager" selected="Python.MLworkshop">
+    <configuration name="MLworkshop" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="code" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -110,13 +101,13 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/execute_programs" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/execute_programs/Phyml.py" />
-      <option name="PARAMETERS" value="-f &quot;/groups/itay_mayrose/danaazouri/PhyAI/DBset2/data_test/real_msa2.phy&quot; -m JC" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/MLworkshop.py" />
+      <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -204,7 +195,7 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/execute_programs/SPR_move.py" />
-      <option name="PARAMETERS" value="-st 1 -r -ds /groups/itay_mayrose/danaazouri/PhyAI/submission_data/data/training_datasets/24354/ -phy" />
+      <option name="PARAMETERS" value="-st best_pred_st2 -r -ds /groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/exampleSphaero/" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -248,7 +239,7 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/summary/collect_SPR_features.py" />
-      <option name="PARAMETERS" value="-st best_pred_st1 -ds /groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/exampleSphaero/" />
+      <option name="PARAMETERS" value="-st best_pred_st2 -ds /groups/itay_mayrose/danaazouri/PhyAI/DBset2/data/training_datasets/exampleSphaero/" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -322,28 +313,6 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="ll_RF_forward" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="code" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/figures" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/figures/ll_RF_forward.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="run_times" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="code" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -388,7 +357,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="trying (2)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="score_last_step" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="code" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -396,12 +365,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/my_utils" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/summary" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/my_utils/trying.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/summary/score_last_step.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -476,28 +445,6 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="whore" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
-      <module name="code" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/data_processing" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/data_processing/whore.py" />
-      <option name="PARAMETERS" value="-ds 1" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration default="true" type="tests" factoryName="Unittests">
       <module name="code" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -522,21 +469,19 @@
       <item itemvalue="Python.learning_by_move_type" />
       <item itemvalue="Python.run_times" />
       <item itemvalue="Python.trying" />
-      <item itemvalue="Python.whore" />
-      <item itemvalue="Python.Phyml" />
-      <item itemvalue="Python.trying (2)" />
+      <item itemvalue="Python.MLworkshop" />
+      <item itemvalue="Python.data_attributes" />
       <item itemvalue="Python.feauture_selection" />
       <item itemvalue="Python.saturation" />
-      <item itemvalue="Python.ll_RF_forward" />
-      <item itemvalue="Python.data_attributes" />
+      <item itemvalue="Python.score_last_step" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.MLworkshop" />
         <item itemvalue="Python.data_attributes" />
         <item itemvalue="Python.feauture_selection" />
-        <item itemvalue="Python.ll_RF_forward" />
         <item itemvalue="Python.saturation" />
-        <item itemvalue="Python.trying (2)" />
+        <item itemvalue="Python.score_last_step" />
       </list>
     </recent_temporary>
   </component>
@@ -596,354 +541,340 @@
       <workItem from="1606288474114" duration="24730000" />
       <workItem from="1606319341504" duration="3712000" />
       <workItem from="1606404993285" duration="3157000" />
-      <workItem from="1606898990138" duration="12258000" />
-      <workItem from="1607357900099" duration="6133000" />
-      <workItem from="1607419243594" duration="4718000" />
-      <workItem from="1607529204642" duration="967000" />
-      <workItem from="1607583389480" duration="7656000" />
-      <workItem from="1607622558294" duration="6749000" />
-      <workItem from="1607781326341" duration="14000" />
-      <workItem from="1607781366838" duration="2550000" />
-      <workItem from="1607844588396" duration="17630000" />
-      <workItem from="1608097195109" duration="9417000" />
-      <workItem from="1608190836661" duration="22748000" />
-      <workItem from="1608447432424" duration="36914000" />
-      <workItem from="1608725557613" duration="14613000" />
-      <workItem from="1608799582364" duration="11390000" />
-      <workItem from="1609155614144" duration="1554000" />
-      <workItem from="1609226269587" duration="1458000" />
-      <workItem from="1609317331806" duration="9048000" />
-      <workItem from="1609337275921" duration="3613000" />
-      <workItem from="1609423715098" duration="8267000" />
-      <workItem from="1609579679123" duration="8350000" />
-      <workItem from="1609684335884" duration="19811000" />
-      <workItem from="1609847819198" duration="1769000" />
-      <workItem from="1610889769585" duration="6030000" />
-      <workItem from="1611221084328" duration="1306000" />
-      <workItem from="1611222415865" duration="212000" />
-      <workItem from="1611222651297" duration="980000" />
-      <workItem from="1611223686727" duration="1307000" />
-      <workItem from="1611225019025" duration="1745000" />
+      <workItem from="1606898990138" duration="8000" />
     </task>
-    <task id="LOCAL-01371" summary="saturation">
-      <created>1608044809287</created>
-      <option name="number" value="01371" />
-      <option name="presentableId" value="LOCAL-01371" />
+    <task id="LOCAL-01288" summary="-">
+      <created>1604921277155</created>
+      <option name="number" value="01288" />
+      <option name="presentableId" value="LOCAL-01288" />
       <option name="project" value="LOCAL" />
-      <updated>1608044809287</updated>
+      <updated>1604921277155</updated>
     </task>
-    <task id="LOCAL-01372" summary="saturation">
-      <created>1608044872698</created>
-      <option name="number" value="01372" />
-      <option name="presentableId" value="LOCAL-01372" />
+    <task id="LOCAL-01289" summary="run additional large datasets">
+      <created>1604921307140</created>
+      <option name="number" value="01289" />
+      <option name="presentableId" value="LOCAL-01289" />
       <option name="project" value="LOCAL" />
-      <updated>1608044872698</updated>
+      <updated>1604921307140</updated>
     </task>
-    <task id="LOCAL-01373" summary="saturation">
-      <created>1608044919995</created>
-      <option name="number" value="01373" />
-      <option name="presentableId" value="LOCAL-01373" />
+    <task id="LOCAL-01290" summary="run additional large datasets">
+      <created>1604923638619</created>
+      <option name="number" value="01290" />
+      <option name="presentableId" value="LOCAL-01290" />
       <option name="project" value="LOCAL" />
-      <updated>1608044919995</updated>
+      <updated>1604923638619</updated>
     </task>
-    <task id="LOCAL-01374" summary="saturation">
-      <created>1608044987927</created>
-      <option name="number" value="01374" />
-      <option name="presentableId" value="LOCAL-01374" />
+    <task id="LOCAL-01291" summary="run additional large datasets">
+      <created>1604924006278</created>
+      <option name="number" value="01291" />
+      <option name="presentableId" value="LOCAL-01291" />
       <option name="project" value="LOCAL" />
-      <updated>1608044987927</updated>
+      <updated>1604924006278</updated>
     </task>
-    <task id="LOCAL-01375" summary="-">
-      <created>1608046649307</created>
-      <option name="number" value="01375" />
-      <option name="presentableId" value="LOCAL-01375" />
+    <task id="LOCAL-01292" summary="run additional large datasets">
+      <created>1604929869192</created>
+      <option name="number" value="01292" />
+      <option name="presentableId" value="LOCAL-01292" />
       <option name="project" value="LOCAL" />
-      <updated>1608046649307</updated>
+      <updated>1604929869192</updated>
     </task>
-    <task id="LOCAL-01376" summary="-">
-      <created>1608049644632</created>
-      <option name="number" value="01376" />
-      <option name="presentableId" value="LOCAL-01376" />
+    <task id="LOCAL-01293" summary="run additional large datasets">
+      <created>1604930526807</created>
+      <option name="number" value="01293" />
+      <option name="presentableId" value="LOCAL-01293" />
       <option name="project" value="LOCAL" />
-      <updated>1608049644632</updated>
+      <updated>1604930526807</updated>
     </task>
-    <task id="LOCAL-01377" summary="-">
-      <created>1608197929766</created>
-      <option name="number" value="01377" />
-      <option name="presentableId" value="LOCAL-01377" />
+    <task id="LOCAL-01294" summary="run additional large datasets">
+      <created>1604930649595</created>
+      <option name="number" value="01294" />
+      <option name="presentableId" value="LOCAL-01294" />
       <option name="project" value="LOCAL" />
-      <updated>1608197929766</updated>
+      <updated>1604930649595</updated>
     </task>
-    <task id="LOCAL-01378" summary="-">
-      <created>1608200049075</created>
-      <option name="number" value="01378" />
-      <option name="presentableId" value="LOCAL-01378" />
+    <task id="LOCAL-01295" summary="run additional large datasets">
+      <created>1604930794215</created>
+      <option name="number" value="01295" />
+      <option name="presentableId" value="LOCAL-01295" />
       <option name="project" value="LOCAL" />
-      <updated>1608200049075</updated>
+      <updated>1604930794215</updated>
     </task>
-    <task id="LOCAL-01379" summary="-">
-      <created>1608200346356</created>
-      <option name="number" value="01379" />
-      <option name="presentableId" value="LOCAL-01379" />
+    <task id="LOCAL-01296" summary="run additional large datasets">
+      <created>1604933422184</created>
+      <option name="number" value="01296" />
+      <option name="presentableId" value="LOCAL-01296" />
       <option name="project" value="LOCAL" />
-      <updated>1608200346356</updated>
+      <updated>1604933422184</updated>
     </task>
-    <task id="LOCAL-01380" summary="-">
-      <created>1608200657310</created>
-      <option name="number" value="01380" />
-      <option name="presentableId" value="LOCAL-01380" />
+    <task id="LOCAL-01297" summary="run additional large datasets">
+      <created>1604937415163</created>
+      <option name="number" value="01297" />
+      <option name="presentableId" value="LOCAL-01297" />
       <option name="project" value="LOCAL" />
-      <updated>1608200657310</updated>
+      <updated>1604937415163</updated>
     </task>
-    <task id="LOCAL-01381" summary="-">
-      <created>1608201012918</created>
-      <option name="number" value="01381" />
-      <option name="presentableId" value="LOCAL-01381" />
+    <task id="LOCAL-01298" summary="run forward">
+      <created>1604937442340</created>
+      <option name="number" value="01298" />
+      <option name="presentableId" value="LOCAL-01298" />
       <option name="project" value="LOCAL" />
-      <updated>1608201012918</updated>
+      <updated>1604937442340</updated>
     </task>
-    <task id="LOCAL-01382" summary="-">
-      <created>1608210008937</created>
-      <option name="number" value="01382" />
-      <option name="presentableId" value="LOCAL-01382" />
+    <task id="LOCAL-01299" summary="run forward">
+      <created>1604937520601</created>
+      <option name="number" value="01299" />
+      <option name="presentableId" value="LOCAL-01299" />
       <option name="project" value="LOCAL" />
-      <updated>1608210008937</updated>
+      <updated>1604937520601</updated>
     </task>
-    <task id="LOCAL-01383" summary="-">
-      <created>1608210086885</created>
-      <option name="number" value="01383" />
-      <option name="presentableId" value="LOCAL-01383" />
+    <task id="LOCAL-01300" summary="run forward">
+      <created>1604937741849</created>
+      <option name="number" value="01300" />
+      <option name="presentableId" value="LOCAL-01300" />
       <option name="project" value="LOCAL" />
-      <updated>1608210086885</updated>
+      <updated>1604937741849</updated>
     </task>
-    <task id="LOCAL-01384" summary="-">
-      <created>1608451387898</created>
-      <option name="number" value="01384" />
-      <option name="presentableId" value="LOCAL-01384" />
+    <task id="LOCAL-01301" summary="run forward">
+      <created>1604943354993</created>
+      <option name="number" value="01301" />
+      <option name="presentableId" value="LOCAL-01301" />
       <option name="project" value="LOCAL" />
-      <updated>1608451387899</updated>
+      <updated>1604943354993</updated>
     </task>
-    <task id="LOCAL-01385" summary="-">
-      <created>1608451417537</created>
-      <option name="number" value="01385" />
-      <option name="presentableId" value="LOCAL-01385" />
+    <task id="LOCAL-01302" summary="run forward">
+      <created>1604944711831</created>
+      <option name="number" value="01302" />
+      <option name="presentableId" value="LOCAL-01302" />
       <option name="project" value="LOCAL" />
-      <updated>1608451417537</updated>
+      <updated>1604944711831</updated>
     </task>
-    <task id="LOCAL-01386" summary="-">
-      <created>1608468926940</created>
-      <option name="number" value="01386" />
-      <option name="presentableId" value="LOCAL-01386" />
+    <task id="LOCAL-01303" summary="run forward">
+      <created>1604944999518</created>
+      <option name="number" value="01303" />
+      <option name="presentableId" value="LOCAL-01303" />
       <option name="project" value="LOCAL" />
-      <updated>1608468926940</updated>
+      <updated>1604944999518</updated>
     </task>
-    <task id="LOCAL‎01387" summary="large dataset">
-      <created>1608717214924</created>
-      <option name="number" value="LOCAL‎01387" />
-      <option name="presentableId" value="LOCAL‎01387" />
-      <updated>1608717214925</updated>
-    </task>
-    <task id="LOCAL‎01388" summary="submission">
-      <created>1608717240342</created>
-      <option name="number" value="LOCAL‎01388" />
-      <option name="presentableId" value="LOCAL‎01388" />
-      <updated>1608717240342</updated>
-    </task>
-    <task id="LOCAL‎01389" summary="-">
-      <created>1608718288011</created>
-      <option name="number" value="LOCAL‎01389" />
-      <option name="presentableId" value="LOCAL‎01389" />
-      <updated>1608718288011</updated>
-    </task>
-    <task id="LOCAL‎01390" summary="??">
-      <created>1608718509476</created>
-      <option name="number" value="LOCAL‎01390" />
-      <option name="presentableId" value="LOCAL‎01390" />
-      <updated>1608718509476</updated>
-    </task>
-    <task id="LOCAL‎01391" summary="renamed utils dir to my_utils as it's suddenly making problems with utils dir in miniconda3/lib/python3.8/site-packages/utils/&#10;(new gym module for rl)">
-      <created>1608718875798</created>
-      <option name="number" value="LOCAL‎01391" />
-      <option name="presentableId" value="LOCAL‎01391" />
-      <updated>1608718875798</updated>
-    </task>
-    <task id="LOCAL‎01392" summary="-">
-      <created>1608719869431</created>
-      <option name="number" value="LOCAL‎01392" />
-      <option name="presentableId" value="LOCAL‎01392" />
-      <updated>1608719869432</updated>
-    </task>
-    <task id="LOCAL‎01393" summary="-">
-      <created>1608720382298</created>
-      <option name="number" value="LOCAL‎01393" />
-      <option name="presentableId" value="LOCAL‎01393" />
-      <updated>1608720382298</updated>
-    </task>
-    <task id="LOCAL‎01394" summary="-">
-      <created>1608720702276</created>
-      <option name="number" value="LOCAL‎01394" />
-      <option name="presentableId" value="LOCAL‎01394" />
-      <updated>1608720702276</updated>
-    </task>
-    <task id="LOCAL‎01395" summary="-">
-      <created>1608721053679</created>
-      <option name="number" value="LOCAL‎01395" />
-      <option name="presentableId" value="LOCAL‎01395" />
-      <updated>1608721053679</updated>
-    </task>
-    <task id="LOCAL‎01396" summary="-">
-      <created>1608736235689</created>
-      <option name="number" value="LOCAL‎01396" />
-      <option name="presentableId" value="LOCAL‎01396" />
-      <updated>1608736235690</updated>
-    </task>
-    <task id="LOCAL‎01397" summary="temp change Q">
-      <created>1608736303616</created>
-      <option name="number" value="LOCAL‎01397" />
-      <option name="presentableId" value="LOCAL‎01397" />
-      <updated>1608736303616</updated>
-    </task>
-    <task id="LOCAL‎01398" summary="revert">
-      <created>1608736890878</created>
-      <option name="number" value="LOCAL‎01398" />
-      <option name="presentableId" value="LOCAL‎01398" />
-      <updated>1608736890878</updated>
-    </task>
-    <task id="LOCAL‎01399" summary="TEMP">
-      <created>1608749665874</created>
-      <option name="number" value="LOCAL‎01399" />
-      <option name="presentableId" value="LOCAL‎01399" />
-      <updated>1608749665874</updated>
-    </task>
-    <task id="LOCAL‎01400" summary="TEMP">
-      <created>1608751203625</created>
-      <option name="number" value="LOCAL‎01400" />
-      <option name="presentableId" value="LOCAL‎01400" />
-      <updated>1608751203626</updated>
-    </task>
-    <task id="LOCAL‎01401" summary="TEMP">
-      <created>1608751262912</created>
-      <option name="number" value="LOCAL‎01401" />
-      <option name="presentableId" value="LOCAL‎01401" />
-      <updated>1608751262912</updated>
-    </task>
-    <task id="LOCAL‎01402" summary="TEMP">
-      <created>1608752943446</created>
-      <option name="number" value="LOCAL‎01402" />
-      <option name="presentableId" value="LOCAL‎01402" />
-      <updated>1608752943446</updated>
-    </task>
-    <task id="LOCAL-01403" summary="revert">
-      <created>1608805075679</created>
-      <option name="number" value="01403" />
-      <option name="presentableId" value="LOCAL-01403" />
+    <task id="LOCAL-01304" summary="run forward">
+      <created>1604945106542</created>
+      <option name="number" value="01304" />
+      <option name="presentableId" value="LOCAL-01304" />
       <option name="project" value="LOCAL" />
-      <updated>1608805075679</updated>
+      <updated>1604945106542</updated>
     </task>
-    <task id="LOCAL-01404" summary="temp">
-      <created>1608814218123</created>
-      <option name="number" value="01404" />
-      <option name="presentableId" value="LOCAL-01404" />
+    <task id="LOCAL-01305" summary="run forward">
+      <created>1604945290997</created>
+      <option name="number" value="01305" />
+      <option name="presentableId" value="LOCAL-01305" />
       <option name="project" value="LOCAL" />
-      <updated>1608814218123</updated>
+      <updated>1604945290997</updated>
     </task>
-    <task id="LOCAL-01405" summary="-">
-      <created>1608814319114</created>
-      <option name="number" value="01405" />
-      <option name="presentableId" value="LOCAL-01405" />
+    <task id="LOCAL-01306" summary="run forward">
+      <created>1604945521120</created>
+      <option name="number" value="01306" />
+      <option name="presentableId" value="LOCAL-01306" />
       <option name="project" value="LOCAL" />
-      <updated>1608814319114</updated>
+      <updated>1604945521120</updated>
     </task>
-    <task id="LOCAL-01406" summary="-">
-      <created>1608816938200</created>
-      <option name="number" value="01406" />
-      <option name="presentableId" value="LOCAL-01406" />
+    <task id="LOCAL‎01307" summary="-">
+      <created>1604947900231</created>
+      <option name="number" value="LOCAL‎01307" />
+      <option name="presentableId" value="LOCAL‎01307" />
+      <updated>1604947900231</updated>
+    </task>
+    <task id="LOCAL‎01308" summary="-">
+      <created>1604948768732</created>
+      <option name="number" value="LOCAL‎01308" />
+      <option name="presentableId" value="LOCAL‎01308" />
+      <updated>1604948768732</updated>
+    </task>
+    <task id="LOCAL‎01309" summary="-">
+      <created>1604955338503</created>
+      <option name="number" value="LOCAL‎01309" />
+      <option name="presentableId" value="LOCAL‎01309" />
+      <updated>1604955338503</updated>
+    </task>
+    <task id="LOCAL‎01310" summary="-">
+      <created>1604997623491</created>
+      <option name="number" value="LOCAL‎01310" />
+      <option name="presentableId" value="LOCAL‎01310" />
+      <updated>1604997623491</updated>
+    </task>
+    <task id="LOCAL‎01311" summary="-">
+      <created>1605088049486</created>
+      <option name="number" value="LOCAL‎01311" />
+      <option name="presentableId" value="LOCAL‎01311" />
+      <updated>1605088049486</updated>
+    </task>
+    <task id="LOCAL‎01312" summary="-">
+      <created>1605088489493</created>
+      <option name="number" value="LOCAL‎01312" />
+      <option name="presentableId" value="LOCAL‎01312" />
+      <updated>1605088489493</updated>
+    </task>
+    <task id="LOCAL‎01313" summary="-">
+      <created>1605112566248</created>
+      <option name="number" value="LOCAL‎01313" />
+      <option name="presentableId" value="LOCAL‎01313" />
+      <updated>1605112566248</updated>
+    </task>
+    <task id="LOCAL-01314" summary="run feature selection for the newer model">
+      <created>1605175508297</created>
+      <option name="number" value="01314" />
+      <option name="presentableId" value="LOCAL-01314" />
       <option name="project" value="LOCAL" />
-      <updated>1608816938200</updated>
+      <updated>1605175508297</updated>
     </task>
-    <task id="LOCAL-01407" summary="-">
-      <created>1608817274103</created>
-      <option name="number" value="01407" />
-      <option name="presentableId" value="LOCAL-01407" />
+    <task id="LOCAL-01315" summary="run feature selection for the newer model&#10;WITHOUT saving each model to .sav">
+      <created>1605177319760</created>
+      <option name="number" value="01315" />
+      <option name="presentableId" value="LOCAL-01315" />
       <option name="project" value="LOCAL" />
-      <updated>1608817274103</updated>
+      <updated>1605177319760</updated>
     </task>
-    <task id="LOCAL‎01408" summary="-">
-      <created>1608926088056</created>
-      <option name="number" value="LOCAL‎01408" />
-      <option name="presentableId" value="LOCAL‎01408" />
-      <updated>1608926088057</updated>
-    </task>
-    <task id="LOCAL‎01409" summary="-">
-      <created>1608961974985</created>
-      <option name="number" value="LOCAL‎01409" />
-      <option name="presentableId" value="LOCAL‎01409" />
-      <updated>1608961974986</updated>
-    </task>
-    <task id="LOCAL‎01410" summary="temp JC">
-      <created>1608962219015</created>
-      <option name="number" value="LOCAL‎01410" />
-      <option name="presentableId" value="LOCAL‎01410" />
-      <updated>1608962219017</updated>
-    </task>
-    <task id="LOCAL‎01411" summary="temp JC">
-      <created>1608962847110</created>
-      <option name="number" value="LOCAL‎01411" />
-      <option name="presentableId" value="LOCAL‎01411" />
-      <updated>1608962847110</updated>
-    </task>
-    <task id="LOCAL‎01412" summary="temp JC">
-      <created>1608966929730</created>
-      <option name="number" value="LOCAL‎01412" />
-      <option name="presentableId" value="LOCAL‎01412" />
-      <updated>1608966929730</updated>
-    </task>
-    <task id="LOCAL-01413" summary="-">
-      <created>1609337164221</created>
-      <option name="number" value="01413" />
-      <option name="presentableId" value="LOCAL-01413" />
+    <task id="LOCAL-01316" summary="run single-feature analysis">
+      <created>1605186107410</created>
+      <option name="number" value="01316" />
+      <option name="presentableId" value="LOCAL-01316" />
       <option name="project" value="LOCAL" />
-      <updated>1609337164221</updated>
+      <updated>1605186107410</updated>
     </task>
-    <task id="LOCAL‎01414" summary="-">
-      <created>1609579543561</created>
-      <option name="number" value="LOCAL‎01414" />
-      <option name="presentableId" value="LOCAL‎01414" />
-      <updated>1609579543562</updated>
-    </task>
-    <task id="LOCAL-01415" summary="submission code">
-      <created>1609856947005</created>
-      <option name="number" value="01415" />
-      <option name="presentableId" value="LOCAL-01415" />
+    <task id="LOCAL-01317" summary="run single-feature analysis">
+      <created>1605186643536</created>
+      <option name="number" value="01317" />
+      <option name="presentableId" value="LOCAL-01317" />
       <option name="project" value="LOCAL" />
-      <updated>1609856947005</updated>
+      <updated>1605186643536</updated>
     </task>
-    <task id="LOCAL-01416" summary="-">
-      <created>1609857229224</created>
-      <option name="number" value="01416" />
-      <option name="presentableId" value="LOCAL-01416" />
+    <task id="LOCAL-01318" summary="run single-feature analysis">
+      <created>1605190140900</created>
+      <option name="number" value="01318" />
+      <option name="presentableId" value="LOCAL-01318" />
       <option name="project" value="LOCAL" />
-      <updated>1609857229224</updated>
+      <updated>1605190140900</updated>
     </task>
-    <task id="LOCAL‎01417" summary="-">
-      <created>1610890680814</created>
-      <option name="number" value="LOCAL‎01417" />
-      <option name="presentableId" value="LOCAL‎01417" />
-      <updated>1610890680814</updated>
+    <task id="LOCAL-01319" summary="TEMP!  ml tree without rates optimization">
+      <created>1605612877377</created>
+      <option name="number" value="01319" />
+      <option name="presentableId" value="LOCAL-01319" />
+      <option name="project" value="LOCAL" />
+      <updated>1605612877377</updated>
     </task>
-    <task id="LOCAL‎01418" summary="-">
-      <created>1611222753065</created>
-      <option name="number" value="LOCAL‎01418" />
-      <option name="presentableId" value="LOCAL‎01418" />
-      <updated>1611222753066</updated>
+    <task id="LOCAL-01320" summary="-">
+      <created>1606046679704</created>
+      <option name="number" value="01320" />
+      <option name="presentableId" value="LOCAL-01320" />
+      <option name="project" value="LOCAL" />
+      <updated>1606046679704</updated>
     </task>
-    <task id="LOCAL‎01419" summary="-">
-      <created>1611224243067</created>
-      <option name="number" value="LOCAL‎01419" />
-      <option name="presentableId" value="LOCAL‎01419" />
-      <updated>1611224243068</updated>
+    <task id="LOCAL-01321" summary="-">
+      <created>1606047470090</created>
+      <option name="number" value="01321" />
+      <option name="presentableId" value="LOCAL-01321" />
+      <option name="project" value="LOCAL" />
+      <updated>1606047470090</updated>
     </task>
-    <option name="localTasksCounter" value="1420" />
+    <task id="LOCAL-01322" summary="-">
+      <created>1606049490969</created>
+      <option name="number" value="01322" />
+      <option name="presentableId" value="LOCAL-01322" />
+      <option name="project" value="LOCAL" />
+      <updated>1606049490969</updated>
+    </task>
+    <task id="LOCAL-01323" summary="-">
+      <created>1606049956060</created>
+      <option name="number" value="01323" />
+      <option name="presentableId" value="LOCAL-01323" />
+      <option name="project" value="LOCAL" />
+      <updated>1606049956060</updated>
+    </task>
+    <task id="LOCAL-01324" summary="-">
+      <created>1606050139805</created>
+      <option name="number" value="01324" />
+      <option name="presentableId" value="LOCAL-01324" />
+      <option name="project" value="LOCAL" />
+      <updated>1606050139805</updated>
+    </task>
+    <task id="LOCAL-01325" summary="-">
+      <created>1606066092921</created>
+      <option name="number" value="01325" />
+      <option name="presentableId" value="LOCAL-01325" />
+      <option name="project" value="LOCAL" />
+      <updated>1606066092921</updated>
+    </task>
+    <task id="LOCAL-01326" summary="-">
+      <created>1606066201562</created>
+      <option name="number" value="01326" />
+      <option name="presentableId" value="LOCAL-01326" />
+      <option name="project" value="LOCAL" />
+      <updated>1606066201562</updated>
+    </task>
+    <task id="LOCAL-01327" summary="-">
+      <created>1606136179744</created>
+      <option name="number" value="01327" />
+      <option name="presentableId" value="LOCAL-01327" />
+      <option name="project" value="LOCAL" />
+      <updated>1606136179745</updated>
+    </task>
+    <task id="LOCAL‎01328" summary="-">
+      <created>1606201931498</created>
+      <option name="number" value="LOCAL‎01328" />
+      <option name="presentableId" value="LOCAL‎01328" />
+      <updated>1606201931498</updated>
+    </task>
+    <task id="LOCAL‎01329" summary="-">
+      <created>1606208712250</created>
+      <option name="number" value="LOCAL‎01329" />
+      <option name="presentableId" value="LOCAL‎01329" />
+      <updated>1606208712250</updated>
+    </task>
+    <task id="LOCAL‎01330" summary="-">
+      <created>1606280208967</created>
+      <option name="number" value="LOCAL‎01330" />
+      <option name="presentableId" value="LOCAL‎01330" />
+      <updated>1606280208968</updated>
+    </task>
+    <task id="LOCAL‎01331" summary="-">
+      <created>1606280622581</created>
+      <option name="number" value="LOCAL‎01331" />
+      <option name="presentableId" value="LOCAL‎01331" />
+      <updated>1606280622581</updated>
+    </task>
+    <task id="LOCAL-01332" summary="-">
+      <created>1606286509562</created>
+      <option name="number" value="01332" />
+      <option name="presentableId" value="LOCAL-01332" />
+      <option name="project" value="LOCAL" />
+      <updated>1606286509562</updated>
+    </task>
+    <task id="LOCAL-01333" summary="-">
+      <created>1606318427091</created>
+      <option name="number" value="01333" />
+      <option name="presentableId" value="LOCAL-01333" />
+      <option name="project" value="LOCAL" />
+      <updated>1606318427091</updated>
+    </task>
+    <task id="LOCAL-01334" summary="-">
+      <created>1606318667262</created>
+      <option name="number" value="01334" />
+      <option name="presentableId" value="LOCAL-01334" />
+      <option name="project" value="LOCAL" />
+      <updated>1606318667262</updated>
+    </task>
+    <task id="LOCAL-01335" summary="-">
+      <created>1606319312023</created>
+      <option name="number" value="01335" />
+      <option name="presentableId" value="LOCAL-01335" />
+      <option name="project" value="LOCAL" />
+      <updated>1606319312023</updated>
+    </task>
+    <task id="LOCAL‎01336" summary="-">
+      <created>1606405837708</created>
+      <option name="number" value="LOCAL‎01336" />
+      <option name="presentableId" value="LOCAL‎01336" />
+      <updated>1606405837708</updated>
+    </task>
+    <option name="localTasksCounter" value="1337" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -965,202 +896,201 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
+    <MESSAGE value="learning data V_x" />
+    <MESSAGE value="merge ml_minus1 summaries" />
+    <MESSAGE value="revert to normal analyses mode" />
+    <MESSAGE value="run model now that it is saved as joblib.sav" />
+    <MESSAGE value="scoring ml_minus1 trees" />
+    <MESSAGE value="measure run time of feature extraction algorithm" />
+    <MESSAGE value="sace trained model also for exp10 labek transformation" />
+    <MESSAGE value="measure runtimes by parts" />
+    <MESSAGE value="score ml_minus1 trees with RF - first save the df with the RFs and than run the scoring function" />
+    <MESSAGE value="changing st2 flow - first fully optimize the best tree from st1" />
+    <MESSAGE value="exp10" />
+    <MESSAGE value="debugging key error for st2_new" />
+    <MESSAGE value="temp for large dataset - create SPRs + features, without computing ll, first." />
+    <MESSAGE value="REVERT" />
+    <MESSAGE value="temp for large dataset - create SPRs, without computing ll, first. from iprune 476 (subset2)" />
+    <MESSAGE value="handeling large csv - devide to subsets" />
+    <MESSAGE value="temp for large dataset" />
+    <MESSAGE value="run additional larfe datasets" />
+    <MESSAGE value="run additional large datasets" />
     <MESSAGE value="run forward" />
     <MESSAGE value="run feature selection for the newer model" />
     <MESSAGE value="run feature selection for the newer model&#10;WITHOUT saving each model to .sav" />
     <MESSAGE value="run single-feature analysis" />
     <MESSAGE value="TEMP!  ml tree without rates optimization" />
-    <MESSAGE value="in progress - &#10;automate the running forward algo" />
-    <MESSAGE value="automate the running forward algo&#10;RUN" />
-    <MESSAGE value="run forward best out of top 10% predictions" />
-    <MESSAGE value="random-forest with oob==False to reduce the memory needed" />
-    <MESSAGE value="vlarge dataset - prapare for running lls" />
-    <MESSAGE value="vlarge dataset - run for lls" />
-    <MESSAGE value="vlarge dataset - run for lls&#10;REQUIRE MORE MEMORY" />
-    <MESSAGE value="run forward analysis - results &amp; figure" />
-    <MESSAGE value="saturation" />
-    <MESSAGE value="large dataset" />
-    <MESSAGE value="submission" />
-    <MESSAGE value="??" />
-    <MESSAGE value="renamed utils dir to my_utils as it's suddenly making problems with utils dir in miniconda3/lib/python3.8/site-packages/utils/&#10;(new gym module for rl)" />
-    <MESSAGE value="temp change Q" />
-    <MESSAGE value="TEMP" />
-    <MESSAGE value="revert" />
-    <MESSAGE value="temp" />
-    <MESSAGE value="temp JC" />
-    <MESSAGE value="submission code" />
     <MESSAGE value="-" />
     <option name="LAST_COMMIT_MESSAGE" value="-" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="264" y="0" key="#Deployment" timestamp="1611222090558">
-      <screen x="0" y="0" width="1280" height="680" />
+    <state x="450" y="-1037" key="#Deployment" timestamp="1606209009882">
+      <screen x="103" y="-1050" width="1680" height="1010" />
     </state>
     <state x="450" y="-1037" key="#Deployment/0.0.1280.680/103.-1050.1680.1010@103.-1050.1680.1010" timestamp="1606209009882" />
-    <state x="264" y="0" key="#Deployment/0.0.1280.680/1920.0.2048.1112@0.0.1280.680" timestamp="1610900970239" />
-    <state x="264" y="0" key="#Deployment/0.0.1280.680@0.0.1280.680" timestamp="1611222090558" />
-    <state x="396" y="13" key="#Deployment/0.0.1920.1040@0.0.1920.1040" timestamp="1609345615182" />
-    <state x="267" y="19" key="#Inspections" timestamp="1609766504530">
-      <screen x="0" y="0" width="1280" height="680" />
-    </state>
-    <state x="267" y="19" key="#Inspections/0.0.1280.680@0.0.1280.680" timestamp="1609766504530" />
+    <state x="396" y="13" key="#Deployment/0.0.1920.1040@0.0.1920.1040" timestamp="1606050822702" />
     <state x="380" y="164" key="#Notifications" timestamp="1605190494933">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="380" y="164" key="#Notifications/0.0.1280.680@0.0.1280.680" timestamp="1605190494933" />
-    <state x="275" y="0" key="#SSH_Configurations" timestamp="1611222069018">
-      <screen x="0" y="0" width="1280" height="680" />
+    <state x="413" y="0" key="#SSH_Configurations" timestamp="1606286608765">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="464" y="-1050" key="#SSH_Configurations/0.0.1280.680/103.-1050.1680.1010@103.-1050.1680.1010" timestamp="1606209016527" />
-    <state x="275" y="0" key="#SSH_Configurations/0.0.1280.680@0.0.1280.680" timestamp="1611222069018" />
-    <state x="413" y="0" key="#SSH_Configurations/0.0.1920.1040@0.0.1920.1040" timestamp="1609345612459" />
-    <state x="282" y="220" width="1092" height="527" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1607018493776">
+    <state x="275" y="0" key="#SSH_Configurations/0.0.1280.680@0.0.1280.680" timestamp="1606280746987" />
+    <state x="413" y="0" key="#SSH_Configurations/0.0.1920.1040@0.0.1920.1040" timestamp="1606286608765" />
+    <state x="282" y="220" width="1092" height="527" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1605176553290">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="349" y="-836" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.680/103.-1050.1680.1010@103.-1050.1680.1010" timestamp="1603200421525" />
+    <state x="2134" y="270" width="1092" height="527" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.680/1920.0.1680.1010@1920.0.1680.1010" timestamp="1601567381002" />
+    <state x="2102" y="294" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1601802496685" />
     <state x="317" y="144" width="838" height="526" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.680@0.0.1280.680" timestamp="1604658773723" />
-    <state x="282" y="220" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1607018493776" />
+    <state x="282" y="220" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1605176553290" />
     <state x="390" y="142" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1603014818257">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="390" y="142" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1280.680@0.0.1280.680" timestamp="1603014818257" />
-    <state x="226" y="-912" width="1438" height="737" key="DiffContextDialog" timestamp="1609577310524">
-      <screen x="103" y="-1050" width="1680" height="1010" />
+    <state x="140" y="142" width="1643" height="758" key="DiffContextDialog" timestamp="1604931855130">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="140" y="-938" width="1643" height="758" key="DiffContextDialog/0.0.1280.680/0.-1080.1920.1040@0.-1080.1920.1040" timestamp="1608737115245" />
-    <state x="226" y="-912" width="1438" height="737" key="DiffContextDialog/0.0.1280.680/103.-1050.1680.1010@103.-1050.1680.1010" timestamp="1609577310524" />
-    <state x="93" y="93" width="1095" height="495" key="DiffContextDialog/0.0.1280.680@0.0.1280.680" timestamp="1608750441218" />
-    <state x="140" y="142" width="1643" height="758" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1608804956866" />
-    <state x="493" y="160" key="FileChooserDialogImpl" timestamp="1611221150097">
-      <screen x="0" y="0" width="1280" height="680" />
+    <state x="93" y="93" width="1095" height="495" key="DiffContextDialog/0.0.1280.680@0.0.1280.680" timestamp="1601977119599" />
+    <state x="140" y="142" width="1643" height="758" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1604931855130" />
+    <state x="740" y="291" key="FileChooserDialogImpl" timestamp="1606322221161">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="586" y="-804" key="FileChooserDialogImpl/0.0.1280.680/103.-1050.1680.1010@103.-1050.1680.1010" timestamp="1609588387212" />
-    <state x="493" y="160" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1611221150097" />
-    <state x="740" y="291" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1608193586023" />
-    <state width="1237" height="128" key="GridCell.Tab.0.bottom" timestamp="1611226453343">
+    <state x="2659" y="328" key="FileChooserDialogImpl/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1601399002874" />
+    <state x="493" y="190" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1602350905561" />
+    <state x="740" y="291" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1606322221161" />
+    <state width="1237" height="113" key="GridCell.Tab.0.bottom" timestamp="1606654143897">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state width="1877" height="92" key="GridCell.Tab.0.bottom/0.0.1280.680/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1605105736876" />
-    <state width="1272" height="63" key="GridCell.Tab.0.bottom/0.0.1280.680/0.-1080.1920.1040@0.-1080.1920.1040" timestamp="1608737777219" />
     <state width="1237" height="137" key="GridCell.Tab.0.bottom/0.0.1280.680/103.-1050.1680.1010@0.0.1280.680" timestamp="1605013457892" />
-    <state width="1103" height="174" key="GridCell.Tab.0.bottom/0.0.1280.680/103.-1050.1680.1010@103.-1050.1680.1010" timestamp="1609609348469" />
+    <state width="1637" height="122" key="GridCell.Tab.0.bottom/0.0.1280.680/103.-1050.1680.1010@103.-1050.1680.1010" timestamp="1606235450112" />
+    <state width="1237" height="41" key="GridCell.Tab.0.bottom/0.0.1280.680/1920.0.1680.1010@0.0.1280.680" timestamp="1600756956095" />
+    <state width="1637" height="110" key="GridCell.Tab.0.bottom/0.0.1280.680/1920.0.1680.1010@1920.0.1680.1010" timestamp="1601814955222" />
+    <state width="1237" height="143" key="GridCell.Tab.0.bottom/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1599666538450" />
     <state width="1347" height="184" key="GridCell.Tab.0.bottom/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1602768642279" />
-    <state width="1237" height="128" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1611226453343" />
-    <state width="1877" height="255" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1609345650758" />
-    <state width="1237" height="128" key="GridCell.Tab.0.center" timestamp="1611226453343">
+    <state width="1237" height="113" key="GridCell.Tab.0.bottom/0.0.1280.680@0.0.1280.680" timestamp="1606654143897" />
+    <state width="1477" height="221" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1606322916253" />
+    <state width="1237" height="113" key="GridCell.Tab.0.center" timestamp="1606654143897">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state width="1877" height="92" key="GridCell.Tab.0.center/0.0.1280.680/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1605105736875" />
-    <state width="1272" height="63" key="GridCell.Tab.0.center/0.0.1280.680/0.-1080.1920.1040@0.-1080.1920.1040" timestamp="1608737777219" />
     <state width="1237" height="137" key="GridCell.Tab.0.center/0.0.1280.680/103.-1050.1680.1010@0.0.1280.680" timestamp="1605013457892" />
-    <state width="1103" height="174" key="GridCell.Tab.0.center/0.0.1280.680/103.-1050.1680.1010@103.-1050.1680.1010" timestamp="1609609348469" />
+    <state width="1637" height="122" key="GridCell.Tab.0.center/0.0.1280.680/103.-1050.1680.1010@103.-1050.1680.1010" timestamp="1606235450112" />
+    <state width="1237" height="41" key="GridCell.Tab.0.center/0.0.1280.680/1920.0.1680.1010@0.0.1280.680" timestamp="1600756956095" />
+    <state width="1637" height="110" key="GridCell.Tab.0.center/0.0.1280.680/1920.0.1680.1010@1920.0.1680.1010" timestamp="1601814955222" />
+    <state width="1237" height="143" key="GridCell.Tab.0.center/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1599666538449" />
     <state width="1347" height="184" key="GridCell.Tab.0.center/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1602768642279" />
-    <state width="1237" height="128" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1611226453343" />
-    <state width="1877" height="255" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1609345650758" />
-    <state width="1237" height="128" key="GridCell.Tab.0.left" timestamp="1611226453341">
+    <state width="1237" height="113" key="GridCell.Tab.0.center/0.0.1280.680@0.0.1280.680" timestamp="1606654143897" />
+    <state width="1477" height="221" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1606322916253" />
+    <state width="1237" height="113" key="GridCell.Tab.0.left" timestamp="1606654143897">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state width="1877" height="92" key="GridCell.Tab.0.left/0.0.1280.680/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1605105736874" />
-    <state width="1272" height="63" key="GridCell.Tab.0.left/0.0.1280.680/0.-1080.1920.1040@0.-1080.1920.1040" timestamp="1608737777219" />
     <state width="1237" height="137" key="GridCell.Tab.0.left/0.0.1280.680/103.-1050.1680.1010@0.0.1280.680" timestamp="1605013457892" />
-    <state width="1103" height="174" key="GridCell.Tab.0.left/0.0.1280.680/103.-1050.1680.1010@103.-1050.1680.1010" timestamp="1609609348469" />
+    <state width="1637" height="122" key="GridCell.Tab.0.left/0.0.1280.680/103.-1050.1680.1010@103.-1050.1680.1010" timestamp="1606235450112" />
+    <state width="1237" height="41" key="GridCell.Tab.0.left/0.0.1280.680/1920.0.1680.1010@0.0.1280.680" timestamp="1600756956094" />
+    <state width="1637" height="110" key="GridCell.Tab.0.left/0.0.1280.680/1920.0.1680.1010@1920.0.1680.1010" timestamp="1601814955221" />
+    <state width="1237" height="143" key="GridCell.Tab.0.left/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1599666538449" />
     <state width="1347" height="184" key="GridCell.Tab.0.left/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1602768642278" />
-    <state width="1237" height="128" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1611226453341" />
-    <state width="1877" height="255" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1609345650758" />
-    <state width="1237" height="128" key="GridCell.Tab.0.right" timestamp="1611226453343">
+    <state width="1237" height="113" key="GridCell.Tab.0.left/0.0.1280.680@0.0.1280.680" timestamp="1606654143897" />
+    <state width="1477" height="221" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1606322916253" />
+    <state width="1237" height="113" key="GridCell.Tab.0.right" timestamp="1606654143897">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state width="1877" height="92" key="GridCell.Tab.0.right/0.0.1280.680/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1605105736875" />
-    <state width="1272" height="63" key="GridCell.Tab.0.right/0.0.1280.680/0.-1080.1920.1040@0.-1080.1920.1040" timestamp="1608737777219" />
     <state width="1237" height="137" key="GridCell.Tab.0.right/0.0.1280.680/103.-1050.1680.1010@0.0.1280.680" timestamp="1605013457892" />
-    <state width="1103" height="174" key="GridCell.Tab.0.right/0.0.1280.680/103.-1050.1680.1010@103.-1050.1680.1010" timestamp="1609609348469" />
+    <state width="1637" height="122" key="GridCell.Tab.0.right/0.0.1280.680/103.-1050.1680.1010@103.-1050.1680.1010" timestamp="1606235450112" />
+    <state width="1237" height="41" key="GridCell.Tab.0.right/0.0.1280.680/1920.0.1680.1010@0.0.1280.680" timestamp="1600756956095" />
+    <state width="1637" height="110" key="GridCell.Tab.0.right/0.0.1280.680/1920.0.1680.1010@1920.0.1680.1010" timestamp="1601814955222" />
+    <state width="1237" height="143" key="GridCell.Tab.0.right/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1599666538450" />
     <state width="1347" height="184" key="GridCell.Tab.0.right/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1602768642279" />
-    <state width="1237" height="128" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1611226453343" />
-    <state width="1877" height="255" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1609345650758" />
-    <state width="1637" height="245" key="GridCell.Tab.1.bottom" timestamp="1609579655140">
-      <screen x="103" y="-1050" width="1680" height="1010" />
+    <state width="1237" height="113" key="GridCell.Tab.0.right/0.0.1280.680@0.0.1280.680" timestamp="1606654143897" />
+    <state width="1477" height="221" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1606322916253" />
+    <state width="1877" height="348" key="GridCell.Tab.1.bottom" timestamp="1604341659437">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1637" height="245" key="GridCell.Tab.1.bottom/0.0.1280.680/103.-1050.1680.1010@103.-1050.1680.1010" timestamp="1609579655140" />
-    <state width="938" height="348" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1608654263165" />
-    <state width="1637" height="245" key="GridCell.Tab.1.center" timestamp="1609579655140">
-      <screen x="103" y="-1050" width="1680" height="1010" />
+    <state width="1237" height="144" key="GridCell.Tab.1.bottom/0.0.1280.680@0.0.1280.680" timestamp="1601913072675" />
+    <state width="1877" height="348" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1604341659437" />
+    <state width="1877" height="348" key="GridCell.Tab.1.center" timestamp="1604341659437">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1637" height="245" key="GridCell.Tab.1.center/0.0.1280.680/103.-1050.1680.1010@103.-1050.1680.1010" timestamp="1609579655140" />
-    <state width="938" height="348" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1608654263165" />
-    <state width="1637" height="245" key="GridCell.Tab.1.left" timestamp="1609579655140">
-      <screen x="103" y="-1050" width="1680" height="1010" />
+    <state width="1237" height="144" key="GridCell.Tab.1.center/0.0.1280.680@0.0.1280.680" timestamp="1601913072675" />
+    <state width="1877" height="348" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1604341659437" />
+    <state width="1877" height="348" key="GridCell.Tab.1.left" timestamp="1604341659437">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1637" height="245" key="GridCell.Tab.1.left/0.0.1280.680/103.-1050.1680.1010@103.-1050.1680.1010" timestamp="1609579655140" />
-    <state width="938" height="348" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1608654263165" />
-    <state width="1637" height="245" key="GridCell.Tab.1.right" timestamp="1609579655140">
-      <screen x="103" y="-1050" width="1680" height="1010" />
+    <state width="1237" height="144" key="GridCell.Tab.1.left/0.0.1280.680@0.0.1280.680" timestamp="1601913072675" />
+    <state width="1877" height="348" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1604341659437" />
+    <state width="1877" height="348" key="GridCell.Tab.1.right" timestamp="1604341659437">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1637" height="245" key="GridCell.Tab.1.right/0.0.1280.680/103.-1050.1680.1010@103.-1050.1680.1010" timestamp="1609579655140" />
-    <state width="938" height="348" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1608654263165" />
+    <state width="1237" height="144" key="GridCell.Tab.1.right/0.0.1280.680@0.0.1280.680" timestamp="1601913072675" />
+    <state width="1877" height="348" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1604341659437" />
     <state x="280" y="102" key="MultipleFileMergeDialog" timestamp="1604678952449">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="280" y="102" key="MultipleFileMergeDialog/0.0.1280.680@0.0.1280.680" timestamp="1604678952449" />
-    <state x="204" y="0" key="SettingsEditor" timestamp="1611226437864">
+    <state x="204" y="0" key="SettingsEditor" timestamp="1606405617974">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="371" y="-1050" key="SettingsEditor/0.0.1280.680/103.-1050.1680.1010@103.-1050.1680.1010" timestamp="1606209034305" />
+    <state x="2323" y="159" key="SettingsEditor/0.0.1280.680/1920.0.1680.1010@1920.0.1680.1010" timestamp="1599391254553" />
     <state x="204" y="0" key="SettingsEditor/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1602757691674" />
-    <state x="204" y="0" key="SettingsEditor/0.0.1280.680/1920.0.2048.1112@0.0.1280.680" timestamp="1610901213185" />
-    <state x="2246" y="0" key="SettingsEditor/0.0.1280.680/1920.0.2048.1112@1920.0.2048.1112" timestamp="1610899977397" />
-    <state x="204" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1611226437864" />
-    <state x="306" y="0" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1609857166134" />
-    <state width="498" height="446" key="SwitcherDM" timestamp="1607003826282">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="498" height="446" key="SwitcherDM/0.0.1920.1040@0.0.1920.1040" timestamp="1607003826282" />
-    <state x="141" y="32" key="Vcs.Push.Dialog.v2" timestamp="1611224246413">
+    <state x="204" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1606405617974" />
+    <state x="306" y="0" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1606288608597" />
+    <state x="329" y="120" key="Vcs.Push.Dialog.v2" timestamp="1606405841406">
       <screen x="0" y="0" width="1280" height="680" />
     </state>
     <state x="-1426" y="184" key="Vcs.Push.Dialog.v2/0.0.1280.680/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1605112569384" />
-    <state x="494" y="-857" key="Vcs.Push.Dialog.v2/0.0.1280.680/0.-1080.1920.1040@0.-1080.1920.1040" timestamp="1608736892526" />
-    <state x="329" y="120" key="Vcs.Push.Dialog.v2/0.0.1280.680/103.-1050.1680.1010@0.0.1280.680" timestamp="1608926090027" />
-    <state x="535" y="-833" key="Vcs.Push.Dialog.v2/0.0.1280.680/103.-1050.1680.1010@103.-1050.1680.1010" timestamp="1609579544953" />
+    <state x="329" y="146" key="Vcs.Push.Dialog.v2/0.0.1280.680/103.-1050.1680.1010@0.0.1280.680" timestamp="1602511685167" />
+    <state x="535" y="-833" key="Vcs.Push.Dialog.v2/0.0.1280.680/103.-1050.1680.1010@103.-1050.1680.1010" timestamp="1606208720577" />
+    <state x="2352" y="245" key="Vcs.Push.Dialog.v2/0.0.1280.680/1920.0.1680.1010@1920.0.1680.1010" timestamp="1601817418173" />
+    <state x="329" y="146" key="Vcs.Push.Dialog.v2/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1599667287383" />
     <state x="2414" y="252" key="Vcs.Push.Dialog.v2/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1602764904349" />
-    <state x="141" y="32" key="Vcs.Push.Dialog.v2/0.0.1280.680/1920.0.2048.1112@0.0.1280.680" timestamp="1610898621165" />
-    <state x="141" y="32" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1611224246413" />
-    <state x="494" y="223" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1609857231047" />
-    <state x="-10" y="-1080" width="1932" height="1051" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1608717113708">
-      <screen x="0" y="-1080" width="1920" height="1040" />
+    <state x="329" y="120" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1606405841406" />
+    <state x="494" y="223" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1606319312965" />
+    <state x="-1930" y="0" width="1932" height="1051" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1605087178793">
+      <screen x="-1920" y="0" width="1920" height="1040" />
     </state>
     <state x="-1930" y="0" width="1932" height="1051" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1280.680/-1920.0.1920.1040@-1920.0.1920.1040" timestamp="1605087178793" />
-    <state x="-10" y="-1080" width="1932" height="1051" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1280.680/0.-1080.1920.1040@0.-1080.1920.1040" timestamp="1608717113708" />
+    <state x="94" y="-1050" width="1691" height="1021" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1280.680/103.-1050.1680.1010@103.-1050.1680.1010" timestamp="1602512025473" />
+    <state x="-7" y="0" width="1288" height="687" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1280.680/1920.0.1680.1010@0.0.1280.680" timestamp="1599463260416" />
+    <state x="2001" y="89" width="1519" height="832" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1280.680/1920.0.1680.1010@1920.0.1680.1010" timestamp="1601816672298" />
+    <state x="-7" y="0" width="1288" height="687" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1280.680/1920.0.1920.1040@0.0.1280.680" timestamp="1599667020638" />
+    <state x="2012" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1280.680/1920.0.1920.1040@1920.0.1920.1040" timestamp="1601802497262" />
     <state x="-7" y="0" width="1288" height="687" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1280.680@0.0.1280.680" timestamp="1604690316213" />
     <state x="-10" y="0" width="1932" height="1051" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1604931855130" />
-    <state x="518" y="235" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1611222833573">
-      <screen x="0" y="0" width="1280" height="680" />
-    </state>
-    <state x="518" y="235" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.680@0.0.1280.680" timestamp="1611222833573" />
-    <state x="777" y="360" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1607012411576" />
-    <state x="411" y="145" key="com.jetbrains.plugins.remotesdk.ui.RemoteMappingsConfiguration" timestamp="1611225497879">
-      <screen x="0" y="0" width="1280" height="680" />
-    </state>
-    <state x="411" y="145" key="com.jetbrains.plugins.remotesdk.ui.RemoteMappingsConfiguration/0.0.1280.680@0.0.1280.680" timestamp="1611225497879" />
-    <state x="616" y="221" key="com.jetbrains.plugins.remotesdk.ui.RemoteMappingsConfiguration/0.0.1920.1040@0.0.1920.1040" timestamp="1607006301012" />
-    <state x="197" y="99" width="345" height="539" key="ftp.server.browser" timestamp="1611226218052">
-      <screen x="0" y="0" width="1280" height="680" />
-    </state>
-    <state x="197" y="99" width="345" height="539" key="ftp.server.browser/0.0.1280.680@0.0.1280.680" timestamp="1611226218052" />
-    <state x="692" y="85" width="439" height="540" key="ftp.server.browser/0.0.1920.1040@0.0.1920.1040" timestamp="1606288585484" />
-    <state x="575" y="228" width="768" height="699" key="search.everywhere.popup" timestamp="1607011529546">
+    <state x="777" y="360" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1606318464916">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="575" y="228" width="768" height="699" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1607011529546" />
+    <state x="2600" y="350" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.680/1920.0.1680.1010@1920.0.1680.1010" timestamp="1600676497257" />
+    <state x="518" y="235" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.680@0.0.1280.680" timestamp="1606280646164" />
+    <state x="777" y="360" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1606318464916" />
+    <state x="411" y="145" key="com.jetbrains.plugins.remotesdk.ui.RemoteMappingsConfiguration" timestamp="1606405143858">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="411" y="145" key="com.jetbrains.plugins.remotesdk.ui.RemoteMappingsConfiguration/0.0.1280.680@0.0.1280.680" timestamp="1606405143858" />
+    <state x="616" y="221" key="com.jetbrains.plugins.remotesdk.ui.RemoteMappingsConfiguration/0.0.1920.1040@0.0.1920.1040" timestamp="1606287898067" />
+    <state x="184" y="0" width="1110" height="503" key="dock-window-1" timestamp="1600239292202">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="184" y="0" width="1110" height="503" key="dock-window-1/0.0.1280.680@0.0.1280.680" timestamp="1600239292202" />
+    <state x="692" y="85" width="439" height="540" key="ftp.server.browser" timestamp="1606288585484">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="461" y="56" key="ftp.server.browser/0.0.1280.680@0.0.1280.680" timestamp="1606201549754" />
+    <state x="692" y="85" width="439" height="540" key="ftp.server.browser/0.0.1920.1040@0.0.1920.1040" timestamp="1606288585484" />
+    <state x="2423" y="221" width="672" height="678" key="search.everywhere.popup" timestamp="1601816680235">
+      <screen x="1920" y="0" width="1680" height="1010" />
+    </state>
+    <state x="2423" y="221" width="672" height="678" key="search.everywhere.popup/0.0.1280.680/1920.0.1680.1010@1920.0.1680.1010" timestamp="1601816680235" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/execute_programs/RAxML_NG.py</url>
-          <line>5</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
           <properties notifyOnTerminate="true" exception="BaseException">
@@ -1177,34 +1107,30 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/code$parse_raxmlNG__1_.coverage" NAME="parse_raxmlNG Coverage Results" MODIFIED="1600278107052" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/parsing" />
+    <SUITE FILE_PATH="coverage/code$trying.coverage" NAME="trying Coverage Results" MODIFIED="1605376760791" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/code$course.coverage" NAME="course Coverage Results" MODIFIED="1605359576008" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/code$trying.coverage" NAME="trying Coverage Results" MODIFIED="1611225174577" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/code$trying__2_.coverage" NAME="trying (2) Coverage Results" MODIFIED="1608736093319" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/my_utils" />
-    <SUITE FILE_PATH="coverage/code$RF_learning.coverage" NAME="RF_learning Coverage Results" MODIFIED="1609579846265" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/execute_programs" />
-    <SUITE FILE_PATH="coverage/code$ll_RF_forward.coverage" NAME="ll_RF_forward Coverage Results" MODIFIED="1609577495408" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/figures" />
+    <SUITE FILE_PATH="coverage/code$RF_learning.coverage" NAME="RF_learning Coverage Results" MODIFIED="1606302179395" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/execute_programs" />
     <SUITE FILE_PATH="coverage/code$trying_copy.coverage" NAME="trying_copy Coverage Results" MODIFIED="1604341625863" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/utils" />
-    <SUITE FILE_PATH="coverage/code$MLworkshop.coverage" NAME="MLworkshop Coverage Results" MODIFIED="1607965369504" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/code$RAxML_NG2.coverage" NAME="RAxML_NG Coverage Results" MODIFIED="1600783174535" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/execute_programs" />
-    <SUITE FILE_PATH="coverage/code$feauture_selection.coverage" NAME="feauture_selection Coverage Results" MODIFIED="1609581588292" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/figures" />
+    <SUITE FILE_PATH="coverage/code$MLworkshop.coverage" NAME="MLworkshop Coverage Results" MODIFIED="1606407477069" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/code$feauture_selection.coverage" NAME="feauture_selection Coverage Results" MODIFIED="1606293155321" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/figures" />
     <SUITE FILE_PATH="coverage/code$run_times.coverage" NAME="run_times Coverage Results" MODIFIED="1604401415928" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/summary" />
-    <SUITE FILE_PATH="coverage/code$SPR_move.coverage" NAME="SPR_move Coverage Results" MODIFIED="1608752514809" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/execute_programs" />
+    <SUITE FILE_PATH="coverage/code$SPR_move.coverage" NAME="SPR_move Coverage Results" MODIFIED="1604493349043" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/execute_programs" />
     <SUITE FILE_PATH="coverage/code$whore.coverage" NAME="whore Coverage Results" MODIFIED="1604225972883" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data_processing" />
-    <SUITE FILE_PATH="coverage/code$data_attributes.coverage" NAME="data_attributes Coverage Results" MODIFIED="1609587578556" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/figures" />
-    <SUITE FILE_PATH="coverage/code$Phyml.coverage" NAME="Phyml Coverage Results" MODIFIED="1608746775554" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/execute_programs" />
+    <SUITE FILE_PATH="coverage/code$data_attributes.coverage" NAME="data_attributes Coverage Results" MODIFIED="1606322916229" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/figures" />
+    <SUITE FILE_PATH="coverage/code$Phyml.coverage" NAME="Phyml Coverage Results" MODIFIED="1600262723563" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/execute_programs" />
     <SUITE FILE_PATH="coverage/code$parse_raxml_NG.coverage" NAME="parse_raxml_NG Coverage Results" MODIFIED="1604224170343" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/parsing" />
-    <SUITE FILE_PATH="coverage/code$saturation.coverage" NAME="saturation Coverage Results" MODIFIED="1609576956500" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/figures" />
+    <SUITE FILE_PATH="coverage/code$saturation.coverage" NAME="saturation Coverage Results" MODIFIED="1606142379688" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/figures" />
     <SUITE FILE_PATH="coverage/code$parse_raxml_ng.coverage" NAME="parse_raxmlNG Coverage Results" MODIFIED="1600272038375" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/parsing" />
     <SUITE FILE_PATH="coverage/code$temp_for_ML_workshop.coverage" NAME="temp_for_ML_workshop Coverage Results" MODIFIED="1602764084312" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data_processing" />
-    <SUITE FILE_PATH="coverage/code$extract_corr_of_top.coverage" NAME="extract_corr_of_top Coverage Results" MODIFIED="1608097673147" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/summary" />
-    <SUITE FILE_PATH="coverage/code$trying__1_.coverage" NAME="trying (1) Coverage Results" MODIFIED="1607788892672" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/utils" />
-    <SUITE FILE_PATH="coverage/code$create_starting_trees.coverage" NAME="create_starting_trees Coverage Results" MODIFIED="1606667099084" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data_processing" />
+    <SUITE FILE_PATH="coverage/code$trying__1_.coverage" NAME="trying (1) Coverage Results" MODIFIED="1605456564063" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/utils" />
+    <SUITE FILE_PATH="coverage/code$create_starting_trees.coverage" NAME="create_starting_trees Coverage Results" MODIFIED="1602269784750" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data_processing" />
     <SUITE FILE_PATH="coverage/code$SPR_move_one_parallel.coverage" NAME="SPR_move_one_parallel Coverage Results" MODIFIED="1601980731165" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/execute_programs" />
-    <SUITE FILE_PATH="coverage/code$SPR_forward.coverage" NAME="SPR_forward Coverage Results" MODIFIED="1607018483492" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/execute_programs" />
-    <SUITE FILE_PATH="coverage/code$score_last_step.coverage" NAME="score_last_step Coverage Results" MODIFIED="1607623260550" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/summary" />
+    <SUITE FILE_PATH="coverage/code$score_last_step.coverage" NAME="score_last_step Coverage Results" MODIFIED="1606047732842" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/summary" />
     <SUITE FILE_PATH="coverage/code$RAxML_NG.coverage" NAME="RAxML_NG Coverage Results" MODIFIED="1600782833994" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/execute_programs" />
     <SUITE FILE_PATH="coverage/code$trying_SPR.coverage" NAME="trying_SPR Coverage Results" MODIFIED="1600875524183" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/execute_programs" />
     <SUITE FILE_PATH="coverage/code$get_ds.coverage" NAME="get_ds Coverage Results" MODIFIED="1600705717683" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/data_processing" />
-    <SUITE FILE_PATH="coverage/code$collect_SPR_features.coverage" NAME="collect_SPR_features Coverage Results" MODIFIED="1607011549796" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/summary" />
+    <SUITE FILE_PATH="coverage/code$collect_SPR_features.coverage" NAME="collect_SPR_features Coverage Results" MODIFIED="1605087355981" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/summary" />
     <SUITE FILE_PATH="coverage/code$SVM_learning.coverage" NAME="SVM_learning Coverage Results" MODIFIED="1605183716042" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/execute_programs" />
     <SUITE FILE_PATH="coverage/code$RAxML_NG__1_.coverage" NAME="RAxML_NG (1) Coverage Results" MODIFIED="1600344774120" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/execute_programs" />
   </component>
