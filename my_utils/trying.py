@@ -119,8 +119,10 @@ def submit_job_ll(istart, nlines, NROWS):
 
 
 if __name__ == '__main__':
-	df_train = pd.read_csv(SUMMARY_FILES_DIR + "play.csv")#, nrows=100)
-	df_val = pd.read_csv(SUMMARY_FILES_DIR + "model_testing_validation_set.csv")#, nrows=100)
+	#df_train = pd.read_csv(SUMMARY_FILES_DIR + "play.csv", nrows=100)
+	#df_val = pd.read_csv(SUMMARY_FILES_DIR + "model_testing_validation_set.csv", nrows=100)
+	df_train = pd.read_csv("C:\\Users\\ItayMNB3\\Desktop\\play.csv", nrows=100)
+	df_val = pd.read_csv("C:\\Users\\ItayMNB3\\Desktop\\model_testing_validation_set.csv", nrows=100)
 	from sklearn.ensemble import RandomForestRegressor
 	
 	def split_features_label(df, features):
@@ -142,7 +144,7 @@ if __name__ == '__main__':
 	
 	from statistics import mean
 	def avg_sp_corr(y_true, y_pred):
-		df_val["pred"] = y_pred
+		df_val["pred"] = np.array(y_pred)
 		
 		corrs = []
 		grouped_df_by_ds = df_val.groupby(FEATURES["group_id"], sort=False)
@@ -169,13 +171,22 @@ if __name__ == '__main__':
 				  'ccp_alpha': [0.0, 0.1, 0.3, 0.5, 0.7]
 				  }
 	
-	grid_search = RandomizedSearchCV(model, parameters, cv=5, scoring=sp_score, n_jobs=-1)
-	opt_hp_model = grid_search.fit(X_train,y_train)
-	print(opt_hp_model.best_params_)
+	#grid_search = RandomizedSearchCV(model, parameters, cv=2, scoring=sp_score, n_jobs=-1)
+	#opt_hp_model = grid_search.fit(X_train,y_train)
+	#print(opt_hp_model.best_params_)
 	
-	y_pred = opt_hp_model.predict(X_test)
+	#y_pred = opt_hp_model.predict(X_test)
+	#mean_sp_corr = avg_sp_corr(None, y_pred)
+	#print(mean_sp_corr)
+	model2 = RandomForestRegressor(n_estimators=100, max_depth=70,
+								  min_samples_split=10, min_samples_leaf=5,
+								  max_features='sqrt',
+								  min_impurity_decrease=0.001, ccp_alpha=0.1,
+								  oob_score=False, n_jobs=-1).fit(X_train, y_train)
+	y_pred = model2.predict(X_test)
 	mean_sp_corr = avg_sp_corr(None, y_pred)
 	print(mean_sp_corr)
+	
 	exit()
 	
 	
