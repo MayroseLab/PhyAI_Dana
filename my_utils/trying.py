@@ -119,6 +119,66 @@ def submit_job_ll(istart, nlines, NROWS):
 
 
 if __name__ == '__main__':
+	df_train = pd.read_csv(SUMMARY_FILES_DIR + "play.csv")#, nrows=100)
+	df_val = pd.read_csv(SUMMARY_FILES_DIR + "model_testing_validation_set.csv")#, nrows=100)
+	from sklearn.ensemble import RandomForestRegressor
+	
+	def split_features_label(df, features):
+		attributes_df = df[features].reset_index(drop=True)
+		label_df = df['d_ll_merged'].reset_index(drop=True)
+		
+		x = np.array(attributes_df)
+		y = np.array(label_df).ravel()
+		
+		return x, y
+	
+	features = FEATURES_MERGED
+	features.remove(FEATURES['group_id'])
+	X_train, y_train = split_features_label(df_train, features)
+	X_test, y_test = split_features_label(df_val, features)
+	
+	model = RandomForestRegressor(oob_score=False, n_jobs=-1).fit(X_train,y_train)
+	y_pred = model.predict(X_test)
+	
+	from statistics import mean
+	def avg_sp_corr(y_true, y_pred):
+		df_val["pred"] = y_pred
+		
+		corrs = []
+		grouped_df_by_ds = df_val.groupby(FEATURES["group_id"], sort=False)
+		for group_id, df_by_ds in grouped_df_by_ds:
+			temp_df = df_by_ds[['d_ll_merged', "pred"]]
+			sp_corr = temp_df.corr(method='spearman').iloc[1, 0]
+			corrs.append(sp_corr)
+	
+		return mean(corrs)
+	
+	mean_sp_corr = avg_sp_corr(None, y_pred)
+	print(mean_sp_corr)
+	
+	###############
+	from sklearn.model_selection import RandomizedSearchCV
+	from sklearn.metrics import make_scorer
+	sp_score = make_scorer(avg_sp_corr, greater_is_better=False)
+	parameters = {'n_estimators': [25, 50, 70, 100],
+				  'max_depth': [10, 30, 50, 70, None],
+				  'min_samples_split': [2, 5, 10],
+				  'min_samples_leaf': [1, 2, 5, 10],
+				  'max_features': ["sqrt", "log2", 0.33, None],
+				  'min_impurity_decrease': [0.0, 0.001, 0.01, 0.02, 0.1],
+				  'ccp_alpha': [0.0, 0.1, 0.3, 0.5, 0.7]
+				  }
+	
+	grid_search = RandomizedSearchCV(model, parameters, cv=5, scoring=sp_score, n_jobs=-1)
+	opt_hp_model = grid_search.fit(X_train,y_train)
+	print(opt_hp_model.best_params_)
+	
+	y_pred = opt_hp_model.predict(X_test)
+	mean_sp_corr = avg_sp_corr(None, y_pred)
+	print(mean_sp_corr)
+	exit()
+	
+	
 	parser = argparse.ArgumentParser(description='perform all SPR moves')
 	parser.add_argument('--index_to_start_run', '-istart', default=False)
 	parser.add_argument('--nline_to_run', '-nlines', default=False)

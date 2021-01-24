@@ -87,19 +87,6 @@ def SPR_generator(t):
 
 
 if __name__ == '__main__':
-	from ete3 import Tree, TreeStyle, TextFace
-	
-	t = Tree("((a,b),c);")
-	# Basic tree style
-	ts = TreeStyle()
-	# ts.show_leaf_name = True
-	
-	# Add two text faces to different columns
-	t.add_face(TextFace("hola "), column=0, position="branch-right")
-	t.add_face(TextFace("mundo!"), column=1, position="branch-right")
-	t.show(tree_style=ts)
-	exit()
-	
 	tree_str_with_internal_names = "(((((Sp002:2.9e-07,Sp006:0.00173012)N8:0.00248844,Sp005:0.00978979)N6:0.0136241,Sp004:0.0388109)N4:0.0316201,Sp000:0.045075)N1:0.0837587,Sp003:0.00308638,Sp001:0.0180697);"
 	t = Tree(newick=tree_str_with_internal_names, format=1)
 	t.get_tree_root().name = "ROOT_LIKE"
