@@ -119,8 +119,8 @@ def submit_job_ll(istart, nlines, NROWS):
 
 
 if __name__ == '__main__':
-	df_train = pd.read_csv(SUMMARY_FILES_DIR + "play.csv", nrows=100)
-	df_val = pd.read_csv(SUMMARY_FILES_DIR + "model_testing_validation_set.csv", nrows=100)
+	df_train = pd.read_csv(SUMMARY_FILES_DIR + "play.csv")
+	df_val = pd.read_csv(SUMMARY_FILES_DIR + "model_testing_validation_set.csv")
 	#df_train = pd.read_csv("C:\\Users\\ItayMNB3\\Desktop\\play.csv", nrows=100)
 	#df_val = pd.read_csv("C:\\Users\\ItayMNB3\\Desktop\\model_testing_validation_set.csv", nrows=100)
 	from sklearn.ensemble import RandomForestRegressor
