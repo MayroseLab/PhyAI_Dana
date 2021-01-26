@@ -119,11 +119,12 @@ def submit_job_ll(istart, nlines, NROWS):
 
 
 if __name__ == '__main__':
-	df_train = pd.read_csv(SUMMARY_FILES_DIR + "play.csv")
+	df_train = pd.read_csv(SUMMARY_FILES_DIR + "learning_all_moves_step1.csv")
 	df_val = pd.read_csv(SUMMARY_FILES_DIR + "model_testing_validation_set.csv")
-	#df_train = pd.read_csv("C:\\Users\\ItayMNB3\\Desktop\\play.csv", nrows=100)
-	#df_val = pd.read_csv("C:\\Users\\ItayMNB3\\Desktop\\model_testing_validation_set.csv", nrows=100)
+	#df_train = pd.read_csv("C:\\Users\\ItayMNB3\\Desktop\\play.csv")#, nrows=100000)
+	#df_val = pd.read_csv("C:\\Users\\ItayMNB3\\Desktop\\model_testing_validation_set.csv")#, nrows=100000)
 	from sklearn.ensemble import RandomForestRegressor
+	
 	
 	def split_features_label(df, features):
 		attributes_df = df[features].reset_index(drop=True)
@@ -139,8 +140,8 @@ if __name__ == '__main__':
 	X_train, y_train = split_features_label(df_train, features)
 	X_test, y_test = split_features_label(df_val, features)
 	
-	model = RandomForestRegressor(oob_score=False, n_jobs=-1).fit(X_train,y_train)
-	y_pred = model.predict(X_test)
+	##rf_model = RandomForestRegressor(oob_score=False, n_jobs=-1).fit(X_train,y_train)
+	##y_pred = rf_model.predict(X_test)
 	
 	from statistics import mean
 	def avg_sp_corr(y_true, y_pred):
@@ -155,37 +156,19 @@ if __name__ == '__main__':
 	
 		return mean(corrs)
 	
-	mean_sp_corr = avg_sp_corr(None, y_pred)
+	##mean_sp_corr = avg_sp_corr(None, y_pred)
+	##print(mean_sp_corr)
+	
+	from xgboost import XGBRegressor
+	xgmodel = XGBRegressor(n_estimators=300, max_depth=3).fit(X_train,y_train)
+	y_pred_xg = xgmodel.predict(X_test)
+	mean_sp_corr = avg_sp_corr(None, y_pred_xg)
 	print(mean_sp_corr)
 	
-	###############
-	from sklearn.model_selection import RandomizedSearchCV
-	from sklearn.metrics import make_scorer
-	sp_score = make_scorer(avg_sp_corr, greater_is_better=False)
-	parameters = {'n_estimators': [25, 50, 70, 100],
-				  'max_depth': [10, 30, 50, 70, None],
-				  'min_samples_split': [2, 5, 10],
-				  'min_samples_leaf': [1, 2, 5, 10],
-				  'max_features': ["sqrt", "log2", 0.33, None],
-				  'min_impurity_decrease': [0.0, 0.001, 0.01, 0.02, 0.1],
-				  'ccp_alpha': [0.0, 0.1, 0.3, 0.5, 0.7]
-				  }
-	
-	#grid_search = RandomizedSearchCV(model, parameters, cv=2, scoring=sp_score, n_jobs=-1)
-	#opt_hp_model = grid_search.fit(X_train,y_train)
-	#print(opt_hp_model.best_params_)
-	
-	#y_pred = opt_hp_model.predict(X_test)
-	#mean_sp_corr = avg_sp_corr(None, y_pred)
-	#print(mean_sp_corr)
-	model2 = RandomForestRegressor(n_estimators=100, max_depth=70,
-								  min_samples_split=10, min_samples_leaf=5,
-								  max_features='sqrt',
-								  min_impurity_decrease=0.001, ccp_alpha=0.1,
-								  oob_score=False, n_jobs=-1).fit(X_train, y_train)
-	y_pred = model2.predict(X_test)
-	mean_sp_corr = avg_sp_corr(None, y_pred)
-	print(mean_sp_corr)
+	#from dtreeviz.trees import dtreeviz
+	#viz = dtreeviz(rf_model.estimators_[0], X_train, y_train, feature_names=features, target_name="Target")
+	#viz.view()
+	#viz.save("viztree_test.svg")
 	
 	exit()
 	
