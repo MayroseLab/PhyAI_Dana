@@ -195,7 +195,7 @@ def apply_RFR(df_test, df_train, move_type, features, cv=True):
 	else:
 		##model = RandomForestRegressor(n_estimators=N_ESTIMATORS, max_features=0.33, oob_score=False, n_jobs=-1).fit(X_train, y_train)
 		# todo: replace the previous and next lines (revert to RF)
-		model = XGBRegressor(n_estimators=500, max_depth=2, max_features=0.33).fit(X_train, y_train)
+		model = XGBRegressor(n_estimators=500, max_depth=1, max_features=0.33).fit(X_train, y_train)
 	y_pred = model.predict(X_test)
 	
 	#oob = model.oob_score_
