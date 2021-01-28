@@ -195,7 +195,7 @@ def apply_RFR(df_test, df_train, move_type, features, cv=True):
 	else:
 		##model = RandomForestRegressor(n_estimators=N_ESTIMATORS, max_features=0.33, oob_score=False, n_jobs=-1).fit(X_train, y_train)
 		# todo: replace the previous and next lines (revert to RF)
-		model = XGBRegressor(n_estimators=1000, max_depth=1, max_features='sqrt').fit(X_train, y_train)
+		model = XGBRegressor(n_estimators=500, max_depth=1, max_features='sqrt').fit(X_train, y_train)
 	y_pred = model.predict(X_test)
 	
 	#oob = model.oob_score_
@@ -520,7 +520,8 @@ if __name__ == '__main__':
 	########################
 	#'''
 	val = args.validation_set
-	suf = "_{st}_{valtype}".format(st=st, valtype=val) if val and not FIRST_ON_SEC else "_1st_on_2nd" if val else "_{}".format(st)
+	# todo: revert next line !
+	suf = "xgboost_{st}_{valtype}".format(st=st, valtype=val) if val and not FIRST_ON_SEC else "_1st_on_2nd" if val else "_{}".format(st)
 	ifsaturation = "" if not SATURATION else "_" + str(N_DATASETS)
 	ifrank = "" if not args.transform_target else "_ytransformed_{}".format(args.transform_target)
 	suf += ifsaturation + ifrank + ifrandomstart
