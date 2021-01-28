@@ -188,7 +188,7 @@ def apply_RFR(df_test, df_train, move_type, features, cv=True):
 		if not os.path.exists(model_path):
 			##regressor = RandomForestRegressor(n_estimators=N_ESTIMATORS, max_features=0.33,  oob_score=False, n_jobs=-1).fit(X_train, y_train) # 0.33=nfeatures/3. this is like in R (instead of default=n_features)
 			# todo: replace the previous and next lines (revert to RF)
-			regressor = XGBRegressor(n_estimators=500, max_depth=2, max_features=0.33).fit(X_train, y_train)
+			regressor = XGBRegressor(n_estimators=1000, max_depth=1, max_features='sqrt').fit(X_train, y_train)
 			# save the model to disk
 			joblib.dump(regressor, open(model_path, 'wb'))
 		model = joblib.load(model_path)
