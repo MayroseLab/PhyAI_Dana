@@ -160,7 +160,7 @@ if __name__ == '__main__':
 	##print(mean_sp_corr)
 	
 	from xgboost import XGBRegressor
-	xgmodel = XGBRegressor(n_estimators=3000, max_depth=1).fit(X_train,y_train)
+	xgmodel = XGBRegressor(n_estimators=2000, max_depth=1, learning_rate=0.001).fit(X_train,y_train)
 	y_pred_xg = xgmodel.predict(X_test)
 	mean_sp_corr = avg_sp_corr(None, y_pred_xg)
 	print(mean_sp_corr)
