@@ -119,60 +119,6 @@ def submit_job_ll(istart, nlines, NROWS):
 
 
 if __name__ == '__main__':
-	df_train = pd.read_csv(SUMMARY_FILES_DIR + "learning_all_moves_step1.csv")
-	df_val = pd.read_csv(SUMMARY_FILES_DIR + "model_testing_validation_set.csv")
-	#df_train = pd.read_csv("C:\\Users\\ItayMNB3\\Desktop\\play.csv")#, nrows=100000)
-	#df_val = pd.read_csv("C:\\Users\\ItayMNB3\\Desktop\\model_testing_validation_set.csv")#, nrows=100000)
-	from sklearn.ensemble import RandomForestRegressor
-	
-	
-	def split_features_label(df, features):
-		attributes_df = df[features].reset_index(drop=True)
-		label_df = df['d_ll_merged'].reset_index(drop=True)
-		
-		x = np.array(attributes_df)
-		y = np.array(label_df).ravel()
-		
-		return x, y
-	
-	features = FEATURES_MERGED
-	features.remove(FEATURES['group_id'])
-	X_train, y_train = split_features_label(df_train, features)
-	X_test, y_test = split_features_label(df_val, features)
-	
-	##rf_model = RandomForestRegressor(oob_score=False, n_jobs=-1).fit(X_train,y_train)
-	##y_pred = rf_model.predict(X_test)
-	
-	from statistics import mean
-	def avg_sp_corr(y_true, y_pred):
-		df_val["pred"] = np.array(y_pred)
-		
-		corrs = []
-		grouped_df_by_ds = df_val.groupby(FEATURES["group_id"], sort=False)
-		for group_id, df_by_ds in grouped_df_by_ds:
-			temp_df = df_by_ds[['d_ll_merged', "pred"]]
-			sp_corr = temp_df.corr(method='spearman').iloc[1, 0]
-			corrs.append(sp_corr)
-	
-		return mean(corrs)
-	
-	##mean_sp_corr = avg_sp_corr(None, y_pred)
-	##print(mean_sp_corr)
-	
-	from xgboost import XGBRegressor
-	xgmodel = XGBRegressor(n_estimators=2000, max_depth=1, learning_rate=0.001).fit(X_train,y_train)
-	y_pred_xg = xgmodel.predict(X_test)
-	mean_sp_corr = avg_sp_corr(None, y_pred_xg)
-	print(mean_sp_corr)
-	
-	#from dtreeviz.trees import dtreeviz
-	#viz = dtreeviz(rf_model.estimators_[0], X_train, y_train, feature_names=features, target_name="Target")
-	#viz.view()
-	#viz.save("viztree_test.svg")
-	
-	exit()
-	
-	
 	parser = argparse.ArgumentParser(description='perform all SPR moves')
 	parser.add_argument('--index_to_start_run', '-istart', default=False)
 	parser.add_argument('--nline_to_run', '-nlines', default=False)

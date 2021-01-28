@@ -177,21 +177,25 @@ def confidence_score(all_samples, ypred, percentile=90):
 		return 1, err_down, err_up
 	return 0, err_down, err_up
 
-
+from xgboost import XGBRegressor
 def apply_RFR(df_test, df_train, move_type, features, cv=True):
 	X_train, y_train = split_features_label(df_train, move_type, features)
 	X_test, y_test = split_features_label(df_test, move_type, features)
 
 	if not FEATURE_SELECTION and not SATURATION and not cv:
-		model_path = SUMMARY_FILES_DIR + 'finalized_model_joblib.sav'
+		# todo: revert the next line
+		model_path = SUMMARY_FILES_DIR + 'finalized_model_joblib_xgboost.sav'
 		if not os.path.exists(model_path):
-			regressor = RandomForestRegressor(n_estimators=N_ESTIMATORS, max_features=0.33,  oob_score=False, n_jobs=-1).fit(X_train, y_train) # 0.33=nfeatures/3. this is like in R (instead of default=n_features)
+			##regressor = RandomForestRegressor(n_estimators=N_ESTIMATORS, max_features=0.33,  oob_score=False, n_jobs=-1).fit(X_train, y_train) # 0.33=nfeatures/3. this is like in R (instead of default=n_features)
+			# todo: replace the previous and next lines (revert to RF)
+			regressor = XGBRegressor(n_estimators=500, max_depth=2, max_features=0.33).fit(X_train, y_train)
 			# save the model to disk
 			joblib.dump(regressor, open(model_path, 'wb'))
 		model = joblib.load(model_path)
 	else:
-		model = RandomForestRegressor(n_estimators=N_ESTIMATORS, max_features=0.33, oob_score=False, n_jobs=-1).fit(X_train, y_train)
-
+		##model = RandomForestRegressor(n_estimators=N_ESTIMATORS, max_features=0.33, oob_score=False, n_jobs=-1).fit(X_train, y_train)
+		# todo: replace the previous and next lines (revert to RF)
+		model = XGBRegressor(n_estimators=500, max_depth=2, max_features=0.33).fit(X_train, y_train)
 	y_pred = model.predict(X_test)
 	
 	#oob = model.oob_score_
@@ -294,7 +298,7 @@ def fit_transformation(df, move_type, trans=False):
 	# scale to the abs value of the starting tree ll
 	df[LABEL.format(move_type)] /= -df["orig_ds_ll"]  # minus (abs) to preserve order. 'ascending' should be True in 'get_cumsun_preds' function
 
-	'''
+	#'''
 	if trans == 'rank':
 		groups_ids = df[FEATURES[GROUP_ID]].unique()
 		for group_id in groups_ids:
@@ -309,8 +313,8 @@ def fit_transformation(df, move_type, trans=False):
 	if trans == 'exp10':
 		from scipy.special import exp10
 		df[LABEL.format(move_type)] = exp10(df[LABEL.format(move_type)] + 1)
-	'''
 	#'''
+	'''
 	f = plt.figure()
 	sns.set_context("paper", font_scale=1.2)
 	#from sklearn import preprocessing
