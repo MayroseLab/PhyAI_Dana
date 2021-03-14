@@ -42,8 +42,8 @@ def plot_lines(lls_arr, RFs_arr):
 
 	plt.xticks(moveN)
 	fig.tight_layout()
-	plt.savefig("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/summary_files/" + "FigS5", dpi=300)
-	plt.show()
+	plt.savefig("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/summary_files/" + "FigS5.tif", dpi=300)
+	#plt.show()
 
 
 

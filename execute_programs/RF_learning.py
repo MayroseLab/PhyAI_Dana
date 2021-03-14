@@ -177,34 +177,32 @@ def confidence_score(all_samples, ypred, percentile=90):
 		return 1, err_down, err_up
 	return 0, err_down, err_up
 
-from xgboost import XGBRegressor
+
 def apply_RFR(df_test, df_train, move_type, features, cv=True):
 	X_train, y_train = split_features_label(df_train, move_type, features)
 	X_test, y_test = split_features_label(df_test, move_type, features)
-
+	
 	if not FEATURE_SELECTION and not SATURATION and not cv:
-		# todo: revert the next line
-		model_path = SUMMARY_FILES_DIR + 'finalized_model_joblib_xgboost.sav'
+		model_path = SUMMARY_FILES_DIR + 'finalized_model_joblib_JC.sav'
 		if not os.path.exists(model_path):
-			##regressor = RandomForestRegressor(n_estimators=N_ESTIMATORS, max_features=0.33,  oob_score=False, n_jobs=-1).fit(X_train, y_train) # 0.33=nfeatures/3. this is like in R (instead of default=n_features)
-			# todo: replace the previous and next lines (revert to RF)
-			regressor = XGBRegressor(n_estimators=1000, max_depth=1, max_features='sqrt').fit(X_train, y_train)
+			regressor = RandomForestRegressor(n_estimators=N_ESTIMATORS, max_features=0.33, oob_score=False,
+											  n_jobs=-1).fit(X_train,
+															 y_train)  # 0.33=nfeatures/3. this is like in R (instead of default=n_features)
 			# save the model to disk
 			joblib.dump(regressor, open(model_path, 'wb'))
 		model = joblib.load(model_path)
 	else:
-		##model = RandomForestRegressor(n_estimators=N_ESTIMATORS, max_features=0.33, oob_score=False, n_jobs=-1).fit(X_train, y_train)
-		# todo: replace the previous and next lines (revert to RF)
-		model = XGBRegressor(n_estimators=1000, max_depth=1, max_features='sqrt').fit(X_train, y_train)
+		model = RandomForestRegressor(n_estimators=N_ESTIMATORS, max_features=0.33, oob_score=False, n_jobs=-1).fit(
+			X_train, y_train)
+	
 	y_pred = model.predict(X_test)
 	
-	#oob = model.oob_score_
+	# oob = model.oob_score_
 	oob = 0  #### TEMP !!!!!
 	f_imp = model.feature_importances_
-
+	
 	all_DTs_pred = []
-
-
+	
 	return y_pred, all_DTs_pred, oob, f_imp
 
 
@@ -520,8 +518,7 @@ if __name__ == '__main__':
 	########################
 	#'''
 	val = args.validation_set
-	# todo: revert next line !
-	suf = "_xgboost_{st}_{valtype}".format(st=st, valtype=val) if val and not FIRST_ON_SEC else "_1st_on_2nd" if val else "_xgboost_{}".format(st)
+	suf = "_{st}_{valtype}".format(st=st, valtype=val) if val and not FIRST_ON_SEC else "_1st_on_2nd" if val else "_{}".format(st)
 	ifsaturation = "" if not SATURATION else "_" + str(N_DATASETS)
 	ifrank = "" if not args.transform_target else "_ytransformed_{}".format(args.transform_target)
 	suf += ifsaturation + ifrank + ifrandomstart

@@ -83,28 +83,50 @@ def plot_main_results2(df):
 
 def plot_main_results2_oneline(df):
 	sns.set_context("paper", font_scale=1.2)
-	f, (ax1, ax2, ax3) = plt.subplots(1,3, figsize=(15,5))
-	axes = [ax1, ax2, ax3]
-	for i, ax in enumerate(axes):
-		sns.distplot(df[SCORES_LST[i]].values, ax=ax, color=next(palette), kde=False, label="big",
-					 bins=25)  # , norm_hist=True)
+	#f, (axA1, axA2, axA3), (axB1, axB2, axB3) = plt.subplots(2,3, figsize=(15,12))
+	# axes = [axA1, axA2, axA3, axB1, axB2, axB3]
+	f, axes = plt.subplots(2,3, figsize=(15,10))
+	(axA1, axA2, axA3) = axes[0][0], axes[0][1], axes[0][2]
+	(axB1, axB2, axB3) = axes[1][0], axes[1][1], axes[1][2]
+	my_colors = []
+	for i, ax in enumerate([axA1, axA2, axA3]):
+		my_colors.append(next(palette))
+		sns.distplot(df[SCORES_LST[i]].values, ax=ax, color=my_colors[i], kde=False, label="big",bins=25)  # , norm_hist=True)
 
-	yperc1 = [int(100 * y / len(df)) for y in ax1.get_yticks()]
+	ypercA1 = [int(100 * y / len(df)) for y in axA1.get_yticks()]
 	#yperc2 = [int(100 * y / len(df)) for y in ax2.get_yticks()]
 	#yperc3 = [int(100 * y / len(df)) for y in ax3.get_yticks()]
-
-	ax1.set(xlabel='Spearman correlation ({})'.format(r'$\rho$'), ylabel="% Empirical datasets", yticklabels=yperc1, xlim=(0, 1))
-	ax2.set(xlabel="Empirically best ranking percentile", xlim=(0, 100))
-	ax3.set(xlabel="Best predicted ranking percentile", xlim=(0, 100))
-	ax2.set_yticklabels(ax2.get_yticklabels(), size=30)
-	ax3.set_yticklabels(ax3.get_yticklabels(), size=30)
-
-	ax1.text(0, 1.08, "a", transform=ax1.transAxes, fontsize=18, fontweight='bold', va='top', ha='right')
-	ax2.text(0, 1.08, "b", transform=ax2.transAxes, fontsize=18, fontweight='bold', va='top', ha='right')
-	ax3.text(0, 1.08, "c", transform=ax3.transAxes, fontsize=18, fontweight='bold', va='top', ha='right')
-
+	
+	axA1.set(ylabel="% Empirical datasets", yticklabels=ypercA1,xlim=(0, 1))
+	axA2.set(xlim=(0, 100))
+	axA3.set(xlim=(0, 100))
+	axA2.set_yticklabels(axA2.get_yticklabels(), size=30)
+	axA3.set_yticklabels(axA3.get_yticklabels(), size=30)
+	
+	axA1.text(0, 1.08, "a$_{1}$", transform=axA1.transAxes, fontsize=18, fontweight='bold', va='top', ha='right')
+	axA2.text(0, 1.08, "a$_{2}$", transform=axA2.transAxes, fontsize=18, fontweight='bold', va='top', ha='right')
+	axA3.text(0, 1.08, "a$_{3}$", transform=axA3.transAxes, fontsize=18, fontweight='bold', va='top', ha='right')
+	
+	###################
+	df = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/summary_files/results_saturation/scores_per_ds_20_1_validation_set_4200_ytransformed_exp10_cp.csv")
+	for i, ax in enumerate([axB1, axB2, axB3]):
+		sns.distplot(df[SCORES_LST[i]].values, ax=ax, color=my_colors[i], kde=False, label="big",bins=25)  # , norm_hist=True)
+	ypercB1 = [int(100 * y / len(df)) for y in axB1.get_yticks()]
+	
+	axB1.set(xlabel='Spearman correlation ({})'.format(r'$\rho$'), ylabel="% Empirical datasets", yticklabels=ypercB1, xlim=(0, 1))
+	axB2.set(xlabel="Empirically best ranking percentile", xlim=(0, 100))
+	axB3.set(xlabel="Best predicted ranking percentile", xlim=(0, 100))
+	axB2.set_yticklabels(axB2.get_yticklabels(), size=30)
+	axB3.set_yticklabels(axB3.get_yticklabels(), size=30)
+	
+	axB1.text(0, 1.08, "b$_{1}$", transform=axB1.transAxes, fontsize=18, fontweight='bold', va='top', ha='right')
+	axB2.text(0, 1.08, "b$_{2}$", transform=axB2.transAxes, fontsize=18, fontweight='bold', va='top', ha='right')
+	axB3.text(0, 1.08, "b$_{3}$", transform=axB3.transAxes, fontsize=18, fontweight='bold', va='top', ha='right')
+	###################
+	
 	f.tight_layout()
-	plt.savefig(SUMMARY_FILES_DIR + "FigS4.tif", dpi=300)
+	#plt.savefig(SUMMARY_FILES_DIR + "FigS4.tif", dpi=300)
+	#plt.savefig(SUMMARY_FILES_DIR + "Fig2.tif", dpi=300)
 	plt.show()
 
 	return
@@ -231,9 +253,9 @@ if __name__ == '__main__':
 	exit()
 	#'''
 
-	#df = pd.read_csv(dirpath + 'v4_20features/' + SCORES_PER_DS.format("20_1_4200_ytransformed_exp"))
+	df = pd.read_csv(dirpath + 'v4_20features/' + SCORES_PER_DS.format("20_1_4200_ytransformed_exp"))
 	#df = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/summary_files/results_saturation/scores_per_ds_20_1_validation_set_4200_ytransformed_exp10_cp.csv")
-	df = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/submission_data/summary_files/scores_per_ds_19_1_validation_set_ytransformed_exp.csv")
+	#df = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/submission_data/summary_files/scores_per_ds_19_1_validation_set_ytransformed_exp.csv")  # JC
 	plot_main_results2_oneline(df)
 	#plot_main_results2(df)
 
