@@ -96,6 +96,8 @@ FEATURES_SHARED = ["orig_ds_id", "orig_ds_tbl", "longest_branch"]
 merged_prune, merged_rgft = FEATURES_PRUNE.copy(), FEATURES_RGFT.copy()
 [merged_prune.remove(f) for f in FEATURES_SHARED], [merged_rgft.remove(f) for f in FEATURES_SHARED]
 FEATURES_MERGED = FEATURES_SHARED + [feature + "_prune" for feature in merged_prune] + [feature + "_rgft" for feature in merged_rgft]
+FEATURES_MERGED += ['bstrap_nj_prune_starting', 'bstrap_nj_rgft_starting', 'bstrap_nj_prune_resulting', 'bstrap_nj_rgft_resulting', 'bstrap_upgma_prune_starting', 'bstrap_upgma_rgft_starting', 'bstrap_upgma_prune_resulting', 'bstrap_upgma_rgft_resulting']
+
 LABEL = "d_ll_{}"
 
 #NONIMPORTANT_FEATURES = ['ntaxa_prunned_rgft', 'ntaxa_prunned_prune', 'pdist_average_pruned_rgft',

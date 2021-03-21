@@ -23,7 +23,7 @@ pd.set_option('display.max_columns', 40)
 
 ML_SOFTWARE_STATING_TREE = 'phyml'     # could be phyml | RAxML_NG
 OPT_TYPE = "br"
-KFOLD = 10     # "LOO"
+KFOLD = 2     # "LOO"
 GROUP_ID = 'group_id'
 N_ESTIMATORS = 70
 #MAX_DEPTH = 5
@@ -183,7 +183,7 @@ def apply_RFR(df_test, df_train, move_type, features, cv=True):
 	X_test, y_test = split_features_label(df_test, move_type, features)
 	
 	if not FEATURE_SELECTION and not SATURATION and not cv:
-		model_path = SUMMARY_FILES_DIR + 'finalized_model_joblib_JC.sav'
+		model_path = SUMMARY_FILES_DIR + 'finalized_model_joblib_x.sav'
 		if not os.path.exists(model_path):
 			regressor = RandomForestRegressor(n_estimators=N_ESTIMATORS, max_features=0.33, oob_score=False,
 											  n_jobs=-1).fit(X_train,
@@ -518,7 +518,7 @@ if __name__ == '__main__':
 	########################
 	#'''
 	val = args.validation_set
-	suf = 	"_{st}_{valtype}_new8features".format(st=st, valtype=val) if val and not FIRST_ON_SEC else "_1st_on_2nd" if val else "_{}".format(st)
+	suf = "_{st}_{valtype}".format(st=st, valtype=val) if val and not FIRST_ON_SEC else "_1st_on_2nd" if val else "_{}".format(st)
 	ifsaturation = "" if not SATURATION else "_" + str(N_DATASETS)
 	ifrank = "" if not args.transform_target else "_ytransformed_{}".format(args.transform_target)
 	suf += ifsaturation + ifrank + ifrandomstart
