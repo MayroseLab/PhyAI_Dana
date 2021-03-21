@@ -12,7 +12,7 @@ def prune_branch(t_orig, prune_name):
     returns (a copy of) both ETE subtrees after pruning
     '''
     t_cp_p = t_orig.copy()  # the original tree is needed for each iteration
-    assert t_cp_p & prune_name  # todo Oz: add indicative error
+    assert t_cp_p & prune_name
     prune_node_cp = t_cp_p & prune_name  # locate the node in the copied subtree
     assert prune_node_cp.up
     
@@ -151,10 +151,8 @@ if __name__ == '__main__':
 
     NBOOTREES = 300
     ALGO = 'nj'
-    # todo: (1) check what are the internal node names in the resulting tree, namely how can I know what to lookup based on the prune and rgft names --> I need the prune.up.name & the orig rgft_name
-    # todo: (2) separate the names i lookup in the starting tree (the original cut&paste names), and in the resulting tree (based on todo1 findings)
     
-    df = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/summary_files/learning_all_moves_step1_test_new_features.csv", nrows=200)
+    df = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/summary_files/learning_all_moves_step1_test_new_features.csv") #, nrows=200)
     grouped_df_by_ds = df.groupby("path", sort=False)
     print(len(grouped_df_by_ds))
     for group_id, df_by_ds in grouped_df_by_ds:
@@ -199,8 +197,12 @@ if __name__ == '__main__':
                 df.loc[(df["path"] == dirpath) & (df["prune_name"] == pname) & (df["rgft_name"] == row["rgft_name"]), "bstrap_{}_prune_{}".format(ALGO, treetype)] = bstrap_prune
                 df.loc[(df["path"] == dirpath) & (df["prune_name"] == pname) & (df["rgft_name"] == row["rgft_name"]), "bstrap_{}_rgft_{}".format(ALGO, treetype)] = bstrap_rgft
                 
-    df = df.head(200)
-    #df = df.dropna()
-    df.to_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/summary_files/learning_all_moves_step1_test_new_features_test.csv")
+    
+    print(len(df))
+    df.to_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/summary_files/learning_all_moves_step1_test_new_features_all.csv")
+    #df = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/summary_files/learning_all_moves_step1_test_new_features_all.csv")
+    df = df.dropna()
+    df.to_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/summary_files/learning_all_moves_step1_test_new_features_all_dropna.csv")
+    print(len(df))
     
     
