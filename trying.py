@@ -154,7 +154,6 @@ if __name__ == '__main__':
     
     df = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/summary_files/learning_all_moves_step1_test_new_features.csv") #, nrows=200)
     grouped_df_by_ds = df.groupby("path", sort=False)
-    print(len(grouped_df_by_ds))
     for group_id, df_by_ds in grouped_df_by_ds:
         dirpath = df_by_ds["path"].values[0]
         print(dirpath)
@@ -195,7 +194,7 @@ if __name__ == '__main__':
                     bstrap_rgft_upgma = 100 if "Sp" in rname else extract_branch_score(support_tree_upgma, rname)
 
                 df.loc[(df["path"] == dirpath) & (df["prune_name"] == pname) & (df["rgft_name"] == row["rgft_name"]),
-                       "bstrap_{}_prune_{}".format('nj',treetype), "bstrap_{}_rgft_{}".format('nj',treetype), "bstrap_{}_prune_{}".format('upgma',treetype), "bstrap_{}_rgft_{}".format('upgma',treetype)] = \
+                       ["bstrap_{}_prune_{}".format('nj',treetype), "bstrap_{}_rgft_{}".format('nj',treetype), "bstrap_{}_prune_{}".format('upgma',treetype), "bstrap_{}_rgft_{}".format('upgma',treetype)]] = \
                         bstrap_prune_nj, bstrap_rgft_nj, bstrap_prune_upgma, bstrap_rgft_upgma
                 #df.loc[(df["path"] == dirpath) & (df["prune_name"] == pname) & (df["rgft_name"] == row["rgft_name"]), "bstrap_{}_prune_{}".format('nj', treetype)] = bstrap_prune_nj
                 #df.loc[(df["path"] == dirpath) & (df["prune_name"] == pname) & (df["rgft_name"] == row["rgft_name"]), "bstrap_{}_rgft_{}".format('nj', treetype)] = bstrap_rgft_nj
@@ -206,7 +205,7 @@ if __name__ == '__main__':
     print(len(df))
     df.to_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/summary_files/learning_all_moves_step1_test_new_features_njANDupgma.csv")
     df = df.dropna()
-    df.to_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/summary_files/learning_all_moves_step1_test_new_features_njANDupgma_dropna.csv")
+    df.to_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/summary_files/learninxg_all_moves_step1_test_new_features_njANDupgma_dropna.csv")
     print(len(df))
     
     
