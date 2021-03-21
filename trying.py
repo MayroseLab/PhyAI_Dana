@@ -196,13 +196,11 @@ if __name__ == '__main__':
                 print(rname + ":", bstrap_rgft)
                 print("########")
 
-                df.loc[(df["path"] == dirpath) & (df["prune_name"] == pname) & (df["rgft_name"] == rname), "bstrap_{}_prune_{}".format(ALGO, treetype)] = bstrap_prune
-                df.loc[(df["path"] == dirpath) & (df["prune_name"] == pname) & (df["rgft_name"] == rname), "bstrap_{}_rgft_{}".format(ALGO, treetype)] = bstrap_rgft
+                df.loc[(df["path"] == dirpath) & (df["prune_name"] == pname) & (df["rgft_name"] == row["rgft_name"]), "bstrap_{}_prune_{}".format(ALGO, treetype)] = bstrap_prune
+                df.loc[(df["path"] == dirpath) & (df["prune_name"] == pname) & (df["rgft_name"] == row["rgft_name"]), "bstrap_{}_rgft_{}".format(ALGO, treetype)] = bstrap_rgft
                 
     df = df.head(200)
-    print(len(df))
-    print(df)
+    #df = df.dropna()
     df.to_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/summary_files/learning_all_moves_step1_test_new_features_test.csv")
-    df = df.dropna()
-    print(len(df))
+    
     
