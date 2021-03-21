@@ -22,10 +22,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="04f6d22b-03c8-46f3-ac77-b58c4e95d95d" name="Default Changelist" comment="new features&#10;DEBUGGING">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/trying.py" beforeDir="false" afterPath="$PROJECT_DIR$/trying.py" afterDir="false" />
-    </list>
+    <list default="true" id="04f6d22b-03c8-46f3-ac77-b58c4e95d95d" name="Default Changelist" comment="new features&#10;DEBUGGING" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -636,19 +633,7 @@
       <workItem from="1615735881929" duration="2657000" />
       <workItem from="1615884142211" duration="31829000" />
       <workItem from="1616316110435" duration="3825000" />
-      <workItem from="1616319974608" duration="933000" />
-    </task>
-    <task id="LOCAL‎01394" summary="-">
-      <created>1608720702276</created>
-      <option name="number" value="LOCAL‎01394" />
-      <option name="presentableId" value="LOCAL‎01394" />
-      <updated>1608720702276</updated>
-    </task>
-    <task id="LOCAL‎01395" summary="-">
-      <created>1608721053679</created>
-      <option name="number" value="LOCAL‎01395" />
-      <option name="presentableId" value="LOCAL‎01395" />
-      <updated>1608721053679</updated>
+      <workItem from="1616319974608" duration="1250000" />
     </task>
     <task id="LOCAL‎01396" summary="-">
       <created>1608736235689</created>
@@ -940,7 +925,19 @@
       <option name="presentableId" value="LOCAL‎01442" />
       <updated>1616319818053</updated>
     </task>
-    <option name="localTasksCounter" value="1443" />
+    <task id="LOCAL‎01443" summary="new features&#10;DEBUGGING">
+      <created>1616320917060</created>
+      <option name="number" value="LOCAL‎01443" />
+      <option name="presentableId" value="LOCAL‎01443" />
+      <updated>1616320917061</updated>
+    </task>
+    <task id="LOCAL‎01444" summary="new features&#10;DEBUGGING">
+      <created>1616321170735</created>
+      <option name="number" value="LOCAL‎01444" />
+      <option name="presentableId" value="LOCAL‎01444" />
+      <updated>1616321170735</updated>
+    </task>
+    <option name="localTasksCounter" value="1445" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1104,7 +1101,7 @@
     <state x="139" y="0" key="SettingsEditor/0.0.1280.680@0.0.1280.680" timestamp="1615719818437" />
     <state x="306" y="0" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1615912033974" />
     <state x="326" y="0" key="SettingsEditor/0.0.2048.1112@0.0.2048.1112" timestamp="1611228823052" />
-    <state x="494" y="223" key="Vcs.Push.Dialog.v2" timestamp="1616319821483">
+    <state x="494" y="223" key="Vcs.Push.Dialog.v2" timestamp="1616321172401">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="494" y="-857" key="Vcs.Push.Dialog.v2/0.0.1280.680/0.-1080.1920.1040@0.-1080.1920.1040" timestamp="1608736892526" />
@@ -1112,7 +1109,7 @@
     <state x="535" y="-833" key="Vcs.Push.Dialog.v2/0.0.1280.680/103.-1050.1680.1010@103.-1050.1680.1010" timestamp="1609579544953" />
     <state x="141" y="32" key="Vcs.Push.Dialog.v2/0.0.1280.680/1920.0.2048.1112@0.0.1280.680" timestamp="1610898621165" />
     <state x="141" y="32" key="Vcs.Push.Dialog.v2/0.0.1280.680@0.0.1280.680" timestamp="1611846653378" />
-    <state x="494" y="223" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1616319821483" />
+    <state x="494" y="223" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1616321172401" />
     <state x="226" y="52" key="Vcs.Push.Dialog.v2/0.0.2048.1112@0.0.2048.1112" timestamp="1611227521229" />
     <state x="-10" y="0" width="1934" height="1054" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1615733698815">
       <screen x="0" y="0" width="1920" height="1040" />
