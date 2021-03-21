@@ -518,7 +518,7 @@ if __name__ == '__main__':
 	########################
 	#'''
 	val = args.validation_set
-	suf = "_{st}_{valtype}".format(st=st, valtype=val) if val and not FIRST_ON_SEC else "_1st_on_2nd" if val else "_{}".format(st)
+	suf = 	"_{st}_{valtype}_new8features".format(st=st, valtype=val) if val and not FIRST_ON_SEC else "_1st_on_2nd" if val else "_{}".format(st)
 	ifsaturation = "" if not SATURATION else "_" + str(N_DATASETS)
 	ifrank = "" if not args.transform_target else "_ytransformed_{}".format(args.transform_target)
 	suf += ifsaturation + ifrank + ifrandomstart

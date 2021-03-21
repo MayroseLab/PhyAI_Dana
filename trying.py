@@ -150,7 +150,7 @@ if __name__ == '__main__':
     '''
 
     NBOOTREES = 2000
-    ALGO = 'nj'
+    #ALGO = 'upgma'
     
     df = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/summary_files/learning_all_moves_step1_test_new_features.csv") #, nrows=200)
     grouped_df_by_ds = df.groupby("path", sort=False)
@@ -160,9 +160,11 @@ if __name__ == '__main__':
         print(dirpath)
         with open(dirpath + 'masked_species_real_msa.phy_phyml_tree_bionj.txt', 'r') as tree_fpr:
             startingtree = tree_fpr.read().strip()
-            
-        trees = generate_bootstrap_trees(dirpath, algo=ALGO, nbootrees=NBOOTREES)
-        support_startingtree = map_bootstraped(startingtree, trees)
+        
+        trees_nj = generate_bootstrap_trees(dirpath, algo='nj', nbootrees=NBOOTREES)
+        trees_upgma = generate_bootstrap_trees(dirpath, algo='upgma', nbootrees=NBOOTREES)
+        support_startingtree_nj = map_bootstraped(startingtree, trees_nj)
+        support_startingtree_upgma = map_bootstraped(startingtree, trees_nj)
         
         dfr = pd.read_csv(dirpath + "newicks_step1.csv")
         for i, row in dfr.iterrows():
@@ -183,22 +185,28 @@ if __name__ == '__main__':
                     else:
                         print("**************** 'up' does not exist for this node ***********")
                 if "Sp" in pname and "Sp" in rname:
-                    bstrap_prune, bstrap_rgft = 100, 100
+                    bstrap_prune_nj, bstrap_rgft_nj, bstrap_prune_upgma, bstrap_rgft_upgma = 100, 100, 100, 100
                 else:
-                    support_tree = support_startingtree if treetype == 'starting' else map_bootstraped(tree, trees)  # if treetype=='resulting'
-                    bstrap_prune = 100 if "Sp" in pname else extract_branch_score(support_tree, pname)
-                    bstrap_rgft = 100 if "Sp" in rname else extract_branch_score(support_tree, rname)
-                
+                    support_tree_nj = support_startingtree_nj if treetype == 'starting' else map_bootstraped(tree, trees_nj)  # if treetype=='resulting'
+                    support_tree_upgma = support_startingtree_upgma if treetype == 'starting' else map_bootstraped(tree, trees_upgma)  # if treetype=='resulting'
+                    bstrap_prune_nj = 100 if "Sp" in pname else extract_branch_score(support_tree_nj, pname)
+                    bstrap_rgft_nj = 100 if "Sp" in rname else extract_branch_score(support_tree_nj, rname)
+                    bstrap_prune_upgma = 100 if "Sp" in pname else extract_branch_score(support_tree_upgma, pname)
+                    bstrap_rgft_upgma = 100 if "Sp" in rname else extract_branch_score(support_tree_upgma, rname)
 
-                df.loc[(df["path"] == dirpath) & (df["prune_name"] == pname) & (df["rgft_name"] == row["rgft_name"]), "bstrap_{}_prune_{}".format(ALGO, treetype)] = bstrap_prune
-                df.loc[(df["path"] == dirpath) & (df["prune_name"] == pname) & (df["rgft_name"] == row["rgft_name"]), "bstrap_{}_rgft_{}".format(ALGO, treetype)] = bstrap_rgft
+                df.loc[(df["path"] == dirpath) & (df["prune_name"] == pname) & (df["rgft_name"] == row["rgft_name"]),
+                       "bstrap_{}_prune_{}".format('nj',treetype), "bstrap_{}_rgft_{}".format('nj',treetype), "bstrap_{}_prune_{}".format('upgma',treetype), "bstrap_{}_rgft_{}".format('upgma',treetype)] = \
+                        bstrap_prune_nj, bstrap_rgft_nj, bstrap_prune_upgma, bstrap_rgft_upgma
+                #df.loc[(df["path"] == dirpath) & (df["prune_name"] == pname) & (df["rgft_name"] == row["rgft_name"]), "bstrap_{}_prune_{}".format('nj', treetype)] = bstrap_prune_nj
+                #df.loc[(df["path"] == dirpath) & (df["prune_name"] == pname) & (df["rgft_name"] == row["rgft_name"]), "bstrap_{}_rgft_{}".format('nj', treetype)] = bstrap_rgft_nj
+                #df.loc[(df["path"] == dirpath) & (df["prune_name"] == pname) & (df["rgft_name"] == row["rgft_name"]), "bstrap_{}_prune_{}".format('upgma', treetype)] = bstrap_prune_upgma
+                #df.loc[(df["path"] == dirpath) & (df["prune_name"] == pname) & (df["rgft_name"] == row["rgft_name"]), "bstrap_{}_rgft_{}".format('upgma', treetype)] = bstrap_rgft_upgma
                 
     
     print(len(df))
-    df.to_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/summary_files/learning_all_moves_step1_test_new_features_all.csv")
-    #df = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/summary_files/learning_all_moves_step1_test_new_features_all.csv")
+    df.to_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/summary_files/learning_all_moves_step1_test_new_features_njANDupgma.csv")
     df = df.dropna()
-    df.to_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/summary_files/learning_all_moves_step1_test_new_features_all_dropna.csv")
+    df.to_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/summary_files/learning_all_moves_step1_test_new_features_njANDupgma_dropna.csv")
     print(len(df))
     
     
