@@ -197,8 +197,8 @@ if __name__ == '__main__':
                 print(rname + ":", bstrap_rgft)
                 print("########")
 
-                df.loc[(df["path"] == dirpath) & (df["prune_name"] == pname) & (df["rgft_name"] == rname)]["bstrap_{}_prune_{}".format(ALGO, treetype)] = bstrap_prune
-                df.loc[(df["path"] == dirpath) & (df["prune_name"] == pname) & (df["rgft_name"] == rname)]["bstrap_{}_rgft_{}".format(treetype)] = bstrap_rgft
+                df.loc[(df["path"] == dirpath) & (df["prune_name"] == pname) & (df["rgft_name"] == rname), "bstrap_{}_prune_{}".format(ALGO, treetype)] = bstrap_prune
+                df.loc[(df["path"] == dirpath) & (df["prune_name"] == pname) & (df["rgft_name"] == rname), "bstrap_{}_rgft_{}".format(treetype)] = bstrap_rgft
                 
     df = df.head(200)
     print(len(df))
