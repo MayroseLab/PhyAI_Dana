@@ -149,7 +149,7 @@ if __name__ == '__main__':
     SPR_generator(t)
     '''
 
-    NBOOTREES = 300
+    NBOOTREES = 2000
     ALGO = 'nj'
     
     df = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/summary_files/learning_all_moves_step1_test_new_features.csv") #, nrows=200)
