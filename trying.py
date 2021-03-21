@@ -83,31 +83,62 @@ def SPR_generator(t):
     return
 
 
-if __name__ == '__main__':
-    exit()
+
+
+from Bio import AlignIO
+from Bio import Phylo
+from Bio.Phylo.Consensus import *
+from Bio.Phylo.TreeConstruction import *
+from ete3 import Tree
+
+def generate_bootstrap_trees(dirpath, algo, nbootrees):
     '''
-    from Bio import AlignIO
-    from Bio import Phylo
-    from Bio.Phylo.Consensus import *
-    from Bio.Phylo.TreeConstruction import *
-    
-    NBOOTREES = 1000
-    ALGO = 'upgma'  # could be either ‘nj’ or ‘upgma’
-    #DIRPATH = "/groups/itay_mayrose/danaazouri/PhyRL_testData/data_test/"
-    #NEIGHBOR = DIRPATH + "real_msa.phy_phyml_tree.txt_bootstrap_test.txt"
-    DIRPATH = r"C:\Users\ItayMNB3\Dropbox\PhyloAI\data\training_datasets\test\\"
-    NEIGHBOR = DIRPATH + "masked_species_real_msa.phy_phyml_tree_bionj.txt"
-    
-    msa = AlignIO.read(DIRPATH + "masked_species_real_msa.phy", format="phylip")
+    algo could be either ‘nj’ or ‘upgma’
+    '''
+    msa = AlignIO.read(dirpath + "masked_species_real_msa.phy", format="phylip")
     calculator = DistanceCalculator('identity')
-    constructor = DistanceTreeConstructor(calculator, ALGO)
-    trees = bootstrap_trees(msa, NBOOTREES, constructor)
+    constructor = DistanceTreeConstructor(calculator, algo)
+    trees = bootstrap_trees(msa, nbootrees, constructor)
     
-    support_tree = get_support(Phylo.read(NEIGHBOR, "newick"), trees, NBOOTREES)
-    Phylo.write(support_tree, DIRPATH + "support_tree_{}_biopython.txt".format((ALGO)), "newick")
-    # ? print the support of the RELEVANT branch. (I know how using ete)
+    return trees
+
+
+def extract_branch_score(support_tree, branch_name):
+    for nb in support_tree.find_clades():   # todo: replace with a function that locates a specific branch directly!
+        nname = nb.name
+        if not nname:
+            continue
+            
+        if nname == branch_name:
+            bsupport = nb.confidence
+            bstrap_val = 0 if not bsupport else bsupport / 100
+        
+    return bstrap_val
+
     
-    exit()
+from io import StringIO
+def map_bootstraped(tree, trees):
+    '''
+    :param tree: a newick string
+    :param trees: the bootstrap trees object returned by Biopython function
+    :param pname: the name of the pruned_branch in the STARTING tree
+    :param rname: the name of the rgrft_branch in the STARTING tree
+    :return: the bootstrap value of both the pruned and the regraft branches
+    '''
+    
+    support_tree = get_support(Phylo.read(StringIO(tree), "newick"), trees, NBOOTREES)
+    print(support_tree)
+    
+    #Phylo.write(support_tree, dirpath + "test_support_tree_{}_biopython.txt".format((algo)), "newick")
+    # t = Tree(dirpath + "test_support_tree_{}_biopython.txt".format((algo)), format=1)
+    # print(t.get_ascii(show_internal=True))
+    
+    return support_tree
+
+
+
+
+if __name__ == '__main__':
     '''
     tree_str_with_internal_names = "(((((Sp002:2.9e-07,Sp006:0.00173012)N8:0.00248844,Sp005:0.00978979)N6:0.0136241,Sp004:0.0388109)N4:0.0316201,Sp000:0.045075)N1:0.0837587,Sp003:0.00308638,Sp001:0.0180697);"
     tree_str_with_internal_names = "((0011:0.1,0012:0.3)N1:0.0625,0027:0.1,(0017:0.1,(0018:0.2,(0029:0.1,((0008:0.1,0006:0.1)N12:0.025,(0002:0.05,0031:0.1)N13:0.025)N11:0.0125)N9:0.15)N7:0.0125)N3:0.03125);"
@@ -116,3 +147,62 @@ if __name__ == '__main__':
     t.get_tree_root().name = "ROOT_LIKE"
     print(t.get_ascii(show_internal=True))
     SPR_generator(t)
+    '''
+
+    NBOOTREES = 300
+    ALGO = 'nj'
+    # todo: (1) check what are the internal node names in the resulting tree, namely how can I know what to lookup based on the prune and rgft names --> I need the prune.up.name & the orig rgft_name
+    # todo: (2) separate the names i lookup in the starting tree (the original cut&paste names), and in the resulting tree (based on todo1 findings)
+    
+    df = pd.read_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/summary_files/learning_all_moves_step1_test_new_features.csv", nrows=200)
+    grouped_df_by_ds = df.groupby("path", sort=False)
+    print(len(grouped_df_by_ds))
+    for group_id, df_by_ds in grouped_df_by_ds:
+        dirpath = df_by_ds["path"].values[0]
+        print(dirpath)
+        with open(dirpath + 'masked_species_real_msa.phy_phyml_tree_bionj.txt', 'r') as tree_fpr:
+            startingtree = tree_fpr.read().strip()
+            
+        trees = generate_bootstrap_trees(dirpath, algo=ALGO, nbootrees=NBOOTREES)
+        support_startingtree = map_bootstraped(startingtree, trees)
+        
+        dfr = pd.read_csv(dirpath + "newicks_step1.csv")
+        for i, row in dfr.iterrows():
+            for treetype in ['starting', 'resulting']:
+                if "subtree" in row["rgft_name"]:
+                    continue
+                
+                pname = row["prune_name"]
+                if treetype == 'starting':
+                    rname = row["rgft_name"]
+                else:
+                    tree = row["newick"]
+                    prune_node = (Tree(tree, format=1)) & rname
+                    if prune_node.up:  # todo: replace with the respective function (of .up) in biopython
+                        rname = (prune_node.up).name
+                        if not rname:
+                            rname = "ROOT_LIKE"
+                    else:
+                        print("**************** 'up' does not exist for this node ***********")
+                if "Sp" in pname and "Sp" in rname:
+                    bstrap_prune, bstrap_rgft = 100, 100
+                else:
+                    support_tree = support_startingtree if treetype == 'starting' else map_bootstraped(tree, trees)  # if treetype=='resulting'
+                    bstrap_prune = 100 if "Sp" in pname else extract_branch_score(support_tree, pname)
+                    bstrap_rgft = 100 if "Sp" in rname else extract_branch_score(support_tree, rname)
+                
+                print(treetype)
+                print(pname + ":", bstrap_prune)
+                print(rname + ":", bstrap_rgft)
+                print("########")
+
+                df.loc[(df["path"] == dirpath) & (df["prune_name"] == pname) & (df["rgft_name"] == rname)]["bstrap_{}_prune_{}".fornat(ALGO, treetype)] = bstrap_prune
+                df.loc[(df["path"] == dirpath) & (df["prune_name"] == pname) & (df["rgft_name"] == rname)]["bstrap_{}_rgft_{}".fornat(treetype)] = bstrap_rgft
+                
+    df = df.head(200)
+    print(len(df))
+    print(df)
+    df.to_csv("/groups/itay_mayrose/danaazouri/PhyAI/DBset2/summary_files/learning_all_moves_step1_test_new_features_test.csv")
+    df = df.dropna()
+    print(len(df))
+    

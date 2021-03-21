@@ -3,7 +3,13 @@
   <component name="RemoteMappingsManager">
     <list>
       <list>
-        <remote-mappings server-id="python@sshConfig://danaazouri@powerlogin.tau.ac.il:22 password/groups/itay_mayrose/danaazouri/miniconda3/bin/python" />
+        <remote-mappings server-id="python@sshConfig://danaazouri@powerlogin.tau.ac.il:22 password/groups/itay_mayrose/danaazouri/miniconda3/bin/python">
+          <settings>
+            <list>
+              <mapping local-root="$PROJECT_DIR$" remote-root="/groups/itay_mayrose/danaazouri/PhyAI/tmp_PycharnPro" />
+            </list>
+          </settings>
+        </remote-mappings>
       </list>
     </list>
   </component>

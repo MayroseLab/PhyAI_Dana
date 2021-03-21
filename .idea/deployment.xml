@@ -2,10 +2,17 @@
 <project version="4">
   <component name="PublishConfigData" autoUpload="Always" serverName="danaazouri@powerlogin.tau.ac.il:22 password" remoteFilesAllowedToDisappearOnAutoupload="false">
     <serverData>
-      <paths name="power_PhyAI">
+      <paths name="PhyAI">
         <serverdata>
           <mappings>
-            <mapping deploy="/groups/itay_mayrose/danaazouri/PhyAI/pycharm_pro_code/" local="$PROJECT_DIR$" web="/" />
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="danaazouri@powerlogin.tau.ac.il:22 password">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/tmp/pycharm_project_877" local="$PROJECT_DIR$" />
           </mappings>
         </serverdata>
       </paths>
