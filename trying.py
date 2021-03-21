@@ -127,7 +127,7 @@ def map_bootstraped(tree, trees):
     '''
     
     support_tree = get_support(Phylo.read(StringIO(tree), "newick"), trees, NBOOTREES)
-    print(support_tree)
+    #print(support_tree)
     
     #Phylo.write(support_tree, dirpath + "test_support_tree_{}_biopython.txt".format((algo)), "newick")
     # t = Tree(dirpath + "test_support_tree_{}_biopython.txt".format((algo)), format=1)
@@ -189,10 +189,6 @@ if __name__ == '__main__':
                     bstrap_prune = 100 if "Sp" in pname else extract_branch_score(support_tree, pname)
                     bstrap_rgft = 100 if "Sp" in rname else extract_branch_score(support_tree, rname)
                 
-                print(treetype)
-                print(pname + ":", bstrap_prune)
-                print(rname + ":", bstrap_rgft)
-                print("########")
 
                 df.loc[(df["path"] == dirpath) & (df["prune_name"] == pname) & (df["rgft_name"] == row["rgft_name"]), "bstrap_{}_prune_{}".format(ALGO, treetype)] = bstrap_prune
                 df.loc[(df["path"] == dirpath) & (df["prune_name"] == pname) & (df["rgft_name"] == row["rgft_name"]), "bstrap_{}_rgft_{}".format(ALGO, treetype)] = bstrap_rgft
